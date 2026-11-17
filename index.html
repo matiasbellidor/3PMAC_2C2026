@@ -1,0 +1,2355 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Palacio Macro · Cap. 17</title>
+<meta name="description" content="Estudiá el capítulo 17 de Barro (mercados mundiales de bienes y crédito) con resúmenes, un palacio de la memoria con preguntas y jefes de opción múltiple estilo parcial.">
+<meta name="theme-color" content="#F5F5F7">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B2E6B'/%3E%3Cpath d='M5 16 L11 10 L17 13 L27 5' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5 18 L11 24 L17 21 L27 27' fill='none' stroke='%23FFB020' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="image" type="image/webp" href="emojis/globe-americas.webp">
+<script>
+  /* Tema guardado antes de pintar (preferencia de este navegador). */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('palacio-macro:tema'); } catch (e) {}
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#000000' : '#F5F5F7');
+  })();
+</script>
+<style>
+/* ============ TOKENS ============ */
+:root {
+  --bg: #F5F5F7; --surface: #FFFFFF; --surface-2: #F2F2F5; --surface-3: #E8E8ED;
+  --ink: #1D1D1F; --ink-2: #424245; --muted: #66666B; --line: #E1E1E6; --line-2: #D2D2D7;
+  --fill: rgba(118, 118, 128, .12);
+  --accent: #0066CC; --accent-btn: #0071E3; --accent-press: #0058B0; --on-accent: #FFFFFF; --accent-tint: #E8F1FC;
+  --ok: #1E7D36; --on-ok: #FFFFFF; --ok-tint: #E9F7ED; --ok-line: #A8DDB6;
+  --bad: #C4111F; --on-bad: #FFFFFF; --bad-tint: #FDEDEE; --bad-line: #F3B4B9; --bad-btn: #C4111F;
+  --warn-tint: #FFF4D9;
+  --c1: #34C759; --c2: #FF9500; --c3: #007AFF; --c4: #FF2D55; --c5: #AF52DE; --c6: #30B0C7;
+  --glass: rgba(245, 245, 247, .8);
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+  --r1: 10px; --r2: 20px; --rp: 999px;
+  --sh-1: 0 1px 2px rgba(0, 0, 0, .04), 0 4px 16px rgba(0, 0, 0, .05);
+  --sh-2: 0 2px 6px rgba(0, 0, 0, .05), 0 16px 40px rgba(0, 0, 0, .09);
+  --dur: 200ms; --ease: cubic-bezier(.25, .1, .25, 1);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-d: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000; --surface: #1C1C1E; --surface-2: #232325; --surface-3: #2C2C2E;
+    --ink: #F5F5F7; --ink-2: #D1D1D6; --muted: #A1A1A6; --line: #2C2C2E; --line-2: #3A3A3C;
+    --fill: rgba(118, 118, 128, .24);
+    --accent: #4DA3FF; --accent-btn: #0068D6; --accent-press: #0057B3; --on-accent: #FFFFFF; --accent-tint: #0F2A47;
+    --ok: #30D158; --on-ok: #04140A; --ok-tint: #0E2A17; --ok-line: #1F5E33;
+    --bad: #FF6961; --on-bad: #2A0606; --bad-tint: #3A1214; --bad-line: #6E2A2C; --bad-btn: #D70015;
+    --warn-tint: #33280F;
+    --glass: rgba(22, 22, 23, .8);
+    --sh-1: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 16px rgba(0, 0, 0, .25);
+    --sh-2: 0 2px 6px rgba(0, 0, 0, .35), 0 16px 40px rgba(0, 0, 0, .45);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #000000; --surface: #1C1C1E; --surface-2: #232325; --surface-3: #2C2C2E;
+  --ink: #F5F5F7; --ink-2: #D1D1D6; --muted: #A1A1A6; --line: #2C2C2E; --line-2: #3A3A3C;
+  --fill: rgba(118, 118, 128, .24);
+  --accent: #4DA3FF; --accent-btn: #0068D6; --accent-press: #0057B3; --on-accent: #FFFFFF; --accent-tint: #0F2A47;
+  --ok: #30D158; --on-ok: #04140A; --ok-tint: #0E2A17; --ok-line: #1F5E33;
+  --bad: #FF6961; --on-bad: #2A0606; --bad-tint: #3A1214; --bad-line: #6E2A2C; --bad-btn: #D70015;
+  --warn-tint: #33280F;
+  --glass: rgba(22, 22, 23, .8);
+  --sh-1: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 16px rgba(0, 0, 0, .25);
+  --sh-2: 0 2px 6px rgba(0, 0, 0, .35), 0 16px 40px rgba(0, 0, 0, .45);
+  color-scheme: dark;
+}
+
+/* ============ BASE ============ */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 128px; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 16px/1.55 var(--font); letter-spacing: -.011em;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh; min-height: 100dvh; overflow-x: hidden;
+}
+h1, h2, h3 { margin: 0; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 75%, transparent); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip { position: absolute; left: var(--s4); top: -64px; z-index: 120; background: var(--surface); color: var(--ink); padding: var(--s2) var(--s4); border-radius: var(--rp); box-shadow: var(--sh-2); }
+.skip:focus { top: var(--s2); }
+/* Emojis de Apple como imagen: miden como el texto que reemplazan. */
+img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: -.28em; object-fit: contain; }
+
+/* Barras de scroll con la identidad del sitio */
+::-webkit-scrollbar { width: 12px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: color-mix(in srgb, var(--accent-btn) 45%, var(--surface-3)); border-radius: var(--rp); border: 3px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background-color: var(--accent-btn); }
+::-webkit-scrollbar-button { display: none; }
+@supports not selector(::-webkit-scrollbar) {
+  html, mjx-container { scrollbar-color: color-mix(in srgb, var(--accent-btn) 45%, var(--surface-3)) transparent; scrollbar-width: thin; }
+}
+
+/* ============ INTRO DE MARCA ============ */
+.splash { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: var(--bg); pointer-events: none; animation: splash-out .3s var(--ease) .75s forwards; }
+.splash-in { display: grid; justify-items: center; }
+.splash-globe { width: 72px; height: 72px; animation: globe-in .55s cubic-bezier(.2, 1.3, .4, 1) both; }
+.splash-title { margin-top: var(--s3); font: 700 24px/1.2 var(--font-d); letter-spacing: -.02em; animation: up .4s var(--ease) .15s both; }
+.splash-sub { margin-top: var(--s1); font-size: 14px; color: var(--muted); animation: up .4s var(--ease) .25s both; }
+@keyframes globe-in { from { transform: scale(.5) rotate(-25deg); opacity: 0; } }
+@keyframes up { from { transform: translateY(8px); opacity: 0; } }
+@keyframes splash-out { to { opacity: 0; visibility: hidden; } }
+
+/* ============ ENCABEZADO Y PESTAÑAS ============ */
+.top { position: sticky; top: 0; z-index: 30; background: var(--glass); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--line); }
+.top-row { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: var(--s3); padding: var(--s2) var(--s4); min-height: 56px; }
+.brand { display: inline-flex; align-items: center; gap: var(--s2); margin-right: auto; min-width: 0; color: var(--ink); text-decoration: none; border-radius: var(--r1); }
+.brand img.emo { width: 32px; height: 32px; vertical-align: middle; flex: none; }
+.brand-txt { display: flex; flex-direction: column; min-width: 0; line-height: 1.2; }
+.brand-name { font: 700 16px/1.2 var(--font-d); letter-spacing: -.015em; white-space: nowrap; }
+.brand-sub { font-size: 12px; color: var(--muted); white-space: nowrap; letter-spacing: 0; }
+.stats { display: flex; gap: var(--s1); flex: none; }
+.stat { display: inline-flex; align-items: center; gap: var(--s1); min-height: 32px; padding: 0 var(--s2); border-radius: var(--rp); background: var(--fill); font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; letter-spacing: 0; }
+.stat img.emo { width: 16px; height: 16px; vertical-align: middle; }
+.stat.bump { animation: bump .35s var(--ease); }
+@keyframes bump { 40% { transform: scale(1.12); } }
+.icon-btn { flex: none; width: 44px; height: 44px; border-radius: var(--rp); border: 1px solid var(--line); background: var(--surface); display: grid; place-items: center; cursor: pointer; padding: 0; }
+.icon-btn img.emo { width: 20px; height: 20px; vertical-align: middle; }
+@media (max-width: 359px) { .brand-sub { display: none; } }
+
+.seg-nav { padding: 0 var(--s4) var(--s3); }
+.seg { max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s1); padding: var(--s1); background: var(--fill); border-radius: var(--rp); }
+.seg a { display: flex; align-items: center; justify-content: center; gap: var(--s2); min-height: 40px; padding: 0 var(--s3); border-radius: var(--rp); color: var(--ink-2); text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap; letter-spacing: -.005em; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.seg a img.emo { width: 20px; height: 20px; vertical-align: middle; flex: none; }
+.seg a[aria-current="page"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 1px rgba(0, 0, 0, .04); }
+.seg-sub { font-weight: 400; }
+@media (hover: hover) and (pointer: fine) { .seg a:not([aria-current="page"]):hover { color: var(--ink); background: color-mix(in srgb, var(--surface) 55%, transparent); } }
+
+.tabbar { display: none; }
+@media (max-width: 719px) {
+  html { scroll-padding-top: 76px; }
+  .seg-nav { display: none; }
+  .tabbar {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: var(--glass); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
+    border-top: 1px solid var(--line); padding: var(--s1) var(--s2) calc(var(--s1) + env(safe-area-inset-bottom));
+  }
+  .tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s1); min-height: 56px; text-decoration: none; color: var(--ink-2); font-size: 12px; font-weight: 600; letter-spacing: 0; border-radius: var(--r1); }
+  .tb-ico { display: grid; place-items: center; width: 56px; height: 28px; border-radius: var(--rp); transition: background-color var(--dur) var(--ease); }
+  .tb-ico img.emo { width: 22px; height: 22px; vertical-align: middle; }
+  .tabbar a[aria-current="page"] { color: var(--accent); }
+  .tabbar a[aria-current="page"] .tb-ico { background: var(--accent-tint); }
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+}
+
+/* ============ CONTENEDORES ============ */
+main { display: block; max-width: 800px; margin: 0 auto; padding: var(--s6) var(--s4) var(--s8); outline: none; }
+main.wide { max-width: 1180px; }
+main.enter { animation: enter .22s var(--ease); }
+@keyframes enter { from { opacity: 0; transform: translateY(8px); } }
+.kicker { margin: 0 0 var(--s2); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 700 32px/1.15 var(--font-d); letter-spacing: -.025em; }
+.lead { margin-top: var(--s3); font-size: 20px; line-height: 1.45; color: var(--ink-2); max-width: 62ch; letter-spacing: -.015em; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+.card { background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); padding: var(--s5); margin-top: var(--s5); }
+.h3 { font: 600 16px/1.3 var(--font-d); margin: 0 0 var(--s2); display: flex; gap: var(--s2); align-items: center; }
+.notice { margin-top: var(--s4); padding: var(--s3) var(--s4); border-radius: var(--r1); background: var(--warn-tint); color: var(--ink); display: flex; gap: var(--s3); align-items: flex-start; }
+.notice img.emo { flex: none; width: 20px; height: 20px; margin-top: 2px; }
+@media (max-width: 479px) {
+  h1 { font-size: 24px; }
+  .lead { font-size: 16px; }
+  .card { padding: var(--s4); }
+}
+
+/* ============ FÓRMULAS (MathJax) ============ */
+mjx-container { max-width: 100%; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; margin: var(--s2) 0 !important; padding: 2px 0 6px; }
+mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; padding: 2px 0 6px; }
+/* Mientras carga MathJax, el LaTeX crudo se ve como un esqueleto. */
+.tx:not(.tx-ok) { color: transparent; background: var(--fill); border-radius: 6px; }
+.tx-d { display: block; }
+.tx-d:not(.tx-ok) { min-height: 48px; margin: var(--s2) 0; overflow: hidden; }
+.no-mathjax .tx { color: inherit; background: none; }
+.mj-note { display: none; }
+.no-mathjax .mj-note { display: block; background: var(--warn-tint); color: var(--ink); border-radius: var(--r1); padding: var(--s2) var(--s3); }
+
+/* ============ BOTONES ============ */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s2); min-height: 48px; padding: var(--s3) var(--s5); border: 0; border-radius: var(--rp); background: var(--accent-btn); color: var(--on-accent); font: 600 16px/1.2 var(--font); letter-spacing: -.01em; text-align: center; text-decoration: none; cursor: pointer; transition: transform var(--dur) var(--ease), background-color var(--dur) var(--ease); }
+.btn img.emo { width: 20px; height: 20px; vertical-align: middle; }
+.btn:active { transform: scale(.97); }
+.btn-2 { background: var(--fill); color: var(--ink); }
+.btn-danger { background: var(--bad-btn); color: #FFFFFF; }
+.btn[disabled] { background: var(--surface-3); color: var(--muted); cursor: not-allowed; transform: none; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:not([disabled]):hover { background: var(--accent-press); }
+  .btn-2:not([disabled]):hover { background: var(--surface-3); }
+  .btn-danger:not([disabled]):hover { background: #A50E19; }
+}
+.cta-row { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s6); }
+@media (max-width: 479px) { .cta-row .btn { width: 100%; } }
+.back { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; text-decoration: none; color: var(--accent); }
+
+/* ============ TEORÍA ============ */
+.hero { margin-bottom: var(--s6); }
+.path { list-style: none; margin: var(--s5) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
+.path li > a, .path li > div { height: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--s3); row-gap: 0; align-items: center; padding: var(--s3) var(--s4); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); color: var(--ink); text-decoration: none; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.path-n { grid-row: span 2; display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--rp); background: var(--fill); font-weight: 700; font-size: 14px; }
+.path-on .path-n { background: var(--accent-btn); color: var(--on-accent); }
+.path-t { font-weight: 600; font-size: 16px; letter-spacing: -.015em; }
+.path-t img.emo { width: 20px; height: 20px; vertical-align: -4px; }
+.path-s { font-size: 14px; color: var(--muted); }
+@media (hover: hover) and (pointer: fine) { .path a:hover { transform: translateY(-2px); box-shadow: var(--sh-2); } }
+@media (max-width: 639px) { .path { grid-template-columns: minmax(0, 1fr); } }
+.chips { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s5); }
+.chip { display: inline-flex; align-items: center; gap: var(--s2); min-height: 36px; padding: var(--s1) var(--s3); border-radius: var(--rp); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: -.005em; }
+.chip img.emo { width: 16px; height: 16px; vertical-align: middle; }
+@media (hover: hover) and (pointer: fine) { .chip:hover { box-shadow: inset 0 0 0 1.5px var(--accent-btn); } }
+
+.t-card { background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); padding: var(--s5); margin-top: var(--s6); }
+.t-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s4); align-items: center; }
+.t-head .kicker { margin-bottom: var(--s1); }
+.t-card h2 { font: 700 24px/1.2 var(--font-d); letter-spacing: -.02em; }
+.tile { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--r1); background: color-mix(in srgb, var(--hue, var(--c3)) 18%, var(--surface)); flex: none; }
+.tile img.emo { width: 28px; height: 28px; vertical-align: middle; }
+.tile-lg { width: 64px; height: 64px; border-radius: var(--r2); }
+.tile-lg img.emo { width: 40px; height: 40px; }
+.t-cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s5); margin-top: var(--s5); align-items: start; }
+@media (min-width: 1000px) { .t-cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s6); } }
+.t-sum { min-width: 0; }
+.t-sum .col-h { padding-bottom: var(--s3); border-bottom: 1px solid var(--line); }
+.t-lead { margin-top: var(--s4); color: var(--ink-2); max-width: 68ch; }
+.eq { margin-top: var(--s4); background: color-mix(in srgb, var(--hue, var(--c3)) 7%, var(--surface-2)); border-radius: var(--r1); padding: var(--s3) var(--s4); }
+.eq-label { font-size: 14px; font-weight: 600; color: var(--ink-2); display: flex; align-items: center; gap: var(--s2); }
+.eq-label img.emo { width: 16px; height: 16px; }
+.eq-cap { font-size: 14px; color: var(--muted); }
+.t-block { margin-top: var(--s5); }
+.t-block h4 { font: 600 16px/1.3 var(--font-d); margin: 0 0 var(--s2); letter-spacing: -.01em; }
+.dots { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s2); }
+.dots li { position: relative; padding-left: var(--s5); max-width: 72ch; min-width: 0; }
+.dots li::before { content: ""; position: absolute; left: 4px; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: var(--hue, var(--c3)); }
+.hook { display: flex; gap: var(--s3); align-items: flex-start; margin-top: var(--s5); padding: var(--s3) var(--s4); background: var(--accent-tint); border-radius: var(--r1); color: var(--ink); }
+.hook > img.emo { width: 20px; height: 20px; flex: none; margin-top: 2px; }
+.t-cta { margin-top: var(--s5); }
+@media (max-width: 479px) {
+  .t-card { padding: var(--s4); margin-top: var(--s5); }
+  .t-card h2 { font-size: 20px; }
+  .t-head { gap: var(--s3); }
+}
+
+/* ============ PALACIO ============ */
+.progress { margin-top: var(--s5); padding: var(--s4); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); }
+.pc-row { display: flex; justify-content: space-between; gap: var(--s3); font-weight: 600; font-size: 14px; }
+.bar { height: 8px; border-radius: var(--rp); background: var(--fill); overflow: hidden; margin-top: var(--s2); }
+.bar > span { display: block; height: 100%; width: 100%; border-radius: inherit; background: var(--accent-btn); transform-origin: left center; transition: transform .4s var(--ease); }
+.route { list-style: none; margin: var(--s6) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s4); position: relative; }
+.route::before { content: ""; position: absolute; left: 40px; top: 40px; bottom: 40px; border-left: 2px dashed var(--line-2); }
+.route > li { position: relative; min-width: 0; }
+.ri-card { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--s4); align-items: center; padding: var(--s4); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); color: var(--ink); text-decoration: none; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+@media (hover: hover) and (pointer: fine) { a.ri-card:hover { transform: translateY(-2px); box-shadow: var(--sh-2); } }
+.ri-text { display: flex; flex-direction: column; gap: var(--s1); min-width: 0; }
+.ri-text .kicker { margin: 0; }
+.ri-title { font: 600 20px/1.25 var(--font-d); letter-spacing: -.015em; }
+.ri-topic { font-size: 14px; color: var(--muted); }
+.ri-lock { font-size: 14px; color: var(--ink-2); }
+.locked .tile { filter: grayscale(1); }
+.status { display: inline-flex; align-items: center; gap: var(--s1); white-space: nowrap; padding: var(--s1) var(--s3); border-radius: var(--rp); font-size: 14px; font-weight: 600; letter-spacing: 0; }
+.status img.emo { width: 16px; height: 16px; vertical-align: middle; }
+.st-done { background: var(--ok-tint); color: var(--ok); }
+.st-open { background: var(--accent-tint); color: var(--accent); }
+.st-lock { background: var(--fill); color: var(--ink-2); }
+@media (max-width: 559px) {
+  .ri-card { grid-template-columns: auto minmax(0, 1fr); gap: var(--s3); }
+  .ri-card .status { grid-column: 2; justify-self: start; }
+  .ri-title { font-size: 16px; }
+  .route::before { left: 36px; }
+}
+.faq { margin-top: var(--s7); }
+.faq h2 { font: 700 24px/1.2 var(--font-d); letter-spacing: -.02em; margin-bottom: var(--s3); }
+.faq details { background: var(--surface); border-radius: var(--r1); margin-top: var(--s2); box-shadow: var(--sh-1); }
+.faq summary { cursor: pointer; list-style: none; padding: var(--s3) var(--s4); min-height: 52px; font-weight: 600; display: flex; justify-content: space-between; gap: var(--s3); align-items: center; border-radius: var(--r1); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; font-size: 20px; line-height: 1; color: var(--muted); transition: transform var(--dur) var(--ease); }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq-a { padding: 0 var(--s4) var(--s4); color: var(--ink-2); max-width: 72ch; }
+
+/* Habitación */
+.room-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s4); align-items: center; margin-top: var(--s2); }
+.room-head .kicker { margin-bottom: var(--s1); }
+.room-pal { margin-top: var(--s5); }
+.keys .eq { margin-top: var(--s3); }
+
+/* Versión palacio: estaciones con dónde está, qué ves y qué significa */
+.pal-box { background: color-mix(in srgb, var(--hue, var(--c3)) 8%, var(--surface-2)); border-radius: var(--r1); padding: var(--s5); min-width: 0; }
+.pal-name { margin-top: var(--s3); font: 600 16px/1.3 var(--font-d); letter-spacing: -.01em; }
+.pal-arrive { display: flex; gap: var(--s2); align-items: flex-start; margin-top: var(--s3); }
+.pal-arrive > img.emo { width: 18px; height: 18px; flex: none; margin-top: 3px; }
+.stations { list-style: none; margin: var(--s4) 0 0; padding: 0; counter-reset: stn; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
+.stations li { counter-increment: stn; position: relative; min-width: 0; padding: var(--s3) var(--s4) var(--s3) 52px; background: var(--surface); border-radius: var(--r1); }
+.stations li::before { content: counter(stn); position: absolute; left: var(--s3); top: var(--s3); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: color-mix(in srgb, var(--hue, var(--c3)) 30%, var(--surface)); color: var(--ink); font-size: 14px; font-weight: 700; letter-spacing: 0; }
+.st-where { font-size: 14px; font-weight: 700; line-height: 1.4; min-height: 28px; display: flex; align-items: center; }
+.st-see { margin-top: var(--s1); }
+.st-means { margin-top: var(--s2); padding-top: var(--s2); border-top: 1px dashed var(--line-2); display: flex; gap: var(--s2); align-items: flex-start; color: var(--ink-2); }
+.st-means > img.emo { width: 18px; height: 18px; flex: none; margin-top: 3px; }
+.pal-story { margin-top: var(--s4); padding: var(--s3) var(--s4); background: var(--surface); border-radius: var(--r1); }
+.pal-h { font-weight: 700; display: flex; gap: var(--s2); align-items: center; margin-bottom: var(--s1); }
+.pal-h img.emo { width: 18px; height: 18px; }
+.pal-box .hook { background: var(--surface); }
+.pal-note { margin-top: var(--s4); font-size: 14px; color: var(--ink-2); }
+.col-h { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); display: flex; gap: var(--s2); align-items: center; }
+.col-h img.emo { width: 18px; height: 18px; }
+@media (max-width: 479px) {
+  .pal-box { padding: var(--s4); }
+  .stations li { padding-left: 48px; }
+}
+
+/* ============ PREGUNTAS ============ */
+.q-top { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+.q-top .back { margin-right: auto; }
+.q-room { font-size: 14px; font-weight: 600; color: var(--muted); display: inline-flex; gap: var(--s2); align-items: center; }
+.q-room img.emo { width: 18px; height: 18px; }
+.q-prog { margin-top: var(--s2); }
+.q-card { margin-top: var(--s4); }
+.q-card .kicker { display: flex; gap: var(--s2); align-items: center; flex-wrap: wrap; }
+.tag { display: inline-flex; align-items: center; gap: var(--s1); padding: 0 var(--s2); border-radius: var(--rp); background: var(--warn-tint); color: var(--ink); text-transform: none; letter-spacing: 0; font-size: 12px; }
+.tag img.emo { width: 14px; height: 14px; }
+.q-text { font: 600 20px/1.4 var(--font-d); letter-spacing: -.015em; outline: none; }
+.opts { border: 0; margin: var(--s5) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s3); min-width: 0; }
+.opt { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--s3); align-items: center; padding: var(--s3) var(--s4); min-height: 56px; border-radius: var(--r1); background: var(--surface); box-shadow: inset 0 0 0 1.5px var(--line-2); cursor: pointer; transition: box-shadow var(--dur) var(--ease), background-color var(--dur) var(--ease); }
+.opt input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+.opt-k { display: grid; place-items: center; width: 28px; height: 28px; border-radius: var(--rp); background: var(--fill); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 0; }
+.opt-t { min-width: 0; }
+.opt-mark { font-weight: 700; font-size: 18px; line-height: 1; }
+.opt:has(input:checked) { box-shadow: inset 0 0 0 2px var(--accent-btn); background: var(--accent-tint); }
+.opt:has(input:checked) .opt-k { background: var(--accent-btn); color: var(--on-accent); }
+.opt:has(input:focus-visible) { outline: 3px solid color-mix(in srgb, var(--accent) 75%, transparent); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .opt:not(.is-locked):hover { box-shadow: inset 0 0 0 2px var(--accent-btn); } }
+.opt.is-locked { cursor: default; }
+.opt.is-locked:not(.is-ok):not(.is-bad) { background: var(--surface); box-shadow: inset 0 0 0 1.5px var(--line); }
+.opt.is-locked:not(.is-ok):not(.is-bad) .opt-k { background: var(--fill); color: var(--ink); }
+.opt.is-ok { background: var(--ok-tint); box-shadow: inset 0 0 0 2px var(--ok); }
+.opt.is-ok .opt-k { background: var(--ok); color: var(--on-ok); }
+.opt.is-ok .opt-mark::before { content: "✓"; color: var(--ok); }
+.opt.is-bad { background: var(--bad-tint); box-shadow: inset 0 0 0 2px var(--bad); }
+.opt.is-bad .opt-k { background: var(--bad); color: var(--on-bad); }
+.opt.is-bad .opt-mark::before { content: "✗"; color: var(--bad); }
+.num { margin-top: var(--s5); }
+.num-label { display: block; font-weight: 600; margin-bottom: var(--s2); }
+.num-in { width: 100%; max-width: 280px; min-height: 52px; padding: var(--s3) var(--s4); border: 0; border-radius: var(--r1); box-shadow: inset 0 0 0 1.5px var(--line-2); background: var(--surface); color: var(--ink); font: 600 20px/1.2 var(--font); font-variant-numeric: tabular-nums; }
+.num-in:focus { outline: none; box-shadow: inset 0 0 0 2px var(--accent-btn), 0 0 0 4px color-mix(in srgb, var(--accent-btn) 22%, transparent); }
+.num-in[aria-invalid="true"], .num-in.is-bad { box-shadow: inset 0 0 0 2px var(--bad); }
+.num-in.is-ok { box-shadow: inset 0 0 0 2px var(--ok); background: var(--ok-tint); }
+.hint { margin-top: var(--s2); font-size: 14px; color: var(--muted); }
+.field-err { margin-top: var(--s2); font-size: 14px; font-weight: 600; color: var(--bad); }
+.q-actions { margin-top: var(--s5); display: flex; gap: var(--s3); flex-wrap: wrap; }
+@media (max-width: 479px) { .q-actions .btn { width: 100%; } .q-text { font-size: 18px; } }
+.q-src { margin-top: var(--s4); font-size: 12px; color: var(--muted); letter-spacing: 0; }
+.fb { margin-top: var(--s4); border-radius: var(--r2); padding: var(--s5); }
+.fb-ok { background: var(--ok-tint); box-shadow: inset 0 0 0 1px var(--ok-line); }
+.fb-bad { background: var(--bad-tint); box-shadow: inset 0 0 0 1px var(--bad-line); }
+.fb-title { font: 700 20px/1.3 var(--font-d); letter-spacing: -.015em; display: flex; gap: var(--s2); align-items: center; flex-wrap: wrap; outline: none; }
+.fb-title img.emo { width: 24px; height: 24px; }
+.xp-gain { font-size: 14px; font-weight: 600; padding: 0 var(--s2); border-radius: var(--rp); background: var(--surface); letter-spacing: 0; }
+.fb-answer { margin-top: var(--s3); }
+.fb-story { margin-top: var(--s4); padding: var(--s3) var(--s4); background: var(--surface); border-radius: var(--r1); }
+.fb-h { margin: var(--s4) 0 var(--s2); font-weight: 700; display: flex; gap: var(--s2); align-items: center; }
+.fb-h img.emo { width: 20px; height: 20px; }
+.fb-story .fb-h { margin-top: 0; }
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: st; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s2); }
+.steps li { counter-increment: st; position: relative; padding-left: 36px; min-width: 0; }
+.steps li::before { content: counter(st); position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); display: grid; place-items: center; font-size: 12px; font-weight: 700; letter-spacing: 0; }
+.steps-d { margin-top: var(--s3); }
+.steps-d summary { cursor: pointer; font-weight: 600; color: var(--accent); min-height: 44px; display: flex; align-items: center; border-radius: var(--r1); }
+.fb-note { margin-top: var(--s4); font-size: 14px; color: var(--ink-2); display: flex; gap: var(--s2); align-items: center; }
+.fb-note img.emo { width: 18px; height: 18px; }
+
+/* ============ JEFES ============ */
+.boss-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s4); margin-top: var(--s5); }
+@media (min-width: 760px) { .boss-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.boss-card { display: flex; flex-direction: column; gap: var(--s2); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); padding: var(--s5); min-width: 0; }
+.boss-card .boss-emo img.emo { width: 56px; height: 56px; vertical-align: middle; }
+.boss-card h2 { font: 700 20px/1.25 var(--font-d); letter-spacing: -.015em; }
+.boss-meta { font-size: 14px; color: var(--muted); }
+.boss-meta img.emo { width: 16px; height: 16px; vertical-align: -3px; }
+.boss-rec { font-size: 14px; font-weight: 600; color: var(--ok); }
+.boss-rec img.emo { width: 16px; height: 16px; vertical-align: -3px; }
+.boss-card .cta { margin-top: auto; padding-top: var(--s3); }
+.boss-card .cta .btn { width: 100%; }
+.boss-bar { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s4); align-items: center; }
+.boss-bar .boss-emo img.emo { width: 64px; height: 64px; vertical-align: middle; }
+.boss-emo { display: inline-block; }
+.boss-bar .boss-emo img.emo { animation: float 3s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-4px); } }
+.boss-name { font: 700 20px/1.25 var(--font-d); letter-spacing: -.015em; }
+.hp { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--s2); align-items: center; margin-top: var(--s2); font-size: 14px; font-variant-numeric: tabular-nums; }
+.hp .bar { margin-top: 0; }
+.bar-boss > span { background: var(--bad-btn); }
+.hearts { margin-top: var(--s2); display: flex; gap: var(--s1); align-items: center; font-size: 14px; }
+.hearts img.emo { width: 20px; height: 20px; vertical-align: middle; }
+@media (max-width: 479px) { .boss-bar .boss-emo img.emo { width: 48px; height: 48px; } }
+
+/* Resultados */
+.result { text-align: center; padding: var(--s7) var(--s5); }
+.result .big img.emo { width: 72px; height: 72px; vertical-align: middle; }
+.result h1 { margin-top: var(--s3); }
+.result .lead { margin-left: auto; margin-right: auto; }
+.result .cta-row { justify-content: center; }
+.result .hook { text-align: left; max-width: 560px; margin-left: auto; margin-right: auto; }
+.miss { text-align: left; margin-top: var(--s5); }
+.miss ol { margin: 0; padding-left: var(--s5); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
+.miss li { min-width: 0; }
+.miss .ans { color: var(--ok); font-weight: 600; }
+.review { margin-top: var(--s4); display: flex; flex-wrap: wrap; gap: var(--s2); justify-content: center; }
+
+/* Confeti */
+.confetti { position: fixed; inset: 0; pointer-events: none; z-index: 60; overflow: hidden; }
+.confetti img { position: absolute; top: -40px; width: 28px; height: 28px; animation: fall 1.6s cubic-bezier(.3, .6, .5, 1) forwards; }
+@keyframes fall { to { transform: translate(var(--dx), 110vh) rotate(var(--rot)); } }
+
+/* ============ PIE ============ */
+.foot { max-width: 800px; margin: 0 auto; padding: var(--s7) var(--s4); font-size: 14px; color: var(--ink-2); }
+.inst { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--s4) var(--s5); padding-bottom: var(--s6); margin-bottom: var(--s6); border-bottom: 1px solid var(--line); }
+.inst-logos { display: flex; align-items: center; gap: var(--s4); }
+.inst-uba { width: 56px; height: 56px; }
+.inst-fce { width: auto; height: 40px; }
+.inst-sep { width: 1px; height: 40px; background: var(--line-2); }
+.inst-txt { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+.inst-txt strong { color: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .inst-uba { filter: invert(1); } }
+:root[data-theme="dark"] .inst-uba { filter: invert(1); }
+.credits { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s4); padding: var(--s5); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); }
+.cr-text { min-width: 0; }
+.cr-name { font: 600 16px/1.3 var(--font-d); color: var(--ink); letter-spacing: -.01em; }
+.cr-sub { margin-top: var(--s1); color: var(--muted); }
+.pill-app { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; padding: 0 5px; border-radius: var(--rp); background: var(--fill); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: -.005em; }
+.pill-app img { width: 32px; height: 32px; border-radius: 50%; box-shadow: 0 1px 4px rgba(0, 0, 0, .25); flex: none; }
+.pill-txt { flex: 1 1 auto; text-align: center; white-space: nowrap; padding: 0 var(--s3); }
+.pill-gap { width: 32px; flex: 0 1 32px; min-width: 0; }
+@media (hover: hover) and (pointer: fine) { .pill-app:hover { background: var(--surface-3); } }
+.foot-info { margin-top: var(--s5); }
+.foot-info p { margin-top: var(--s3); max-width: 75ch; }
+.btn-del { margin-top: var(--s4); display: inline-flex; gap: var(--s2); align-items: center; min-height: 44px; padding: 0 var(--s4); border-radius: var(--rp); border: 0; box-shadow: inset 0 0 0 1.5px var(--bad); background: transparent; color: var(--bad); font: 600 14px/1 var(--font); cursor: pointer; }
+.btn-del img.emo { width: 18px; height: 18px; vertical-align: middle; }
+@media (hover: hover) and (pointer: fine) { .btn-del:hover { background: var(--bad-tint); } }
+.legal { margin-top: var(--s5) !important; padding-top: var(--s4); border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; letter-spacing: 0; }
+
+/* Diálogo */
+dialog { border: 0; border-radius: var(--r2); padding: var(--s5); width: min(420px, calc(100vw - 32px)); background: var(--surface); color: var(--ink); box-shadow: var(--sh-2); }
+dialog::backdrop { background: rgba(0, 0, 0, .45); }
+dialog h2 { font: 700 20px/1.3 var(--font-d); letter-spacing: -.015em; }
+dialog p { margin-top: var(--s2); color: var(--ink-2); }
+.dlg-row { display: flex; gap: var(--s3); justify-content: flex-end; margin-top: var(--s5); flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .splash { display: none; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+</style>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], processEscapes: true },
+    options: { enableMenu: false },
+    chtml: { scale: 1, matchFontHeight: true },
+    startup: {
+      typeset: false,
+      ready: function () {
+        MathJax.startup.defaultReady();
+        MathJax.startup.promise.then(function () {
+          window.__mjReady = true;
+          document.documentElement.classList.remove('no-mathjax');
+          document.dispatchEvent(new Event('mj-ready'));
+        });
+      }
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js" onerror="window.__mjFail = true; document.documentElement.classList.add('no-mathjax');"></script>
+</head>
+<body>
+<a class="skip" href="#app">Saltar al contenido</a>
+<div class="splash" aria-hidden="true"><div class="splash-in"><img class="splash-globe" src="emojis/globe-americas.webp" alt="" width="160" height="160" data-emoji="globe-americas"><p class="splash-title">Palacio Macro</p><p class="splash-sub">Barro · Capítulo 17</p></div></div>
+
+<header class="top">
+  <div class="top-row">
+    <a class="brand" href="#/teoria"><img class="emo" src="emojis/globe-americas.webp" alt="" width="160" height="160" data-emoji="globe-americas"><span class="brand-txt"><span class="brand-name">Palacio Macro</span><span class="brand-sub">Barro · Cap. 17</span></span></a>
+    <div class="stats">
+      <span class="stat" id="statXp" title="Puntos de experiencia"><img class="emo" src="emojis/star.webp" alt="" width="160" height="160" data-emoji="star"><span id="xp">0</span><span class="sr-only"> puntos de experiencia</span></span>
+      <span class="stat" id="statStreak" title="Respuestas correctas seguidas"><img class="emo" src="emojis/fire.webp" alt="" width="160" height="160" data-emoji="fire"><span id="streak">0</span><span class="sr-only"> correctas seguidas</span></span>
+    </div>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Cambiar a tema oscuro"><img class="emo" src="emojis/crescent-moon.webp" alt="" width="160" height="160" data-emoji="crescent-moon"></button>
+  </div>
+  <nav class="seg-nav" aria-label="Secciones">
+    <div class="seg">
+      <a href="#/teoria" data-tab="teoria"><img class="emo" src="emojis/books.webp" alt="" width="160" height="160" data-emoji="books"><span>Teoría <span class="seg-sub">(Resúmenes)</span></span></a>
+      <a href="#/practica" data-tab="practica"><img class="emo" src="emojis/brain.webp" alt="" width="160" height="160" data-emoji="brain"><span>Práctica <span class="seg-sub">(Palacio Mental)</span></span></a>
+      <a href="#/examenes" data-tab="examenes"><img class="emo" src="emojis/crossed-swords.webp" alt="" width="160" height="160" data-emoji="crossed-swords"><span>Exámenes Viejos</span></a>
+    </div>
+  </nav>
+</header>
+
+<main id="app" tabindex="-1">
+  <noscript><p class="notice">Esta página necesita JavaScript para mostrar los resúmenes, el palacio y los jefes.</p></noscript>
+</main>
+
+<footer class="foot">
+  <div class="inst">
+    <div class="inst-logos">
+      <img class="inst-uba" src="logos/uba.png" alt="" width="256" height="256" loading="lazy" decoding="async">
+      <span class="inst-sep" aria-hidden="true"></span>
+      <img class="inst-fce" src="logos/fce-uba.png" alt="" width="450" height="160" loading="lazy" decoding="async">
+    </div>
+    <p class="inst-txt"><strong>Universidad de Buenos Aires</strong><br>Facultad de Ciencias Económicas</p>
+  </div>
+  <section class="credits" aria-labelledby="crName">
+    <div class="cr-text">
+      <p class="cr-name" id="crName">Creado por Matias Rodrigo Bellido</p>
+      <p class="cr-sub">Hecho para estudiar el tercer parcial de Macroeconomía (2.º cuatrimestre de 2026).</p>
+    </div>
+    <a class="pill-app" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><img src="logos/linkedin.png" alt="" width="32" height="32"><span class="pill-txt">Conectá conmigo en LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></span><span class="pill-gap" aria-hidden="true"></span></a>
+  </section>
+  <div class="foot-info">
+    <p class="mj-note">Las fórmulas se ven como texto LaTeX porque MathJax no cargó: hace falta conexión a internet.</p>
+    <p><strong>Fuente:</strong> Robert J. Barro, <em>Macroeconomics: A Modern Approach</em>, capítulo 17, «World Markets in Goods and Credit». Los resúmenes, las historias del palacio y las preguntas son material propio de estudio. Si algo no coincide con lo que da la cátedra, gana la cátedra.</p>
+    <p><strong>Privacidad:</strong> tu progreso (XP, habitaciones y jefes superados) se guarda solo en este navegador. Sin cuentas, sin cookies y sin analítica.</p>
+    <button class="btn-del" type="button" id="resetBtn"><img class="emo" src="emojis/wastebasket.webp" alt="" width="160" height="160" data-emoji="wastebasket">Borrar mi progreso</button>
+    <p class="legal">Emojis designed by Apple. Used for educational purposes.<br>Logos de la Universidad de Buenos Aires y de la Facultad de Ciencias Económicas (dominio público, Wikimedia Commons): identifican la institución donde se cursa la materia. Este no es un sitio oficial de la UBA.<br>© 2026 Matias Rodrigo Bellido. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<nav class="tabbar" aria-label="Secciones">
+  <a href="#/teoria" data-tab="teoria"><span class="tb-ico"><img class="emo" src="emojis/books.webp" alt="" width="160" height="160" data-emoji="books"></span><span>Teoría<span class="sr-only"> (Resúmenes)</span></span></a>
+  <a href="#/practica" data-tab="practica"><span class="tb-ico"><img class="emo" src="emojis/brain.webp" alt="" width="160" height="160" data-emoji="brain"></span><span>Práctica<span class="sr-only"> (Palacio Mental)</span></span></a>
+  <a href="#/examenes" data-tab="examenes"><span class="tb-ico"><img class="emo" src="emojis/crossed-swords.webp" alt="" width="160" height="160" data-emoji="crossed-swords"></span><span>Exámenes<span class="sr-only"> Viejos</span></span></a>
+</nav>
+
+<dialog id="dlg" aria-labelledby="dlgTitle" aria-describedby="dlgText">
+  <h2 id="dlgTitle"></h2>
+  <p id="dlgText"></p>
+  <div class="dlg-row"><button class="btn btn-2" type="button" id="dlgNo">Cancelar</button><button class="btn btn-danger" type="button" id="dlgYes">Borrar</button></div>
+</dialog>
+<div id="live" class="sr-only" aria-live="polite"></div>
+
+<script id="macro-data">
+/* =====================================================================
+   CONTENIDO — Barro, capítulo 17: World Markets in Goods and Credit.
+   Todo el texto vive acá, separado del motor (más abajo).
+
+   - Los textos con fórmulas usan R`...` (String.raw): las barras
+     invertidas de LaTeX llegan intactas. Fórmula en línea: \( ... \).
+   - Para comparar con "menor que" / "mayor que" dentro de LaTeX, usá
+     \lt y \gt (un "<" seguido de letra se leería como etiqueta HTML).
+   - "hue" es el color de la habitación o del resumen: 1 a 6.
+
+   ESQUEMA DE UNA HABITACIÓN (PRACTICE.rooms):
+   {
+     id: "r6",                       // único; las habitaciones se abren en orden
+     emoji: "🧳", hue: 2,
+     title: "Nombre del lugar del palacio",
+     topic: "Tema que guarda",
+     theory: "t2",                   // id del resumen relacionado (o null)
+     palace: {                       // en castellano rioplatense, sin ambigüedades
+       llegada: R`Dónde estás parado y hacia dónde mirás`,
+       stations: [                   // cada imagen dice dónde está, qué pasa y qué significa
+         { where: R`A tu izquierda, pegado a...`, see: R`Qué ves y quién hace qué`, means: R`Qué concepto es` }
+       ],
+       story: R`La escena completa, en orden, como una peli`,
+       hook: R`Frase corta para decir en voz alta`
+     },
+     keys: [ { label: "Ecuación (17.x)", tex: R`...`, cap: R`...` } ],
+     questions: [
+       { id: "r6-1", type: "mc", q: R`...`,
+         options: [R`...`, R`...`, R`...`, R`...`], correct: 0,   // índice de la correcta (el motor mezcla)
+         story: R`...`, steps: [R`...`, R`...`], src: "Fuente" },
+       { id: "r6-2", type: "num", q: R`...`, answer: -40, tol: 0.01,
+         story: R`...`, steps: [R`...`], src: "Fuente" }
+     ]
+   }
+   ===================================================================== */
+const R = String.raw;
+
+/* ---------------- TAB 1: TEORÍA (RESÚMENES) ---------------- */
+const THEORY = [
+  {
+    id: "t1", emoji: "💵", hue: 1, room: "r1", short: "Un precio, una tasa",
+    kicker: "Resumen 1 · Introducción del capítulo",
+    title: "Ley de un solo precio y paridad de tasas de interés",
+    lead: R`Barro arranca con un mundo simplificado a propósito, para que bienes y crédito circulen sin fricciones entre países. De ahí salen dos igualdades.`,
+    keys: [
+      { label: "Ley de un solo precio", tex: R`P_{\text{local}} = P_{\text{resto del mundo}} = P`, cap: R`El mismo bien cuesta los mismos dólares en todos los países.` },
+      { label: "Paridad de tasas de interés", tex: R`i_t = i_t^f \qquad\text{y}\qquad r_t = r_t^f`, cap: R`Un solo mercado mundial de crédito: una sola tasa nominal y una sola tasa real.` }
+    ],
+    blocks: [
+      { h: "Supuestos (irreales a propósito, se relajan después)", items: [
+        R`Los bienes de todos los países son <strong>físicamente idénticos</strong>.`,
+        R`Los <strong>costos de transporte</strong> y las <strong>barreras al comercio</strong> son despreciables.`,
+        R`Todos usan una <strong>moneda común</strong> (dólares o euros): no hay tipo de cambio.`,
+        R`No hay <strong>inflación</strong>: \(P\) es constante, así que la tasa real es igual a la nominal, \(r = i\).`
+      ] },
+      { h: "Por qué se cumplen", items: [
+        R`<strong>Arbitraje de bienes:</strong> si un precio difiere, todos compran donde es barato y venden donde es caro hasta que se iguala. Es la versión más simple de la ley de un solo precio.`,
+        R`<strong>Arbitraje de crédito:</strong> sin diferencias de solvencia entre residentes y extranjeros, y sin costos de transacción para operar entre países, el crédito mundial funciona como un único mercado: \(i_t = i_t^f\). Sin inflación, además \(r_t = r_t^f\).`
+      ] },
+      { h: "Qué implica para un país chico", items: [
+        R`Toma \(r^f\) como dato: puede prestar o endeudarse lo que quiera a esa tasa.`,
+        R`Lo que en una economía cerrada ajustaba la tasa de interés, en una abierta se ajusta con préstamos hacia o desde el exterior, es decir, con la <strong>cuenta corriente</strong> (resúmenes 3 a 5).`,
+        R`Cada banco central guarda <strong>moneda internacional</strong> \(H_t\) (dólares, euros u oro), que no paga interés. El stock mundial \(\bar H\) es constante.`
+      ] }
+    ]
+  },
+  {
+    id: "t2", emoji: "⚖️", hue: 2, room: "r2", short: "Restricción (17.5)",
+    kicker: "Resumen 2 · Ecuación 17.5",
+    title: "Restricción presupuestaria de la economía abierta",
+    lead: R`Sale de sumar la restricción de los hogares (17.2) y la del gobierno (17.3). Los impuestos, las transferencias y los intereses de la deuda pública se cancelan, porque son pagos entre residentes.`,
+    keys: [
+      { label: "Ecuación (17.5)", tex: R`C + I + G + \frac{B_t^f - B_{t-1}^f}{P} + \frac{H_t - H_{t-1}}{P} = Y + r\cdot\frac{B_{t-1}^f}{P}`, cap: R`Izquierda: usos de fondos. Derecha: fuentes de fondos.` }
+    ],
+    blocks: [
+      { h: "Lado izquierdo: usos", items: [
+        R`Consumo \(C\), inversión interna bruta \(I\) y compras del gobierno \(G\).`,
+        R`Compra neta de bonos extranjeros \((B_t^f - B_{t-1}^f)/P\) y de moneda internacional \((H_t - H_{t-1})/P\). Juntas forman la <strong>inversión externa neta</strong>: lo que el país invierte, en neto, en el resto del mundo.`
+      ] },
+      { h: "Lado derecho: fuentes", items: [
+        R`PBI real \(Y\): lo que se produce dentro del país.`,
+        R`Ingreso neto de factores del exterior \(r\cdot B_{t-1}^f/P\): intereses y rentas cobrados afuera menos los pagados a extranjeros.`,
+        R`\(Y + r\cdot B_{t-1}^f/P\) es el <strong>PNB real</strong> (producto nacional bruto).`
+      ] },
+      { h: "Para no confundirse", items: [
+        R`\(B^f\) es la posición neta de todo el país (hogares y gobierno): positiva si es acreedor, negativa si es deudor.`,
+        R`Los intereses se calculan sobre el stock del período anterior, \(B_{t-1}^f\).`,
+        R`Economía cerrada: \(B^f = 0\) y \(H = 0\), y queda la conocida \(C + I + G = Y\).`
+      ] }
+    ]
+  },
+  {
+    id: "t3", emoji: "🛂", hue: 3, room: "r3", short: "Cuenta corriente (17.6 y 17.7)",
+    kicker: "Resumen 3 · Ecuaciones 17.6 y 17.7",
+    title: "Balanza de pagos y cuenta corriente",
+    lead: R`Si a los dos lados de (17.5) les restás el gasto interno \(C + I + G\), aparece la balanza de pagos internacionales.`,
+    keys: [
+      { label: "Ecuación (17.6): balanza de pagos", tex: R`\frac{B_t^f - B_{t-1}^f}{P} + \frac{H_t - H_{t-1}}{P} = Y + r\cdot\frac{B_{t-1}^f}{P} - (C + I + G)`, cap: R`Izquierda: inversión externa neta. Derecha: saldo de la cuenta corriente (CC; en inglés, CA).` },
+      { label: "Ecuación (17.7)", tex: R`CC = \underbrace{Y - (C + I + G)}_{\text{balanza comercial}} + \underbrace{r\cdot\frac{B_{t-1}^f}{P}}_{\text{ingreso neto de factores}}`, cap: R`Cuenta corriente = balanza comercial + ingreso neto de factores del exterior.` }
+    ],
+    blocks: [
+      { h: "Cómo leer (17.6)", items: [
+        R`<strong>Superávit</strong> de cuenta corriente: el PNB real supera al gasto \(C + I + G\). El país acumula activos externos (le presta al mundo).`,
+        R`<strong>Déficit</strong>: el PNB real es menor que el gasto. El país se endeuda con el exterior o vende activos externos.`,
+        R`La cuenta corriente <strong>es</strong> la inversión externa neta: el cambio en los activos internacionales del país (bonos más moneda internacional).`
+      ] },
+      { h: "Balanza comercial y (17.7)", items: [
+        R`Exportaciones netas = exportaciones − importaciones = \(Y - (C + I + G)\): lo producido en casa que no se compró en casa salió como exportación neta.`,
+        R`Un país que acumuló activos (\(B_{t-1}^f \gt 0\)) puede tener CC = 0 con <strong>déficit comercial</strong>: paga el exceso de importaciones con los intereses que cobra afuera.`,
+        R`Si hay transferencias internacionales (por ejemplo, ayuda externa), las transferencias netas al exterior se <strong>restan</strong> de la cuenta corriente.`
+      ] },
+      { h: "Datos de EE.UU. que cita Barro", items: [
+        R`Déficit de cuenta corriente promedio de 4,4 % del PBI en 2000-04, explicado sobre todo por el déficit comercial (4 a 5 % del PBI).`,
+        R`A fines de 2003 la posición internacional neta era de −2,7 billones de dólares (26 % del PBI), pero el ingreso neto de factores seguía siendo positivo: los activos de EE.UU. afuera rendían más que los activos extranjeros en EE.UU. (muchos, bonos del Tesoro de bajo rendimiento).`
+      ] }
+    ]
+  },
+  {
+    id: "t4", emoji: "🐷", hue: 4, room: "r4", short: "Ahorro e inversión (17.9)",
+    kicker: "Resumen 4 · Ecuaciones 17.8 y 17.9",
+    title: "Cuenta corriente, ahorro e inversión",
+    lead: R`Reordenando (17.7) y restando la depreciación \(\delta K\) del PNB y de la inversión bruta, la cuenta corriente queda como ahorro menos inversión.`,
+    keys: [
+      { label: "Ecuación (17.8)", tex: R`CC = \underbrace{Y + r\cdot\frac{B_{t-1}^f}{P} - \delta K - (C + G)}_{\text{ahorro nacional } S} - \underbrace{(I - \delta K)}_{\text{inversión interna neta}}`, cap: R`El primer bloque es el ingreso nacional menos el consumo de hogares y gobierno.` },
+      { label: "Ecuación (17.9)", tex: R`CC = S - (I - \delta K)`, cap: R`Cuenta corriente real = ahorro nacional real − inversión interna neta.` }
+    ],
+    blocks: [
+      { h: "Las piezas", items: [
+        R`PNB real menos depreciación \(\delta K\) = producto nacional neto = <strong>ingreso nacional real</strong>.`,
+        R`<strong>Ahorro nacional</strong> \(S\) = ingreso nacional − consumo de hogares y gobierno (\(C + G\)). Barro trata todo \(G\) como consumo.`,
+        R`<strong>Inversión interna neta</strong> = inversión bruta − depreciación = \(I - \delta K\).`
+      ] },
+      { h: "Cómo leerla", items: [
+        R`\(S \gt I - \delta K\): <strong>superávit</strong>. El ahorro que sobra se presta al resto del mundo.`,
+        R`\(S \lt I - \delta K\): <strong>déficit</strong>. El mundo financia la inversión que el ahorro propio no cubre.`,
+        R`En una economía abierta la inversión ya no tiene que ser igual al ahorro nacional: la diferencia es la cuenta corriente.`,
+        R`Vale aunque haya inversión pública: en ese caso la inversión interna suma la privada y la pública.`
+      ] }
+    ]
+  },
+  {
+    id: "t5", emoji: "🌦️", hue: 5, room: "r5", short: "Ciclos reales",
+    kicker: "Resumen 5 · Sección III",
+    title: "Ciclos reales y cuenta corriente: ¿por qué la balanza comercial es contracíclica?",
+    lead: R`Barro lleva el modelo de ciclos reales (capítulos 7 y 8) a una economía abierta y chica, donde la tasa real no se mueve: \(r = r^f\).`,
+    keys: [
+      { label: "Función de producción (17.10)", tex: R`Y = A\cdot F(K, L)`, cap: R`\(K\) está fijo en el corto plazo.` },
+      { label: "Rendimiento del capital", tex: R`r = MPK - \delta`, cap: R`En una economía cerrada, si \(A\) sube, sube la MPK y con ella \(r\). Abierta y chica, \(r = r^f\) no se mueve.` }
+    ],
+    blocks: [
+      { h: "Un shock favorable (A sube solo en el país, costos de ajuste chicos)", items: [
+        R`Suben la MPL y la MPK. Con la MPL suben el empleo \(L\) y el PBI \(Y\).`,
+        R`Con la MPK, el capital local rinde más que \(r^f\): la <strong>inversión sube mucho</strong>, financiada con préstamos del exterior. Barro usa costos de ajuste de la inversión para explicar hasta dónde sube.`,
+        R`Los hogares suavizan el consumo: el <strong>ahorro nacional sube, pero menos</strong> que la inversión.`,
+        R`Por (17.9), \(I - \delta K\) crece más que \(S\): la cuenta corriente va a <strong>déficit en el auge</strong> y a superávit en la recesión.`,
+        R`Del lado del comercio, las <strong>importaciones suben más que las exportaciones</strong>: las importaciones netas aportan los bienes para invertir más de lo que se ahorra.`
+      ] },
+      { h: "Los datos de EE.UU. (1954-2004, componentes cíclicos)", items: [
+        R`Correlación con el PBI: exportaciones 0,38 e importaciones 0,71. Las dos son procíclicas, pero las importaciones mucho más.`,
+        R`Balanza comercial / PBI: correlación −0,34, levemente <strong>contracíclica</strong>, como predice el modelo.`,
+        R`Desvíos estándar: exportaciones 0,048 e importaciones 0,047, contra 0,016 del PBI.`
+      ] },
+      { h: "Cuándo se da vuelta el resultado", items: [
+        R`Si los costos de ajuste de la inversión son <strong>grandes</strong>, \(I\) puede subir menos que \(S\) y la cuenta corriente ir a superávit.`,
+        R`Shocks que bajan el ingreso <strong>sin tocar la MPK</strong> (una mala cosecha, o una suba transitoria de \(G\) en una guerra): el ahorro cae, la inversión neta no cambia y la cuenta corriente va a <strong>déficit</strong>. Ejemplos de Barro: el trigo en Australia (1931-85) y la cosecha de Polonia (1978-81).`,
+        R`Solo con el suavizamiento del consumo esperarías déficit en las recesiones. En los ciclos reales gana la inversión: en la recesión cae más que el ahorro.`
+      ] }
+    ]
+  },
+  {
+    id: "t6", emoji: "👯", hue: 6, room: null, short: "Extra: gemelos y términos",
+    kicker: "Resumen 6 · Extra (secciones IV y V)",
+    title: "Déficits gemelos y términos del intercambio",
+    lead: R`No estaban en la lista de temas, pero son parte del capítulo 17 y aparecen en el tercer jefe.`,
+    keys: [
+      { label: "Términos del intercambio", tex: R`\frac{P}{\bar P} = \frac{\text{precio de lo que exportás}}{\text{precio de lo que importás}}`, cap: R`Unidades de bien extranjero que conseguís por cada unidad de bien local.` },
+      { label: "Rendimiento neto del capital", tex: R`\frac{P}{\bar P}\cdot MPK - \delta`, cap: R`El capital se compra afuera (a \(\bar P\)) y produce bienes locales (que valen \(P\)).` }
+    ],
+    blocks: [
+      { h: "Déficit fiscal y cuenta corriente", items: [
+        R`<strong>Caso ricardiano:</strong> una baja de impuestos financiada con deuda sube el ahorro privado lo mismo que baja el público. El ahorro nacional no cambia y, por (17.9), la cuenta corriente tampoco.`,
+        R`<strong>Si los hogares se sienten más ricos</strong> (por ejemplo, con vidas finitas), sube \(C\), cae \(S\) y la cuenta corriente va a déficit: aparecen los <strong>déficits gemelos</strong>.`,
+        R`Evidencia: Evans (1988), con datos de posguerra de EE.UU., Canadá, Francia, Alemania y Reino Unido, no encontró un efecto causal significativo del déficit fiscal sobre el de cuenta corriente.`,
+        R`Pueden aparecer juntos sin causarse: una suba transitoria de \(G\) (una guerra) lleva al gobierno a endeudarse y, a la vez, a la cuenta corriente a déficit.`
+      ] },
+      { h: "Términos del intercambio", items: [
+        R`Ahora el país produce un bien que vale \(P\) y el resto del mundo otro que vale \(\bar P\). Si \(P/\bar P\) sube, el país <strong>mejora</strong>: consigue más importaciones por cada unidad que exporta.`,
+        R`Una mejora funciona como una suba de \(A\): sube el ingreso nacional (y el ahorro, porque \(C\) sube menos) y sube el rendimiento del capital.`,
+        R`Si la inversión responde más que el ahorro, la cuenta corriente va a <strong>déficit</strong>. Si la mejora es transitoria (un pico del petróleo para Arabia Saudita) o los costos de ajuste son grandes, la inversión casi no se mueve y va a <strong>superávit</strong>.`,
+        R`Mercado de trabajo: para los trabajadores el salario real relevante es \(w/\bar P = (w/P)\cdot(P/\bar P)\). Con una mejora (si domina el efecto sustitución) sube la oferta de trabajo, sube \(L\) y baja \(w/P\).`
+      ] }
+    ],
+    /* Este resumen no tiene habitación de práctica: su versión palacio es un rincón extra del aeropuerto. */
+    palaceName: "Rincón extra: el Free Shop",
+    palace: {
+      llegada: R`Saliendo de Migraciones, antes de llegar a la sala de embarque, pasás sí o sí por el Free Shop. Entrás y te parás en el medio del pasillo de perfumes, mirando hacia las cajas.`,
+      stations: [
+        { where: R`En la caja de la izquierda`,
+          see: R`Unos mellizos 👯 que siempre andan juntos. Uno tiene una remera que dice «déficit fiscal» y el otro, «déficit de cuenta corriente».`,
+          means: R`<strong>Déficits gemelos:</strong> a veces aparecen los dos al mismo tiempo.` },
+        { where: R`En la fila de esa caja, detrás de los mellizos`,
+          see: R`Una familia re ordenada: el Estado le baja los impuestos y ella mete toda esa guita en el chanchito 🐷. El chanchito pesa lo mismo, y el mellizo de «cuenta corriente» se va: ya no tiene nada que hacer ahí.`,
+          means: R`<strong>Caso ricardiano:</strong> el déficit fiscal no cambia el ahorro nacional, así que no genera déficit externo.` },
+        { where: R`En la caja de la derecha`,
+          see: R`Una familia que se siente millonaria con la baja de impuestos y se lleva medio Free Shop. El chanchito baja y los dos mellizos vuelven a aparecer juntos.`,
+          means: R`<strong>Si los hogares se gastan el recorte</strong>, \(S\) cae y la cuenta corriente va a déficit: déficits gemelos.` },
+        { where: R`Pegado en la pared, entre las dos cajas`,
+          see: R`Un paper de Evans (1988) con un sello rojo: «sin relación causal».`,
+          means: R`<strong>Evans:</strong> con datos de EE.UU., Canadá, Francia, Alemania y Reino Unido, el déficit fiscal no causa el de cuenta corriente.` },
+        { where: R`En la puerta del Free Shop`,
+          see: R`Un soldado con casco 🪖 que entra y hace aparecer a los dos mellizos de golpe.`,
+          means: R`<strong>Causa común:</strong> una suba transitoria de \(G\) (una guerra) trae los dos déficits a la vez, sin que uno cause al otro.` },
+        { where: R`Al fondo, en la góndola de bebidas`,
+          see: R`Un jeque con un barril de petróleo 🛢️ y una balanza: en un plato pone su barril y en el otro todo lo que importa. Cuando el petróleo se encarece, con un barril se lleva más cosas.`,
+          means: R`<strong>Términos del intercambio</strong> \(P/\bar P\): precio de lo que exportás sobre precio de lo que importás. Si sube, el país <strong>mejora</strong>.` },
+        { where: R`El jeque, mirando la pista por la ventana`,
+          see: R`Si cree que el petróleo caro va a durar, sale a perforar pozos como loco (la grúa a full). Si cree que es un pico pasajero, no perfora nada y guarda la guita en el chanchito.`,
+          means: R`<strong>Mejora duradera</strong> (y costos de ajuste chicos): la inversión le gana al ahorro y hay <strong>déficit</strong>. <strong>Mejora transitoria:</strong> ahorra más de lo que invierte y hay <strong>superávit</strong>.` }
+      ],
+      story: R`En el Free Shop, los mellizos aparecen juntos solo si el chanchito baja (o si los trae el soldado de la guerra). Y el jeque perfora o ahorra según cuánto crea que va a durar el precio del petróleo.`,
+      hook: R`Mellizos solo si baja el chanchito; el jeque perfora si el precio dura.`
+    }
+  },
+  // --- INJECT NEW THEORY HERE ---
+];
+
+/* ---------------- TAB 2: PRÁCTICA (PALACIO MENTAL) ----------------
+   El palacio es un aeropuerto internacional (pensá en Ezeiza), recorrido
+   siempre en el mismo orden: hall, check-in, migraciones, sala de embarque
+   y pista. Personajes que se repiten: el Arbitrajista (en skate), el
+   chanchito del ahorro, la grúa de la inversión y la torre que fija r^f. */
+const PRACTICE = {
+  rooms: [
+    {
+      id: "r1", emoji: "💵", hue: 1, theory: "t1",
+      title: "Hall central: la casa de cambio",
+      topic: "Ley de un solo precio y paridad de tasas",
+      palace: {
+        llegada: R`Te bajás del bondi en la puerta de Ezeiza, entrás por la puerta principal y te quedás parado en el medio del hall central, mirando de frente la pared del fondo.`,
+        stations: [
+          { where: R`La pared del fondo, de frente a vos`,
+            see: R`El cartel gigante de salidas. En vez de horarios, muestra cuánto sale un café ☕ en cada ciudad: Buenos Aires US$ 3, París US$ 3, Tokio US$ 3. Todas las ciudades, el mismo número y en dólares.`,
+            means: R`<strong>Ley de un solo precio:</strong> el mismo bien sale los mismos dólares en todos lados, \(P_{\text{local}} = P_{\text{resto del mundo}}\).` },
+          { where: R`Corriendo por el medio del hall, entre la gente`,
+            see: R`El Arbitrajista 🛹, un pibe re vivo en patineta. Ni bien el cartel marca US$ 2 en Tokio, compra cafés en Tokio, cruza el hall y los revende en París, una y otra vez, hasta que el cartel vuelve a marcar el mismo precio en todas las ciudades.`,
+            means: R`<strong>El arbitraje:</strong> cualquier diferencia de precio es guita gratis, y la gente la aprovecha hasta que desaparece.` },
+          { where: R`Atadas a la espalda del Arbitrajista`,
+            see: R`Tres valijas 🧳 con un cartel cada una: «bienes idénticos», «sin flete ni aduana» y «todos usan dólares».`,
+            means: R`<strong>Los tres supuestos de Barro:</strong> bienes físicamente idénticos, costos de transporte y barreras al comercio despreciables, y una moneda común. Sin las valijas, el pibe no puede arbitrar.` },
+          { where: R`Abajo del cartel, a la derecha: la casa de cambio`,
+            see: R`Una sola pizarra para todo el planeta: «Tasa de interés: 5 %». Al lado, un vivo cuelga un cartelito trucho que dice «presto al 8 %». En dos segundos se le arma una fila de prestamistas de todo el mundo para prestarle ahí, y la tasa se le viene abajo hasta el 5 %.`,
+            means: R`<strong>Paridad de tasas:</strong> con el crédito integrado (mismo riesgo para residentes y extranjeros, sin costos de transacción entre países) hay una sola tasa, \(i = i^f\).` },
+          { where: R`Clavado arriba de la pizarra`,
+            see: R`Un reloj que no se mueve nunca: en este aeropuerto los precios no suben jamás.`,
+            means: R`<strong>No hay inflación:</strong> por eso la tasa real es igual a la nominal, \(r = i\), y entonces también \(r = r^f\).` },
+          { where: R`Pegado en el vidrio de la casa de cambio`,
+            see: R`Un cartel: «La pizarra la escribe el mundo. Los países chicos no la tocan».`,
+            means: R`<strong>País chico:</strong> toma \(r^f\) como dato. Lo que se mueve no es la tasa, sino cuánta guita presta o pide afuera (la cuenta corriente).` }
+        ],
+        story: R`Pasala como una peli: entrás, ves el cartel con el mismo precio en todas las ciudades, pasa el pibe de la patineta con sus tres valijas matando cualquier diferencia, y en la casa de cambio el vivo que quiso cobrar 8 % se tuvo que bancar la tasa del mundo, 5 %. En este capítulo hay UN precio y UNA tasa para todo el planeta.`,
+        hook: R`Un precio, una tasa: el pibe de la patineta no deja ninguna diferencia viva.`
+      },
+      keys: [
+        { label: "Ley de un solo precio", tex: R`P_{\text{local}} = P_{\text{resto del mundo}}`, cap: R`Precios en dólares, con bienes idénticos y sin costos de transporte.` },
+        { label: "Paridad de tasas", tex: R`i_t = i_t^f \;\Rightarrow\; r_t = r_t^f`, cap: R`Sin inflación, la tasa real es igual a la nominal.` }
+      ],
+      questions: [
+        {
+          id: "r1-1", type: "mc",
+          q: R`Según Barro, ¿qué supuestos hacen que se cumpla la ley de un solo precio?`,
+          options: [
+            R`Bienes físicamente idénticos, costos de transporte y barreras despreciables, y una moneda común`,
+            R`Tipos de cambio flexibles y bienes diferenciados entre países`,
+            R`Que el país local sea grande y fije los precios del resto del mundo`,
+            R`Que todos los países tengan la misma tasa de inflación positiva`
+          ], correct: 0,
+          story: R`Volvé al hall de Ezeiza: el pibe de la patineta 🛹 lleva tres valijas atadas a la espalda. Sin esas tres valijas no puede comprar barato en Tokio y revender caro en París.`,
+          steps: [
+            R`Valija 1, «bienes idénticos»: si el café de Tokio fuera distinto del de París, podrían salir distinto y nadie tendría nada que aprovechar.`,
+            R`Valija 2, «sin flete ni aduana»: si mandar el café costara un ojo de la cara, una diferencia chica de precio no te alcanza para hacer negocio.`,
+            R`Valija 3, «todos usan dólares»: todos los precios están en la misma moneda, así que no hay tipo de cambio que mirar.`,
+            R`Con las tres valijas, el arbitraje empareja los precios: \(P_{\text{local}} = P_{\text{resto del mundo}}\).`
+          ],
+          src: "Barro, cap. 17, introducción"
+        },
+        {
+          id: "r1-2", type: "mc",
+          q: R`No hay inflación y el crédito mundial está integrado. Si la tasa nominal local fuera \(i = 7\%\) y la del resto del mundo \(i^f = 4\%\), ¿qué pasaría?`,
+          options: [
+            R`Los extranjeros querrían prestar en el país y los residentes endeudarse afuera, hasta que \(i = i^f\)`,
+            R`La diferencia se mantendría, porque cada país tiene su propio banco central`,
+            R`Los residentes prestarían afuera, para aprovechar la tasa del 4 %`,
+            R`La tasa mundial subiría al 7 %, porque la fija el país local`
+          ], correct: 0,
+          story: R`Acordate del vivo de la casa de cambio que colgó el cartelito trucho «presto al 8 %» cuando la pizarra decía 5 %: se le llenó la fila de prestamistas de todo el mundo y la tasa se le vino abajo hasta la de la pizarra.`,
+          steps: [
+            R`Si acá pagan 7 % y afuera 4 %, cualquier prestamista del planeta quiere prestar acá.`,
+            R`Y cualquier deudor de acá prefiere pedir afuera, al 4 %.`,
+            R`Llueve oferta de crédito acá y la tasa local baja. La de afuera ni se mueve, porque el país es chico.`,
+            R`Termina cuando \(i = i^f\). Sin inflación, también \(r = r^f\).`
+          ],
+          src: "Barro, cap. 17, introducción y sección III"
+        },
+        {
+          id: "r1-3", type: "mc",
+          q: R`¿Por qué en este capítulo Barro puede escribir \(r = i\)?`,
+          options: [
+            R`Porque supone que no hay inflación: el nivel de precios \(P\) es constante`,
+            R`Porque la tasa real siempre es igual a la nominal`,
+            R`Porque todos los países usan una moneda común`,
+            R`Porque el banco central fija las dos tasas`
+          ], correct: 0,
+          story: R`Mirá el reloj clavado arriba de la pizarra: en este aeropuerto los precios no suben nunca. Si no hay inflación, no hay nada que descontarle a la tasa.`,
+          steps: [
+            R`La tasa real descuenta la inflación: \(r \approx i - \pi\).`,
+            R`Barro supone precios constantes en todos los países: \(\pi = 0\).`,
+            R`Entonces \(r = i\) en casa y \(r^f = i^f\) afuera.`,
+            R`Ojo: la moneda común sirve para la ley de un solo precio, no para \(r = i\).`
+          ],
+          src: "Barro, cap. 17, introducción"
+        },
+        {
+          id: "r1-4", type: "mc",
+          q: R`Un país chico abre su mercado de crédito al mundo. ¿A qué tasa real presta y se endeuda?`,
+          options: [
+            R`A \(r^f\), la tasa mundial, que no depende de lo que pase en ese país`,
+            R`A \(r_1\), la tasa que tenía como economía cerrada`,
+            R`A un promedio entre \(r_1\) y \(r^f\)`,
+            R`A la \(MPK - \delta\) de ese país, sin importar \(r^f\)`
+          ], correct: 0,
+          story: R`Mirá el cartel pegado en el vidrio de la casa de cambio: «La pizarra la escribe el mundo. Los países chicos no la tocan».`,
+          steps: [
+            R`Con crédito integrado hay una sola tasa: \(r = r^f\).`,
+            R`Si el país es una parte chica de la economía mundial, lo que pase adentro no mueve \(r^f\).`,
+            R`Por eso la toma como dato. Lo que se ajusta es cuánto presta o se endeuda: la cuenta corriente.`
+          ],
+          src: "Barro, cap. 17, sección III"
+        }
+      ]
+    },
+    {
+      id: "r2", emoji: "⚖️", hue: 2, theory: "t2",
+      title: "Check-in: la balanza de equipaje",
+      topic: "Restricción presupuestaria (17.5)",
+      palace: {
+        llegada: R`Desde el medio del hall doblás a la izquierda y caminás hasta los mostradores de check-in. Te parás de frente al primer mostrador.`,
+        stations: [
+          { where: R`En el piso, delante del mostrador`,
+            see: R`Una balanza de equipaje gigante, de las viejas, con dos platos: uno a tu izquierda y otro a tu derecha.`,
+            means: R`<strong>La ecuación (17.5):</strong> lo del plato izquierdo tiene que pesar exactamente lo mismo que lo del derecho.` },
+          { where: R`Plato izquierdo, abajo`,
+            see: R`Tres valijas 🧳 comunes con una letra pintada cada una: la \(C\) de la familia, la \(I\) de la empresa y la \(G\) del Estado.`,
+            means: R`<strong>Usos internos de la guita:</strong> consumo \(C\), inversión interna bruta \(I\) y compras del gobierno \(G\).` },
+          { where: R`Plato izquierdo, arriba de las tres valijas`,
+            see: R`Una valija con bandera de otro país que dice «bonos de afuera que compré este año» y, encima, un sobrecito dorado que dice «dólares del Central».`,
+            means: R`<strong>Inversión externa neta:</strong> compra neta de bonos extranjeros \((B_t^f - B_{t-1}^f)/P\) más compra de moneda internacional \((H_t - H_{t-1})/P\). Es lo que el país pone afuera.` },
+          { where: R`Plato derecho, abajo`,
+            see: R`Un baúl enorme con una \(Y\) pintada: adentro está todo lo que se produjo en el país este año.`,
+            means: R`<strong>PBI real</strong>, \(Y\).` },
+          { where: R`Plato derecho, apoyado arriba del baúl`,
+            see: R`Un sobre lleno de estampillas de afuera: los intereses que te garpan por los bonos que ya tenías del año pasado. Si el país debía, el sobre viene con una boleta para pagar (pesa en contra).`,
+            means: R`<strong>Ingreso neto de factores del exterior:</strong> \(r\cdot B_{t-1}^f/P\). Baúl + sobre = <strong>PNB real</strong>.` },
+          { where: R`Detrás del mostrador`,
+            see: R`La empleada del check-in, que no te deja pasar hasta que los dos platos quedan parejos.`,
+            means: R`<strong>Es una igualdad:</strong> usos = fuentes, siempre.` }
+        ],
+        story: R`La empleada te lo dice clarito: «Lo que gastás acá más lo que guardás afuera tiene que pesar lo mismo que lo que producís más lo que te garpan de afuera». Si sacás todo lo que tiene bandera extranjera (la valija de bonos, el sobrecito dorado y el sobre de estampillas), te queda \(C + I + G\) de un lado e \(Y\) del otro: la economía cerrada de siempre.`,
+        hook: R`Izquierda, lo que usás; derecha, con qué lo pagás: la balanza del check-in es la 17.5.`
+      },
+      keys: [
+        { label: "Ecuación (17.5)", tex: R`C + I + G + \frac{B_t^f - B_{t-1}^f}{P} + \frac{H_t - H_{t-1}}{P} = Y + r\cdot\frac{B_{t-1}^f}{P}`, cap: R`Plato izquierdo = plato derecho.` },
+        { label: "PNB real", tex: R`\text{PNB} = Y + r\cdot\frac{B_{t-1}^f}{P}`, cap: R`El baúl más el sobre de estampillas.` }
+      ],
+      questions: [
+        {
+          id: "r2-1", type: "mc",
+          q: R`En la ecuación (17.5), ¿qué término es el ingreso neto de factores del exterior?`,
+          options: [
+            R`\(r\cdot B_{t-1}^f/P\)`,
+            R`\((B_t^f - B_{t-1}^f)/P\)`,
+            R`\((H_t - H_{t-1})/P\)`,
+            R`\(Y - (C + I + G)\)`
+          ], correct: 0,
+          story: R`En el plato derecho de la balanza, arriba del baúl \(Y\), está el sobre con estampillas de afuera: es lo que te garpan de intereses por los bonos que tenías del año pasado (menos lo que garpás vos si debías).`,
+          steps: [
+            R`El ingreso de factores es lo que rinden los activos: tasa por stock.`,
+            R`El stock es el que el país tenía al final del período anterior: \(B_{t-1}^f/P\).`,
+            R`Entonces el ingreso neto de factores es \(r\cdot B_{t-1}^f/P\). Si el país es deudor (\(B_{t-1}^f \lt 0\)), es negativo.`,
+            R`\((B_t^f - B_{t-1}^f)/P\) es la valija extranjera del otro plato (compra de bonos), y \(Y - (C + I + G)\) es la balanza comercial.`
+          ],
+          src: "Barro, cap. 17, sección I"
+        },
+        {
+          id: "r2-2", type: "mc",
+          q: R`El lado derecho de (17.5), \(Y + r\cdot B_{t-1}^f/P\), es:`,
+          options: [
+            R`El PNB real`,
+            R`El PBI real`,
+            R`El ingreso nacional real (neto de depreciación)`,
+            R`El ahorro nacional real`
+          ], correct: 0,
+          story: R`El plato derecho tiene dos cosas: el baúl \(Y\) (lo producido adentro) y el sobre de estampillas (lo que te garpan de afuera). Juntos son todo lo que gana el país: el PNB.`,
+          steps: [
+            R`\(Y\) solo es el PBI: lo producido dentro del país.`,
+            R`Sumarle el ingreso neto de factores del exterior da el PNB: lo que ganan los factores del país, estén donde estén.`,
+            R`Si además restás la depreciación \(\delta K\), recién ahí tenés el ingreso nacional (aparece en la 17.8).`
+          ],
+          src: "Barro, cap. 17, sección I"
+        },
+        {
+          id: "r2-3", type: "num",
+          q: R`En la balanza del check-in: \(Y = 500\), \(C = 300\), \(I = 120\), \(G = 80\), \(r = 0{,}04\) y \(B_{t-1}^f/P = 250\). La moneda internacional no cambia (\(H_t = H_{t-1}\)). ¿Cuánto vale la compra neta de bonos extranjeros, \((B_t^f - B_{t-1}^f)/P\)?`,
+          answer: 10, tol: 0.01,
+          story: R`Hacé como la empleada del check-in: pesá primero el plato derecho y después el izquierdo sin la valija extranjera. Lo que falta para que quede parejo es lo que pesa la valija.`,
+          steps: [
+            R`Plato derecho (PNB): \(Y + r\cdot B_{t-1}^f/P = 500 + 0{,}04\cdot 250 = 500 + 10 = 510\).`,
+            R`Plato izquierdo sin lo extranjero: \(C + I + G = 300 + 120 + 80 = 500\).`,
+            R`El sobrecito dorado pesa 0, porque \(H_t = H_{t-1}\).`,
+            R`La valija extranjera tiene que pesar \(510 - 500 = 10\): el país compra bonos extranjeros por 10.`
+          ],
+          src: "Ejercicio propio con la ecuación (17.5)"
+        },
+        {
+          id: "r2-4", type: "mc",
+          q: R`¿En qué se convierte (17.5) en una economía cerrada?`,
+          options: [
+            R`En \(C + I + G = Y\), porque \(B^f = 0\) y \(H = 0\)`,
+            R`En \(C + I + G = Y + r\cdot B_{t-1}^f/P\)`,
+            R`En \(C + I = Y\), porque \(G\) se cancela con los impuestos`,
+            R`No cambia: los bonos extranjeros siguen existiendo`
+          ], correct: 0,
+          story: R`Sacá de la balanza todo lo que tenga bandera de afuera: la valija de bonos, el sobrecito dorado del Central y el sobre de estampillas. Queda lo de siempre.`,
+          steps: [
+            R`Sin activos con el exterior: \(B_t^f = B_{t-1}^f = 0\), y no hay moneda internacional: \(H = 0\).`,
+            R`Desaparecen los dos términos del plato izquierdo y el sobre de intereses del derecho.`,
+            R`Queda \(C + I + G = Y\), la condición de siempre de la economía cerrada.`,
+            R`\(G\) no se cancela: lo que se cancela al sumar hogares y gobierno son los impuestos y las transferencias.`
+          ],
+          src: "Barro, cap. 17, sección I"
+        }
+      ]
+    },
+    {
+      id: "r3", emoji: "🛂", hue: 3, theory: "t3",
+      title: "Migraciones: el sello de la cuenta corriente",
+      topic: "Balanza de pagos y cuenta corriente (17.6 y 17.7)",
+      palace: {
+        llegada: R`Desde el check-in subís por la escalera mecánica, que está a la derecha de los mostradores. Arriba están las cabinas de Migraciones. Te parás de frente: hay dos cabinas pegadas, una a tu izquierda y otra a tu derecha.`,
+        stations: [
+          { where: R`Cabina de la izquierda`,
+            see: R`La oficial 👮 con un sello grandote que dice «CC = PNB − (C + I + G)». Te sella el pasaporte: si el país ganó más de lo que gastó, el sello sale verde; si gastó más de lo que ganó, sale rojo.`,
+            means: R`<strong>Cuenta corriente</strong> (lado derecho de la 17.6): PNB real menos gasto interno. Verde = <strong>superávit</strong>, rojo = <strong>déficit</strong>.` },
+          { where: R`Cabina de la derecha`,
+            see: R`Un empleado con un libro de cuentas que anota cuántos bonos de afuera y cuántos dólares del Central ganó o perdió el país este año.`,
+            means: R`<strong>Inversión externa neta</strong> (lado izquierdo de la 17.6): \((B_t^f - B_{t-1}^f)/P + (H_t - H_{t-1})/P\).` },
+          { where: R`Colgado arriba de las dos cabinas`,
+            see: R`Un cartel luminoso con un «=» gigante. Si lo que sella la oficial no coincide con lo que anota el empleado, el cartel se prende rojo y suena una alarma.`,
+            means: R`<strong>La 17.6 es una identidad:</strong> cuenta corriente = inversión externa neta. Un déficit de 40 quiere decir que el país perdió 40 de activos de afuera (o se endeudó 40).` },
+          { where: R`Escritorio de la oficial, a su izquierda`,
+            see: R`Un sello chiquito con un barco cargado de contenedores: «lo que mandé menos lo que traje».`,
+            means: R`<strong>Balanza comercial</strong> (exportaciones netas): \(Y - (C + I + G)\). Lo que produjiste y no gastaste adentro se fue en barco.` },
+          { where: R`Escritorio de la oficial, a su derecha`,
+            see: R`Otro sello chiquito, con un sobre de cupones (los intereses de los bonos).`,
+            means: R`<strong>Ingreso neto de factores del exterior:</strong> \(r\cdot B_{t-1}^f/P\). La oficial usa SIEMPRE los dos sellos chiquitos juntos: barco + cupones = cuenta corriente (17.7).` },
+          { where: R`Primero en la fila`,
+            see: R`Un viajero forrado en guita (un país acreedor). Trajo más de lo que mandó, así que el barco le da negativo, pero muestra un sobre lleno de cupones. La oficial le pone los dos sellos, le da cero justo y lo deja pasar.`,
+            means: R`Un país con \(B_{t-1}^f \gt 0\) puede tener <strong>CC = 0 con déficit comercial</strong>: paga las importaciones de más con los intereses que cobra afuera.` },
+          { where: R`Segunda en la fila, detrás del forrado`,
+            see: R`Una señora que deja una donación en la cabina antes de pasar. Esa guita se va del país y no vuelve.`,
+            means: R`<strong>Transferencias netas al exterior</strong> (por ejemplo, ayuda externa): se <strong>restan</strong> de la cuenta corriente.` }
+        ],
+        story: R`La oficial no se complica: pone el sello del barco, después el de los cupones, y lo que le da tiene que coincidir con lo que anota el de la cabina de al lado, porque si no salta la alarma del «=». El forrado pasa con cero aunque haya traído más de lo que mandó, porque los cupones le cubren la diferencia.`,
+        hook: R`CC = Comercio + Cupones (y lo que sella la oficial = lo que anota el de al lado).`
+      },
+      keys: [
+        { label: "Ecuación (17.6)", tex: R`\frac{B_t^f - B_{t-1}^f}{P} + \frac{H_t - H_{t-1}}{P} = Y + r\cdot\frac{B_{t-1}^f}{P} - (C + I + G)`, cap: R`Cabina derecha = cabina izquierda.` },
+        { label: "Ecuación (17.7)", tex: R`CC = \underbrace{Y - (C + I + G)}_{\text{barco}} + \underbrace{r\cdot\frac{B_{t-1}^f}{P}}_{\text{cupones}}`, cap: R`Balanza comercial + ingreso neto de factores del exterior.` }
+      ],
+      questions: [
+        {
+          id: "r3-1", type: "mc",
+          q: R`La cuenta corriente está en superávit cuando:`,
+          options: [
+            R`El PNB real es mayor que el gasto interno \(C + I + G\)`,
+            R`El PBI real es mayor que las exportaciones`,
+            R`Las importaciones superan a las exportaciones`,
+            R`El país recibe préstamos del exterior`
+          ], correct: 0,
+          story: R`El sello grandote de la oficial dice «CC = PNB − (C + I + G)». Si el país ganó más de lo que gastó, el sello sale verde: superávit.`,
+          steps: [
+            R`Por (17.6): \(CC = \text{PNB} - (C + I + G)\), con \(\text{PNB} = Y + r\cdot B_{t-1}^f/P\).`,
+            R`Si \(\text{PNB} \gt C + I + G\), entonces \(CC \gt 0\): superávit.`,
+            R`Del otro lado del "=", el país acumula activos externos: le presta al mundo. Recibir préstamos es lo contrario (déficit).`
+          ],
+          src: "Barro, cap. 17, sección I"
+        },
+        {
+          id: "r3-2", type: "num",
+          q: R`La oficial revisa un país con \(Y = 1000\), \(C + I + G = 1060\), \(r = 0{,}05\) y \(B_{t-1}^f/P = 400\). ¿Cuánto vale la cuenta corriente?`,
+          answer: -40, tol: 0.01,
+          story: R`Hacé como la oficial: siempre los dos sellos chiquitos juntos, primero el barco y después el sobre de cupones.`,
+          steps: [
+            R`Sello del barco (balanza comercial): \(Y - (C + I + G) = 1000 - 1060 = -60\).`,
+            R`Sello de los cupones (ingreso neto de factores): \(r\cdot B_{t-1}^f/P = 0{,}05\cdot 400 = 20\).`,
+            R`Suma (17.7): \(CC = -60 + 20 = -40\). Déficit de 40.`,
+            R`El empleado de la cabina de la derecha anota lo mismo: los activos externos netos del país caen 40.`
+          ],
+          src: "Ejercicio propio con la ecuación (17.7)"
+        },
+        {
+          id: "r3-3", type: "mc",
+          q: R`Un país tuvo superávits en el pasado (\(B_{t-1}^f \gt 0\)) y hoy su cuenta corriente es exactamente cero. Entonces:`,
+          options: [
+            R`Tiene un déficit comercial igual a su ingreso neto de factores del exterior`,
+            R`Tiene un superávit comercial`,
+            R`Su balanza comercial también es cero`,
+            R`No importa nada del exterior`
+          ], correct: 0,
+          story: R`Acordate del viajero forrado, el primero de la fila: trajo más de lo que mandó (el barco le dio negativo), mostró su sobre lleno de cupones y la oficial lo dejó pasar con la cuenta en cero justo.`,
+          steps: [
+            R`(17.7): \(0 = [Y - (C + I + G)] + r\cdot B_{t-1}^f/P\).`,
+            R`Como \(B_{t-1}^f \gt 0\), los cupones son positivos: \(r\cdot B_{t-1}^f/P \gt 0\).`,
+            R`Entonces \(Y - (C + I + G) = -r\cdot B_{t-1}^f/P \lt 0\): déficit comercial.`,
+            R`Paga el exceso de importaciones con lo que cobra de intereses afuera.`
+          ],
+          src: "Barro, cap. 17, sección I"
+        },
+        {
+          id: "r3-4", type: "mc",
+          q: R`Si un país hace transferencias netas al resto del mundo (por ejemplo, ayuda externa), ¿cómo entran en la cuenta corriente?`,
+          options: [
+            R`Se restan de la cuenta corriente`,
+            R`Se suman a la balanza comercial`,
+            R`No entran, porque no son bienes ni servicios`,
+            R`Se suman al ingreso neto de factores`
+          ], correct: 0,
+          story: R`La señora que estaba segunda en la fila dejó una donación en la cabina antes de pasar: esa guita se va del país y no vuelve, así que la oficial se la descuenta del sello.`,
+          steps: [
+            R`Barro deja las transferencias afuera de (17.7) para simplificar.`,
+            R`Si se agregan: \(CC = [Y - (C + I + G)] + r\cdot B_{t-1}^f/P - \text{transferencias netas al exterior}\).`,
+            R`Una donación al exterior baja la cuenta corriente aunque no sea un bien. EE.UU., por ejemplo, transfiere en neto alrededor de 0,5 % del PBI por año.`
+          ],
+          src: "Barro, cap. 17, secciones I y II"
+        },
+        {
+          id: "r3-5", type: "mc",
+          q: R`Según (17.6), un déficit de cuenta corriente de 40 (en términos reales) significa que:`,
+          options: [
+            R`Los activos externos netos del país (bonos más moneda internacional) bajan 40`,
+            R`La balanza comercial es exactamente −40`,
+            R`El ahorro nacional es −40`,
+            R`El PBI cayó 40 respecto del año anterior`
+          ], correct: 0,
+          story: R`Mirá el cartel con el «=» gigante: lo que sella la oficial (déficit de 40) tiene que coincidir con lo que anota el empleado de la cabina de la derecha (activos de afuera: −40). Si no coincide, salta la alarma.`,
+          steps: [
+            R`(17.6): \(\frac{B_t^f - B_{t-1}^f}{P} + \frac{H_t - H_{t-1}}{P} = CC\).`,
+            R`Con \(CC = -40\), el lado izquierdo también es \(-40\): el país pierde activos externos netos por 40 (o se endeuda por 40).`,
+            R`La balanza comercial no tiene por qué ser −40: falta sumar el ingreso neto de factores.`
+          ],
+          src: "Barro, cap. 17, sección I"
+        }
+      ]
+    },
+    {
+      id: "r4", emoji: "🐷", hue: 4, theory: "t4",
+      title: "Sala de embarque: el chanchito y la grúa",
+      topic: "Cuenta corriente = ahorro − inversión neta (17.9)",
+      palace: {
+        llegada: R`Pasás Migraciones, seguís derecho por el pasillo y llegás a la sala de embarque. Te sentás en la puerta 17 (como el capítulo), de cara al ventanal que da a la pista.`,
+        stations: [
+          { where: R`A tu izquierda, pegado al ventanal`,
+            see: R`Un chanchito 🐷 de cerámica del tamaño de una heladera: la alcancía de todo el país.`,
+            means: R`<strong>El ahorro nacional</strong>, \(S\).` },
+          { where: R`Arriba del chanchito`,
+            see: R`Una canilla que le tira monedas. Tiene un cartel: «todo lo que gana el país, menos lo que se gastó en arreglar lo que se rompió».`,
+            means: R`<strong>Ingreso nacional real:</strong> PNB menos depreciación, \(Y + r\cdot B_{t-1}^f/P - \delta K\).` },
+          { where: R`Saliendo de la panza del chanchito, hacia abajo`,
+            see: R`Un tubo por donde la familia y el Estado se llevan monedas para morfar y gastar.`,
+            means: R`<strong>Consumo de hogares y gobierno</strong>, \(C + G\). Lo que queda adentro es \(S = \text{ingreso nacional} - (C + G)\).` },
+          { where: R`A tu derecha, del otro lado del vidrio`,
+            see: R`Una grúa 🏗️ construyendo una terminal nueva. Antes de poner un ladrillo nuevo, arregla las paredes rotas, y eso NO cuenta como obra nueva.`,
+            means: R`<strong>Inversión interna neta:</strong> \(I - \delta K\) (la inversión bruta menos lo que se va en reponer lo gastado).` },
+          { where: R`En la pista, despegando`,
+            see: R`Un avión ✈️ cargado con las monedas que le sobran al chanchito, que se van a prestar afuera.`,
+            means: R`<strong>Superávit</strong> de cuenta corriente: \(S \gt I - \delta K\). El país le presta al mundo.` },
+          { where: R`En la pista, aterrizando`,
+            see: R`Un avión cargado de ladrillos fiados de afuera, porque a la grúa no le alcanzaba con lo del chanchito.`,
+            means: R`<strong>Déficit</strong> de cuenta corriente: \(S \lt I - \delta K\). El mundo le presta al país.` },
+          { where: R`Sentado al lado tuyo`,
+            see: R`Un ministro que baja los impuestos y saca monedas del chanchito para cubrir el agujero. Pero la familia, re ordenada (ricardiana), mete enteritas en el chanchito las monedas que se ahorró de impuestos. El chanchito pesa lo mismo.`,
+            means: R`<strong>Caso ricardiano:</strong> una baja de impuestos financiada con deuda no cambia \(S\), así que no cambia la cuenta corriente.` }
+        ],
+        story: R`Cada ladrillo nuevo de la grúa se garpa con monedas del chanchito. Si sobran monedas, despega un avión con guita para prestar (superávit); si faltan, aterriza uno con ladrillos fiados (déficit). La torre de control no deja tocar la tasa, así que el ajuste es siempre con aviones.`,
+        hook: R`Cuenta Corriente = Chanchito − Construcción: \(CC = S - (I - \delta K)\).`
+      },
+      keys: [
+        { label: "Ahorro nacional", tex: R`S = Y + r\cdot\frac{B_{t-1}^f}{P} - \delta K - (C + G)`, cap: R`La canilla (ingreso nacional) menos el tubo (\(C + G\)).` },
+        { label: "Ecuación (17.9)", tex: R`CC = S - (I - \delta K)`, cap: R`Chanchito menos grúa.` }
+      ],
+      questions: [
+        {
+          id: "r4-1", type: "mc",
+          q: R`¿Qué dice la ecuación (17.9)?`,
+          options: [
+            R`\(CC = S - (I - \delta K)\)`,
+            R`\(CC = S + (I - \delta K)\)`,
+            R`\(CC = (I - \delta K) - S\)`,
+            R`\(CC = S - I - G\)`
+          ], correct: 0,
+          story: R`En la sala de embarque: lo que junta el chanchito, menos lo que usa la grúa, es lo que sale (o entra) en avión. Nada más.`,
+          steps: [
+            R`Partí de (17.7) y separá \(I\): \(CC = Y + r\cdot B_{t-1}^f/P - (C + G) - I\).`,
+            R`Restá \(\delta K\) del ingreso y de la inversión (se cancela): \(CC = [Y + r\cdot B_{t-1}^f/P - \delta K - (C + G)] - (I - \delta K)\).`,
+            R`El corchete es el ahorro nacional \(S\): \(CC = S - (I - \delta K)\).`,
+            R`\(G\) ya está dentro de \(S\) (Barro lo trata como consumo): restarlo otra vez lo contaría dos veces.`
+          ],
+          src: "Barro, cap. 17, ecuaciones (17.8) y (17.9)"
+        },
+        {
+          id: "r4-2", type: "num",
+          q: R`En la sala de embarque: \(Y = 800\), \(r\cdot B_{t-1}^f/P = 20\), \(\delta K = 60\), \(C = 500\), \(G = 120\) e \(I = 150\). ¿Cuánto vale la cuenta corriente?`,
+          answer: 50, tol: 0.01,
+          story: R`Contá primero las monedas que quedan en el chanchito (canilla menos tubo) y después los ladrillos nuevos de la grúa (sin contar los arreglos). La diferencia es lo que viaja en avión.`,
+          steps: [
+            R`Canilla del chanchito (ingreso nacional): \(800 + 20 - 60 = 760\).`,
+            R`Tubo de salida (\(C + G\)): \(500 + 120 = 620\). Chanchito: \(S = 760 - 620 = 140\).`,
+            R`Grúa (inversión neta): \(I - \delta K = 150 - 60 = 90\).`,
+            R`\(CC = 140 - 90 = 50\): superávit. Despega un avión con 50 en monedas.`,
+            R`Control con (17.7): \([800 - (500 + 150 + 120)] + 20 = 30 + 20 = 50\).`
+          ],
+          src: "Ejercicio propio con las ecuaciones (17.7) y (17.9)"
+        },
+        {
+          id: "r4-3", type: "mc",
+          q: R`El gobierno baja los impuestos hoy y se financia con deuda. Los hogares son ricardianos: ahorran todo el recorte. ¿Qué pasa con la cuenta corriente?`,
+          options: [
+            R`No cambia: el ahorro privado sube lo mismo que cae el público, así que \(S\) no cambia`,
+            R`Va a déficit: un déficit fiscal siempre genera un déficit externo`,
+            R`Va a superávit, porque los hogares ahorran más`,
+            R`Va a déficit, porque baja la inversión`
+          ], correct: 0,
+          story: R`Acordate del ministro sentado al lado tuyo: baja impuestos y saca monedas del chanchito, pero la familia, re ordenada, mete enteritas las monedas que se ahorró. El chanchito pesa lo mismo, la grúa sigue igual y no despega ni aterriza ningún avión de más.`,
+          steps: [
+            R`Ahorro público: cae por la baja de impuestos.`,
+            R`Ahorro privado: sube por el mismo monto (los hogares ahorran todo el recorte).`,
+            R`Ahorro nacional \(S\): no cambia. La inversión tampoco.`,
+            R`Por (17.9), \(CC = S - (I - \delta K)\) no cambia: en el caso ricardiano no hay déficits gemelos.`
+          ],
+          src: "Barro, cap. 17, sección IV"
+        },
+        {
+          id: "r4-4", type: "mc",
+          q: R`En un país chico y abierto, el ahorro nacional es 100 y la inversión interna neta es 130. ¿Qué pasa?`,
+          options: [
+            R`Hay un déficit de cuenta corriente de 30, financiado por el resto del mundo`,
+            R`Hay un superávit de cuenta corriente de 30`,
+            R`La tasa de interés local sube hasta que el ahorro iguale a la inversión`,
+            R`La inversión tiene que bajar a 100 sí o sí`
+          ], correct: 0,
+          story: R`La grúa necesita 130 ladrillos y el chanchito tiene 100 monedas. La torre de control no deja tocar la tasa, así que aterriza un avión con 30 ladrillos fiados de afuera.`,
+          steps: [
+            R`\(CC = S - (I - \delta K) = 100 - 130 = -30\).`,
+            R`En una economía abierta y chica, \(r = r^f\): la tasa no se ajusta para igualar ahorro e inversión.`,
+            R`La diferencia la financia el resto del mundo: el país se endeuda (o vende activos externos) por 30.`
+          ],
+          src: "Barro, cap. 17, ecuación (17.9)"
+        }
+      ]
+    },
+    {
+      id: "r5", emoji: "🌦️", hue: 5, theory: "t5",
+      title: "La pista: sol y lluvia del ciclo",
+      topic: "Ciclos reales y cuenta corriente contracíclica",
+      palace: {
+        llegada: R`Seguís sentado en la puerta 17, pero ahora mirás más lejos, a través del ventanal: la pista entera. Al fondo, a la derecha, está la torre de control.`,
+        stations: [
+          { where: R`Al fondo a la derecha: la torre de control 📡`,
+            see: R`Tiene una pantalla clavada que dice «\(r = r^f\)». Pase lo que pase en la pista, el número no se mueve.`,
+            means: R`<strong>Economía chica y abierta:</strong> la tasa real la pone el mundo. Lo que en una economía cerrada movería la tasa, acá se arregla con préstamos de afuera (la cuenta corriente).` },
+          { where: R`En el cielo, arriba de la pista`,
+            see: R`Sale un solazo ☀️: un shock tecnológico bueno, solo en Argentina (en el resto del mundo, nada).`,
+            means: R`<strong>Sube \(A\)</strong> en \(Y = A\cdot F(K, L)\): suben la productividad del trabajo (MPL) y la del capital (MPK). Suben el empleo \(L\) y el PBI \(Y\).` },
+          { where: R`La grúa de la terminal (la de la sala de embarque)`,
+            see: R`Con el sol se pone como loca: construir ahora rinde un montón y quiere levantar tres terminales.`,
+            means: R`<strong>La inversión sube MUCHO</strong>, porque con la MPK más alta el capital rinde más que \(r^f\).` },
+          { where: R`El chanchito, contra el ventanal`,
+            see: R`Engorda, pero poquito: la gente ahorra una parte de lo que gana de más y se gasta el resto, porque no quiere que su consumo pegue saltos.`,
+            means: R`<strong>El ahorro sube, pero menos que la inversión</strong> (suavizamiento del consumo).` },
+          { where: R`La pista, con sol`,
+            see: R`Aterrizan un montón de aviones de carga 🛬 y despegan muchos menos 🛫. Faltan ladrillos para la grúa y los traen de afuera, fiados.`,
+            means: R`Como \(I - \delta K\) sube más que \(S\), la cuenta corriente va a <strong>déficit en el auge</strong>. Las importaciones son más procíclicas (0,71) que las exportaciones (0,38).` },
+          { where: R`La pista, cuando se larga a llover 🌧️`,
+            see: R`Recesión: la grúa casi se frena, al chanchito le sobran monedas y despegan aviones con guita para prestar afuera.`,
+            means: R`<strong>Superávit en la recesión.</strong> Por eso la cuenta corriente y la balanza comercial son <strong>contracíclicas</strong> (en EE.UU., balanza comercial/PBI tiene correlación −0,34 con el PBI).` },
+          { where: R`En un rincón de la pista, a la izquierda`,
+            see: R`Un campo de trigo 🌾 hecho percha por el granizo y, al lado, un casco militar 🪖 (el Estado gastando de más por una guerra, por un tiempo). Acá la grúa ni se entera, pero el chanchito se vacía porque la gente no quiere morfar menos.`,
+            means: R`<strong>Excepciones:</strong> shocks que bajan el ingreso SIN cambiar la MPK. El ahorro cae, la inversión neta no cambia y la cuenta corriente va a <strong>déficit en la mala</strong>. Ejemplos de Barro: el trigo en Australia (1931-85) y Polonia (1978-81).` },
+          { where: R`Colgado de la grúa`,
+            see: R`Un cartel que dice «grúa oxidada»: cuando construir rápido sale carísimo, con el sol la grúa apenas se mueve.`,
+            means: R`<strong>Costos de ajuste grandes:</strong> la inversión sube menos que el ahorro, y la cuenta corriente puede ir a <strong>superávit</strong> en el auge.` }
+        ],
+        story: R`Película completa: sale el sol, la grúa se zarpa, el chanchito engorda poquito y aterrizan más aviones de los que despegan: auge = déficit. Se larga a llover, la grúa para, al chanchito le sobra y despegan aviones: recesión = superávit. Ojo con las dos excepciones del rincón (el trigo y el casco) y con la grúa oxidada.`,
+        hook: R`Con sol, la grúa le gana al chanchito: auge = déficit. Con lluvia, al revés.`
+      },
+      keys: [
+        { label: "Mecanismo (costos de ajuste chicos)", tex: R`A \text{ sube} \;\Rightarrow\; MPK \text{ sube} \;\Rightarrow\; \Delta(I - \delta K) \gt \Delta S \;\Rightarrow\; CC \text{ baja}`, cap: R`La torre mantiene \(r = r^f\): el ajuste pasa por la cuenta corriente.` }
+      ],
+      questions: [
+        {
+          id: "r5-1", type: "mc",
+          q: R`Modelo de ciclos reales con costos de ajuste chicos: sube \(A\) solo en el país local. ¿Hacia dónde va la cuenta corriente?`,
+          options: [
+            R`A déficit, porque la inversión sube más que el ahorro nacional`,
+            R`A superávit, porque sube el ahorro nacional`,
+            R`No cambia, porque \(r = r^f\)`,
+            R`A déficit, porque cae el ahorro nacional`
+          ], correct: 0,
+          story: R`Sale el solazo sobre la pista: la grúa se pone como loca y el chanchito engorda, pero poquito. Faltan ladrillos y aterrizan aviones con ladrillos fiados de afuera.`,
+          steps: [
+            R`Sube \(A\), entonces sube la MPK: el capital local rinde más que \(r^f\).`,
+            R`La inversión sube mucho (financiada con préstamos del exterior) hasta que el rendimiento vuelve a \(r^f\).`,
+            R`El ahorro también sube (sube el ingreso), pero menos: los hogares suavizan el consumo.`,
+            R`Por (17.9), \(CC = S - (I - \delta K)\) cae: déficit en el auge.`
+          ],
+          src: "Barro, cap. 17, sección III"
+        },
+        {
+          id: "r5-2", type: "mc",
+          q: R`Datos de EE.UU. (1954-2004, componentes cíclicos). ¿Qué correlaciones con el PBI reporta Barro?`,
+          options: [
+            R`Importaciones 0,71; exportaciones 0,38; balanza comercial/PBI −0,34`,
+            R`Exportaciones 0,71; importaciones 0,38; balanza comercial/PBI −0,34`,
+            R`Importaciones 0,71; exportaciones 0,38; balanza comercial/PBI 0,34`,
+            R`Importaciones −0,71; exportaciones −0,38; balanza comercial/PBI 0,34`
+          ], correct: 0,
+          story: R`En la pista, con sol, aterrizan un montón de aviones de carga 🛬 y despegan muchos menos 🛫: las importaciones se mueven con el ciclo mucho más que las exportaciones.`,
+          steps: [
+            R`Las dos son procíclicas (correlación positiva), pero las importaciones mucho más: 0,71 contra 0,38.`,
+            R`Si en un auge las importaciones suben más que las exportaciones, la balanza comercial empeora.`,
+            R`Por eso la balanza comercial/PBI tiene correlación negativa con el PBI: −0,34 (levemente contracíclica).`
+          ],
+          src: "Barro, cap. 17, figuras 17.5 a 17.7"
+        },
+        {
+          id: "r5-3", type: "mc",
+          q: R`Una mala cosecha baja el PBI de forma transitoria, pero no cambia la MPK. ¿Qué pasa con la cuenta corriente?`,
+          options: [
+            R`Va a déficit: el ahorro cae (se suaviza el consumo) y la inversión neta no cambia`,
+            R`Va a superávit, como en cualquier recesión del modelo de ciclos reales`,
+            R`No cambia, porque la MPK no cambió`,
+            R`Va a superávit, porque caen las importaciones`
+          ], correct: 0,
+          story: R`Rincón izquierdo de la pista: el campo de trigo 🌾 hecho percha por el granizo. La grúa ni se entera (la MPK es la misma), pero el chanchito se vacía porque la gente no quiere morfar menos.`,
+          steps: [
+            R`Baja \(Y\) por un tiempo. Como es transitorio, \(C\) baja poco: el ahorro nacional \(S\) cae.`,
+            R`La MPK no cambió, entonces \(I - \delta K\) no cambia. Además \(r = r^f\) no se mueve.`,
+            R`Por (17.9), \(CC = S - (I - \delta K)\) cae: déficit. El país se endeuda para sostener el consumo.`,
+            R`Así pasó con el trigo en Australia (1931-85) y con Polonia (1978-81).`
+          ],
+          src: "Barro, cap. 17, sección III"
+        },
+        {
+          id: "r5-4", type: "mc",
+          q: R`Si los hogares suavizan el consumo, ¿por qué el modelo igual predice que la cuenta corriente empeora en los auges?`,
+          options: [
+            R`Porque en el auge la suba de la MPK hace crecer la inversión neta más que el ahorro nacional`,
+            R`Porque en el auge sube la tasa de interés local y frena el consumo`,
+            R`Porque las exportaciones caen en los auges`,
+            R`Porque el gobierno sube \(G\) en todos los auges`
+          ], correct: 0,
+          story: R`Con sol, el chanchito engorda (eso es suavizar el consumo), pero la grúa se zarpa mucho más. Gana la grúa, y lo que falta se trae de afuera.`,
+          steps: [
+            R`Solo con el consumo: en el auge el ahorro sube, lo que empujaría la cuenta corriente a superávit.`,
+            R`Pero el mismo shock sube la MPK, y la inversión responde todavía más.`,
+            R`Como \(I - \delta K\) sube más que \(S\), por (17.9) la cuenta corriente va a déficit.`,
+            R`La tasa no puede subir porque \(r = r^f\), y las exportaciones son procíclicas (suben en el auge).`
+          ],
+          src: "Barro, cap. 17, sección III"
+        },
+        {
+          id: "r5-5", type: "mc",
+          q: R`Ante un shock favorable de \(A\), ¿cuándo puede la cuenta corriente ir a superávit en vez de déficit?`,
+          options: [
+            R`Cuando los costos de ajuste de la inversión son grandes y la inversión sube menos que el ahorro`,
+            R`Nunca: en el modelo siempre va a déficit`,
+            R`Cuando el país es chico y toma \(r^f\) como dato`,
+            R`Cuando las importaciones son más procíclicas que las exportaciones`
+          ], correct: 0,
+          story: R`Mirá el cartel colgado de la grúa: «grúa oxidada». Si construir rápido sale carísimo, con el sol la grúa apenas se mueve. El chanchito engorda más de lo que usa la grúa y despegan aviones con monedas.`,
+          steps: [
+            R`Con costos de ajuste grandes, invertir mucho de golpe es caro: \(I - \delta K\) sube poco.`,
+            R`El ahorro sube por el mayor ingreso.`,
+            R`Si \(S\) sube más que \(I - \delta K\), por (17.9) la cuenta corriente va a superávit.`
+          ],
+          src: "Barro, cap. 17, sección III"
+        }
+      ]
+    },
+    // --- INJECT NEW PRACTICE HERE ---
+  ]
+};
+
+/* ---------------- TAB 3: EXÁMENES VIEJOS (BOSS FIGHTS) ----------------
+   Cada jefe: opción múltiple, 4 opciones y 1 correcta ("correct" = índice).
+   "theory" lista los resúmenes que se recomiendan si perdés. */
+const EXAMS = {
+  bosses: [
+    {
+      id: "b1", emoji: "🦹", name: "La Contrabandista de Precios", hearts: 3,
+      topic: "Ley de un solo precio, paridad y restricción (17.5)",
+      intro: R`Quiere que los precios y las tasas sean distintos en cada país. Le ganás con arbitraje y con la balanza del check-in.`,
+      theory: ["t1", "t2"],
+      questions: [
+        {
+          id: "b1-1",
+          q: R`Con los supuestos del capítulo 17 de Barro, un mismo bien cuesta US$ 10 en el país local y US$ 12 en el resto del mundo. ¿Qué pasa?`,
+          options: [
+            R`Hay arbitraje: se compra donde es barato y se vende donde es caro hasta que los precios en dólares se igualan`,
+            R`Los precios pueden diferir para siempre, porque cada país tiene su propio nivel de precios`,
+            R`Se ajusta el tipo de cambio entre las monedas de los dos países`,
+            R`El país local deja de exportar ese bien y los precios no cambian`
+          ], correct: 0,
+          explain: R`Con bienes idénticos, sin costos de transporte y con una moneda común, una diferencia de precio es plata gratis: el arbitraje la elimina. No hay tipo de cambio porque todos usan la misma moneda.`,
+          steps: [
+            R`Comprar a 10 en casa y vender a 12 afuera deja 2 por unidad, sin riesgo.`,
+            R`Esas compras suben el precio local y esas ventas bajan el de afuera.`,
+            R`Equilibrio: \(P_{\text{local}} = P_{\text{resto del mundo}}\) (ley de un solo precio).`
+          ],
+          src: "Barro, cap. 17, introducción"
+        },
+        {
+          id: "b1-2",
+          q: R`Además de que no haya inflación, ¿qué supone Barro para que se cumpla \(i_t = i_t^f\)?`,
+          options: [
+            R`Que no haya diferencias de solvencia entre residentes y extranjeros ni costos de transacción financieros entre países`,
+            R`Que el tipo de cambio sea fijo y creíble`,
+            R`Que todos los países tengan el mismo PBI per cápita`,
+            R`Que los bancos centrales no tengan moneda internacional`
+          ], correct: 0,
+          explain: R`Si los deudores de todos los países son igual de confiables y prestar afuera no cuesta nada extra, el crédito mundial es un solo mercado con una sola tasa.`,
+          steps: [
+            R`Supuesto 1: el mismo riesgo crediticio para residentes y extranjeros.`,
+            R`Supuesto 2: sin costos de transacción para operar entre países.`,
+            R`Con eso, \(i_t = i_t^f\); sin inflación, \(r_t = r_t^f\). El tipo de cambio no aparece porque hay moneda común.`
+          ],
+          src: "Barro, cap. 17, introducción"
+        },
+        {
+          id: "b1-3",
+          q: R`En (17.5), el término \(\frac{B_t^f - B_{t-1}^f}{P} + \frac{H_t - H_{t-1}}{P}\) se llama:`,
+          options: [
+            R`Inversión externa neta`,
+            R`Ingreso neto de factores del exterior`,
+            R`Balanza comercial`,
+            R`Ahorro nacional`
+          ], correct: 0,
+          explain: R`Es lo que el país invierte, en neto, en el resto del mundo: compra de bonos extranjeros más compra de moneda internacional.`,
+          steps: [
+            R`\((B_t^f - B_{t-1}^f)/P\): cambio en la tenencia neta de bonos extranjeros.`,
+            R`\((H_t - H_{t-1})/P\): cambio en la moneda internacional del banco central (suele ser chico).`,
+            R`Juntos: inversión externa neta, que por (17.6) es igual a la cuenta corriente.`
+          ],
+          src: "Barro, cap. 17, sección I"
+        },
+        {
+          id: "b1-4",
+          q: R`¿Cuál es la restricción presupuestaria de la economía abierta, ecuación (17.5)?`,
+          options: [
+            R`\(C + I + G + \frac{B_t^f - B_{t-1}^f}{P} + \frac{H_t - H_{t-1}}{P} = Y + r\cdot\frac{B_{t-1}^f}{P}\)`,
+            R`\(C + I + G = Y + \frac{B_t^f - B_{t-1}^f}{P} + r\cdot\frac{B_{t-1}^f}{P}\)`,
+            R`\(C + I + G + \frac{B_t^f - B_{t-1}^f}{P} + \frac{H_t - H_{t-1}}{P} = Y - r\cdot\frac{B_{t-1}^f}{P}\)`,
+            R`\(C + I + G + r\cdot\frac{B_{t-1}^f}{P} = Y + \frac{B_t^f - B_{t-1}^f}{P} + \frac{H_t - H_{t-1}}{P}\)`
+          ], correct: 0,
+          explain: R`Usos a la izquierda (gasto más compra de activos externos), fuentes a la derecha (PBI más intereses cobrados afuera).`,
+          steps: [
+            R`Comprar bonos extranjeros es un uso de fondos: va a la izquierda, con signo +.`,
+            R`Cobrar intereses del exterior es una fuente: va a la derecha, con signo +.`,
+            R`Control: sin bonos ni moneda internacional queda \(C + I + G = Y\).`
+          ],
+          src: "Barro, cap. 17, ecuación (17.5)"
+        },
+        {
+          id: "b1-5",
+          q: R`Una economía cerrada con tasa real \(r_1\) se abre al crédito mundial, y resulta que \(r^f = r_1\). Si al principio no tiene activos externos (\(B^f = 0\)), ¿qué pasa con su cuenta corriente?`,
+          options: [
+            R`Queda en cero: las decisiones no cambian y sigue valiendo \(Y = C + I + G\)`,
+            R`Va a déficit, porque ahora puede endeudarse afuera`,
+            R`Va a superávit, porque ahora puede prestar afuera`,
+            R`Depende del tamaño de \(G\)`
+          ], correct: 0,
+          explain: R`Si la tasa mundial es la misma que tenía, nadie cambia nada: tener la opción de prestar o endeudarse afuera no obliga a usarla.`,
+          steps: [
+            R`Con \(r^f = r_1\), hogares y empresas enfrentan la misma tasa que antes.`,
+            R`Entonces \(Y\), \(C\), \(I\) y \(G\) quedan iguales, y \(Y = C + I + G\).`,
+            R`Con \(B^f = 0\), por (17.7): \(CC = [Y - (C + I + G)] + 0 = 0\).`
+          ],
+          src: "Barro, cap. 17, sección III"
+        },
+        {
+          id: "b1-6",
+          q: R`Según (17.5), el PNB real es:`,
+          options: [
+            R`El PBI real más el ingreso neto de factores del exterior`,
+            R`El PBI real menos la depreciación`,
+            R`El PBI real más las exportaciones netas`,
+            R`El consumo más la inversión más el gasto público`
+          ], correct: 0,
+          explain: R`El PBI mide lo producido dentro del país. El PNB suma lo que cobran los factores del país afuera y resta lo que cobran los extranjeros adentro.`,
+          steps: [
+            R`PNB real = \(Y + r\cdot B_{t-1}^f/P\).`,
+            R`Si le restás la depreciación \(\delta K\), obtenés el producto nacional neto, que es el ingreso nacional.`,
+            R`"PBI más exportaciones netas" no tiene sentido: las exportaciones netas ya están dentro de \(Y\).`
+          ],
+          src: "Barro, cap. 17, sección I"
+        }
+      ]
+    },
+    {
+      id: "b2", emoji: "👮", name: "La Oficial de Migraciones", hearts: 3,
+      topic: "Cuenta corriente, balanza comercial y ahorro − inversión",
+      intro: R`No te deja pasar si no cerrás las cuentas: cuenta corriente, balanza comercial, ingreso de factores y ahorro menos inversión.`,
+      theory: ["t3", "t4"],
+      questions: [
+        {
+          id: "b2-1",
+          q: R`(Barro, problema 17.1) ¿Por qué no pueden todos los países tener déficit de cuenta corriente al mismo tiempo?`,
+          options: [
+            R`Porque el mundo es una economía cerrada: lo que un país pide prestado otro lo presta, y las cuentas corrientes suman cero`,
+            R`Porque los bancos centrales no tienen moneda internacional suficiente`,
+            R`Porque la ley de un solo precio lo impide`,
+            R`Sí pueden, si todos tienen déficit fiscal a la vez`
+          ], correct: 0,
+          explain: R`El déficit de un país es endeudamiento con otro. Para el mundo entero no hay un "exterior" al que pedirle.`,
+          steps: [
+            R`Por (17.6), un déficit es una caída de los activos externos netos: alguien de afuera los acumula.`,
+            R`Sumando todos los países, cada préstamo aparece una vez como activo y una vez como pasivo.`,
+            R`El stock mundial de moneda internacional \(\bar H\) es constante, así que tampoco suma.`,
+            R`Suma de las cuentas corrientes del mundo = 0: si alguien tiene déficit, otro tiene superávit.`
+          ],
+          src: "Barro, cap. 17, preguntas y problemas 17.1"
+        },
+        {
+          id: "b2-2",
+          q: R`Datos: \(Y = 2000\), \(C = 1300\), \(I = 450\), \(G = 300\), \(r = 0{,}05\) y \(B_{t-1}^f/P = -1000\) (el país es deudor). ¿Cuánto valen la balanza comercial (BC) y la cuenta corriente (CC)?`,
+          options: [
+            R`BC = −50 y CC = −100`,
+            R`BC = −50 y CC = 0`,
+            R`BC = 50 y CC = 0`,
+            R`BC = −100 y CC = −50`
+          ], correct: 0,
+          explain: R`Primero la balanza comercial; después le sumás los intereses, que acá son negativos porque el país debe.`,
+          steps: [
+            R`\(BC = Y - (C + I + G) = 2000 - 2050 = -50\).`,
+            R`Ingreso neto de factores: \(r\cdot B_{t-1}^f/P = 0{,}05\cdot(-1000) = -50\).`,
+            R`\(CC = -50 + (-50) = -100\).`
+          ],
+          src: "Ejercicio propio con la ecuación (17.7)"
+        },
+        {
+          id: "b2-3",
+          q: R`Un país deudor (\(B_{t-1}^f \lt 0\)) quiere tener la cuenta corriente en cero. ¿Qué necesita?`,
+          options: [
+            R`Un superávit comercial igual a los intereses netos que paga al exterior`,
+            R`Un déficit comercial igual a los intereses que paga`,
+            R`Una balanza comercial en cero`,
+            R`Que suba la tasa de interés mundial`
+          ], correct: 0,
+          explain: R`Es el espejo del país acreedor: para no seguir endeudándose, tiene que exportar más de lo que importa y pagar los intereses con eso.`,
+          steps: [
+            R`(17.7): \(0 = BC + r\cdot B_{t-1}^f/P\).`,
+            R`Con \(B_{t-1}^f \lt 0\), los intereses son negativos.`,
+            R`Entonces \(BC = -r\cdot B_{t-1}^f/P \gt 0\): superávit comercial.`
+          ],
+          src: "Barro, cap. 17, sección I"
+        },
+        {
+          id: "b2-4",
+          q: R`Ahorro nacional \(S = 300\), inversión bruta \(I = 420\) y depreciación \(\delta K = 100\). ¿Cuánto vale la cuenta corriente?`,
+          options: [
+            R`−20 (déficit)`,
+            R`−120 (déficit)`,
+            R`20 (superávit)`,
+            R`−220 (déficit)`
+          ], correct: 0,
+          explain: R`La cuenta corriente compara el ahorro con la inversión NETA, no con la bruta.`,
+          steps: [
+            R`Inversión interna neta: \(I - \delta K = 420 - 100 = 320\).`,
+            R`\(CC = S - (I - \delta K) = 300 - 320 = -20\).`,
+            R`Si usás la inversión bruta te da −120: te olvidaste de la depreciación.`
+          ],
+          src: "Ejercicio propio con la ecuación (17.9)"
+        },
+        {
+          id: "b2-5",
+          q: R`¿Qué cuenta corriente tuvo en promedio EE.UU. en 2000-04 y qué la explica, según Barro?`,
+          options: [
+            R`Un déficit de alrededor de 4,4 % del PBI, explicado sobre todo por el déficit comercial`,
+            R`Un superávit de 4,4 % del PBI, por los intereses que cobra afuera`,
+            R`Un déficit de 4,4 % del PBI, explicado por las transferencias al exterior`,
+            R`Una cuenta corriente equilibrada`
+          ], correct: 0,
+          explain: R`El gran déficit de 2000-04 vino de la balanza comercial (déficit de 4 a 5 % del PBI). El ingreso neto de factores siguió siendo positivo.`,
+          steps: [
+            R`Cuenta corriente promedio 2000-04: −4,4 % del PBI. En la historia previa, solo 1836 tuvo un valor comparable.`,
+            R`Balanza comercial: déficit de 4 a 5 % del PBI en esos años.`,
+            R`Las transferencias netas al exterior rondan 0,5 % del PBI: no alcanzan para explicarlo.`
+          ],
+          src: "Barro, cap. 17, sección II"
+        },
+        {
+          id: "b2-6",
+          q: R`A fines de 2003, la posición internacional neta de EE.UU. era de −2,7 billones de dólares (26 % del PBI). Aun así, su ingreso neto de factores del exterior seguía siendo positivo. ¿Cómo lo explica Barro?`,
+          options: [
+            R`Los activos de EE.UU. afuera rendían mucho más que los activos extranjeros en EE.UU. (en buena parte, bonos del Tesoro de bajo rendimiento)`,
+            R`EE.UU. tenía superávit comercial`,
+            R`Las transferencias netas al exterior eran negativas`,
+            R`El ingreso de factores solo cuenta salarios, no intereses`
+          ], correct: 0,
+          explain: R`El ingreso de factores es tasa por stock. Con el stock en contra pero los rendimientos a favor, el neto puede ser positivo.`,
+          steps: [
+            R`Ingreso neto de factores = lo que rinden los activos de EE.UU. afuera − lo que rinden los activos extranjeros en EE.UU.`,
+            R`Los activos de EE.UU. afuera (por ejemplo, inversión directa) rendían mucho.`,
+            R`Gran parte de lo que tenían los extranjeros eran bonos del Tesoro de bajo rendimiento, sobre todo en bancos centrales de Asia.`,
+            R`Resultado: aunque EE.UU. debía más de lo que tenía, cobraba más de lo que pagaba.`
+          ],
+          src: "Barro, cap. 17, sección II"
+        }
+      ]
+    },
+    {
+      id: "b3", emoji: "🐉", name: "El Dragón del Ciclo", hearts: 3,
+      topic: "Ciclos reales, déficits gemelos y términos del intercambio",
+      intro: R`Escupe auges y recesiones. Para ganarle tenés que saber qué le pasa a la cuenta corriente con cada shock.`,
+      theory: ["t5", "t6"],
+      questions: [
+        {
+          id: "b3-1",
+          q: R`Sube \(A\) en el país local (no en el resto del mundo), con un efecto duradero, y los costos de ajuste de la inversión son chicos. ¿Qué pasa?`,
+          options: [
+            R`Suben \(L\), \(Y\) e \(I\); la cuenta corriente va a déficit y \(r\) no cambia (\(r = r^f\))`,
+            R`Suben \(L\) e \(Y\); sube \(r\) y la cuenta corriente no cambia`,
+            R`Sube \(Y\), cae \(I\) y la cuenta corriente va a superávit`,
+            R`El ahorro sube más que la inversión y la cuenta corriente va a superávit`
+          ], correct: 0,
+          explain: R`Con \(r\) fijado por el mundo, el shock se descarga en la cuenta corriente: la inversión sube más que el ahorro.`,
+          steps: [
+            R`Sube la MPL: suben el empleo \(L\) y el PBI \(Y\).`,
+            R`Sube la MPK: sube mucho la inversión \(I\), financiada con préstamos del exterior.`,
+            R`El ahorro sube menos que la inversión: \(CC = S - (I - \delta K)\) cae.`,
+            R`\(r\) no se mueve: el país es chico y \(r = r^f\).`
+          ],
+          src: "Barro, cap. 17, sección III"
+        },
+        {
+          id: "b3-2",
+          q: R`(Barro, problema 17.2) Si un país tiene déficit fiscal, ¿tiene que tener déficit de cuenta corriente?`,
+          options: [
+            R`No necesariamente: depende de si el déficit fiscal baja el ahorro nacional. En el caso ricardiano, ni \(S\) ni la cuenta corriente cambian`,
+            R`Sí, siempre: son déficits gemelos`,
+            R`No: un déficit fiscal siempre genera superávit de cuenta corriente`,
+            R`Sí, pero solo en una economía cerrada`
+          ], correct: 0,
+          explain: R`El nexo es el ahorro nacional. Si los hogares ahorran el recorte de impuestos, el ahorro nacional no cambia y la cuenta corriente tampoco.`,
+          steps: [
+            R`(17.9): \(CC = S - (I - \delta K)\). Lo que importa es \(S\).`,
+            R`Caso ricardiano: el ahorro privado sube lo que cae el público; \(S\) queda igual y la cuenta corriente también.`,
+            R`Si los hogares se sienten más ricos y consumen más, \(S\) cae y aparece el déficit externo (déficits gemelos).`,
+            R`En una economía cerrada no hay cuenta corriente.`
+          ],
+          src: "Barro, cap. 17, preguntas y problemas 17.2"
+        },
+        {
+          id: "b3-3",
+          q: R`Evans (1988) estudió la posguerra en EE.UU., Canadá, Francia, Alemania y Reino Unido. ¿Qué encontró sobre los déficits fiscales y los de cuenta corriente?`,
+          options: [
+            R`Que los déficits fiscales no tienen un efecto causal estadísticamente significativo sobre los de cuenta corriente`,
+            R`Que cada peso de déficit fiscal genera un peso de déficit de cuenta corriente`,
+            R`Que los déficits fiscales generan superávits de cuenta corriente`,
+            R`Que el efecto aparece solo en EE.UU.`
+          ], correct: 0,
+          explain: R`Es consistente con la visión ricardiana: el déficit fiscal no mueve el ahorro nacional.`,
+          steps: [
+            R`Evans buscó si los cambios exógenos del déficit fiscal causaban déficits externos.`,
+            R`No encontró un efecto causal significativo en los cinco países.`,
+            R`Barro lo usa como evidencia a favor del caso ricardiano.`
+          ],
+          src: "Barro, cap. 17, sección IV"
+        },
+        {
+          id: "b3-4",
+          q: R`Una guerra sube \(G\) de forma transitoria. ¿Por qué pueden aparecer déficits gemelos aunque el déficit fiscal no cause el externo?`,
+          options: [
+            R`Porque el mismo shock lleva al gobierno a endeudarse y a la cuenta corriente a déficit (\(C\) baja menos de lo que sube \(G\))`,
+            R`Porque un déficit fiscal siempre baja el ahorro nacional`,
+            R`Porque la guerra sube la tasa de interés mundial`,
+            R`Porque en una guerra caen las importaciones`
+          ], correct: 0,
+          explain: R`Los dos déficits responden a una causa común. Ninguno causa al otro.`,
+          steps: [
+            R`\(G\) sube por un tiempo. Para no subir mucho los impuestos de golpe, el gobierno se endeuda: déficit fiscal.`,
+            R`Como la suba es transitoria, \(C\) baja menos de lo que sube \(G\): el ahorro nacional cae.`,
+            R`Por (17.9), la cuenta corriente va a déficit. Ejemplo: los aliados se endeudaron con EE.UU. en 1915-17.`
+          ],
+          src: "Barro, cap. 17, secciones III y IV"
+        },
+        {
+          id: "b3-5",
+          q: R`Los términos del intercambio son \(P/\bar P\). Para Arabia Saudita sube el precio relativo del petróleo y se espera que la suba dure. Con costos de ajuste chicos, ¿qué predice Barro para su cuenta corriente?`,
+          options: [
+            R`Déficit: sube el rendimiento del capital, \((P/\bar P)\cdot MPK - \delta\), y la inversión crece más que el ahorro`,
+            R`Superávit siempre, porque sube el ingreso nacional`,
+            R`No cambia, porque el PBI real no cambia`,
+            R`Déficit, porque cae el ahorro nacional`
+          ], correct: 0,
+          explain: R`Una mejora de los términos del intercambio se parece a una suba de \(A\): sube el ingreso y sube el rendimiento de invertir.`,
+          steps: [
+            R`Sube el ingreso nacional medido en bienes importados: \(C\) sube, pero menos, y el ahorro sube.`,
+            R`El capital se compra afuera a \(\bar P\) y produce petróleo que vale \(P\): el rendimiento neto es \((P/\bar P)\cdot MPK - \delta\), y sube.`,
+            R`Si la suba dura y los costos de ajuste son chicos, la inversión crece más que el ahorro: déficit.`,
+            R`Si fuera transitoria, no convendría perforar pozos nuevos y la cuenta corriente iría a superávit.`
+          ],
+          src: "Barro, cap. 17, sección V"
+        },
+        {
+          id: "b3-6",
+          q: R`Las importaciones tienen correlación 0,71 con el PBI y las exportaciones 0,38. ¿Qué implica para la balanza comercial?`,
+          options: [
+            R`Tiende a empeorar en los auges y a mejorar en las recesiones: es contracíclica`,
+            R`Es procíclica, porque las dos son procíclicas`,
+            R`No tiene relación con el ciclo`,
+            R`Mejora en los auges, porque suben las exportaciones`
+          ], correct: 0,
+          explain: R`Lo que importa es cuál sube más en el auge: las importaciones.`,
+          steps: [
+            R`En un auge, las importaciones suben más que las exportaciones.`,
+            R`Entonces exportaciones − importaciones cae en los auges y sube en las recesiones.`,
+            R`En los datos: correlación de la balanza comercial/PBI con el PBI = −0,34.`
+          ],
+          src: "Barro, cap. 17, figuras 17.5 a 17.7"
+        },
+        {
+          id: "b3-7",
+          q: R`En el modelo del capítulo 17, para un país chico, ¿qué absorbe un shock que en una economía cerrada movería la tasa de interés?`,
+          options: [
+            R`La cuenta corriente (préstamos con el exterior), porque \(r = r^f\) no se mueve`,
+            R`La tasa de interés real local`,
+            R`El nivel de precios`,
+            R`El tipo de cambio`
+          ], correct: 0,
+          explain: R`En la economía cerrada, ahorro e inversión se igualaban moviendo \(r\). Abierta y chica, \(r = r^f\) está fija y la diferencia la cubre el resto del mundo.`,
+          steps: [
+            R`Economía cerrada: \(S = I - \delta K\), y \(r\) se ajusta para lograrlo.`,
+            R`Abierta y chica: \(r = r^f\), dada por el mundo.`,
+            R`La brecha \(S - (I - \delta K)\) es la cuenta corriente. No hay tipo de cambio porque hay moneda común, y \(P\) está fijo.`
+          ],
+          src: "Barro, cap. 17, sección III"
+        }
+      ]
+    },
+    // --- INJECT NEW EXAM QUESTIONS HERE ---
+  ]
+};
+
+window.MACRO_DATA = { theory: THEORY, practice: PRACTICE, exams: EXAMS };
+</script>
+
+<script>
+/* ============ MOTOR ============ */
+(function () {
+  'use strict';
+  var DATA = window.MACRO_DATA;
+  var THEORY = DATA.theory, ROOMS = DATA.practice.rooms, BOSSES = DATA.exams.bosses;
+  var app = document.getElementById('app');
+  var live = document.getElementById('live');
+  var KEY = 'palacio-macro:v1';
+  var THEME_KEY = 'palacio-macro:tema';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  function $(s, el) { return (el || document).querySelector(s); }
+  function $$(s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); }
+
+  /* ---------- Progreso: localStorage con respaldo en memoria ---------- */
+  var memSave = null;
+  function blank() { return { xp: 0, rooms: {}, bosses: {} }; }
+  function normalize(s) {
+    var b = blank();
+    if (s && typeof s === 'object') {
+      b.xp = Math.max(0, Number(s.xp) || 0);
+      if (s.rooms && typeof s.rooms === 'object') b.rooms = s.rooms;
+      if (s.bosses && typeof s.bosses === 'object') b.bosses = s.bosses;
+    }
+    return b;
+  }
+  function load() {
+    try { var raw = localStorage.getItem(KEY); if (raw) return JSON.parse(raw); } catch (e) {}
+    return memSave;
+  }
+  function persist() {
+    memSave = JSON.parse(JSON.stringify(save));
+    try { localStorage.setItem(KEY, JSON.stringify(save)); } catch (e) {}
+  }
+  var save = normalize(load());
+  var streak = 0;
+  var run = null;
+
+  /* ---------- Utilidades ---------- */
+  var MINUS = String.fromCharCode(0x2212);
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function fmt(x) { return Number(x).toLocaleString('es-AR', { maximumFractionDigits: 4 }).replace('-', MINUS); }
+  function byId(list, id) { for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i]; return null; }
+  function roomIdx(id) { for (var i = 0; i < ROOMS.length; i++) if (ROOMS[i].id === id) return i; return -1; }
+  function isOpen(i) { return i === 0 || !!save.rooms[ROOMS[i - 1].id] || !!save.rooms[ROOMS[i].id]; }
+  function hue(n) { return 'var(--c' + (n || 3) + ')'; }
+  function say(msg) { live.textContent = ''; setTimeout(function () { live.textContent = msg; }, 40); }
+  function setTitle(t) { document.title = (t ? t + ' · ' : '') + 'Palacio Macro'; }
+  function paintStats(bump) {
+    $('#xp').textContent = save.xp;
+    $('#streak').textContent = streak;
+    if (bump && !reduceMotion) ['#statXp', '#statStreak'].forEach(function (s) { var el = $(s); el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); });
+  }
+  function addXp(n) { save.xp += n; persist(); }
+  function parseNum(raw) {
+    var s = String(raw).trim().split(MINUS).join('-').replace(/\s+/g, '');
+    if (!s) return null;
+    if (s.indexOf(',') >= 0 && s.indexOf('.') >= 0) s = s.replace(/\./g, '').replace(',', '.');
+    else s = s.replace(',', '.');
+    if (!/^[-+]?(\d+\.?\d*|\.\d+)$/.test(s)) return null;
+    return parseFloat(s);
+  }
+
+  /* ---------- MathJax ---------- */
+  var pending = [];
+  function done(el) { $$('.tx', el).forEach(function (t) { t.classList.add('tx-ok'); }); fitMath(el); }
+  function typeset(el) {
+    if (window.__mjReady && window.MathJax && MathJax.typesetPromise) {
+      return MathJax.typesetPromise([el]).then(function () { done(el); }).catch(function (err) { console.warn('MathJax', err); done(el); });
+    }
+    return new Promise(function (resolve) { pending.push({ el: el, resolve: resolve }); });
+  }
+  document.addEventListener('mj-ready', function () {
+    var list = pending; pending = [];
+    list.forEach(function (p) { if (p.el.isConnected) typeset(p.el).then(p.resolve); else p.resolve(); });
+  });
+  setTimeout(function () { if (!window.__mjReady) document.documentElement.classList.add('no-mathjax'); }, 9000);
+  function clearMath(el) { if (window.__mjReady && window.MathJax && MathJax.typesetClear) { try { MathJax.typesetClear([el]); } catch (e) {} } }
+  /* Una fórmula en línea que no entra en su renglón pasa a ser una franja con scroll propio. */
+  function blockWidth(node) {
+    var b = node.parentElement;
+    while (b && b !== document.body && getComputedStyle(b).display.indexOf('inline') === 0) b = b.parentElement;
+    if (!b) return 0;
+    var cs = getComputedStyle(b);
+    return b.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  }
+  function fitMath(root) {
+    var list = $$('mjx-container:not([display="true"])', root || app);
+    list.forEach(function (c) { c.classList.remove('mjx-wide'); });
+    list.forEach(function (c) {
+      var w = c.getBoundingClientRect().width, avail = blockWidth(c);
+      if (w && avail && w > avail + 1) c.classList.add('mjx-wide');
+    });
+    /* Lo que scrollea de costado tiene que poder alcanzarse con el teclado. */
+    $$('mjx-container', root || app).forEach(function (c) {
+      var scrolls = c.scrollWidth > c.clientWidth + 1 && getComputedStyle(c).overflowX !== 'visible';
+      if (scrolls) { c.setAttribute('tabindex', '0'); }
+      else if (c.getAttribute('tabindex') === '0') c.removeAttribute('tabindex');
+    });
+  }
+  var fitTimer = null;
+  window.addEventListener('resize', function () { clearTimeout(fitTimer); fitTimer = setTimeout(function () { fitMath(app); }, 150); });
+  app.addEventListener('toggle', function (e) { if (e.target.open) fitMath(e.target); }, true);
+  /* MathJax 3 no corta fórmulas en línea: se parten en sus relaciones y operadores de primer nivel
+     (=, \Rightarrow, \lt, +, -...) en piezas unidas con <wbr>, para que el navegador corte como TeX. */
+  var REL = /^(?:\\Rightarrow|\\iff|\\approx|\\le(?![a-zA-Z])|\\ge(?![a-zA-Z])|\\lt(?![a-zA-Z])|\\gt(?![a-zA-Z])|\\ne(?![a-zA-Z]))/;
+  function splitTex(tex) {
+    var parts = [], cur = '', depth = 0, lr = 0, i = 0;
+    while (i < tex.length) {
+      var ch = tex.charAt(i);
+      if (ch === '\\') {
+        var rest = tex.slice(i);
+        var rel = REL.exec(rest);
+        if (rel && depth === 0 && lr === 0 && cur.trim()) { parts.push(cur + rel[0] + '{}'); cur = ''; i += rel[0].length; continue; }
+        var cmd = /^\\(?:[a-zA-Z]+|.)/.exec(rest)[0];
+        if (cmd === '\\left') lr++;
+        else if (cmd === '\\right') lr--;
+        cur += cmd; i += cmd.length; continue;
+      }
+      if (ch === '{') depth++;
+      else if (ch === '}') depth--;
+      else if ((ch === '=' || ch === '>') && depth === 0 && lr === 0 && cur.trim()) { parts.push(cur + ch + '{}'); cur = ''; i++; continue; }
+      else if ((ch === '+' || ch === '-') && depth === 0 && lr === 0) {
+        var tail = cur.replace(/\s+$/, '');
+        if (/[0-9)}\]]$/.test(tail) || (/[A-Za-z]$/.test(tail) && !/\\[A-Za-z]+$/.test(tail))) { parts.push(cur + ch + '{}'); cur = ''; i++; continue; }
+      }
+      cur += ch; i++;
+    }
+    parts.push(cur);
+    return parts;
+  }
+  function brk(html) {
+    html = String(html).replace(/\\\[([\s\S]*?)\\\]/g, function (_, tex) { return '<div class="tx tx-d">\\[' + tex + '\\]</div>'; });
+    return html.replace(/\\\(([\s\S]*?)\\\)/g, function (_, tex) {
+      return '<span class="tx">' + splitTex(tex).map(function (x) { return '\\(' + x + '\\)'; }).join('<wbr>') + '</span>';
+    });
+  }
+
+  /* ---------- Emojis de Apple (emojis/<nombre>.webp, 160 px) ----------
+     El contenido se escribe con emojis y se reemplazan por la imagen al dibujar.
+     Los símbolos de control (✓, ✗, ←, →) quedan como texto. */
+  var VS16 = String.fromCharCode(0xFE0F);
+  var EMO_SRC = {
+    '🌎': 'globe-americas', '📚': 'books', '🧠': 'brain', '⚔️': 'crossed-swords', '⭐': 'star', '🔥': 'fire',
+    '❤️': 'red-heart', '💔': 'broken-heart', '🌙': 'crescent-moon', '☀️': 'sun', '🔒': 'locked', '✅': 'check-mark-button',
+    '❌': 'cross-mark', '🎉': 'party-popper', '✨': 'sparkles', '🗑️': 'wastebasket', '💡': 'light-bulb', '🔑': 'key',
+    '📍': 'round-pushpin', '🎬': 'clapper', '🏆': 'trophy', '⚠️': 'warning',
+    '💵': 'dollar-banknote', '⚖️': 'balance-scale', '🛂': 'passport-control', '🏗️': 'construction', '🐷': 'pig-face',
+    '🌦️': 'sun-rain', '👯': 'bunny-ears', '🧳': 'luggage', '✈️': 'airplane', '🛬': 'airplane-arrival',
+    '🛫': 'airplane-departure', '🌧️': 'cloud-rain', '🌾': 'sheaf-of-rice', '🪖': 'military-helmet', '🛹': 'skateboard',
+    '👮': 'police-officer', '🦹': 'supervillain', '🐉': 'dragon', '☕': 'hot-beverage', '📡': 'satellite-antenna',
+    '🧭': 'compass', '▶️': 'play-button', '🔁': 'repeat', '💥': 'collision', '📜': 'scroll', '🛢️': 'oil-drum', '👉': 'point-right'
+  };
+  var EMO = {};
+  Object.keys(EMO_SRC).forEach(function (k) { EMO[k.split(VS16).join('')] = EMO_SRC[k]; });
+  var EMO_RE = new RegExp('(' + Object.keys(EMO).join('|') + ')' + VS16 + '?', 'gu');
+  function emojify(html) {
+    return String(html).replace(EMO_RE, function (_, ch) {
+      var n = EMO[ch];
+      return '<img class="emo" src="emojis/' + n + '.webp" alt="" width="160" height="160" decoding="async" data-emoji="' + n + '">';
+    });
+  }
+  function render(html) { return emojify(brk(html)); }
+  function focusEl(f) {
+    if (!f) return;
+    if (!f.hasAttribute('tabindex') && !/^(A|BUTTON|INPUT|SUMMARY)$/.test(f.tagName)) f.setAttribute('tabindex', '-1');
+    f.focus({ preventScroll: true });
+  }
+  function paint(html, focusSel) {
+    clearMath(app);
+    app.innerHTML = render(html);
+    if (!reduceMotion) { app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter'); }
+    window.scrollTo(0, 0);
+    var p = typeset(app);
+    focusEl(focusSel ? $(focusSel, app) : null);
+    return p;
+  }
+  function fill(el, html) { clearMath(el); el.innerHTML = render(html); return typeset(el); }
+
+  /* ---------- Tema claro / oscuro ---------- */
+  var themeBtn = $('#themeBtn');
+  function currentTheme() {
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t) return t;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function paintThemeBtn() {
+    var dark = currentTheme() === 'dark';
+    themeBtn.setAttribute('aria-label', dark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
+    themeBtn.innerHTML = emojify(dark ? '☀️' : '🌙');
+    $('meta[name="theme-color"]').setAttribute('content', dark ? '#000000' : '#F5F5F7');
+  }
+  themeBtn.addEventListener('click', function () {
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    paintThemeBtn();
+  });
+  try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', paintThemeBtn); } catch (e) {}
+
+  /* ---------- Diálogo de confirmación ---------- */
+  var dlg = $('#dlg');
+  function ask(title, text, yesLabel) {
+    return new Promise(function (resolve) {
+      $('#dlgTitle').textContent = title;
+      $('#dlgText').textContent = text;
+      $('#dlgYes').innerHTML = emojify(yesLabel);
+      var back = document.activeElement;
+      function close(v) { dlg.close(); $('#dlgYes').onclick = null; $('#dlgNo').onclick = null; dlg.oncancel = null; if (back && back.focus) back.focus(); resolve(v); }
+      $('#dlgYes').onclick = function () { close(true); };
+      $('#dlgNo').onclick = function () { close(false); };
+      dlg.oncancel = function (e) { e.preventDefault(); close(false); };
+      if (dlg.showModal) dlg.showModal(); else resolve(window.confirm(title));
+      $('#dlgNo').focus();
+    });
+  }
+  $('#resetBtn').addEventListener('click', function () {
+    ask('¿Borrar tu progreso?', 'Se borran tu XP y las habitaciones y jefes superados en este navegador. No se puede deshacer.', '🗑️ Borrar').then(function (yes) {
+      if (!yes) return;
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      memSave = null; save = blank(); streak = 0; run = null;
+      paintStats(); route(); say('Progreso borrado.');
+    });
+  });
+
+  /* ---------- Pestañas ---------- */
+  function setTab(tab) {
+    $$('[data-tab]').forEach(function (a) {
+      if (a.getAttribute('data-tab') === tab) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+  }
+
+  /* ---------- Bloques comunes ---------- */
+  function eqBox(k) {
+    return '<div class="eq">' + (k.label ? '<p class="eq-label">🔑 ' + k.label + '</p>' : '') + '\\[' + k.tex + '\\]' + (k.cap ? '<p class="eq-cap">' + k.cap + '</p>' : '') + '</div>';
+  }
+  function hookHtml(label, text) { return '<p class="hook">💡 <span><strong>' + label + '</strong> ' + text + '</span></p>'; }
+  function stepsHtml(q) { return '<ol class="steps">' + q.steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol>'; }
+  function answerText(q) { return q.type === 'num' ? fmt(q.answer) : q.options[q.correct || 0]; }
+
+  /* ---------- Palacio: estaciones (dónde está, qué ves, qué significa) ---------- */
+  function stationsHtml(p) {
+    return '<p class="pal-arrive">📍 <span><strong>Dónde estás:</strong> ' + p.llegada + '</span></p>'
+      + '<ol class="stations">' + p.stations.map(function (s) {
+          return '<li><p class="st-where">' + s.where + '</p><p class="st-see">' + s.see + '</p><p class="st-means">👉 <span>' + s.means + '</span></p></li>';
+        }).join('') + '</ol>'
+      + '<div class="pal-story"><p class="pal-h">🎬 La peli completa</p><p>' + p.story + '</p></div>'
+      + hookHtml('Frase para decir en voz alta:', p.hook);
+  }
+  /* Versión palacio de un resumen: la de su habitación o, si no tiene, la propia (rincón extra). */
+  function palaceOf(t) {
+    if (t.palace) return { p: t.palace, name: t.palaceName || 'Rincón extra', room: null };
+    var i = t.room ? roomIdx(t.room) : -1;
+    return i >= 0 ? { p: ROOMS[i].palace, name: 'Habitación ' + (i + 1) + ': ' + ROOMS[i].title, room: ROOMS[i], idx: i } : null;
+  }
+
+  /* ================= TAB 1: TEORÍA ================= */
+  function theoryCard(t) {
+    var pal = palaceOf(t);
+    return '<article class="t-card" id="t-' + t.id + '" style="--hue:' + hue(t.hue) + '" aria-labelledby="th-' + t.id + '">'
+      + '<header class="t-head"><span class="tile" aria-hidden="true">' + t.emoji + '</span><div><p class="kicker">' + t.kicker + '</p><h2 id="th-' + t.id + '">' + t.title + '</h2></div></header>'
+      + '<div class="t-cols">'
+      + '<div class="t-col t-sum"><h3 class="col-h">📚 Resumen</h3>'
+      + (t.lead ? '<p class="t-lead">' + t.lead + '</p>' : '')
+      + t.keys.map(eqBox).join('')
+      + t.blocks.map(function (b) { return '<section class="t-block"><h4>' + b.h + '</h4><ul class="dots">' + b.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></section>'; }).join('')
+      + '</div>'
+      + (pal ? '<div class="t-col pal-box"><h3 class="col-h">🧠 Versión palacio</h3><p class="pal-name">' + pal.name + '</p>'
+          + stationsHtml(pal.p)
+          + (pal.room ? '<a class="btn t-cta" href="#/practica/' + pal.room.id + '">▶️ Practicar en la Habitación ' + (pal.idx + 1) + '</a>'
+                      : '<p class="pal-note">Este rincón no tiene preguntas propias: lo practicás con el tercer jefe, en Exámenes Viejos.</p>')
+          + '</div>' : '')
+      + '</div></article>';
+  }
+  function renderTheory(cardId) {
+    setTitle('Teoría');
+    var h = '<section class="hero">'
+      + '<p class="kicker">Teoría · Capítulo 17 de Barro</p>'
+      + '<h1 id="h">Mercados mundiales de bienes y crédito</h1>'
+      + '<p class="lead">Resúmenes del capítulo con las ecuaciones clave resaltadas. Leelos, recorré el palacio y después enfrentá a los jefes.</p>'
+      + '<ol class="path" aria-label="Cómo estudiar con esta página">'
+      + '<li class="path-on"><div><span class="path-n">1</span><span class="path-t">📚 Leé los resúmenes</span><span class="path-s">Estás acá</span></div></li>'
+      + '<li><a href="#/practica"><span class="path-n">2</span><span class="path-t">🧠 Recorré el palacio</span><span class="path-s">' + ROOMS.length + ' habitaciones</span></a></li>'
+      + '<li><a href="#/examenes"><span class="path-n">3</span><span class="path-t">⚔️ Enfrentá a los jefes</span><span class="path-s">' + BOSSES.length + ' jefes</span></a></li>'
+      + '</ol>'
+      + '<nav class="chips" aria-label="Resúmenes del capítulo">' + THEORY.map(function (t) { return '<a class="chip" href="#/teoria/' + t.id + '">' + t.emoji + ' ' + t.short + '</a>'; }).join('') + '</nav>'
+      + '</section>'
+      + THEORY.map(theoryCard).join('');
+    var target = cardId ? 't-' + cardId : null;
+    var p = paint(h, target ? null : '#h');
+    if (target) {
+      var go2 = function () { var c = document.getElementById(target); if (c) c.scrollIntoView({ behavior: 'instant', block: 'start' }); };
+      go2(); focusEl($('#th-' + cardId));
+      p.then(go2);
+    }
+  }
+
+  /* ================= TAB 2: PRÁCTICA (PALACIO) ================= */
+  function roomItem(r, i) {
+    var open = isOpen(i), ok = !!save.rooms[r.id];
+    var status = ok ? '<span class="status st-done">✅ Superada</span>' : open ? '<span class="status st-open">▶️ Disponible</span>' : '<span class="status st-lock">🔒 Cerrada</span>';
+    var inner = '<span class="tile" aria-hidden="true">' + r.emoji + '</span>'
+      + '<span class="ri-text"><span class="kicker">Habitación ' + (i + 1) + '</span><span class="ri-title">' + r.title + '</span><span class="ri-topic">' + r.topic + '</span>'
+      + (open ? '' : '<span class="ri-lock">Se abre cuando superás la Habitación ' + i + '.</span>') + '</span>' + status;
+    return '<li class="' + (open ? '' : 'locked') + '" style="--hue:' + hue(r.hue) + '">' + (open ? '<a class="ri-card" href="#/practica/' + r.id + '">' + inner + '</a>' : '<div class="ri-card">' + inner + '</div>') + '</li>';
+  }
+  function faqItem(q, a) { return '<details><summary>' + q + '</summary><div class="faq-a"><p>' + a + '</p></div></details>'; }
+  function renderPalace(msg) {
+    setTitle('Práctica');
+    var n = ROOMS.filter(function (r) { return save.rooms[r.id]; }).length;
+    var pct = ROOMS.length ? Math.round(n / ROOMS.length * 100) : 0;
+    var h = '<section class="hero">'
+      + '<p class="kicker">Práctica · Palacio Mental</p>'
+      + '<h1 id="h">El aeropuerto de Ezeiza</h1>'
+      + '<p class="lead">Tu palacio de la memoria es Ezeiza. Lo recorrés siempre en el mismo orden (hall, check-in, Migraciones, sala de embarque y pista) y en cada lugar una escena zarpada te guarda una idea del capítulo.</p>'
+      + (msg ? '<p class="notice" role="status">⚠️ <span>' + msg + '</span></p>' : '')
+      + '<div class="progress"><div class="pc-row"><span>' + n + ' de ' + ROOMS.length + ' habitaciones superadas</span><span>' + pct + ' %</span></div><div class="bar"><span style="transform:scaleX(' + (pct / 100) + ')"></span></div></div>'
+      + '</section>'
+      + '<ol class="route" aria-label="Recorrido del palacio">' + ROOMS.map(roomItem).join('') + '</ol>'
+      + '<section class="faq" aria-labelledby="faqH"><h2 id="faqH">Cómo funciona</h2>'
+      + faqItem('¿Qué es un palacio de la memoria?', 'Una técnica para acordarte de las cosas: ubicás cada idea en un lugar de un recorrido que conocés, con una imagen exagerada. Para acordarte, volvés a caminar el recorrido en tu cabeza. Acá el recorrido es Ezeiza: hall, check-in, Migraciones, sala de embarque y pista, siempre en ese orden. Entre Migraciones y la sala de embarque hay un rincón extra, el Free Shop (está en el resumen 6).')
+      + faqItem('¿Cómo se juega?', 'Cada habitación tiene su escena y entre 4 y 5 preguntas. Si acertás, avanzás. Si errás, ves la explicación paso a paso con la historia del palacio y la pregunta vuelve al final. Superás la habitación cuando respondés bien todas, y se abre la siguiente.')
+      + faqItem('¿Cómo lo uso para estudiar?', 'Antes de entrar, cerrá los ojos y recorré las habitaciones en orden: ¿qué había en cada una y qué significaba? Recordar sin mirar fija más que releer. Después confirmá con las preguntas y decí la frase de cada habitación en voz alta.')
+      + faqItem('Atajos de teclado', 'Las teclas 1 a 4 eligen una opción y Enter comprueba la respuesta o pasa a la siguiente.')
+      + '</section>';
+    paint(h, '#h');
+  }
+  function renderRoom(id) {
+    var i = roomIdx(id);
+    if (i < 0) return renderPalace('No encontré esa habitación.');
+    if (!isOpen(i)) return renderPalace('La Habitación ' + (i + 1) + ' se abre cuando superás la Habitación ' + i + '.');
+    var r = ROOMS[i];
+    setTitle('Habitación ' + (i + 1));
+    var h = '<a class="back" href="#/practica">← Volver al palacio</a>'
+      + '<section class="room-head" style="--hue:' + hue(r.hue) + '"><span class="tile tile-lg" aria-hidden="true">' + r.emoji + '</span><div><p class="kicker">Habitación ' + (i + 1) + ' de ' + ROOMS.length + ' · ' + r.topic + '</p><h1 id="h">' + r.title + '</h1></div></section>'
+      + '<section class="pal-box room-pal" style="--hue:' + hue(r.hue) + '" aria-labelledby="ph"><h2 class="col-h" id="ph">🧠 La escena, estación por estación</h2>'
+      + stationsHtml(r.palace)
+      + '</section>'
+      + '<section class="card keys" style="--hue:' + hue(r.hue) + '" aria-labelledby="kh"><h2 class="h3" id="kh">🔑 Fórmulas de esta habitación</h2>' + r.keys.map(eqBox).join('') + '</section>'
+      + '<div class="cta-row"><a class="btn" href="#/practica/' + r.id + '/jugar">▶️ Entrar a la habitación (' + r.questions.length + ' preguntas)</a>'
+      + (r.theory ? '<a class="btn btn-2" href="#/teoria/' + r.theory + '">📚 Ver el resumen</a>' : '') + '</div>';
+    paint(h, '#h');
+  }
+  function startRoom(id) {
+    var i = roomIdx(id);
+    if (i < 0) return renderPalace('No encontré esa habitación.');
+    if (!isOpen(i)) return renderPalace('La Habitación ' + (i + 1) + ' se abre cuando superás la Habitación ' + i + '.');
+    if (!run || run.kind !== 'room' || run.id !== id || run.over) {
+      var r = ROOMS[i];
+      run = { kind: 'room', id: id, idx: i, room: r, queue: r.questions.map(function (_, k) { return k; }), total: r.questions.length, solved: 0, firstTry: 0, missed: {} };
+    }
+    renderQuestion();
+  }
+
+  /* ---------- Pregunta (habitaciones y jefes) ---------- */
+  function curQ() { var list = run.kind === 'room' ? run.room.questions : run.boss.questions; return list[run.queue[0]]; }
+  function roomTop() {
+    var r = run.room, pct = Math.round(run.solved / run.total * 100);
+    return '<div class="q-top"><a class="back" href="#/practica/' + r.id + '">← Salir</a><span class="q-room">' + r.emoji + ' Habitación ' + (run.idx + 1) + ': ' + r.title + '</span></div>'
+      + '<div class="q-prog"><div class="pc-row small"><span>' + run.solved + ' de ' + run.total + ' respondidas bien</span><span>' + pct + ' %</span></div><div class="bar"><span style="transform:scaleX(' + (pct / 100) + ')"></span></div></div>';
+  }
+  function bossBarInner() {
+    var b = run.boss, pct = Math.round(run.hp / run.total * 100), hearts = '';
+    for (var i = 0; i < run.maxHearts; i++) hearts += i < run.hearts ? '❤️' : '💔';
+    return '<span class="boss-emo" id="bossEmo" aria-hidden="true">' + b.emoji + '</span>'
+      + '<div><p class="kicker">Jefe · ' + b.topic + '</p><p class="boss-name">' + b.name + '</p>'
+      + '<div class="hp"><span>Vida</span><div class="bar bar-boss"><span style="transform:scaleX(' + (pct / 100) + ')"></span></div><span>' + run.hp + '/' + run.total + '</span></div>'
+      + '<p class="hearts"><span aria-hidden="true">' + hearts + '</span><span class="sr-only">Vida del jefe: ' + run.hp + ' de ' + run.total + '. Te quedan ' + run.hearts + ' de ' + run.maxHearts + ' corazones.</span></p></div>';
+  }
+  function bossTop() {
+    return '<div class="q-top"><a class="back" href="#/examenes">← Salir de la pelea</a></div>'
+      + '<section class="card boss-bar" id="bossBar" aria-label="Estado de la pelea">' + bossBarInner() + '</section>';
+  }
+  function renderQuestion() {
+    var q = curQ();
+    run.answered = false;
+    var isNum = q.type === 'num';
+    var order = isNum ? [] : shuffle(q.options.map(function (_, k) { return k; }));
+    var again = run.missed[q.id] ? ' <span class="tag">🔁 Otra vez</span>' : '';
+    var label = run.kind === 'room' ? 'Pregunta ' + (run.solved + 1) + ' de ' + run.total : 'Golpe ' + (run.total - run.hp + 1) + ' de ' + run.total;
+    var body = isNum
+      ? '<div class="num"><label class="num-label" for="ans">Tu respuesta</label><input class="num-in" id="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="Ej.: 25 o -12,5" aria-describedby="ansHint ansErr"><p class="hint" id="ansHint">Escribí solo el número (puede ser negativo). Usá coma o punto para los decimales.</p><p class="field-err" id="ansErr" hidden></p></div>'
+      : '<fieldset class="opts"><legend class="sr-only">Elegí una opción</legend>' + order.map(function (oi, k) {
+          return '<label class="opt" data-i="' + oi + '"><input type="radio" name="opt" value="' + oi + '"><span class="opt-k">' + (k + 1) + '</span><span class="opt-t">' + q.options[oi] + '</span><span class="opt-mark" aria-hidden="true"></span><span class="sr-only opt-sr"></span></label>';
+        }).join('') + '</fieldset>';
+    var h = (run.kind === 'room' ? roomTop() : bossTop())
+      + '<article class="card q-card" data-qid="' + q.id + '" aria-labelledby="qh">'
+      + '<p class="kicker">' + label + again + '</p>'
+      + '<h1 class="q-text" id="qh">' + q.q + '</h1>'
+      + body
+      + '<div class="q-actions"><button class="btn" id="check" type="button" disabled>Comprobar</button></div>'
+      + '<p class="q-src">Fuente: ' + q.src + '</p>'
+      + '</article>'
+      + '<div id="fb"></div>';
+    paint(h, '#qh');
+    setTitle(run.kind === 'room' ? 'Habitación ' + (run.idx + 1) : run.boss.name);
+    var btn = $('#check');
+    if (isNum) {
+      var inp = $('#ans');
+      inp.addEventListener('input', function () { btn.disabled = !inp.value.trim(); inp.removeAttribute('aria-invalid'); $('#ansErr').hidden = true; });
+      inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); check(); } });
+    } else {
+      $$('input[name="opt"]', app).forEach(function (inp) { inp.addEventListener('change', function () { btn.disabled = false; }); });
+    }
+    btn.addEventListener('click', check);
+  }
+  function check() {
+    if (!run || run.answered) return;
+    var q = curQ(), ok;
+    if (q.type === 'num') {
+      var inp = $('#ans'), v = parseNum(inp.value);
+      if (v === null) {
+        inp.setAttribute('aria-invalid', 'true');
+        var err = $('#ansErr'); err.textContent = 'Eso no es un número. Escribilo así: -40 o 12,5.'; err.hidden = false;
+        inp.focus(); return;
+      }
+      ok = Math.abs(v - q.answer) <= (q.tol != null ? q.tol : 1e-9);
+      inp.readOnly = true; inp.classList.add(ok ? 'is-ok' : 'is-bad');
+    } else {
+      var sel = $('input[name="opt"]:checked', app);
+      if (!sel) return;
+      var picked = Number(sel.value), right = q.correct || 0;
+      ok = picked === right;
+      $$('.opt', app).forEach(function (lbl) {
+        var i = Number(lbl.getAttribute('data-i'));
+        lbl.classList.add('is-locked');
+        lbl.querySelector('input').disabled = true;
+        if (i === right) { lbl.classList.add('is-ok'); lbl.querySelector('.opt-sr').textContent = ' (respuesta correcta)'; }
+        else if (i === picked) { lbl.classList.add('is-bad'); lbl.querySelector('.opt-sr').textContent = ' (tu respuesta, incorrecta)'; }
+      });
+    }
+    run.answered = true;
+    $('#check').hidden = true;
+    if (run.kind === 'room') feedbackRoom(q, ok); else feedbackBoss(q, ok);
+  }
+  function showFeedback(html) {
+    var box = $('#fb');
+    return fill(box, html).then(function () {}, function () {}).then(function () {
+      var title = $('#fbh', box);
+      if (title) title.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' });
+    }).then(null, function () {});
+  }
+  function bindNext() {
+    var n = $('#next');
+    n.addEventListener('click', advance);
+    n.focus({ preventScroll: true });
+  }
+  function feedbackRoom(q, ok) {
+    var first = !run.missed[q.id], html;
+    if (ok) {
+      var gain = first ? 10 : 5;
+      streak++; addXp(gain); run.solved++; run.queue.shift(); if (first) run.firstTry++;
+      html = '<section class="fb fb-ok" aria-labelledby="fbh"><h2 class="fb-title" id="fbh">✅ ¡Correcto! <span class="xp-gain">+' + gain + ' XP</span></h2>'
+        + '<details class="steps-d"><summary>Ver la resolución paso a paso</summary>' + stepsHtml(q) + '</details>'
+        + '<div class="q-actions"><button class="btn" id="next" type="button">' + (run.queue.length ? 'Siguiente →' : 'Terminar la habitación →') + '</button></div></section>';
+      say('¡Correcto! Más ' + gain + ' puntos.');
+    } else {
+      streak = 0;
+      run.missed[q.id] = (run.missed[q.id] || 0) + 1;
+      run.queue.push(run.queue.shift());
+      html = '<section class="fb fb-bad" aria-labelledby="fbh"><h2 class="fb-title" id="fbh">❌ No era esa</h2>'
+        + '<p class="fb-answer">La correcta: <strong>' + answerText(q) + '</strong></p>'
+        + '<div class="fb-story"><p class="fb-h">🧠 Volvé al palacio</p><p>' + q.story + '</p></div>'
+        + '<p class="fb-h">🧭 Paso a paso</p>' + stepsHtml(q)
+        + '<p class="fb-note">🔁 Esta pregunta vuelve al final de la habitación.</p>'
+        + '<div class="q-actions"><button class="btn" id="next" type="button">Entendido, seguir →</button></div></section>';
+      say('Incorrecto. Abajo está la explicación paso a paso.');
+    }
+    paintStats(ok);
+    showFeedback(html);
+    bindNext();
+  }
+  function feedbackBoss(q, ok) {
+    var html;
+    if (ok) {
+      streak++; addXp(15); run.hp--; run.queue.shift();
+      html = '<section class="fb fb-ok" aria-labelledby="fbh"><h2 class="fb-title" id="fbh">💥 ¡Golpe! El jefe pierde 1 de vida <span class="xp-gain">+15 XP</span></h2>'
+        + '<p class="fb-answer">' + q.explain + '</p>'
+        + '<details class="steps-d"><summary>Ver la resolución paso a paso</summary>' + stepsHtml(q) + '</details>';
+      say('¡Golpe! El jefe pierde una vida.');
+    } else {
+      streak = 0; run.hearts--;
+      if (!run.missed[q.id]) run.missedList.push(q);
+      run.missed[q.id] = 1;
+      run.queue.push(run.queue.shift());
+      html = '<section class="fb fb-bad" aria-labelledby="fbh"><h2 class="fb-title" id="fbh">💔 Te pegó: perdés un corazón</h2>'
+        + '<p class="fb-answer">La correcta: <strong>' + answerText(q) + '</strong></p>'
+        + '<div class="fb-story"><p>' + q.explain + '</p></div>'
+        + '<p class="fb-h">🧭 Paso a paso</p>' + stepsHtml(q)
+        + (run.hearts > 0 ? '<p class="fb-note">🔁 Esta pregunta vuelve más adelante.</p>' : '');
+      say('Incorrecto. Perdiste un corazón.');
+    }
+    var end = run.hp <= 0 || run.hearts <= 0;
+    html += '<div class="q-actions"><button class="btn" id="next" type="button">' + (run.hp <= 0 ? '🏆 Ver el resultado' : run.hearts <= 0 ? 'Ver el resultado' : 'Siguiente golpe →') + '</button></div></section>';
+    $('#bossBar').innerHTML = emojify(bossBarInner());
+    if (!reduceMotion && ok) { var e = $('#bossEmo'); if (e && e.animate) e.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-8px) rotate(-6deg)' }, { transform: 'translateX(8px) rotate(6deg)' }, { transform: 'translateX(0)' }], { duration: 360 }); }
+    paintStats(ok);
+    showFeedback(html);
+    bindNext();
+    if (end) run.over = true;
+  }
+  function advance() {
+    if (!run) return;
+    if (run.kind === 'room') { if (!run.queue.length) finishRoom(); else renderQuestion(); }
+    else { if (run.hp <= 0 || run.hearts <= 0) finishBoss(); else renderQuestion(); }
+  }
+  function finishRoom() {
+    var r = run.room, i = run.idx, firstTime = !save.rooms[r.id];
+    run.over = true;
+    if (firstTime) { save.rooms[r.id] = true; addXp(30); }
+    persist(); paintStats(firstTime);
+    var next = ROOMS[i + 1];
+    var h = '<section class="card result" aria-labelledby="h"><p class="big" aria-hidden="true">🎉</p>'
+      + '<h1 id="h">¡Habitación ' + (i + 1) + ' superada!</h1>'
+      + '<p class="lead">Acertaste ' + run.firstTry + ' de ' + run.total + ' a la primera.' + (firstTime ? ' Sumaste 30 XP extra por superarla.' : '') + '</p>'
+      + hookHtml('Repetí la frase:', r.palace.hook)
+      + '<div class="cta-row">' + (next ? '<a class="btn" href="#/practica/' + next.id + '">▶️ Siguiente: Habitación ' + (i + 2) + '</a>' : '<a class="btn" href="#/examenes">⚔️ Enfrentá a los jefes</a>')
+      + '<a class="btn btn-2" href="#/practica">🧠 Volver al palacio</a></div></section>';
+    paint(h, '#h');
+    say('Habitación superada.');
+    confetti();
+  }
+
+  /* ================= TAB 3: EXÁMENES VIEJOS (JEFES) ================= */
+  function renderBosses(msg) {
+    setTitle('Exámenes Viejos');
+    var h = '<section class="hero">'
+      + '<p class="kicker">Exámenes Viejos · Boss Fights</p>'
+      + '<h1 id="h">Jefes del capítulo 17</h1>'
+      + '<p class="lead">Preguntas de opción múltiple estilo parcial. Cada acierto le saca vida al jefe; cada error te cuesta un corazón y la pregunta vuelve. Con 3 errores perdés la pelea.</p>'
+      + (msg ? '<p class="notice" role="status">⚠️ <span>' + msg + '</span></p>' : '')
+      + '<p class="notice">⚠️ <span>Todavía no hay parciales viejos de la cátedra cargados: estas preguntas están armadas sobre el capítulo 17 de Barro (algunas son sus problemas de repaso). Cuando consigas exámenes reales, se suman como jefes nuevos.</span></p>'
+      + '</section>'
+      + '<div class="boss-grid">' + BOSSES.map(function (b) {
+          var rec = save.bosses[b.id];
+          return '<article class="boss-card" aria-labelledby="bh-' + b.id + '"><span class="boss-emo" aria-hidden="true">' + b.emoji + '</span>'
+            + '<h2 id="bh-' + b.id + '">' + b.name + '</h2>'
+            + '<p class="boss-meta">' + b.topic + '</p>'
+            + '<p class="small">' + b.intro + '</p>'
+            + '<p class="boss-meta">' + b.questions.length + ' preguntas · ' + (b.hearts || 3) + ' ❤️</p>'
+            + (rec && rec.won ? '<p class="boss-rec">🏆 Derrotado (mejor: ' + rec.best + ' de ' + (b.hearts || 3) + ' corazones)</p>' : '')
+            + '<div class="cta"><a class="btn" href="#/examenes/' + b.id + '">' + (rec && rec.won ? '🔁 Revancha' : '⚔️ Pelear') + '</a></div></article>';
+        }).join('') + '</div>';
+    paint(h, '#h');
+  }
+  function startBoss(id) {
+    var b = byId(BOSSES, id);
+    if (!b) return renderBosses('No encontré ese jefe.');
+    var hearts = b.hearts || 3;
+    run = { kind: 'boss', id: id, boss: b, queue: shuffle(b.questions.map(function (_, k) { return k; })), total: b.questions.length, hp: b.questions.length, hearts: hearts, maxHearts: hearts, missed: {}, missedList: [] };
+    renderQuestion();
+  }
+  function finishBoss() {
+    var b = run.boss, won = run.hp <= 0, rec = save.bosses[b.id] || {}, first = false;
+    if (won) { first = !rec.won; rec.won = true; rec.best = Math.max(rec.best || 0, run.hearts); save.bosses[b.id] = rec; if (first) addXp(50); persist(); }
+    paintStats(won);
+    var idx = BOSSES.indexOf(b), next = BOSSES[idx + 1];
+    var miss = run.missedList.length ? '<section class="miss" aria-labelledby="mh"><h2 class="h3" id="mh">📜 Repasá las que fallaste</h2><ol>' + run.missedList.map(function (q) {
+      return '<li><p>' + q.q + '</p><p class="ans">✓ ' + answerText(q) + '</p></li>';
+    }).join('') + '</ol></section>' : '';
+    var h = '<section class="card result" aria-labelledby="h">';
+    if (won) {
+      h += '<p class="big" aria-hidden="true">🏆</p><h1 id="h">¡Derrotaste a ' + b.name + '!</h1>'
+        + '<p class="lead">Te quedaron ' + run.hearts + ' de ' + run.maxHearts + ' corazones.' + (first ? ' Sumaste 50 XP extra.' : '') + '</p>'
+        + miss
+        + '<div class="cta-row">' + (next ? '<a class="btn" href="#/examenes/' + next.id + '">⚔️ Siguiente jefe: ' + next.name + '</a>' : '<a class="btn" href="#/practica">🧠 Repasar el palacio</a>')
+        + '<a class="btn btn-2" href="#/examenes">Volver a los jefes</a></div>';
+    } else {
+      h += '<p class="big" aria-hidden="true">💔</p><h1 id="h">' + b.name + ' ganó esta vez</h1>'
+        + '<p class="lead">Le sacaste ' + (run.total - run.hp) + ' de ' + run.total + ' de vida. Repasá y volvé: las preguntas cambian de orden.</p>'
+        + miss
+        + '<div class="review">' + (b.theory || []).map(function (tid) { var t = byId(THEORY, tid); return t ? '<a class="chip" href="#/teoria/' + t.id + '">📚 ' + t.short + '</a>' : ''; }).join('') + '</div>'
+        + '<div class="cta-row"><button class="btn" type="button" data-go="#/examenes/' + b.id + '">🔁 Revancha</button><a class="btn btn-2" href="#/examenes">Volver a los jefes</a></div>';
+    }
+    h += '</section>';
+    paint(h, '#h');
+    say(won ? 'Ganaste la pelea.' : 'Perdiste la pelea.');
+    if (won) confetti();
+  }
+
+  /* ---------- Confeti (solo si no se pidió reducir el movimiento) ---------- */
+  function confetti() {
+    if (reduceMotion) return;
+    var box = document.createElement('div');
+    box.className = 'confetti';
+    box.setAttribute('aria-hidden', 'true');
+    var pool = ['🎉', '✨', '⭐', '💵'], html = '';
+    for (var i = 0; i < 22; i++) {
+      var left = Math.round(Math.random() * 96), dx = Math.round(Math.random() * 120 - 60) + 'px', rot = Math.round(Math.random() * 540 - 270) + 'deg', delay = Math.round(Math.random() * 400);
+      html += emojify(pool[i % pool.length]).replace('<img ', '<img style="left:' + left + '%;--dx:' + dx + ';--rot:' + rot + ';animation-delay:' + delay + 'ms" ');
+    }
+    box.innerHTML = html;
+    document.body.appendChild(box);
+    setTimeout(function () { box.remove(); }, 2300);
+  }
+
+  /* ---------- Teclado: 1 a 4 eligen, Enter comprueba o avanza ---------- */
+  document.addEventListener('keydown', function (e) {
+    if (!run || !$('.q-card', app) || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (dlg.open) return;
+    var t = e.target, tag = t && t.tagName;
+    var typing = (tag === 'INPUT' && t.type === 'text') || tag === 'TEXTAREA';
+    if (!typing && !run.answered && /^[1-9]$/.test(e.key)) {
+      var opts = $$('input[name="opt"]', app), k = Number(e.key) - 1;
+      if (opts[k]) { opts[k].checked = true; opts[k].dispatchEvent(new Event('change', { bubbles: true })); opts[k].focus(); e.preventDefault(); }
+      return;
+    }
+    if (e.key === 'Enter') {
+      if (tag === 'BUTTON' || tag === 'A' || tag === 'SUMMARY' || typing) return;
+      if (!run.answered) { var c = $('#check', app); if (c && !c.disabled) { e.preventDefault(); check(); } }
+      else { var n = $('#next', app); if (n) { e.preventDefault(); n.click(); } }
+    }
+  });
+  app.addEventListener('click', function (e) {
+    var g = e.target.closest('[data-go]');
+    if (g) { e.preventDefault(); go(g.getAttribute('data-go')); }
+  });
+
+  /* ---------- Rutas por hash (funcionan igual en GitHub Pages) ---------- */
+  function route() {
+    var parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
+    var tab = parts[0];
+    if (tab !== 'practica' && tab !== 'examenes') tab = 'teoria';
+    setTab(tab);
+    app.classList.toggle('wide', tab === 'teoria');
+    if (tab === 'practica') {
+      if (!parts[1]) renderPalace();
+      else if (parts[2] === 'jugar') startRoom(parts[1]);
+      else renderRoom(parts[1]);
+    } else if (tab === 'examenes') {
+      if (!parts[1]) renderBosses();
+      else startBoss(parts[1]);
+    } else {
+      renderTheory(parts[0] === 'teoria' ? parts[1] : null);
+    }
+  }
+  function go(hash) { if (location.hash === hash) route(); else location.hash = hash; }
+  window.addEventListener('hashchange', route);
+
+  paintThemeBtn();
+  paintStats();
+  route();
+})();
+</script>
+</body>
+</html>

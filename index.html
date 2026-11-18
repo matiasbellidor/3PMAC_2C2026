@@ -17,6 +17,7 @@
   (function () {
     var t = null;
     try { t = localStorage.getItem('palacio-macro:tema'); } catch (e) {}
+    try { if (localStorage.getItem('palacio-macro:reco') === 'off') document.documentElement.setAttribute('data-reco', 'off'); } catch (e) {}
     if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
     var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#000000' : '#F5F5F7');
@@ -147,6 +148,22 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
 .seg a[aria-current="page"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 1px rgba(0, 0, 0, .04); }
 .seg-sub { font-weight: 400; }
 @media (hover: hover) and (pointer: fine) { .seg a:not([aria-current="page"]):hover { color: var(--ink); background: color-mix(in srgb, var(--surface) 55%, transparent); } }
+
+/* Aviso de recomendación bajo el encabezado: una línea, un solo botón y una ✕ que lo cierra para siempre en este navegador. */
+.reco { background: var(--surface); border-bottom: 1px solid var(--line); }
+.reco-row { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: var(--s3); padding: var(--s2) var(--s4); min-height: 52px; }
+.reco-logo { flex: none; width: 28px; height: 28px; }
+.reco-txt { flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 1.35; color: var(--ink-2); }
+.reco-txt strong { color: var(--ink); font-weight: 600; }
+.reco-short { display: none; }
+.reco-go { position: relative; flex: none; display: inline-flex; align-items: center; min-height: 36px; padding: 0 var(--s4); border-radius: var(--rp); background: #0A66C2; color: #FFFFFF; font-weight: 600; font-size: 14px; letter-spacing: -.005em; text-decoration: none; white-space: nowrap; transition: transform var(--dur) var(--ease), filter var(--dur) var(--ease); }
+.reco-go::before, .reco-x::before { content: ""; position: absolute; inset: -4px; }
+.reco-go:active { transform: scale(.97); }
+.reco-x { position: relative; flex: none; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+.reco-x svg { width: 16px; height: 16px; }
+@media (hover: hover) and (pointer: fine) { .reco-go:hover { filter: brightness(1.08); } .reco-x:hover { background: var(--fill); color: var(--ink); } }
+:root[data-reco="off"] .reco { display: none; }
+@media (max-width: 559px) { .reco-long { display: none; } .reco-short { display: inline; } .reco-row { gap: var(--s2); } .reco-go { padding: 0 var(--s3); } }
 
 .tabbar { display: none; }
 @media (max-width: 719px) {
@@ -504,8 +521,9 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outl
 .pill-app { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; padding: 0 5px; border-radius: var(--rp); background: var(--fill); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: -.005em; }
 .pill-txt { flex: 1 1 auto; text-align: center; white-space: nowrap; padding: 0 var(--s3); }
 .pill-gap { width: 34px; flex: 0 1 34px; min-width: 0; }
-/* Logo PNG de LinkedIn tal cual (sin círculo blanco): un borde fino lo recorta sobre el azul del botón */
-.pill-logo { flex: none; width: 34px; height: 34px; border-radius: 7px; box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .7), 0 2px 6px rgba(0, 0, 0, .22); }
+/* Logo PNG de LinkedIn entero y tal cual (regla de Matías: nada blanco, ni círculo ni borde): sobre el azul del botón
+   se separa solo con una sombra oscura suave. El PNG ya trae sus esquinas redondeadas. */
+.pill-logo { flex: none; width: 34px; height: 34px; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .45)); }
 /* Botón de mail: secundario y tranquilo, sin animación, del mismo tamaño que el de LinkedIn */
 .pill-mail { min-height: 48px; padding: 0 7px; border: 0; font: inherit; font-weight: 600; font-size: 16px; letter-spacing: -.01em; cursor: pointer; background: var(--fill); color: var(--ink); transition: background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
 .pill-ico { flex: none; display: grid; place-items: center; width: 34px; height: 34px; }
@@ -542,6 +560,7 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outl
 .cm-title { margin: var(--s2) var(--s2) var(--s1); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .cm-sub { margin: 0 var(--s2) var(--s3); font-size: 14px; color: var(--ink-2); }
 .cm-note { margin: var(--s2) 0 0; padding: var(--s3); border-radius: var(--r1); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+.nb { white-space: nowrap; }
 .cm-note strong { display: block; margin-bottom: var(--s1); font-size: 14px; color: var(--ink); }
 .cm-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s2); }
 .accion { position: relative; isolation: isolate; display: grid; grid-template-columns: 40px minmax(0, 1fr) 16px; align-items: center; gap: var(--s3); min-height: 64px; padding: var(--s3); border-radius: var(--r1); background: var(--surface); color: var(--ink); text-decoration: none; box-shadow: inset 0 0 0 1px var(--line); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur); }
@@ -668,6 +687,15 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
   </nav>
 </header>
 
+<aside class="reco" id="reco" aria-label="Pedido de recomendación en LinkedIn">
+  <div class="reco-row">
+    <img class="reco-logo" src="logos/linkedin.png?v=2" alt="" width="128" height="128">
+    <p class="reco-txt"><strong>¿Te sirvió?</strong> <span class="reco-long">Dejame una recomendación en LinkedIn contando qué hiciste con este material y por qué te ayudó.</span><span class="reco-short">Dejame una recomendación.</span></p>
+    <a class="reco-go" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer">Ir a LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></a>
+    <button class="reco-x" id="recoX" type="button" aria-label="Cerrar este aviso"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button>
+  </div>
+</aside>
+
 <main id="app" tabindex="-1">
   <noscript><p class="notice">Esta página necesita JavaScript para mostrar los resúmenes, el palacio y los jefes.</p></noscript>
 </main>
@@ -689,7 +717,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
       <a class="pill-app cta-in" id="ctaLinkedin" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><span class="cta-shine" aria-hidden="true"></span><img class="pill-logo" src="logos/linkedin.png?v=2" alt="" width="128" height="128"><span class="pill-txt">Conectá conmigo en LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></span><span class="pill-gap" aria-hidden="true"></span></a>
       <button class="pill-app pill-mail" id="mailBtn" type="button" popovertarget="mailMenu" aria-haspopup="dialog" aria-expanded="false"><span class="pill-ico"><img class="emo" src="emojis/envelope.webp" alt="" width="160" height="160" data-emoji="envelope"></span><span class="pill-txt">Consultas por mail</span><span class="pill-gap" aria-hidden="true"></span></button>
     </div>
-    <p class="cr-thanks">Si te sirvió, una forma de agradecérmelo es dejarme una recomendación en mi perfil de LinkedIn: conectate conmigo y, en mi perfil, tocá «Más» → «Recomendar». Contá que estudiaste en la misma institución (FCE-UBA), qué hiciste con este material y por qué te ayudó.</p>
+    <p class="cr-thanks">Si te sirvió, una forma de agradecérmelo es dejarme una recomendación en mi perfil de LinkedIn: conectate conmigo y, en mi perfil, tocá «Más» → «Recomendar». Contá que estudiaste en la misma institución (<span class="nb">FCE-UBA</span>), qué hiciste con este material y por qué te ayudó.</p>
   </section>
   <div class="foot-info">
     <p class="mj-note">Las fórmulas se ven como texto LaTeX porque MathJax no cargó: hace falta conexión a internet.</p>
@@ -719,7 +747,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
     <li style="--i:0"><a class="accion accion--principal" href="https://matiasbellido.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="accion__brillo" aria-hidden="true"></span><span class="accion__icono"><img src="logos/bellido.png" alt="" width="96" height="96"></span><span class="accion__texto"><strong>Ver el portfolio del creador</strong><span>Proyectos, experiencia y contacto. Se abre en otra pestaña.</span></span><span class="accion__flecha" aria-hidden="true">→</span></a></li>
     <li style="--i:1"><a class="accion" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><span class="accion__icono accion__icono--logo"><img src="logos/linkedin.png?v=2" alt="" width="128" height="128"></span><span class="accion__texto"><strong>Ir al LinkedIn del creador</strong><span>Perfil profesional y recomendaciones. Se abre en otra pestaña.</span></span><span class="accion__flecha" aria-hidden="true">→</span></a></li>
   </ul>
-  <p class="cm-note"><strong>¿Te sirvió? Dejame una recomendación</strong>Una forma de agradecérmelo es recomendarme en LinkedIn: conectate conmigo y, en mi perfil, tocá «Más» → «Recomendar». Contá que estudiaste en la misma institución (FCE-UBA), qué hiciste con este material y por qué te ayudó.</p>
+  <p class="cm-note"><strong>¿Te sirvió? Dejame una recomendación</strong>Una forma de agradecérmelo es recomendarme en LinkedIn: conectate conmigo y, en mi perfil, tocá «Más» → «Recomendar». Contá que estudiaste en la misma institución (<span class="nb">FCE-UBA</span>), qué hiciste con este material y por qué te ayudó.</p>
 </div>
 
 <!-- Consultas por mail: la persona elige Gmail u Outlook y se abre un mail nuevo con la dirección y el asunto puestos (sin servidor). -->
@@ -4032,6 +4060,19 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
   }
   popMenu($('#creatorBtn'), $('#creatorMenu'), 'start');
   popMenu($('#mailBtn'), $('#mailMenu'), 'center');
+
+  /* ---------- Aviso de recomendación de arriba: la ✕ lo cierra y no vuelve en este navegador ---------- */
+  (function () {
+    var x = $('#recoX');
+    if (!x) return;
+    x.addEventListener('click', function () {
+      document.documentElement.setAttribute('data-reco', 'off');
+      try { localStorage.setItem('palacio-macro:reco', 'off'); } catch (e) {}
+      say('Aviso cerrado.');
+      var app = $('#app');
+      if (app) app.focus({ preventScroll: true });
+    });
+  })();
 
   /* ---------- Gmail rápido en el celular: la app de Gmail en vez de Gmail web ----------
      Gmail web en el teléfono tarda varios segundos (carga la app web entera y a veces ofrece instalar la app).

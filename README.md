@@ -13,10 +13,11 @@ Junta en un solo lugar las tres cosas que hacen falta antes de un parcial: enten
 ## Qué tiene
 
 ### 📚 Teoría (Resúmenes)
-31 resúmenes ordenados por PDF. Cada uno dice de qué texto sale y qué temas cubre (por ejemplo, «Barro: Resumen 17.1 · Temas: …»), resalta las ecuaciones clave y tiene dos versiones, una al lado de la otra: el **resumen normal** y su **versión palacio**, para estudiar el mismo tema de las dos maneras.
+33 resúmenes ordenados por fuente. Cada uno dice de qué texto sale y qué temas cubre (por ejemplo, «Barro: Resumen 17.1 · Temas: …»), resalta las ecuaciones clave y tiene dos versiones, una al lado de la otra: el **resumen normal** y su **versión palacio**, para estudiar el mismo tema de las dos maneras.
 
-| PDF | Resúmenes | Temas |
+| Fuente | Resúmenes | Temas |
 |---|---|---|
+| Apuntes de la cursada, clase 14 de 19 | 2 | Agregados monetarios, activos y pasivos del BCRA, del Tesoro y del sector privado (con sus tablas), y balanza de pagos: cuenta corriente, cuenta capital y financiera, y CC + CKF = 0 |
 | Barro, *Macroeconomics: A Modern Approach*, cap. 17 | 7 | Ley de un solo precio, restricción presupuestaria, balanza de pagos, ahorro e inversión, historia de la cuenta corriente de EE.UU., ciclos reales, déficits gemelos y términos del intercambio |
 | Barro, cap. 18 | 5 | Tipo de cambio, paridad del poder adquisitivo, paridad de tasas, tipo de cambio fijo y flexible |
 | Blanchard, *Macroeconomía*, caps. 17 a 20 | 8 | Tipo de cambio real, balanza de pagos, paridad de intereses, la IS abierta, curva J, Mundell-Fleming, crisis cambiarias y elección del régimen |

@@ -1,6 +1,6 @@
-# Palacio Macro · Capítulo 17 de Barro
+# Palacio Macro · Macroeconomía (262)
 
-Página de estudio para el **tercer parcial de Macroeconomía** (Facultad de Ciencias Económicas, UBA · 2.º cuatrimestre de 2026). Cubre el capítulo 17 de Robert J. Barro, *Macroeconomics: A Modern Approach*: **mercados mundiales de bienes y crédito**.
+Página de estudio para el **tercer parcial de Macroeconomía (262)** de la Facultad de Ciencias Económicas de la UBA (Sede Córdoba, cátedra Rodriguez Repeti, 2.º cuatrimestre de 2026). Resume toda la bibliografía del parcial sobre **economía abierta**: mercados mundiales de bienes y crédito, tipos de cambio, el modelo Mundell-Fleming y la elección del régimen cambiario.
 
 **👉 Abrir la página: https://matiasbellidor.github.io/3PMAC_2C2026/**
 
@@ -13,24 +13,25 @@ Junta en un solo lugar las tres cosas que hacen falta antes de un parcial: enten
 ## Qué tiene
 
 ### 📚 Teoría (Resúmenes)
-Seis resúmenes del capítulo con las ecuaciones clave resaltadas. Cada uno tiene dos versiones, una al lado de la otra: el **resumen normal** y su **versión palacio**, para estudiar el mismo tema de las dos maneras.
+31 resúmenes ordenados por PDF. Cada uno dice de qué texto sale y qué temas cubre (por ejemplo, «Barro: Resumen 17.1 · Temas: …»), resalta las ecuaciones clave y tiene dos versiones, una al lado de la otra: el **resumen normal** y su **versión palacio**, para estudiar el mismo tema de las dos maneras.
 
-1. Ley de un solo precio y paridad de tasas de interés ($i = i^f$, $r = r^f$).
-2. Restricción presupuestaria de la economía abierta (ecuación 17.5).
-3. Balanza de pagos y cuenta corriente (ecuaciones 17.6 y 17.7).
-4. Cuenta corriente, ahorro e inversión (ecuaciones 17.8 y 17.9).
-5. Ciclos reales y cuenta corriente: por qué la balanza comercial es contracíclica.
-6. Extra: déficits gemelos y términos del intercambio.
+| PDF | Resúmenes | Temas |
+|---|---|---|
+| Barro, *Macroeconomics: A Modern Approach*, cap. 17 | 7 | Ley de un solo precio, restricción presupuestaria, balanza de pagos, ahorro e inversión, historia de la cuenta corriente de EE.UU., ciclos reales, déficits gemelos y términos del intercambio |
+| Barro, cap. 18 | 5 | Tipo de cambio, paridad del poder adquisitivo, paridad de tasas, tipo de cambio fijo y flexible |
+| Blanchard, *Macroeconomía*, caps. 17 a 20 | 8 | Tipo de cambio real, balanza de pagos, paridad de intereses, la IS abierta, curva J, Mundell-Fleming, crisis cambiarias y elección del régimen |
+| Sachs y Larraín, *Macroeconomía en la economía global*, cap. 9 | 4 | Demanda agregada abierta, políticas con tipo fijo y flexible (tabla 9.1), evidencia y el euro |
+| Mundell (1963) | 2 | Movilidad perfecta del capital y estabilización con tipo fijo y flexible |
+| Fleming (1962) | 2 | Política fiscal y monetaria según el régimen cambiario |
+| Obstfeld y Rogoff (1995) | 3 | «The Mirage of Fixed Exchange Rates»: costos, ataques especulativos y alternativas |
 
 ### 🧠 Práctica (Palacio Mental)
-Un **palacio de la memoria** armado sobre el aeropuerto de Ezeiza: hall, check-in, Migraciones, sala de embarque y pista, siempre en el mismo orden. Cada lugar guarda un tema del capítulo con una escena exagerada, escrita en castellano rioplatense, donde cada objeto dice qué concepto representa.
+Un **palacio de la memoria** armado sobre el aeropuerto de Ezeiza: hall, check-in, Migraciones, sala de embarque y pista, siempre en el mismo orden. Cada lugar guarda un tema con una escena exagerada, escrita en castellano rioplatense, donde cada objeto dice qué concepto representa. Los demás PDF tienen sus propias terminales y salas del aeropuerto dentro de los resúmenes.
 
-Son cinco habitaciones con 22 preguntas, de opción múltiple y con cuentas. Si acertás, avanzás. Si errás, ves la explicación paso a paso contada con la historia del palacio, y la pregunta vuelve al final. Cada habitación superada abre la siguiente.
+Son cinco habitaciones con 22 preguntas sobre el capítulo 17 de Barro, de opción múltiple y con cuentas. Si acertás, avanzás. Si errás, ves la explicación paso a paso contada con la historia del palacio, y la pregunta vuelve al final. Cada habitación superada abre la siguiente.
 
 ### ⚔️ Exámenes Viejos (Boss Fights)
 Tres jefes con 19 preguntas de opción múltiple estilo parcial. Cada acierto le saca vida al jefe y cada error te cuesta un corazón; con tres errores perdés la pelea. Al terminar, ves las preguntas que fallaste con su respuesta y los resúmenes para repasar.
-
-> Las preguntas de esta sección están armadas sobre el capítulo 17 (algunas son los problemas de repaso del propio Barro). **No son exámenes reales de la cátedra.**
 
 ![Explicación paso a paso con la historia del palacio, en el celular](capturas/palacio-celular.webp)
 
@@ -50,14 +51,15 @@ Si querés cambiar los resúmenes, sumar preguntas o adaptarla a otra materia, p
 
 Es un sitio estático, así que también funciona en otros servicios de hosting como Vercel o Netlify: importás el repositorio y lo publicás sin configurar nada.
 
-## Fuente y aviso
+## Fuentes y aviso
 
-- Contenido basado en Robert J. Barro, *Macroeconomics: A Modern Approach*, capítulo 17, «World Markets in Goods and Credit». Los resúmenes, las historias del palacio y las preguntas son material propio de estudio. Si algo no coincide con lo que da la cátedra, gana la cátedra.
-- Este no es un sitio oficial de la Universidad de Buenos Aires. El sello de la UBA (dominio público) y el escudo de la Facultad de Ciencias Económicas solo identifican la institución donde se cursa la materia.
-- Emojis designed by Apple. Used for educational purposes.
+- Bibliografía: Barro, *Macroeconomics: A Modern Approach* (caps. 17 y 18); Blanchard, *Macroeconomía* (7.ª ed., caps. 17 a 20); Sachs y Larraín, *Macroeconomía en la economía global* (cap. 9); Mundell, «Capital Mobility and Stabilization Policy under Fixed and Flexible Exchange Rates» (1963); Fleming, «Domestic Financial Policies under Fixed and under Floating Exchange Rates» (1962), y Obstfeld y Rogoff, «The Mirage of Fixed Exchange Rates» (1995). Los PDF no están en el repositorio porque tienen derechos de autor.
+- Los resúmenes, las historias del palacio y las preguntas son material propio de estudio. Si algo no coincide con lo que da la cátedra, gana la cátedra.
+- Este no es un sitio oficial de la Universidad de Buenos Aires ni de la cátedra. El sello de la UBA (dominio público) y el escudo de la Facultad de Ciencias Económicas solo identifican la institución donde se cursa la materia.
+- Emojis designed by Apple. Used for educational purposes. LinkedIn, Gmail y Outlook son marcas de sus respectivos dueños.
 
 ## Autor
 
-Creado por **Matias Rodrigo Bellido**, estudiante de Ciencias Actuariales en la FCE-UBA. [Conectá conmigo en LinkedIn](https://www.linkedin.com/in/matiasbellido/).
+Creado por **Matias Rodrigo Bellido**, estudiante de Ciencias Actuariales en la FCE-UBA. [Conectá conmigo en LinkedIn](https://www.linkedin.com/in/matiasbellido/) o escribime tus consultas a rbellidomatias@gmail.com.
 
 © 2026 Matias Rodrigo Bellido. Todos los derechos reservados.

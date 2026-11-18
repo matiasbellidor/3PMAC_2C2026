@@ -3,10 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Palacio Macro · Cap. 17</title>
-<meta name="description" content="Estudiá el capítulo 17 de Barro (mercados mundiales de bienes y crédito) con resúmenes, un palacio de la memoria con preguntas y jefes de opción múltiple estilo parcial.">
+<title>Palacio Macro · Macroeconomía (262)</title>
+<meta name="description" content="Material de estudio para el tercer parcial de Macroeconomía (262), FCE-UBA: resúmenes de Barro, Blanchard, Sachs y Larraín, Mundell, Fleming y Obstfeld y Rogoff, cada uno con su versión palacio de la memoria, más preguntas y jefes de opción múltiple.">
 <meta name="theme-color" content="#F5F5F7">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B2E6B'/%3E%3Cpath d='M5 16 L11 10 L17 13 L27 5' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5 18 L11 24 L17 21 L27 27' fill='none' stroke='%23FFB020' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<!-- Favicon: el ícono de Bellido Asesoramientos (el mismo del portfolio) -->
+<link rel="icon" type="image/png" sizes="32x32" href="logos/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="logos/favicon-192.png">
+<link rel="apple-touch-icon" href="logos/apple-touch-icon.png">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="emojis/globe-americas.webp">
 <script>
@@ -112,7 +115,7 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
 /* ============ ENCABEZADO Y PESTAÑAS ============ */
 .top { position: sticky; top: 0; z-index: 30; background: var(--glass); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--line); }
 .top-row { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: var(--s3); padding: var(--s2) var(--s4); min-height: 56px; }
-.brand-wrap { display: flex; align-items: center; gap: var(--s2); margin-right: auto; min-width: 0; }
+.brand-wrap { display: flex; align-items: center; gap: var(--s3); margin-right: auto; min-width: 0; }
 .brand { display: inline-flex; align-items: center; gap: var(--s2); min-width: 0; color: var(--ink); text-decoration: none; border-radius: var(--r1); }
 /* Botón chiquito del creador (ícono de Bellido Asesoramientos): 28 px a la vista, 44 px de zona táctil */
 .creator-btn { position: relative; flex: none; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 8px; background: transparent; cursor: pointer; box-shadow: 0 1px 3px rgba(0, 0, 0, .18); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
@@ -121,6 +124,9 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
 .creator-btn[aria-expanded="true"] { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-btn) 45%, transparent); }
 @media (hover: hover) and (pointer: fine) { .creator-btn:hover { transform: translateY(-1px) scale(1.06); box-shadow: 0 4px 12px rgba(0, 0, 0, .22); } }
 .creator-btn:active { transform: scale(.94); }
+/* En oscuro el ícono (negro) se perdía contra el header: un borde claro y fino lo recorta */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .creator-btn:not([aria-expanded="true"]) { box-shadow: 0 0 0 1px rgba(255, 255, 255, .28); } }
+:root[data-theme="dark"] .creator-btn:not([aria-expanded="true"]) { box-shadow: 0 0 0 1px rgba(255, 255, 255, .28); }
 .brand img.emo { width: 32px; height: 32px; vertical-align: middle; flex: none; }
 .brand-txt { display: flex; flex-direction: column; min-width: 0; line-height: 1.2; }
 .brand-name { font: 700 16px/1.2 var(--font-d); letter-spacing: -.015em; white-space: nowrap; }
@@ -224,10 +230,49 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
 .chip img.emo { width: 16px; height: 16px; vertical-align: middle; }
 @media (hover: hover) and (pointer: fine) { .chip:hover { box-shadow: inset 0 0 0 1.5px var(--accent-btn); } }
 
-.t-card { background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); padding: var(--s5); margin-top: var(--s6); }
+/* Selector de PDF: un grupo de resúmenes por vez (más liviano para MathJax en el celular) */
+.pdfs { list-style: none; margin: var(--s5) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: var(--s2); }
+.pdf { height: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--s3); min-height: 60px; padding: var(--s2) var(--s3); border-radius: var(--r1); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); color: var(--ink); text-decoration: none; transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease); }
+.pdf img.emo { width: 24px; height: 24px; vertical-align: middle; }
+.pdf-a { display: block; font-weight: 600; font-size: 15px; line-height: 1.25; letter-spacing: -.01em; }
+.pdf-w { display: block; margin-top: 2px; font-size: 13px; line-height: 1.3; color: var(--muted); }
+.pdf-n { display: grid; place-items: center; min-width: 26px; height: 26px; padding: 0 var(--s2); border-radius: var(--rp); background: var(--fill); font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 0; }
+.pdf[aria-current="page"] { background: var(--accent-btn); color: var(--on-accent); box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--accent-btn) 90%, transparent); }
+.pdf[aria-current="page"] .pdf-w { color: var(--on-accent); }
+.pdf[aria-current="page"] .pdf-n { background: rgba(255, 255, 255, .22); }
+@media (hover: hover) and (pointer: fine) { .pdf:not([aria-current="page"]):hover { box-shadow: inset 0 0 0 1.5px var(--accent-btn); transform: translateY(-1px); } }
+/* Celular: dos columnas compactas (sin ícono ni bajada) para no empujar el contenido muy abajo */
+@media (max-width: 559px) {
+  .pdfs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pdf { grid-template-columns: minmax(0, 1fr) auto; min-height: 52px; gap: var(--s2); padding: var(--s2) var(--s3); }
+  .pdf > span:first-child, .pdf-w { display: none; }
+  .pdf-a { font-size: 14px; }
+}
+.t-group { margin-top: var(--s7); }
+/* Foco programático (al cambiar de vista) en títulos: sin el recuadro, que confunde; el foco de teclado sigue visible. */
+h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outline: none; }
+.g-head { padding: var(--s5); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); }
+.g-head h2 { font: 700 28px/1.15 var(--font-d); letter-spacing: -.022em; }
+.g-file { margin-top: var(--s2); font-size: 14px; color: var(--muted); overflow-wrap: anywhere; }
+.g-file strong { color: var(--ink-2); font-weight: 600; }
+.g-head .chips { margin-top: var(--s4); }
+
+.t-card { background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); padding: var(--s5); margin-top: var(--s5); }
 .t-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s4); align-items: center; }
-.t-head .kicker { margin-bottom: var(--s1); }
-.t-card h2 { font: 700 24px/1.2 var(--font-d); letter-spacing: -.02em; }
+.t-src { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s2); margin-bottom: var(--s1); font-size: 14px; line-height: 1.4; color: var(--accent); }
+.t-src img.emo { width: 16px; height: 16px; vertical-align: -3px; }
+.t-sec { color: var(--muted); }
+.t-title { font: 700 24px/1.2 var(--font-d); letter-spacing: -.02em; }
+.t-topics { margin-top: var(--s4); padding: var(--s3) var(--s4); border-radius: var(--r1); background: var(--surface-2); color: var(--ink-2); font-size: 15px; line-height: 1.5; }
+.t-topics strong { color: var(--ink); }
+.t-table-wrap { margin-top: var(--s2); overflow-x: auto; border-radius: var(--r1); box-shadow: inset 0 0 0 1px var(--line); }
+.t-table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.t-table th, .t-table td { padding: var(--s2) var(--s3); text-align: center; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.t-table th:first-child, .t-table td:first-child { text-align: left; }
+.t-table th[scope="row"] { white-space: normal; font-weight: 500; min-width: 9em; }
+.t-table td { font-weight: 700; font-size: 16px; }
+.t-table thead th { background: var(--surface-2); font-weight: 600; }
+.t-table tbody tr:last-child td { border-bottom: 0; }
 .tile { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--r1); background: color-mix(in srgb, var(--hue, var(--c3)) 18%, var(--surface)); flex: none; }
 .tile img.emo { width: 28px; height: 28px; vertical-align: middle; }
 .tile-lg { width: 64px; height: 64px; border-radius: var(--r2); }
@@ -242,7 +287,7 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
 .eq-label img.emo { width: 16px; height: 16px; }
 .eq-cap { font-size: 14px; color: var(--muted); }
 .t-block { margin-top: var(--s5); }
-.t-block h4 { font: 600 16px/1.3 var(--font-d); margin: 0 0 var(--s2); letter-spacing: -.01em; }
+.t-block h5 { font: 600 16px/1.3 var(--font-d); margin: 0 0 var(--s2); letter-spacing: -.01em; }
 .dots { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s2); }
 .dots li { position: relative; padding-left: var(--s5); max-width: 72ch; min-width: 0; }
 .dots li::before { content: ""; position: absolute; left: 4px; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: var(--hue, var(--c3)); }
@@ -250,9 +295,12 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
 .hook > img.emo { width: 20px; height: 20px; flex: none; margin-top: 2px; }
 .t-cta { margin-top: var(--s5); }
 @media (max-width: 479px) {
-  .t-card { padding: var(--s4); margin-top: var(--s5); }
-  .t-card h2 { font-size: 20px; }
+  .t-card { padding: var(--s4); margin-top: var(--s4); }
+  .t-title { font-size: 20px; }
   .t-head { gap: var(--s3); }
+  .g-head { padding: var(--s4); }
+  .g-head h2 { font-size: 22px; }
+  .t-group { margin-top: var(--s6); }
 }
 
 /* ============ PALACIO ============ */
@@ -425,25 +473,39 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
 @keyframes fall { to { transform: translate(var(--dx), 110vh) rotate(var(--rot)); } }
 
 /* ============ PIE ============ */
-.foot { max-width: 800px; margin: 0 auto; padding: var(--s7) var(--s4); font-size: 14px; color: var(--ink-2); }
-.inst { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--s4) var(--s5); padding-bottom: var(--s6); margin-bottom: var(--s6); border-bottom: 1px solid var(--line); }
+/* Todo el pie va centrado: en escritorio ya no queda la tarjeta a un lado y el texto al otro. */
+.foot { max-width: 880px; margin: 0 auto; padding: var(--s7) var(--s4); font-size: 14px; color: var(--ink-2); text-align: center; }
+.inst { display: flex; flex-direction: column; align-items: center; gap: var(--s3); padding-bottom: var(--s6); margin-bottom: var(--s6); border-bottom: 1px solid var(--line); }
 .inst-logos { display: flex; align-items: center; gap: var(--s4); }
 .inst-uba { width: 64px; height: 64px; }
 .inst-fce { width: auto; height: 64px; }
 .inst-sep { width: 1px; height: 48px; background: var(--line-2); }
-.inst-txt { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+.inst-txt { margin-top: var(--s1); font-size: 15px; line-height: 1.4; color: var(--ink-2); }
 .inst-txt strong { color: var(--ink); }
+.inst-subj { font-size: 14px; line-height: 1.5; color: var(--muted); }
+.inst-subj strong { color: var(--ink-2); font-weight: 600; }
+.inst-br { display: none; }
+@media (max-width: 559px) { .inst-dot:first-of-type { display: none; } .inst-br { display: inline; } }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .inst-uba { filter: invert(1); } }
 :root[data-theme="dark"] .inst-uba { filter: invert(1); }
-.credits { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s4); padding: var(--s5); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); }
-.cr-text { min-width: 0; }
-.cr-name { font: 600 16px/1.3 var(--font-d); color: var(--ink); letter-spacing: -.01em; }
-.cr-sub { margin-top: var(--s1); color: var(--muted); }
+.credits { display: flex; flex-direction: column; align-items: center; padding: var(--s5); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); }
+.cr-name { font: 600 18px/1.3 var(--font-d); color: var(--ink); letter-spacing: -.012em; }
+.cr-sub { margin-top: var(--s1); color: var(--muted); max-width: 52ch; }
+.cr-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s3); width: 100%; margin-top: var(--s4); }
+.cr-actions > .pill-app { flex: 0 1 300px; min-width: 0; }
+@media (max-width: 559px) { .cr-actions > .pill-app { flex: 1 1 100%; } }
 .pill-app { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; padding: 0 5px; border-radius: var(--rp); background: var(--fill); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: -.005em; }
-.pill-app img { width: 32px; height: 32px; border-radius: 50%; box-shadow: 0 1px 4px rgba(0, 0, 0, .25); flex: none; }
 .pill-txt { flex: 1 1 auto; text-align: center; white-space: nowrap; padding: 0 var(--s3); }
-.pill-gap { width: 32px; flex: 0 1 32px; min-width: 0; }
-@media (hover: hover) and (pointer: fine) { .pill-app:not(.cta-in):hover { background: var(--surface-3); } }
+.pill-gap { width: 34px; flex: 0 1 34px; min-width: 0; }
+/* Logo PNG de LinkedIn tal cual (sin círculo blanco): un borde fino lo recorta sobre el azul del botón */
+.pill-logo { flex: none; width: 34px; height: 34px; border-radius: 7px; box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .7), 0 2px 6px rgba(0, 0, 0, .22); }
+/* Botón de mail: secundario y tranquilo, sin animación, del mismo tamaño que el de LinkedIn */
+.pill-mail { min-height: 48px; padding: 0 7px; border: 0; font: inherit; font-weight: 600; font-size: 16px; letter-spacing: -.01em; cursor: pointer; background: var(--fill); color: var(--ink); transition: background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.pill-ico { flex: none; display: grid; place-items: center; width: 34px; height: 34px; }
+.pill-ico img.emo { width: 26px; height: 26px; vertical-align: middle; }
+.pill-mail[aria-expanded="true"] { box-shadow: inset 0 0 0 2px var(--accent-btn); }
+@media (hover: hover) and (pointer: fine) { .pill-mail:hover { background: var(--surface-3); } }
+.pill-mail:active { transform: scale(.97); }
 
 /* CTA de LinkedIn con el lenguaje "Propuesta" de Bellido: relleno de acción, brillo inclinado y halo cada 4 s,
    solo mientras está en pantalla (.is-live) y nunca con "reducir movimiento". Solo transform y opacity. */
@@ -452,7 +514,6 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .26), 0 8px 24px -8px color-mix(in srgb, var(--cta) 85%, transparent);
   font-size: 16px; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), filter var(--dur) var(--ease);
 }
-.cta-in img { box-shadow: none; }
 .cta-shine { position: absolute; inset: 0; z-index: -1; border-radius: inherit; overflow: hidden; pointer-events: none; }
 .cta-shine::before, .accion__brillo::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .42), transparent); transform: translateX(-150%) skewX(-12deg); }
 .pill-app.cta-in::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 2px solid var(--cta); opacity: 0; pointer-events: none; }
@@ -469,7 +530,7 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
 }
 
 /* Panel del creador (popover nativo: Esc y tocar afuera lo cierran). Una acción rellena, la otra clara. */
-.creator-menu { position: fixed; inset: auto; top: var(--pop-top, 64px); left: var(--pop-left, 16px); margin: 0; width: min(calc(100vw - 32px), 380px); padding: var(--s2); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: var(--r2); box-shadow: var(--sh-2); }
+.creator-menu { position: fixed; inset: auto; top: var(--pop-top, 64px); bottom: var(--pop-bottom, auto); left: var(--pop-left, 16px); margin: 0; width: min(calc(100vw - 32px), 380px); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; padding: var(--s2); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: var(--r2); box-shadow: var(--sh-2); text-align: left; }
 .creator-menu::backdrop { background: transparent; }
 .cm-title { margin: var(--s2) var(--s2) var(--s1); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .cm-sub { margin: 0 var(--s2) var(--s3); font-size: 14px; color: var(--ink-2); }
@@ -477,8 +538,14 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
 .accion { position: relative; isolation: isolate; display: grid; grid-template-columns: 40px minmax(0, 1fr) 16px; align-items: center; gap: var(--s3); min-height: 64px; padding: var(--s3); border-radius: var(--r1); background: var(--surface); color: var(--ink); text-decoration: none; box-shadow: inset 0 0 0 1px var(--line); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur); }
 .accion__icono { display: grid; place-items: center; width: 40px; height: 40px; border-radius: var(--r1); overflow: hidden; }
 .accion__icono img { width: 40px; height: 40px; display: block; }
-.accion__icono--app { background: #FFFFFF; border-radius: 50%; box-shadow: 0 1px 4px rgba(0, 0, 0, .25); }
-.accion__icono--app img { width: 32px; height: 32px; }
+/* Logos PNG de las apps (LinkedIn, Gmail, Outlook) sin fondo: el logo solo, al tamaño del ícono */
+.accion__icono--logo { border-radius: 0; overflow: visible; }
+.accion__icono--logo img { width: 36px; height: 36px; object-fit: contain; }
+.mail-row { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); margin: var(--s2) var(--s2) var(--s1); padding-top: var(--s3); border-top: 1px solid var(--line); }
+.mail-addr { min-width: 0; font-size: 14px; color: var(--ink-2); overflow-wrap: anywhere; }
+.mail-copy { flex: none; min-height: 36px; padding: 0 var(--s3); border: 0; border-radius: var(--rp); background: var(--fill); color: var(--ink); font: 600 14px/1 var(--font); cursor: pointer; position: relative; }
+.mail-copy::before { content: ""; position: absolute; inset: -4px; }
+@media (hover: hover) and (pointer: fine) { .mail-copy:hover { background: var(--surface-3); } }
 .accion__texto { min-width: 0; }
 .accion__texto strong { display: block; font-weight: 600; line-height: 1.3; }
 .accion__texto > span { display: block; margin-top: 2px; font-size: 14px; line-height: 1.35; color: var(--muted); }
@@ -500,7 +567,7 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
   .accion:active { transform: scale(.985); }
 }
 .foot-info { margin-top: var(--s5); }
-.foot-info p { margin-top: var(--s3); max-width: 75ch; }
+.foot-info p { margin: var(--s3) auto 0; max-width: 72ch; }
 .btn-del { margin-top: var(--s4); display: inline-flex; gap: var(--s2); align-items: center; min-height: 44px; padding: 0 var(--s4); border-radius: var(--rp); border: 0; box-shadow: inset 0 0 0 1.5px var(--bad); background: transparent; color: var(--bad); font: 600 14px/1 var(--font); cursor: pointer; }
 .btn-del img.emo { width: 18px; height: 18px; vertical-align: middle; }
 @media (hover: hover) and (pointer: fine) { .btn-del:hover { background: var(--bad-tint); } }
@@ -540,13 +607,13 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
 </head>
 <body>
 <a class="skip" href="#app">Saltar al contenido</a>
-<div class="splash" aria-hidden="true"><div class="splash-in"><img class="splash-globe" src="emojis/globe-americas.webp" alt="" width="160" height="160" data-emoji="globe-americas"><p class="splash-title">Palacio Macro</p><p class="splash-sub">Barro · Capítulo 17</p></div></div>
+<div class="splash" aria-hidden="true"><div class="splash-in"><img class="splash-globe" src="emojis/globe-americas.webp" alt="" width="160" height="160" data-emoji="globe-americas"><p class="splash-title">Palacio Macro</p><p class="splash-sub">Macroeconomía (262) · FCE-UBA</p></div></div>
 
 <header class="top">
   <div class="top-row">
     <div class="brand-wrap">
-      <a class="brand" href="#/teoria"><img class="emo" src="emojis/globe-americas.webp" alt="" width="160" height="160" data-emoji="globe-americas"><span class="brand-txt"><span class="brand-name">Palacio Macro</span><span class="brand-sub">Barro · Cap. 17</span></span></a>
       <button class="creator-btn" id="creatorBtn" type="button" popovertarget="creatorMenu" aria-haspopup="dialog" aria-expanded="false" aria-label="Sobre el creador: portfolio y LinkedIn" title="Sobre el creador"><img src="logos/bellido.png" alt="" width="96" height="96"></button>
+      <a class="brand" href="#/teoria"><img class="emo" src="emojis/globe-americas.webp" alt="" width="160" height="160" data-emoji="globe-americas"><span class="brand-txt"><span class="brand-name">Palacio Macro</span><span class="brand-sub">Macroeconomía (262)</span></span></a>
     </div>
     <div class="stats">
       <span class="stat" id="statXp" title="Puntos de experiencia"><img class="emo" src="emojis/star.webp" alt="" width="160" height="160" data-emoji="star"><span id="xp">0</span><span class="sr-only"> puntos de experiencia</span></span>
@@ -575,20 +642,22 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
       <img class="inst-fce" src="logos/fce-uba.png?v=2" alt="" width="212" height="240" loading="lazy" decoding="async">
     </div>
     <p class="inst-txt"><strong>Universidad de Buenos Aires</strong><br>Facultad de Ciencias Económicas</p>
+    <p class="inst-subj"><strong>Macroeconomía (262)</strong><span class="inst-dot" aria-hidden="true"> · </span><br class="inst-br">Sede Córdoba<span class="inst-dot" aria-hidden="true"> · </span>Cátedra: Rodriguez Repeti, Juan Manuel</p>
   </div>
   <section class="credits" aria-labelledby="crName">
-    <div class="cr-text">
-      <p class="cr-name" id="crName">Creado por Matias Rodrigo Bellido</p>
-      <p class="cr-sub">Hecho para estudiar el tercer parcial de Macroeconomía (2.º cuatrimestre de 2026).</p>
+    <p class="cr-name" id="crName">Creado por Matias Rodrigo Bellido</p>
+    <p class="cr-sub">Hecho para estudiar el tercer parcial de Macroeconomía (262), 2.º cuatrimestre de 2026.</p>
+    <div class="cr-actions">
+      <a class="pill-app cta-in" id="ctaLinkedin" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><span class="cta-shine" aria-hidden="true"></span><img class="pill-logo" src="logos/linkedin.png?v=2" alt="" width="128" height="128"><span class="pill-txt">Conectá conmigo en LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></span><span class="pill-gap" aria-hidden="true"></span></a>
+      <button class="pill-app pill-mail" id="mailBtn" type="button" popovertarget="mailMenu" aria-haspopup="dialog" aria-expanded="false"><span class="pill-ico"><img class="emo" src="emojis/envelope.webp" alt="" width="160" height="160" data-emoji="envelope"></span><span class="pill-txt">Consultas por mail</span><span class="pill-gap" aria-hidden="true"></span></button>
     </div>
-    <a class="pill-app cta-in" id="ctaLinkedin" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><span class="cta-shine" aria-hidden="true"></span><img src="logos/linkedin.png" alt="" width="32" height="32"><span class="pill-txt">Conectá conmigo en LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></span><span class="pill-gap" aria-hidden="true"></span></a>
   </section>
   <div class="foot-info">
     <p class="mj-note">Las fórmulas se ven como texto LaTeX porque MathJax no cargó: hace falta conexión a internet.</p>
-    <p><strong>Fuente:</strong> Robert J. Barro, <em>Macroeconomics: A Modern Approach</em>, capítulo 17, «World Markets in Goods and Credit». Los resúmenes, las historias del palacio y las preguntas son material propio de estudio. Si algo no coincide con lo que da la cátedra, gana la cátedra.</p>
+    <p><strong>Bibliografía:</strong> Barro, <em>Macroeconomics: A Modern Approach</em> (caps. 17 y 18); Blanchard, <em>Macroeconomía</em> (caps. 17 a 20); Sachs y Larraín, <em>Macroeconomía en la economía global</em> (cap. 9); Mundell (1963); Fleming (1962), y Obstfeld y Rogoff (1995). Los resúmenes, las historias del palacio y las preguntas son material propio de estudio. Si algo no coincide con lo que da la cátedra, gana la cátedra.</p>
     <p><strong>Privacidad:</strong> tu progreso (XP, habitaciones y jefes superados) se guarda solo en este navegador. Sin cuentas, sin cookies y sin analítica.</p>
     <button class="btn-del" type="button" id="resetBtn"><img class="emo" src="emojis/wastebasket.webp" alt="" width="160" height="160" data-emoji="wastebasket">Borrar mi progreso</button>
-    <p class="legal">Emojis designed by Apple. Used for educational purposes.<br>El sello de la Universidad de Buenos Aires (dominio público) y el escudo de la Facultad de Ciencias Económicas identifican la institución donde se cursa la materia. Este no es un sitio oficial de la UBA.<br>© 2026 Matias Rodrigo Bellido. Todos los derechos reservados.</p>
+    <p class="legal">Emojis designed by Apple. Used for educational purposes.<br>El sello de la Universidad de Buenos Aires (dominio público) y el escudo de la Facultad de Ciencias Económicas identifican la institución donde se cursa la materia. Este no es un sitio oficial de la UBA ni de la cátedra.<br>LinkedIn, Gmail y Outlook son marcas de sus respectivos dueños.<br>© 2026 Matias Rodrigo Bellido. Todos los derechos reservados.</p>
   </div>
 </footer>
 
@@ -603,8 +672,19 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
   <p class="cm-sub">Estudiante de Ciencias Actuariales y analista de datos. ¿Adónde querés ir?</p>
   <ul class="cm-list">
     <li style="--i:0"><a class="accion accion--principal" href="https://matiasbellido.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="accion__brillo" aria-hidden="true"></span><span class="accion__icono"><img src="logos/bellido.png" alt="" width="96" height="96"></span><span class="accion__texto"><strong>Ver el portfolio del creador</strong><span>Proyectos, experiencia y contacto. Se abre en otra pestaña.</span></span><span class="accion__flecha" aria-hidden="true">→</span></a></li>
-    <li style="--i:1"><a class="accion" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><span class="accion__icono accion__icono--app"><img src="logos/linkedin.png" alt="" width="32" height="32"></span><span class="accion__texto"><strong>Ir al LinkedIn del creador</strong><span>Perfil profesional. Se abre en otra pestaña.</span></span><span class="accion__flecha" aria-hidden="true">→</span></a></li>
+    <li style="--i:1"><a class="accion" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><span class="accion__icono accion__icono--logo"><img src="logos/linkedin.png?v=2" alt="" width="128" height="128"></span><span class="accion__texto"><strong>Ir al LinkedIn del creador</strong><span>Perfil profesional. Se abre en otra pestaña.</span></span><span class="accion__flecha" aria-hidden="true">→</span></a></li>
   </ul>
+</div>
+
+<!-- Consultas por mail: la persona elige Gmail u Outlook y se abre un mail nuevo con la dirección y el asunto puestos (sin servidor). -->
+<div class="creator-menu" id="mailMenu" popover role="dialog" aria-labelledby="mailTitle">
+  <p class="cm-title" id="mailTitle">Consultas por mail</p>
+  <p class="cm-sub">¿Con qué app querés escribir? Se abre un mail nuevo con mi dirección y el asunto ya puestos.</p>
+  <ul class="cm-list">
+    <li style="--i:0"><a class="accion" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=rbellidomatias@gmail.com&amp;su=Consulta%20sobre%20Palacio%20Macro" target="_blank" rel="noopener noreferrer"><span class="accion__icono accion__icono--logo"><img src="logos/gmail.png" alt="" width="128" height="128"></span><span class="accion__texto"><strong>Escribir con Gmail</strong><span>Se abre en otra pestaña.</span></span><span class="accion__flecha" aria-hidden="true">→</span></a></li>
+    <li style="--i:1"><a class="accion" href="https://outlook.office.com/mail/deeplink/compose?to=rbellidomatias@gmail.com&amp;subject=Consulta%20sobre%20Palacio%20Macro" target="_blank" rel="noopener noreferrer"><span class="accion__icono accion__icono--logo"><img src="logos/outlook.png" alt="" width="128" height="128"></span><span class="accion__texto"><strong>Escribir con Outlook</strong><span>Se abre en otra pestaña.</span></span><span class="accion__flecha" aria-hidden="true">→</span></a></li>
+  </ul>
+  <div class="mail-row"><span class="mail-addr" id="mailAddr">rbellidomatias@<wbr>gmail.com</span><button class="mail-copy" type="button" id="mailCopy">Copiar</button></div>
 </div>
 
 <dialog id="dlg" aria-labelledby="dlgTitle" aria-describedby="dlgText">
@@ -616,7 +696,10 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
 
 <script id="macro-data">
 /* =====================================================================
-   CONTENIDO — Barro, capítulo 17: World Markets in Goods and Credit.
+   CONTENIDO — Macroeconomía (262), FCE-UBA, cátedra Rodriguez Repeti.
+   Teoría: un grupo de resúmenes por PDF (Barro caps. 17 y 18, Blanchard caps. 17 a 20,
+   Sachs y Larraín cap. 9, Mundell 1963, Fleming 1962, Obstfeld y Rogoff 1995).
+   Práctica y jefes: capítulo 17 de Barro.
    Todo el texto vive acá, separado del motor (más abajo).
 
    - Los textos con fórmulas usan R`...` (String.raw): las barras
@@ -652,11 +735,56 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
    ===================================================================== */
 const R = String.raw;
 
-/* ---------------- TAB 1: TEORÍA (RESÚMENES) ---------------- */
+/* ---------------- TAB 1: TEORÍA (RESÚMENES) ----------------
+   Un grupo por PDF de la bibliografía (SOURCES). Cada resumen dice de qué PDF sale
+   ("Barro: Resumen 17.1"), qué parte del texto cubre (sec) y sus temas (topics), y
+   trae su versión palacio al lado: la de su habitación (room) o una propia (palace).
+
+   ESQUEMA DE UN RESUMEN (THEORY):
+   {
+     id: "t32", src: "blanchard", num: "21.1",     // src = id de SOURCES; num = número que se muestra
+     sec: "Cap. 21, sección 21.1",                 // parte del PDF que resume
+     emoji: "📈", hue: 3, short: "Nombre corto para el índice",
+     topics: [R`Tema 1`, R`Tema 2`],               // se muestran como "Temas:"
+     title: "Título del resumen",
+     lead: R`Una o dos frases de contexto`,
+     keys: [ { label: "Ecuación (21.1)", tex: R`...`, cap: R`...` } ],
+     blocks: [ { h: "Subtítulo", items: [R`...`, R`...`] },
+               { h: "Tabla", table: { head: ["", "A", "B"], rows: [["fila", "+", "0"]] } } ],
+     room: null,                                    // id de una habitación de práctica, o null
+     palaceName: "Dónde queda en el palacio", palaceNote: R`(opcional)`,
+     palace: { llegada: R`...`, stations: [ { where: R`...`, see: R`...`, means: R`...` } ], story: R`...`, hook: R`...` }
+   }
+   ------------------------------------------------------------------ */
+const SOURCES = [
+  { id: "barro17", author: "Barro", emoji: "📄", label: "Barro · Cap. 17",
+    work: R`Barro, <em>Macroeconomics: A Modern Approach</em>, cap. 17 «World Markets in Goods and Credit»`,
+    file: "Barro - Macroeconomics (1)-772-863.pdf", scope: "Mercados mundiales de bienes y crédito" },
+  { id: "barro18", author: "Barro", emoji: "📄", label: "Barro · Cap. 18",
+    work: R`Barro, <em>Macroeconomics: A Modern Approach</em>, cap. 18 «Exchange Rates»`,
+    file: "Barro - Macroeconomics (1)-772-863.pdf", scope: "Tipos de cambio" },
+  { id: "blanchard", author: "Blanchard", emoji: "📄", label: "Blanchard · Caps. 17 a 20",
+    work: R`Blanchard, <em>Macroeconomía</em> (7.ª ed., Pearson, 2017), caps. 17 a 20`,
+    file: "Olivier Blanchard - Macroeconomía (2017, Pearson Educación) (3)-373-456.pdf", scope: "La economía abierta" },
+  { id: "sachs", author: "Sachs y Larraín", emoji: "📄", label: "Sachs y Larraín · Cap. 9",
+    work: R`Sachs y Larraín, <em>Macroeconomía en la economía global</em> (Prentice Hall, 2003), cap. 9`,
+    file: "Jeffrey D. Sachs, Felipe Larraín - Macroeconomia En La Economia Global (2003, Prentice Hall)-310-339.pdf", scope: "Políticas en una economía abierta" },
+  { id: "mundell", author: "Mundell", emoji: "📄", label: "Mundell (1963)",
+    work: R`Mundell, «Capital Mobility and Stabilization Policy under Fixed and Flexible Exchange Rates», <em>Canadian Journal of Economics and Political Science</em>, 1963`,
+    file: "Mudell.pdf", scope: "Movilidad del capital y estabilización" },
+  { id: "fleming", author: "Fleming", emoji: "📄", label: "Fleming (1962)",
+    work: R`Fleming, «Domestic Financial Policies under Fixed and under Floating Exchange Rates», <em>IMF Staff Papers</em>, 1962`,
+    file: "Fleming.pdf", scope: "Política fiscal y monetaria según el régimen" },
+  { id: "obstfeld", author: "Obstfeld y Rogoff", emoji: "📄", label: "Obstfeld y Rogoff (1995)",
+    work: R`Obstfeld y Rogoff, «The Mirage of Fixed Exchange Rates», NBER Working Paper 5191, 1995`,
+    file: "Obstfeld &amp; Rogoff.pdf", scope: "El espejismo de los tipos fijos" }
+];
+
 const THEORY = [
   {
-    id: "t1", emoji: "💵", hue: 1, room: "r1", short: "Un precio, una tasa",
-    kicker: "Resumen 1 · Introducción del capítulo",
+    id: "t1", src: "barro17", num: "17.1", sec: "Cap. 17, sección I",
+    emoji: "💵", hue: 1, room: "r1", short: "Un precio, una tasa",
+    topics: [R`Supuestos del modelo`, R`Ley de un solo precio`, R`Paridad de tasas de interés: \(i = i^f\) y \(r = r^f\)`, R`Moneda internacional \(H\)`],
     title: "Ley de un solo precio y paridad de tasas de interés",
     lead: R`Barro arranca con un mundo simplificado a propósito, para que bienes y crédito circulen sin fricciones entre países. De ahí salen dos igualdades.`,
     keys: [
@@ -676,14 +804,15 @@ const THEORY = [
       ] },
       { h: "Qué implica para un país chico", items: [
         R`Toma \(r^f\) como dato: puede prestar o endeudarse lo que quiera a esa tasa.`,
-        R`Lo que en una economía cerrada ajustaba la tasa de interés, en una abierta se ajusta con préstamos hacia o desde el exterior, es decir, con la <strong>cuenta corriente</strong> (resúmenes 3 a 5).`,
+        R`Lo que en una economía cerrada ajustaba la tasa de interés, en una abierta se ajusta con préstamos hacia o desde el exterior, es decir, con la <strong>cuenta corriente</strong> (resúmenes 17.3 a 17.6).`,
         R`Cada banco central guarda <strong>moneda internacional</strong> \(H_t\) (dólares, euros u oro), que no paga interés. El stock mundial \(\bar H\) es constante.`
       ] }
     ]
   },
   {
-    id: "t2", emoji: "⚖️", hue: 2, room: "r2", short: "Restricción (17.5)",
-    kicker: "Resumen 2 · Ecuación 17.5",
+    id: "t2", src: "barro17", num: "17.2", sec: "Cap. 17, sección I · ecuación (17.5)",
+    emoji: "⚖️", hue: 2, room: "r2", short: "Restricción presupuestaria",
+    topics: [R`Restricción presupuestaria de la economía abierta`, R`Usos y fuentes de fondos`, R`Inversión externa neta`, R`PNB real`],
     title: "Restricción presupuestaria de la economía abierta",
     lead: R`Sale de sumar la restricción de los hogares (17.2) y la del gobierno (17.3). Los impuestos, las transferencias y los intereses de la deuda pública se cancelan, porque son pagos entre residentes.`,
     keys: [
@@ -707,8 +836,9 @@ const THEORY = [
     ]
   },
   {
-    id: "t3", emoji: "🛂", hue: 3, room: "r3", short: "Cuenta corriente (17.6 y 17.7)",
-    kicker: "Resumen 3 · Ecuaciones 17.6 y 17.7",
+    id: "t3", src: "barro17", num: "17.3", sec: "Cap. 17, sección I · ecuaciones (17.6) y (17.7)",
+    emoji: "🛂", hue: 3, room: "r3", short: "Balanza de pagos",
+    topics: [R`Balanza de pagos`, R`Cuenta corriente`, R`Balanza comercial`, R`Ingreso neto de factores`, R`Transferencias`],
     title: "Balanza de pagos y cuenta corriente",
     lead: R`Si a los dos lados de (17.5) les restás el gasto interno \(C + I + G\), aparece la balanza de pagos internacionales.`,
     keys: [
@@ -733,8 +863,9 @@ const THEORY = [
     ]
   },
   {
-    id: "t4", emoji: "🐷", hue: 4, room: "r4", short: "Ahorro e inversión (17.9)",
-    kicker: "Resumen 4 · Ecuaciones 17.8 y 17.9",
+    id: "t4", src: "barro17", num: "17.4", sec: "Cap. 17, sección I · ecuaciones (17.8) y (17.9)",
+    emoji: "🐷", hue: 4, room: "r4", short: "Ahorro e inversión",
+    topics: [R`Ingreso nacional`, R`Ahorro nacional \(S\)`, R`Inversión interna neta`, R`\(CC = S - (I - \delta K)\)`],
     title: "Cuenta corriente, ahorro e inversión",
     lead: R`Reordenando (17.7) y restando la depreciación \(\delta K\) del PNB y de la inversión bruta, la cuenta corriente queda como ahorro menos inversión.`,
     keys: [
@@ -756,8 +887,63 @@ const THEORY = [
     ]
   },
   {
-    id: "t5", emoji: "🌦️", hue: 5, room: "r5", short: "Ciclos reales",
-    kicker: "Resumen 5 · Sección III",
+    id: "t7", src: "barro17", num: "17.5", sec: "Cap. 17, sección II · figuras 17.1 a 17.4",
+    emoji: "🗽", hue: 2, room: null, short: "Historia de EE.UU.",
+    topics: [R`Cuenta corriente de EE.UU. desde 1820`, R`Exportaciones e importaciones`, R`Ingreso neto de factores`, R`Posición internacional neta`, R`Transferencias`],
+    title: "Historia de la cuenta corriente de EE.UU. (1820-2004)",
+    lead: R`Barro mira casi dos siglos de datos de EE.UU. para ver cómo se movieron la cuenta corriente y cada una de sus partes.`,
+    keys: [
+      { label: "Las partes que grafica", tex: R`CC = (X - IM) + r\cdot\frac{B_{t-1}^f}{P} - TR`, cap: R`Balanza comercial + ingreso neto de factores − transferencias netas al exterior (\(TR\)). Las transferencias no están en (17.7), pero restan.` }
+    ],
+    blocks: [
+      { h: "La cuenta corriente / PBI (figura 17.1)", items: [
+        R`Antes de 1897, <strong>déficit</strong>: −0,5 % del PNB en promedio (1820-1896).`,
+        R`De 1897 a 1976, <strong>superávit</strong> casi todos los años: 0,7 % (1897-1914), 4,5 % en la Primera Guerra (préstamos a los aliados), 1,2 % en los 20 y 0,4 % en los 30.`,
+        R`Segunda Guerra: superávit de 1,3 % en 1940-41 y déficit de −0,6 % en 1942-45, ya con EE.UU. en la guerra. Después, 2,8 % en 1946-47 y 0,4 % en 1948-76.`,
+        R`Equilibrio en 1977-82, déficit de −3,2 % en 1986-87, equilibrio otra vez en 1991 y un déficit récord de <strong>−4,4 % en 2000-04</strong>, solo comparable con 1836.`
+      ] },
+      { h: "Comercio (figura 17.2)", items: [
+        R`Exportaciones e importaciones sobre PBI: más de 9 % antes de la Guerra Civil, 6-7 % en 1866-1914 y apenas 4-5 % entre las guerras.`,
+        R`Después de 1950 suben fuerte: las exportaciones pasan de 4 % a más de 10 % a principios de los 90 y las importaciones de 4 % a 15 % en 2004.`,
+        R`La <strong>balanza comercial</strong> explica los grandes movimientos de la cuenta corriente: déficit comercial de 3 % a mediados de los 80 y de 4-5 % en 2000-04.`
+      ] },
+      { h: "Factores y transferencias (figuras 17.3 y 17.4)", items: [
+        R`El ingreso neto de factores subió de 0,4 % a un pico de 1,4 % del PBI en 1980 y cayó a 0,5 % a fines de los 80, cuando los déficits hicieron que los extranjeros acumularan activos en EE.UU.`,
+        R`A fines de 2003 la posición neta era de <strong>−2,7 billones de dólares (26 % del PBI)</strong>, pero el ingreso neto de factores seguía positivo: los activos de EE.UU. afuera rendían más que los bonos del Tesoro de bajo rendimiento que compraban los bancos centrales asiáticos.`,
+        R`Transferencias netas al exterior: 0,5 % del PBI en promedio desde 1929, con un pico de más de 2 % a fines de los 40 (aliados de la Segunda Guerra) y un valor negativo en 1991 (pagos de Arabia Saudita y otros aliados por la Guerra del Golfo).`
+      ] }
+    ],
+    palaceName: "Rincón extra: el pasillo de las fotos viejas",
+    palace: {
+      llegada: R`Entre el hall y el check-in de Ezeiza hay un pasillo largo con fotos viejas colgadas en las dos paredes, ordenadas por año. Caminás desde la foto más vieja hasta la más nueva.`,
+      stations: [
+        { where: R`Primera foto, a tu izquierda (1820-1896)`,
+          see: R`Un velero yanqui cargado de barriles. El capitán compra fiado en el puerto y el almacenero anota en la libreta: «debe».`,
+          means: R`Antes de 1897, EE.UU. tenía <strong>déficit</strong> de cuenta corriente: −0,5 % del PNB en promedio.` },
+        { where: R`Segunda foto (1897-1976)`,
+          see: R`El mismo yanqui, ahora cheto, prestándoles guita a los aliados en la Primera Guerra. En la foto hay un 4,5 enorme pintado en la pared.`,
+          means: R`Casi todos los años de 1897 a 1976 hubo <strong>superávit</strong>; el pico fue 4,5 % del PNB en la Primera Guerra.` },
+        { where: R`Tercera foto, la de colores (de los 80 a 2004)`,
+          see: R`La Estatua de la Libertad 🗽 pagando con una tarjeta de crédito que echa humo: el resumen dice −3,2 % en 1986-87 y −4,4 % en 2000-04.`,
+          means: R`Desde los 80, <strong>déficit</strong>; en 2000-04 llegó a −4,4 % del PBI, un nivel que solo se había visto en 1836.` },
+        { where: R`La vitrina del medio del pasillo`,
+          see: R`Dos barquitos de juguete: uno sale (exportaciones) y otro entra (importaciones). Desde 1950 los dos crecen, pero desde los 80 el que entra es más grande.`,
+          means: R`La <strong>balanza comercial</strong> explica casi todo el movimiento de la cuenta corriente.` },
+        { where: R`El cartel al final del pasillo`,
+          see: R`Dice: «Debemos 2,7 billones, pero igual cobramos más intereses de los que pagamos». Abajo, un banquero asiático abrazado a un bono del Tesoro que paga poquito.`,
+          means: R`Posición neta de −2,7 billones (26 % del PBI) a fines de 2003, con <strong>ingreso neto de factores todavía positivo</strong>: lo de EE.UU. afuera rinde más.` },
+        { where: R`Al lado del cartel, una caja de donaciones`,
+          see: R`A fines de los 40 está llena hasta arriba (ayuda a los aliados). En 1991 un jeque deja plata adentro en vez de sacar.`,
+          means: R`<strong>Transferencias netas</strong> al exterior: 0,5 % del PBI en promedio, más de 2 % a fines de los 40 y negativas en 1991 (Guerra del Golfo).` }
+      ],
+      story: R`Caminás el pasillo: el velero compra fiado (déficit antes de 1897), el yanqui cheto presta en las guerras (superávit hasta 1976) y la Estatua de la Libertad revienta la tarjeta (−4,4 % en 2000-04). Los barquitos te explican que el rojo viene del comercio, el cartel te dice que, aunque debe, cobra más intereses de los que paga, y la caja de donaciones cierra el recorrido.`,
+      hook: R`Fiado en el velero, prestamista en las guerras y tarjeta en rojo desde los 80.`
+    }
+  },
+  {
+    id: "t5", src: "barro17", num: "17.6", sec: "Cap. 17, sección III",
+    emoji: "🌦️", hue: 5, room: "r5", short: "Ciclos reales",
+    topics: [R`Ciclos reales en una economía abierta y chica`, R`Inversión, ahorro y cuenta corriente en el auge`, R`Balanza comercial contracíclica`, R`Datos de EE.UU. 1954-2004`],
     title: "Ciclos reales y cuenta corriente: ¿por qué la balanza comercial es contracíclica?",
     lead: R`Barro lleva el modelo de ciclos reales (capítulos 7 y 8) a una economía abierta y chica, donde la tasa real no se mueve: \(r = r^f\).`,
     keys: [
@@ -785,10 +971,11 @@ const THEORY = [
     ]
   },
   {
-    id: "t6", emoji: "👯", hue: 6, room: null, short: "Extra: gemelos y términos",
-    kicker: "Resumen 6 · Extra (secciones IV y V)",
+    id: "t6", src: "barro17", num: "17.7", sec: "Cap. 17, secciones IV y V",
+    emoji: "👯", hue: 6, room: null, short: "Gemelos y términos",
+    topics: [R`Déficit fiscal y cuenta corriente`, R`Caso ricardiano`, R`Déficits gemelos`, R`Términos del intercambio`],
     title: "Déficits gemelos y términos del intercambio",
-    lead: R`No estaban en la lista de temas, pero son parte del capítulo 17 y aparecen en el tercer jefe.`,
+    lead: R`Las dos últimas secciones del capítulo 17: qué le pasa a la cuenta corriente cuando hay déficit fiscal y cuando cambia el precio de lo que exportás frente a lo que importás.`,
     keys: [
       { label: "Términos del intercambio", tex: R`\frac{P}{\bar P} = \frac{\text{precio de lo que exportás}}{\text{precio de lo que importás}}`, cap: R`Unidades de bien extranjero que conseguís por cada unidad de bien local.` },
       { label: "Rendimiento neto del capital", tex: R`\frac{P}{\bar P}\cdot MPK - \delta`, cap: R`El capital se compra afuera (a \(\bar P\)) y produce bienes locales (que valen \(P\)).` }
@@ -809,6 +996,7 @@ const THEORY = [
     ],
     /* Este resumen no tiene habitación de práctica: su versión palacio es un rincón extra del aeropuerto. */
     palaceName: "Rincón extra: el Free Shop",
+    palaceNote: R`Este rincón no tiene preguntas propias: lo practicás con el tercer jefe, en Exámenes Viejos.`,
     palace: {
       llegada: R`Saliendo de Migraciones, antes de llegar a la sala de embarque, pasás sí o sí por el Free Shop. Entrás y te parás en el medio del pasillo de perfumes, mirando hacia las cajas.`,
       stations: [
@@ -836,6 +1024,1142 @@ const THEORY = [
       ],
       story: R`En el Free Shop, los mellizos aparecen juntos solo si el chanchito baja (o si los trae el soldado de la guerra). Y el jeque perfora o ahorra según cuánto crea que va a durar el precio del petróleo.`,
       hook: R`Mellizos solo si baja el chanchito; el jeque perfora si el precio dura.`
+    }
+  },
+  /* ================= BARRO, CAPÍTULO 18: TIPOS DE CAMBIO =================
+     Palacio: la Terminal B de Ezeiza, recorrida en orden (puestos 1 a 5). */
+  {
+    id: "t8", src: "barro18", num: "18.1", sec: "Cap. 18, sección I",
+    emoji: "💱", hue: 3, room: null, short: "Monedas y tipo de cambio",
+    topics: [R`Balance del banco central y crédito interno`, R`Tipo de cambio \(\varepsilon_i\) (moneda local por dólar)`, R`Depreciación y apreciación`, R`Tipo de cambio cruzado`],
+    title: "Distintas monedas y tipo de cambio",
+    lead: R`En el capítulo 17 todos usaban la misma moneda. Ahora cada país tiene la suya y aparece un mercado nuevo: el mercado de cambios.`,
+    keys: [
+      { label: "Tipo de cambio de Barro", tex: R`\varepsilon_i = \frac{\text{unidades de la moneda } i}{1 \text{ dólar}}`, cap: R`Si \(\varepsilon_i\) sube, la moneda \(i\) vale menos: se <strong>deprecia</strong>. Es la misma convención que los «pesos por dólar» de Argentina.` },
+      { label: "Tipo de cambio cruzado", tex: R`\frac{\varepsilon_i}{\varepsilon_j} = \frac{\text{unidades de } i}{1 \text{ unidad de } j}`, cap: R`Ejemplo de Barro (5 de noviembre de 2004): 0,775 euros y 106 yenes por dólar, así que \(106/0{,}775 \approx 137\) yenes por euro.` }
+    ],
+    blocks: [
+      { h: "El banco central", items: [
+        R`<strong>Activos:</strong> moneda internacional \(H_i\), activos extranjeros que pagan interés y activos internos que pagan interés (por ejemplo, bonos del gobierno). Los activos internos son el <strong>crédito interno</strong> (tabla 18.1).`,
+        R`<strong>Pasivo:</strong> la moneda nacional \(M_i\) (en la realidad, también los depósitos de bancos y gobierno).`,
+        R`\(P_i\) es cuántas unidades de moneda local se cambian por una unidad de bienes.`
+      ] },
+      { h: "Cómo leer el tipo de cambio", items: [
+        R`Barro mide todo contra el dólar: \(\varepsilon_i\) unidades de \(i\) compran un dólar, así que una unidad de \(i\) vale \(1/\varepsilon_i\) dólares (un euro valía \(1/0{,}775 = 1{,}29\) dólares).`,
+        R`<strong>Ojo con Blanchard:</strong> él define el tipo de cambio al revés (precio de la moneda nacional en moneda extranjera), y ahí una suba es una apreciación.`,
+        R`Datos: el dólar canadiense pasó de 1,09 a 1,40 por dólar entre 1950 y 2003, una suba de \(\varepsilon\) de 28 %, o sea, una depreciación. Franco, marco y lira quedaron fijos al euro desde 1999 (6,56 francos, 1,96 marcos y 1936 liras por euro).`
+      ] }
+    ],
+    palaceName: "Terminal B · Puesto 1: la casa de cambio",
+    palace: {
+      llegada: R`Saliendo del Free Shop agarrás el pasillo que une la Terminal A con la B. Lo primero que aparece es una casa de cambio con un cartel enorme de cotizaciones. Te parás de frente al cartel.`,
+      stations: [
+        { where: R`Arriba de todo del cartel`,
+          see: R`En luces rojas dice: «ε = cuántos pesos te piden por UN dólar».`,
+          means: R`<strong>Tipo de cambio de Barro:</strong> unidades de moneda local por dólar.` },
+        { where: R`El número del peso, que no para de subir`,
+          see: R`El cajero cambia el cartel de 3 a 4 pesos por dólar y un tachero que estaba en la fila se agarra la cabeza: «¡mi peso vale menos!».`,
+          means: R`Si \(\varepsilon\) <strong>sube</strong>, la moneda se <strong>deprecia</strong>; si baja, se aprecia.` },
+        { where: R`A la derecha del cartel, una calculadora gigante`,
+          see: R`Para pasar de euros a yenes no hace falta pasar por el dólar: la calculadora divide los dos números del cartel y te tira «137 yenes por euro».`,
+          means: R`<strong>Tipo de cambio cruzado:</strong> \(\varepsilon_i/\varepsilon_j\).` },
+        { where: R`Atrás del mostrador, la caja fuerte del banco central`,
+          see: R`Adentro hay dólares y oro (\(H\)), bonos de otros países y bonos del gobierno de acá. Afuera, la pila de billetes de pesos que emitió (\(M\)).`,
+          means: R`<strong>Balance del banco central:</strong> activos = \(H\) + activos externos + crédito interno; pasivo = moneda nacional \(M\).` },
+        { where: R`Pegado en el vidrio, un post-it amarillo`,
+          see: R`Dice: «Blanchard lo cuenta al revés: para él, si el número sube, la moneda se aprecia».`,
+          means: R`Antes de resolver un ejercicio, fijate <strong>quién</strong> define el tipo de cambio y cómo.` }
+      ],
+      story: R`Llegás a la casa de cambio, mirás el cartel de pesos por dólar, el tachero se queja porque el número subió (depreciación), la calculadora te saca el cruce euro-yen dividiendo y atrás está la caja fuerte del banco central, con dólares adentro y pesos afuera. En el vidrio, el post-it de Blanchard te avisa que él lo cuenta al revés.`,
+      hook: R`Pesos por dólar: si sube el número, baja el peso.`
+    }
+  },
+  {
+    id: "t9", src: "barro18", num: "18.2", sec: "Cap. 18, sección II · ecuaciones (18.1) a (18.3)",
+    emoji: "🍔", hue: 2, room: null, short: "Paridad del poder adquisitivo",
+    topics: [R`Ley de un solo precio con monedas distintas`, R`PPA absoluta (18.1)`, R`PPA relativa (18.3)`, R`Por qué no se cumple exacta`, R`Índice Big Mac`],
+    title: "Paridad del poder adquisitivo (PPA)",
+    lead: R`Para Barro es la proposición central de las finanzas internacionales: conecta el tipo de cambio entre dos monedas con los niveles de precios de los dos países.`,
+    keys: [
+      { label: "PPA absoluta (18.1)", tex: R`\frac{\varepsilon_i}{\varepsilon_j} = \frac{P_i}{P_j}`, cap: R`Comprar en casa o afuera te tiene que dar la misma cantidad de bienes: \(1/P_i = (\varepsilon_j/\varepsilon_i)\cdot(1/P_j)\).` },
+      { label: "PPA relativa (18.3)", tex: R`\frac{\Delta\varepsilon_i}{\varepsilon_i} - \frac{\Delta\varepsilon_j}{\varepsilon_j} = \pi_i - \pi_j`, cap: R`La variación del tipo de cambio entre \(i\) y \(j\) es la diferencia de inflaciones.` }
+    ],
+    blocks: [
+      { h: "De dónde sale", items: [
+        R`Supuestos: bienes idénticos en todos los países, todos comerciables y sin costos de transacción. Si no se cumpliera, todos comprarían en el país barato y venderían en el caro.`,
+        R`Es la <strong>ley de un solo precio</strong> del capítulo 17, ahora con monedas distintas.`,
+        R`Si los niveles son siempre iguales (18.1), también lo son sus tasas de crecimiento (18.2). Restando crecimientos sale la forma relativa (18.3).`
+      ] },
+      { h: "Por qué no se cumple exacta", items: [
+        R`Si \(P_i\) y \(P_j\) son índices de canastas (deflactor del PBI, IPC), aparecen los <strong>bienes no comerciables</strong> (trabajo local, inmuebles), que no se pueden llevar de un país a otro.`,
+        R`Si los países producen bienes distintos, un cambio en los <strong>términos del intercambio</strong> también rompe la PPA.`
+      ] },
+      { h: "El índice Big Mac (The Economist, mayo de 2004)", items: [
+        R`El Big Mac costaba 2,90 dólares en EE.UU. Si la PPA valiera exacta, precio local / 2,90 sería igual al tipo de cambio de mercado.`,
+        R`Argentina: 4,35 pesos, tipo de cambio implícito 1,5 contra 2,94 de mercado: el peso estaba <strong>subvaluado 49 %</strong>.`,
+        R`Más baratos (monedas subvaluadas): China, Filipinas, Malasia, Rusia y Tailandia. Más caros (sobrevaluadas): Suiza (+69 %), Dinamarca y Suecia.`,
+        R`Precios y tipos de cambio no coinciden, pero se mueven juntos. La PPA anda mejor en países de inflación alta (resumen 18.5).`
+      ] }
+    ],
+    palaceName: "Terminal B · Puesto 2: el patio de comidas",
+    palace: {
+      llegada: R`Seguís por la Terminal B y llegás al patio de comidas. Te sentás frente a un local de hamburguesas que tiene pantallas con los precios de todo el mundo.`,
+      stations: [
+        { where: R`En la pantalla del local`,
+          see: R`La misma hamburguesa 🍔 en dos países. Un pibe hace la cuenta: con sus pesos compra lo mismo acá que si los cambia y compra afuera.`,
+          means: R`<strong>PPA absoluta (18.1):</strong> \(\varepsilon_i/\varepsilon_j = P_i/P_j\). La plata compra lo mismo en todos lados.` },
+        { where: R`En la mesa de al lado`,
+          see: R`Dos turistas comparan cuánto se encareció la hamburguesa en un año. El argentino: «acá subió 30 %». El yanqui: «acá, 3 %». En el cartel de cambio el dólar subió 27 %.`,
+          means: R`<strong>PPA relativa (18.3):</strong> el tipo de cambio sube lo que la inflación de acá le gana a la de afuera (\(30 - 3 = 27\)).` },
+        { where: R`Detrás del mostrador`,
+          see: R`El cocinero y el alquiler del local. No se pueden importar: se pagan al precio de acá.`,
+          means: R`<strong>Bienes no comerciables</strong> (trabajo local e inmuebles): por eso la PPA no se cumple exacta.` },
+        { where: R`En la pantalla grande, abajo de todo`,
+          see: R`La tabla del Big Mac de 2004: Argentina con −49 % en verde (barata) y Suiza con +69 % en rojo (carísima).`,
+          means: R`<strong>Índice Big Mac:</strong> el peso estaba subvaluado 49 % y el franco suizo sobrevaluado 69 %. No coinciden, pero van en la misma dirección.` }
+      ],
+      story: R`En el patio de comidas, la hamburguesa cuesta lo mismo en todos lados si cambiás la plata (absoluta); los turistas ven que el dólar sube lo que la inflación de acá le gana a la de allá (relativa); el cocinero y el alquiler no se pueden importar (por eso falla), y la pantalla del Big Mac lo muestra con números.`,
+      hook: R`Misma hamburguesa, mismo precio; el dólar corre lo que corre la inflación de más.`
+    }
+  },
+  {
+    id: "t10", src: "barro18", num: "18.3", sec: "Cap. 18, sección III · ecuaciones (18.4) a (18.8)",
+    emoji: "🏦", hue: 5, room: null, short: "Paridad de tasas",
+    topics: [R`Paridad de tasas de interés (18.4)`, R`Tasas reales iguales (18.5)`, R`Depreciación esperada`, R`Por qué difieren las tasas reales (18.6 a 18.8)`],
+    title: "Paridad de tasas de interés y tasas reales",
+    lead: R`Es la PPA de los activos: prestar en cualquier país tiene que rendir lo mismo medido en dólares.`,
+    keys: [
+      { label: "Paridad de tasas (18.4)", tex: R`i_i - i_j = \frac{\Delta\varepsilon_i}{\varepsilon_i} - \frac{\Delta\varepsilon_j}{\varepsilon_j}`, cap: R`El diferencial de tasas nominales compensa la depreciación (esperada) de una moneda frente a la otra.` },
+      { label: "Tasas reales iguales (18.5)", tex: R`i_i - \pi_i = i_j - \pi_j`, cap: R`Paridad de tasas más PPA relativa: las tasas reales (esperadas) son iguales en todos los países.` }
+    ],
+    blocks: [
+      { h: "De dónde sale", items: [
+        R`Con un dólar comprás \(\varepsilon_t^i\) euros, los prestás a \(i_i\) y en \(t+1\) volvés a dólares: obtenés \(\varepsilon_t^i(1+i_i)/\varepsilon_{t+1}^i\). Con yenes, lo mismo. En equilibrio, las dos opciones rinden igual.`,
+        R`Aproximando \((1+i_i)/(1+i_j) = (1+\Delta\varepsilon_i/\varepsilon_i)/(1+\Delta\varepsilon_j/\varepsilon_j)\) sale (18.4).`,
+        R`Si la moneda \(i\) se deprecia frente a \(j\), su tasa nominal tiene que ser más alta en esa misma medida.`
+      ] },
+      { h: "En la práctica", items: [
+        R`Como no se sabe de antemano cuánto va a cambiar el tipo de cambio, la tasa compensa la depreciación <strong>esperada</strong>. Por eso (18.5) habla de tasas reales <strong>esperadas</strong>.`,
+        R`No se cumple exacta por impuestos distintos, incertidumbre sobre rendimientos y tipo de cambio, y restricciones a los movimientos de capitales. En los países desarrollados los desvíos son chicos y las tasas reales se mueven juntas.`
+      ] },
+      { h: "Por qué un país puede tener una tasa real más baja (China)", items: [
+        R`Si la canasta de un país es barata en dólares, \(P_i/P_j \lt \varepsilon_i/\varepsilon_j\) (18.6), por ejemplo por salarios bajos, con el tiempo sus precios en dólares suben: más inflación o una apreciación.`,
+        R`Eso es un desvío de la PPA relativa (18.7), y junto con la paridad de tasas da (18.8): \(i_i - \pi_i \lt i_j - \pi_j\). La tasa real de China queda más baja.`
+      ] }
+    ],
+    palaceName: "Terminal B · Puesto 3: el banco de los dos plazos fijos",
+    palace: {
+      llegada: R`Al lado del patio de comidas hay un banco 🏦 con dos ventanillas: una paga en euros y la otra en yenes. Te parás en el medio con un dólar en la mano.`,
+      stations: [
+        { where: R`La ventanilla de la izquierda (euros)`,
+          see: R`Te ofrecen una tasa altísima, pero el cajero te avisa por lo bajo: «el euro se va a depreciar».`,
+          means: R`Una tasa nominal alta es la compensación por la depreciación esperada.` },
+        { where: R`La ventanilla de la derecha (yenes)`,
+          see: R`Tasa bajita, pero el yen se va a apreciar. Hacés la cuenta y, en dólares, las dos te dejan exactamente la misma guita.`,
+          means: R`<strong>Paridad de tasas (18.4):</strong> \(i_i - i_j\) = depreciación (esperada) de \(i\) frente a \(j\).` },
+        { where: R`El cartel arriba de las dos ventanillas`,
+          see: R`Muestra la inflación de cada país. Si a cada tasa le restás su inflación, los dos números quedan iguales.`,
+          means: R`<strong>(18.5):</strong> paridad de tasas + PPA relativa ⇒ tasas reales iguales.` },
+        { where: R`En la puerta del banco`,
+          see: R`Un recaudador de impuestos, un tipo que tira una moneda al aire (riesgo) y un cartel de «cepo» frenan a algunos clientes.`,
+          means: R`Por qué la paridad no es exacta: impuestos, riesgo y controles de capitales.` },
+        { where: R`En la vereda`,
+          see: R`Un vendedor chino con todo baratísimo (salarios bajos). Con los años sube sus precios o su moneda se aprecia, y la ventanilla de su país paga una tasa real más baja.`,
+          means: R`<strong>China (18.6 a 18.8):</strong> canasta barata ⇒ más inflación o apreciación ⇒ tasa real más baja.` }
+      ],
+      story: R`Con un dólar en la mano, la ventanilla de euros te paga mucho porque el euro se va a caer y la de yenes poco porque el yen se va a apreciar: en dólares, empate. Si a cada tasa le restás su inflación, también empatan. En la puerta, impuestos, riesgo y cepo explican por qué no es exacto, y en la vereda el vendedor chino muestra por qué una tasa real puede quedar más baja.`,
+      hook: R`Tasa alta, moneda que cae; restale la inflación y todos ganan lo mismo.`
+    }
+  },
+  {
+    id: "t11", src: "barro18", num: "18.4", sec: "Cap. 18, sección IV · ecuaciones (18.9) a (18.13)",
+    emoji: "⚓", hue: 4, room: null, short: "Tipo de cambio fijo",
+    topics: [R`Bretton Woods y patrón oro`, R`\(P_i = \varepsilon_i P\) (18.9)`, R`Dinero endógeno (18.10 y 18.11)`, R`Esterilización`, R`Devaluación, revaluación y especulación`],
+    title: "Tipo de cambio fijo",
+    lead: R`Hasta principios de los 70, salvo en las guerras, los países avanzados tenían tipos de cambio fijos. Barro muestra qué pierde un país cuando fija.`,
+    keys: [
+      { label: "Ecuación (18.9)", tex: R`P_i = \varepsilon_i \cdot P`, cap: R`Con PPA absoluta y \(\varepsilon_i\) fijo, los precios del país van atados a los de EE.UU. y la inflación es la misma: \(\pi_i = \pi\).` },
+      { label: "Ecuación (18.11)", tex: R`M_i = \varepsilon_i \cdot P \cdot \mathcal{L}(Y_i, i, \ldots)`, cap: R`La cantidad de dinero queda fijada por la demanda: el banco central no la puede elegir. (\(\mathcal{L}\) es la demanda real de dinero.)` }
+    ],
+    blocks: [
+      { h: "Sistemas de tipo fijo", items: [
+        R`<strong>Bretton Woods</strong> (de la Segunda Guerra a principios de los 70): cada país fijaba su moneda al dólar con bandas angostas, y EE.UU. cambiaba dólares por oro a 35 dólares la onza (patrón cambio oro).`,
+        R`<strong>Patrón oro clásico:</strong> cada banco central fija su moneda al oro (apogeo entre 1890 y 1914). Con la onza a 20 dólares en Nueva York y a 4 libras en Londres, el tipo de cambio tenía que estar cerca de 5 dólares por libra.`,
+        R`También hay tipos fijos sin oro: el Mecanismo de Tipos de Cambio europeo (1979-1992), que terminó en el euro, y las monedas comunes (Panamá y Ecuador usan el dólar).`
+      ] },
+      { h: "El dinero se vuelve endógeno", items: [
+        R`Si el banco central emite (compra bonos), \(P_i\) tendería a quedar por encima de \(\varepsilon_i P\): la gente compra afuera y devuelve los pesos que le sobran a cambio de dólares (tabla 18.2).`,
+        R`\(M_i\) vuelve a su nivel y el banco central termina con más bonos y menos reservas. <strong>Con tipo fijo, el banco central no controla \(M_i\) ni \(P_i\).</strong>`,
+        R`<strong>Esterilizar</strong> es volver a emitir para compensar la pérdida de reservas. Si lo repite, se queda sin reservas y tiene que devaluar.`,
+        R`Otra salida son las trabas al comercio (aranceles, subsidios a exportaciones). Fue uno de los argumentos de Friedman contra el tipo fijo.`
+      ] },
+      { h: "El nivel de precios mundial", items: [
+        R`Con el sistema centrado en el dólar, los dólares del mundo frente a su demanda definen \(P\) y, por (18.9), todos los \(P_i\).`,
+        R`La inflación de EE.UU. desde fines de los 60 hizo conveniente cambiar dólares por oro. En 1971 Nixon dejó de entregar oro y Bretton Woods se cayó.`
+      ] },
+      { h: "Devaluación y revaluación", items: [
+        R`<strong>Devaluación:</strong> sube \(\varepsilon_i\); suele venir de perder reservas. <strong>Revaluación:</strong> baja \(\varepsilon_i\), cuando se acumulan demasiadas reservas. No son simétricas: quedarse sin reservas obliga, acumularlas presiona mucho menos.`,
+        R`La <strong>especulación</strong> acelera las devaluaciones: si se espera una, la gente sale de la moneda antes. Ejemplos: México 1994-95 (97 %), Tailandia 1997 (114 %), Rusia 1998 (266 %) y Argentina 2002 (280 %).`,
+        R`Una devaluación sube \(P_i\) en la misma proporción: es inflacionaria. Y si se esperan más, sube la tasa local por (18.12), \(i_i - i = \Delta\varepsilon_i/\varepsilon_i\), lo que baja la demanda de dinero (18.13).`
+      ] }
+    ],
+    palaceName: "Terminal B · Puesto 4: la ventanilla del Banco Central",
+    palace: {
+      llegada: R`Más adelante en la Terminal B hay una ventanilla del Banco Central con un ancla ⚓ colgada arriba: acá el tipo de cambio está atado y no se mueve.`,
+      stations: [
+        { where: R`El cartel con el ancla`,
+          see: R`Dice «1 dólar = ε pesos, siempre». Abajo, la vidriera de precios copia la de EE.UU. multiplicada por ese número.`,
+          means: R`<strong>(18.9):</strong> \(P_i = \varepsilon_i P\). Con tipo fijo, los precios y la inflación quedan atados a los de EE.UU.` },
+        { where: R`La imprenta al costado de la ventanilla`,
+          see: R`El presidente del banco central imprime billetes como loco. Al toque, la gente hace fila para devolverlos y llevarse dólares: los billetes vuelven y las reservas se van.`,
+          means: R`<strong>Dinero endógeno:</strong> con tipo fijo, emitir de más solo hace perder reservas; a \(M_i\) lo decide la demanda (18.11).` },
+        { where: R`El sótano`,
+          see: R`Un empleado vuelve a imprimir cada billete que la gente devuelve, mientras la caja fuerte de dólares se vacía.`,
+          means: R`<strong>Esterilizar:</strong> compensar la pérdida de reservas emitiendo otra vez. Termina en devaluación.` },
+        { where: R`La puerta, cuando la caja se vacía`,
+          see: R`Un ejército de especuladores corre a cambiar pesos antes de que toquen el cartel. El cartel pasa de 1 a 3,8 de un saque: Argentina 2002.`,
+          means: R`<strong>Devaluación</strong> (sube \(\varepsilon\)), acelerada por la especulación. Argentina devaluó 280 % en 2002.` },
+        { where: R`Una vitrina con un lingote de oro`,
+          see: R`El lingote tiene un precio fijo de 35 dólares. En 1971 Nixon le pone un candado y se lo lleva.`,
+          means: R`<strong>Bretton Woods:</strong> monedas fijas al dólar y dólar fijo al oro, hasta 1971.` }
+      ],
+      story: R`El ancla ata el cartel y la vidriera copia los precios de EE.UU. El presidente imprime, la gente devuelve los billetes y se lleva dólares; en el sótano reimprimen y la caja se vacía; cuando se vacía, la corrida de especuladores obliga a devaluar. En la vitrina, el lingote de Bretton Woods con el candado de Nixon.`,
+      hook: R`Ancla puesta: precios atados, emitir no sirve, esterilizar vacía la caja y la corrida te devalúa.`
+    }
+  },
+  {
+    id: "t12", src: "barro18", num: "18.5", sec: "Cap. 18, secciones V y VI · ecuaciones (18.12) y (18.14)",
+    emoji: "🎈", hue: 1, room: null, short: "Tipo de cambio flexible",
+    topics: [R`Fin de Bretton Woods`, R`Política monetaria independiente`, R`Inflación y depreciación (18.14)`, R`Países de inflación alta y baja (tablas 18.3 y 18.4)`],
+    title: "Tipo de cambio flexible",
+    lead: R`Desde principios de los 70 muchos países dejan flotar su moneda. El tipo de cambio pasa a ajustarse solo y el banco central recupera su política monetaria.`,
+    keys: [
+      { label: "Ecuación (18.14)", tex: R`\pi_i - \pi = \frac{\Delta\varepsilon_i}{\varepsilon_i}`, cap: R`Contra el dólar: el tipo de cambio sube lo que la inflación local supera a la de EE.UU.` },
+      { label: "Ecuación (18.12)", tex: R`i_i - i = \frac{\Delta\varepsilon_i}{\varepsilon_i}`, cap: R`La tasa nominal local ya no tiene que ser igual a la de EE.UU.: la diferencia es la depreciación (esperada).` }
+    ],
+    blocks: [
+      { h: "Qué cambia", items: [
+        R`Sigue valiendo \(P_i = \varepsilon_i P\), pero ahora \(\varepsilon_i\) se ajusta. El país elige su cantidad de dinero, su nivel de precios y su inflación, y el tipo de cambio acompaña.`,
+        R`Conclusión de Barro: con tipo flexible, un país puede tener una política monetaria <strong>independiente</strong>, por ejemplo con una meta de inflación.`,
+        R`Algunos grupos mantienen tipos fijos entre sí aunque floten contra el resto: el Sistema Monetario Europeo (1979-1992) y el euro desde 1999.`
+      ] },
+      { h: "Los datos", items: [
+        R`<strong>Inflación alta</strong> (tabla 18.3, de mediados de los 50 a 1996): Argentina tuvo una inflación 68 % anual mayor que la de EE.UU. y su tipo de cambio subió 64 % por año; Brasil, 81 y 80; Israel, 24 y 24. La PPA relativa casi se cumple.`,
+        R`<strong>Inflación baja</strong> (tabla 18.4, 1971-2003): en el corto plazo la inflación explica poco de los vaivenes, pero en el largo sí. Alemania tuvo 1 punto menos de inflación que EE.UU. y su moneda se apreció 2,2 % por año; Italia tuvo 4,7 puntos más y se depreció 3,2 %.`,
+        R`Diferencial de inflación menos depreciación = cuánto se encarecen los bienes del país frente a los de EE.UU.: 1,2 % por año en Francia y en Alemania.`
+      ] }
+    ],
+    palaceName: "Terminal B · Puesto 5: el globo del tablero de salidas",
+    palace: {
+      llegada: R`Al final de la Terminal B, frente al tablero de salidas, hay un globo 🎈 atado con un hilo larguísimo a un mostrador. El tipo de cambio ya no tiene ancla: flota.`,
+      stations: [
+        { where: R`El mostrador donde está atado el globo`,
+          see: R`El banco central de acá tiene su propia imprenta y decide cuánto imprimir sin mirar a la Reserva Federal.`,
+          means: R`<strong>Política monetaria independiente:</strong> el país elige su dinero, sus precios y su inflación.` },
+        { where: R`El globo`,
+          see: R`Cuanto más imprime el de acá, más sube el globo. Si la inflación de acá le gana 10 puntos a la de EE.UU., el globo sube 10 % por año.`,
+          means: R`<strong>(18.14):</strong> \(\pi_i - \pi = \Delta\varepsilon_i/\varepsilon_i\).` },
+        { where: R`El tablero de salidas`,
+          see: R`Muestra «Argentina: inflación +68, dólar +64» al lado de «Brasil: +81, +80».`,
+          means: R`Con inflación alta, la PPA relativa se cumple casi exacta (tabla 18.3).` },
+        { where: R`Las ventanillas de plazo fijo de la pared`,
+          see: R`La tasa en pesos es más alta que la tasa en dólares justo lo que se espera que suba el globo.`,
+          means: R`<strong>(18.12):</strong> \(i_i - i\) = depreciación esperada.` }
+      ],
+      story: R`El globo suelto: el banco central de acá imprime lo que quiere, el globo sube lo que la inflación de acá le gana a la de EE.UU., el tablero te lo confirma con Argentina y Brasil, y los plazos fijos pagan más en pesos justo lo que se espera que suba el globo.`,
+      hook: R`Globo suelto: imprimís lo que querés y el globo sube lo que tu inflación le gana a la de afuera.`
+    }
+  },
+  /* ================= BLANCHARD, CAPÍTULOS 17 A 20: LA ECONOMÍA ABIERTA =================
+     Ojo: E = precio de la moneda nacional en moneda extranjera (si sube, apreciación).
+     Palacio: la Terminal C de Ezeiza, puestos 1 a 8. */
+  {
+    id: "t13", src: "blanchard", num: "17.1", sec: "Cap. 17, sección 17.1 · ecuación (17.1)",
+    emoji: "🚗", hue: 6, room: null, short: "Bienes y tipo de cambio real",
+    topics: [R`Las tres dimensiones de la apertura`, R`Exportaciones e importaciones`, R`Tipo de cambio nominal \(E\)`, R`Tipo de cambio real \(\varepsilon = EP/P^*\)`, R`Tipo de cambio real multilateral`],
+    title: "Apertura de los mercados de bienes: tipo de cambio nominal y real",
+    lead: R`Blanchard abre la economía en tres dimensiones: bienes, mercados financieros y factores. Para el corto y el medio plazo se queda con las dos primeras.`,
+    keys: [
+      { label: "Tipo de cambio nominal de Blanchard", tex: R`E = \frac{\text{unidades de moneda extranjera}}{1 \text{ unidad de moneda nacional}}`, cap: R`Para EE.UU., libras por dólar. Si \(E\) sube, la moneda nacional se <strong>aprecia</strong>: al revés que en Barro y en Sachs y Larraín.` },
+      { label: "Ecuación (17.1)", tex: R`\varepsilon = \frac{E\,P}{P^*}`, cap: R`Precio de los bienes nacionales expresado en bienes extranjeros. Si \(\varepsilon\) sube, hay <strong>apreciación real</strong>: lo nacional se encarece.` }
+    ],
+    blocks: [
+      { h: "Apertura de los mercados de bienes", items: [
+        R`EE.UU. pasó de exportar e importar 5 % del PIB a principios de los 60 a cerca de 15 % (13,5 % las exportaciones y 16,5 % las importaciones): comercia tres veces más que hace 50 años. Desde los 80 tiene déficit comercial.`,
+        R`Las exportaciones pueden superar al PIB (Singapur), porque se exportan bienes hechos con insumos importados: el cociente exportaciones/PIB no mide bien la apertura.`,
+        R`La elección entre bienes nacionales y extranjeros depende del <strong>tipo de cambio real</strong>.`
+      ] },
+      { h: R`Cómo leer \(E\) y \(\varepsilon\)`, items: [
+        R`Ejemplo del libro: un Cadillac y un Jaguar. Pasás el precio del Cadillac a libras con \(E\) y lo dividís por el precio del Jaguar: cuántos Jaguars vale un Cadillac.`,
+        R`<strong>Apreciación real</strong> = sube \(\varepsilon\): los bienes nacionales se encarecen frente a los extranjeros. <strong>Depreciación real</strong> = baja \(\varepsilon\).`,
+        R`El tipo de cambio nominal y el real <strong>normalmente</strong> (no siempre) se mueven en la misma dirección: depende de \(P\) y \(P^*\).`,
+        R`El tipo de cambio real <strong>multilateral</strong> es un promedio de los bilaterales, ponderado por cuánto comercia el país con cada uno.`
+      ] }
+    ],
+    palaceName: "Terminal C · Puesto 1: la concesionaria del aeropuerto",
+    palace: {
+      llegada: R`Pasás a la Terminal C, la de Blanchard. Ojo: acá el tipo de cambio se cuenta al revés que en la B. Lo primero que hay es una concesionaria con dos autos en la vidriera.`,
+      stations: [
+        { where: R`El auto de la izquierda`,
+          see: R`Un Cadillac 🚗 con la etiqueta en dólares y un cartelito: «E = cuántas libras te dan por UN dólar».`,
+          means: R`<strong>\(E\) de Blanchard:</strong> precio de la moneda nacional en moneda extranjera. Si sube, la moneda nacional se <strong>aprecia</strong>.` },
+        { where: R`El auto de la derecha`,
+          see: R`Un Jaguar con el precio en libras. El vendedor pasa el precio del Cadillac a libras (con \(E\)) y lo divide por el del Jaguar: «este Cadillac vale 1,2 Jaguars».`,
+          means: R`<strong>(17.1):</strong> \(\varepsilon = EP/P^*\), el tipo de cambio <strong>real</strong>: cuántos bienes extranjeros vale uno nacional.` },
+        { where: R`El escritorio del vendedor`,
+          see: R`Si el Cadillac pasa a valer más Jaguars, los ingleses dejan de comprarlo y los yanquis se compran Jaguars.`,
+          means: R`<strong>Apreciación real</strong> (sube \(\varepsilon\)): lo nacional se encarece y pierde ventas.` },
+        { where: R`El ventanal del fondo`,
+          see: R`Una fila de autos de muchos países, cada uno de un tamaño según cuánto comercia con EE.UU.`,
+          means: R`<strong>Tipo de cambio real multilateral:</strong> promedio ponderado por el comercio.` }
+      ],
+      story: R`En la concesionaria de la Terminal C el cartel te avisa que \(E\) son libras por dólar (si sube, el dólar se aprecia). El vendedor te dice cuántos Jaguars vale un Cadillac (el tipo de cambio real), te muestra que si el Cadillac se encarece nadie lo compra, y al fondo están los autos de todos los países, cada uno con su peso.`,
+      hook: R`En la C todo al revés: si sube E, gana el dólar; Cadillacs por Jaguars es el real.`
+    }
+  },
+  {
+    id: "t14", src: "blanchard", num: "17.2", sec: "Cap. 17, secciones 17.2 y 17.3 · ecuaciones (17.2) a (17.4)",
+    emoji: "📈", hue: 5, room: null, short: "Balanza de pagos y paridad",
+    topics: [R`Balanza de pagos`, R`Cuenta corriente y cuenta financiera`, R`PIB y PNB`, R`Paridad descubierta de intereses`],
+    title: "Apertura de los mercados financieros: balanza de pagos y paridad de intereses",
+    lead: R`Con mercados financieros abiertos, los inversores eligen entre bonos nacionales y extranjeros. De ahí salen la balanza de pagos y la condición de paridad de intereses.`,
+    keys: [
+      { label: "Balanza de pagos", tex: R`CC + CF = 0`, cap: R`Cuenta corriente (\(CC\)) + cuenta financiera (\(CF\)). Son imágenes gemelas: un déficit de cuenta corriente se financia con flujos financieros netos desde el resto del mundo (salvo la discrepancia estadística).` },
+      { label: "Paridad descubierta (17.2)", tex: R`1 + i_t = (1 + i_t^*)\,\frac{E_t}{E_{t+1}^e}`, cap: R`Bonos nacionales y extranjeros tienen que rendir lo mismo medidos en moneda nacional.` },
+      { label: "Aproximación (17.4)", tex: R`i_t \approx i_t^* - \frac{E_{t+1}^e - E_t}{E_t}`, cap: R`Tasa nacional = tasa extranjera − apreciación esperada de la moneda nacional.` }
+    ],
+    blocks: [
+      { h: "Balanza de pagos", items: [
+        R`<strong>Cuenta corriente</strong> = balanza comercial + rentas netas + transferencias netas recibidas del resto del mundo.`,
+        R`<strong>Cuenta financiera</strong> = flujos financieros que entran − flujos financieros que salen.`,
+        R`Un superávit de cuenta corriente corresponde a un déficit de la cuenta financiera: el país le presta al resto del mundo.`,
+        R`El PIB mide lo producido adentro; el PNB le suma las rentas netas que se cobran del exterior.`
+      ] },
+      { h: "Paridad descubierta de intereses", items: [
+        R`Comprar un bono extranjero implica cambiar a moneda extranjera hoy (a \(E_t\)) y volver dentro de un año al tipo de cambio que se espera, \(E_{t+1}^e\).`,
+        R`Si se espera que el dólar se aprecie 3 % frente a la libra, la tasa en dólares puede ser unos 3 puntos más baja que la tasa en libras.`,
+        R`Ignora costos de transacción y riesgo, pero explica por qué las tasas de los países se mueven juntas, salvo que estén dispuestos a tolerar grandes movimientos del tipo de cambio.`
+      ] }
+    ],
+    palaceName: "Terminal C · Puesto 2: el espejo y las dos ventanillas",
+    palace: {
+      llegada: R`Al lado de la concesionaria hay un espejo de piso a techo y, enfrente, dos ventanillas de bonos: una en dólares y otra en libras.`,
+      stations: [
+        { where: R`Frente al espejo`,
+          see: R`Te ves con una bolsa que dice «compré más de lo que vendí» (déficit de cuenta corriente). Tu reflejo tiene en la mano un pagaré firmado con el resto del mundo.`,
+          means: R`<strong>Cuenta corriente + cuenta financiera = 0:</strong> un déficit corriente se financia con plata que entra.` },
+        { where: R`Detrás del espejo`,
+          see: R`Un contador suma lo producido adentro (PIB) y le agrega los intereses que cobraste afuera menos los que pagaste.`,
+          means: R`PNB = PIB + rentas netas del exterior.` },
+        { where: R`La ventanilla de dólares`,
+          see: R`Te pagan 2 % en dólares.`,
+          means: R`La tasa nacional, \(i_t\).` },
+        { where: R`La ventanilla de libras`,
+          see: R`Te pagan 5 % en libras, pero el cajero avisa: «el dólar se va a apreciar 3 %; cuando vuelvas a dólares te va a rendir lo mismo».`,
+          means: R`<strong>Paridad descubierta (17.4):</strong> \(i_t \approx i_t^*\) − apreciación esperada de la moneda nacional.` }
+      ],
+      story: R`En el espejo ves que lo que compraste de más te lo prestó el resto del mundo; detrás, el contador pasa del PIB al PNB. Enfrente, la ventanilla de libras paga 5 % y la de dólares 2 %, pero como el dólar se va a apreciar 3 %, terminás ganando lo mismo.`,
+      hook: R`Lo que te falta en el espejo te lo prestan; la tasa de allá menos lo que se aprecia lo de acá.`
+    }
+  },
+  {
+    id: "t15", src: "blanchard", num: "18.1 a 18.3", sec: "Cap. 18, secciones 18.1 a 18.3 · ecuación (18.4)",
+    emoji: "🛒", hue: 2, room: null, short: "La IS abierta",
+    topics: [R`Demanda interna vs. demanda de bienes nacionales`, R`Equilibrio del mercado de bienes (18.4)`, R`Exportaciones netas`, R`Multiplicador más chico`, R`Shocks de demanda interna y externa`, R`Coordinación (G-20)`],
+    title: "El mercado de bienes en una economía abierta",
+    lead: R`En una economía abierta no alcanza con lo que gastan los residentes: hay que restar lo que se va en importaciones y sumar lo que compran los extranjeros.`,
+    keys: [
+      { label: "Demanda de bienes nacionales", tex: R`Z = C + I + G - \frac{IM}{\varepsilon} + X`, cap: R`Demanda interna (\(C + I + G\)) menos el valor de las importaciones en bienes nacionales, más las exportaciones.` },
+      { label: "Equilibrio (18.4)", tex: R`Y = C(Y - T) + I(Y, r) + G - \frac{IM(Y, \varepsilon)}{\varepsilon} + X(Y^*, \varepsilon)`, cap: R`Las importaciones suben con \(Y\) y con \(\varepsilon\). Las exportaciones suben con \(Y^*\) y bajan con \(\varepsilon\).` },
+      { label: "Exportaciones netas", tex: R`NX(Y, Y^*, \varepsilon) = X(Y^*, \varepsilon) - \frac{IM(Y, \varepsilon)}{\varepsilon}`, cap: R`Bajan con \(Y\), suben con \(Y^*\) y bajan con \(\varepsilon\) (si se cumple Marshall-Lerner).` }
+    ],
+    blocks: [
+      { h: R`Sube la demanda interna (por ejemplo, \(G\))`, items: [
+        R`La producción sube <strong>menos</strong> que en una economía cerrada: parte de la demanda extra se va en importaciones, así que el multiplicador es más chico.`,
+        R`La balanza comercial <strong>empeora</strong>: suben las importaciones y las exportaciones no cambian.`,
+        R`Cuanto más abierta la economía, menor el efecto sobre \(Y\) y mayor el efecto sobre la balanza comercial.`
+      ] },
+      { h: R`Sube la demanda extranjera (\(Y^*\))`, items: [
+        R`Suben las exportaciones: sube la producción nacional y <strong>mejora</strong> la balanza comercial.`,
+        R`Por eso cada país prefiere que lo saque de la recesión la demanda de los otros. Si todos esperan, nadie se recupera: la <strong>coordinación</strong> (por ejemplo, la del G-20 en la crisis de 2009) puede ayudar.`
+      ] }
+    ],
+    palaceName: "Terminal C · Puesto 3: el supermercado del aeropuerto",
+    palace: {
+      llegada: R`Hay un súper 🛒 con dos puertas: una para los clientes de acá y otra para los turistas que vienen de afuera. Entrás con un changuito.`,
+      stations: [
+        { where: R`La puerta de los clientes de acá`,
+          see: R`Los de acá llenan el changuito con \(C\), \(I\) y \(G\), pero la mitad de las cosas son importadas y esa plata se va por un caño hacia afuera.`,
+          means: R`Demanda de bienes nacionales: \(C + I + G - IM/\varepsilon + X\). Lo importado no es demanda de lo nuestro.` },
+        { where: R`La caja`,
+          see: R`El Gobierno llega con un camión de compras (sube \(G\)). La caja suena, pero menos de lo que esperabas, porque parte de lo que compra es importado. En la pizarra de la balanza comercial aparece un número en rojo.`,
+          means: R`Más demanda interna: \(Y\) sube menos que en una economía cerrada y la balanza comercial empeora.` },
+        { where: R`La puerta de los turistas`,
+          see: R`Entra un micro de turistas (sube \(Y^*\)) y se llevan todo lo nacional: la caja suena fuerte y la pizarra se pone en verde.`,
+          means: R`Más demanda extranjera: sube \(Y\) y mejora la balanza comercial.` },
+        { where: R`La oficina de los gerentes`,
+          see: R`Los gerentes de veinte súpers de distintos países se ponen de acuerdo para hacer ofertas todos juntos, así nadie queda en rojo.`,
+          means: R`<strong>Coordinación</strong> (G-20): si todos expanden juntos, ninguno empeora tanto su balanza comercial.` }
+      ],
+      story: R`En el súper, lo que compran los de acá en parte se escapa por el caño de las importaciones; cuando el Gobierno compra, la caja suena menos y la balanza se pone en rojo; cuando llega el micro de turistas, la caja suena fuerte y la balanza se pone en verde. Los gerentes, para no quedar en rojo, se coordinan.`,
+      hook: R`Lo que compran los de acá se escapa por el caño; lo que compran los de afuera llena la caja.`
+    }
+  },
+  {
+    id: "t16", src: "blanchard", num: "18.4 a 18.6", sec: "Cap. 18, secciones 18.4 a 18.6 · ecuación (18.5)",
+    emoji: "📉", hue: 4, room: null, short: "Depreciación y curva J",
+    topics: [R`Condición Marshall-Lerner`, R`Depreciación + contracción fiscal`, R`Curva J`, R`\(NX = S + (T - G) - I\) (18.5)`],
+    title: "Depreciación, curva J y ahorro-inversión",
+    lead: R`¿Una depreciación real mejora la balanza comercial? Sí, si se cumple Marshall-Lerner, pero no de inmediato.`,
+    keys: [
+      { label: "Exportaciones netas", tex: R`NX = X - \frac{IM}{\varepsilon}`, cap: R`Una depreciación real (baja \(\varepsilon\)) sube \(X\) y baja \(IM\), pero encarece cada unidad importada: el efecto neto depende de cuánto respondan las cantidades.` },
+      { label: "Ecuación (18.5)", tex: R`NX = S + (T - G) - I`, cap: R`Exportaciones netas (cuenta corriente) = ahorro privado + ahorro público − inversión.` }
+    ],
+    blocks: [
+      { h: "Marshall-Lerner", items: [
+        R`Una depreciación real mejora la balanza comercial si las cantidades exportadas e importadas responden lo suficiente para compensar que cada importación sale más cara. La evidencia dice que se cumple.`,
+        R`Para bajar el déficit comercial sin cambiar \(Y\): <strong>depreciación + contracción fiscal</strong>. La depreciación sola subiría la producción; la contracción fiscal lo compensa.`
+      ] },
+      { h: "Curva J", items: [
+        R`Al principio las cantidades casi no reaccionan (hay contratos y cambiar de proveedor lleva tiempo), pero las importaciones ya son más caras: la balanza comercial <strong>empeora</strong>.`,
+        R`Con el tiempo, exportaciones e importaciones responden y la balanza <strong>mejora</strong>, por encima de donde estaba. El dibujo es una J.`
+      ] },
+      { h: "Ahorro, inversión y cuenta corriente", items: [
+        R`El equilibrio del mercado de bienes también se escribe como (18.5): un superávit corriente es exceso de ahorro sobre inversión; un déficit, exceso de inversión sobre ahorro.`,
+        R`Un déficit fiscal más grande tiene que traducirse en más ahorro privado, menos inversión o una cuenta corriente peor.`,
+        R`Ojo: (18.5) es una identidad y no dice qué causa qué. Decir que «una depreciación no puede bajar el déficit porque no cambia \(S\) ni \(I\)» es falso: la depreciación sube \(Y\), y con eso sube el ahorro.`
+      ] }
+    ],
+    palaceName: "Terminal C · Puesto 4: el tobogán con forma de J",
+    palace: {
+      llegada: R`En el área de juegos para chicos de la Terminal C hay un tobogán con forma de J. Te subís arriba de todo.`,
+      stations: [
+        { where: R`La escalera del tobogán`,
+          see: R`Un cartel: «Marshall-Lerner: si te depreciás, a la larga vendés más de lo que pagás de más».`,
+          means: R`<strong>Marshall-Lerner:</strong> una depreciación real mejora las exportaciones netas (y en los datos se cumple).` },
+        { where: R`El primer tramo, para abajo`,
+          see: R`Te tirás y primero bajás: las importaciones ya salen más caras, pero los contratos todavía no cambiaron.`,
+          means: R`<strong>Curva J, al principio:</strong> la balanza comercial empeora.` },
+        { where: R`La curva y la subida`,
+          see: R`Después el tobogán te sube por encima de donde arrancaste: los de afuera compran más y los de acá importan menos.`,
+          means: R`<strong>Curva J, después:</strong> la balanza comercial mejora.` },
+        { where: R`Al pie del tobogán`,
+          see: R`Un nene con un chanchito 🐷 (ahorro privado), la billetera del Estado (\(T - G\)) y una grúa de inversión. Lo que sobra entre los tres sale por la ventana como exportaciones netas.`,
+          means: R`<strong>(18.5):</strong> \(NX = S + (T - G) - I\).` },
+        { where: R`El papá en el banco de plaza`,
+          see: R`Le baja el volumen al nene (contracción fiscal) mientras el tobogán lo sube (depreciación): el ruido total queda igual, pero el nene termina más arriba.`,
+          means: R`Depreciación + contracción fiscal: mejora la balanza comercial sin cambiar \(Y\).` }
+      ],
+      story: R`Subís por la escalera de Marshall-Lerner, te tirás y primero bajás (curva J), después el tobogán te sube más alto que donde arrancaste. Abajo, el nene con el chanchito, la billetera del Estado y la grúa te muestra que lo que sobra sale como exportaciones netas, y el papá compensa con la contracción fiscal.`,
+      hook: R`Primero bajás, después subís más alto: la J; y lo que sobra del chanchito sale por la ventana.`
+    }
+  },
+  {
+    id: "t17", src: "blanchard", num: "19.1 a 19.4", sec: "Cap. 19, secciones 19.1 a 19.4 · ecuaciones (19.1) y (19.2)",
+    emoji: "🕹️", hue: 3, room: null, short: "Mundell-Fleming flexible",
+    topics: [R`IS abierta con \(i\) y \(E\)`, R`Paridad de intereses y tipo de cambio`, R`Equilibrio conjunto (modelo Mundell-Fleming)`, R`Política fiscal y monetaria con tipo flexible`],
+    title: "Producción, tipo de interés y tipo de cambio",
+    lead: R`Es el modelo Mundell-Fleming en la versión de Blanchard: la IS abierta más la paridad de intereses, con el banco central eligiendo la tasa.`,
+    keys: [
+      { label: R`IS abierta (19.2), con \(P = P^* = 1\)`, tex: R`Y = C(Y - T) + I(Y, i) + G + NX(Y, Y^*, E)`, cap: R`Una suba de \(i\) baja la inversión; una suba de \(E\) (apreciación) baja las exportaciones netas. Las dos bajan \(Y\).` },
+      { label: "Paridad de intereses", tex: R`E = \frac{1 + i}{1 + i^*}\,\bar E^e`, cap: R`Con \(i^*\) y el tipo de cambio esperado \(\bar E^e\) dados, si sube \(i\), sube \(E\): la moneda se aprecia.` },
+      { label: "Política monetaria", tex: R`i = \bar i`, cap: R`El banco central fija el tipo de interés.` }
+    ],
+    blocks: [
+      { h: "Cómo funciona", items: [
+        R`Dos mercados: el de bienes (IS) y el financiero (paridad de intereses). La tasa afecta a la producción por dos vías: la inversión y el tipo de cambio.`,
+        R`Con \(\bar E^e\) e \(i^*\) dados, subir \(i\) aprecia la moneda y bajar \(i\) la deprecia.`
+      ] },
+      { h: R`Expansión fiscal (sube \(G\))`, items: [
+        R`Si el banco central mantiene \(i\): sube \(Y\), \(E\) no cambia y las exportaciones netas empeoran (por más importaciones).`,
+        R`Si además el banco central sube \(i\) para frenar la expansión, la moneda se aprecia, las exportaciones netas empeoran más y \(Y\) sube menos.`
+      ] },
+      { h: R`Contracción monetaria (sube \(i\))`, items: [
+        R`Baja la inversión y la moneda se aprecia: bajan las exportaciones netas. \(Y\) cae por las dos vías.`,
+        R`El libro aplica estas combinaciones a EE.UU. en los 80 (expansión fiscal con política monetaria contractiva y déficits gemelos).`
+      ] }
+    ],
+    palaceName: "Terminal C · Puesto 5: la torre de control con dos palancas",
+    palace: {
+      llegada: R`Subís a una torre de control 🕹️ con un tablero de dos palancas: una dice «tasa de interés» y la otra «tipo de cambio». Están unidas por un resorte.`,
+      stations: [
+        { where: R`La palanca de la tasa`,
+          see: R`La controladora (el banco central) la sube. Por el resorte, la palanca del tipo de cambio también sube: la moneda se aprecia.`,
+          means: R`Paridad: \(E = \frac{1+i}{1+i^*}\bar E^e\). Sube \(i\) ⇒ sube \(E\) (apreciación).` },
+        { where: R`La pantalla de despegues`,
+          see: R`Con las dos palancas arriba despegan menos aviones: menos inversión (por la tasa) y menos exportaciones (por el tipo de cambio).`,
+          means: R`IS (19.2): \(i\) y \(E\) más altos bajan la demanda y la producción.` },
+        { where: R`El botón rojo del Gobierno`,
+          see: R`El Gobierno aprieta «más gasto»: despegan más aviones. Si la controladora deja quieta la tasa, el tipo de cambio no se mueve.`,
+          means: R`Expansión fiscal con \(i\) constante: sube \(Y\) y \(E\) no cambia.` },
+        { where: R`La controladora, nerviosa`,
+          see: R`Para que no despeguen tantos, sube la tasa. El resorte sube el tipo de cambio y algunos aviones se quedan en tierra.`,
+          means: R`Si el banco central responde subiendo \(i\): apreciación y una suba de \(Y\) menor.` }
+      ],
+      story: R`En la torre, la palanca de la tasa arrastra con un resorte a la del tipo de cambio. Si las dos suben, despegan menos aviones. El Gobierno aprieta el botón de gasto y despegan más; si la controladora no toca la tasa, el tipo de cambio queda quieto; si la sube, la moneda se aprecia y despegan menos.`,
+      hook: R`Tasa arriba, moneda arriba, aviones abajo; el gasto los levanta si la torre no frena.`
+    }
+  },
+  {
+    id: "t18", src: "blanchard", num: "19.5", sec: "Cap. 19, sección 19.5",
+    emoji: "🔒", hue: 4, room: null, short: "Tipo fijo en el corto plazo",
+    topics: [R`Sistemas cambiarios: de la flotación a la moneda común`, R`Fijación, fijación reptante y bandas`, R`\(i = i^*\): se pierde la política monetaria`, R`Política fiscal con tipo fijo`, R`Reunificación alemana y el SME`],
+    title: "Tipos de cambio fijos",
+    lead: R`Si el país fija el tipo de cambio y vale la paridad de intereses, el banco central pierde la tasa como herramienta.`,
+    keys: [
+      { label: "Tipo fijo + paridad de intereses", tex: R`E = \bar E \;\Rightarrow\; i = i^*`, cap: R`Para que nadie espere cambios en \(E\), la tasa local tiene que ser igual a la extranjera.` }
+    ],
+    blocks: [
+      { h: "Los sistemas", items: [
+        R`Van de la flotación libre a la <strong>fijación</strong>, la <strong>fijación reptante</strong> (el tipo de cambio se ajusta según una regla), las <strong>bandas</strong> alrededor de una paridad central (como en el Sistema Monetario Europeo) y la moneda común (el euro).`
+      ] },
+      { h: "Qué se pierde al fijar", items: [
+        R`El tipo de cambio como herramienta para corregir el comercio o la actividad.`,
+        R`La tasa de interés: hay que seguir a la tasa extranjera aunque perjudique la actividad. Con la reunificación, a principios de los 90, Alemania subió su tasa y los demás países del SME tuvieron que subirla también.`,
+        R`Queda la política fiscal, pero un solo instrumento puede no alcanzar: por ejemplo, no se puede compensar con política monetaria el efecto contractivo de bajar el déficit fiscal.`
+      ] },
+      { h: "Expansión fiscal con tipo fijo", items: [
+        R`Tiene los mismos efectos que con tipo flexible si el banco central mantiene \(i\). La diferencia es que con tipo fijo el banco central <strong>no puede</strong> responder subiendo \(i\): tiene que dejarla igual a \(i^*\).`
+      ] }
+    ],
+    palaceName: "Terminal C · Puesto 6: la palanca soldada",
+    palace: {
+      llegada: R`Volvés a la torre de control, pero ahora alguien le puso un candado 🔒 a la palanca del tipo de cambio.`,
+      stations: [
+        { where: R`La palanca con candado`,
+          see: R`No se mueve. Y como está unida por el resorte, la palanca de la tasa quedó clavada en la tasa de afuera.`,
+          means: R`Tipo fijo + paridad: \(i = i^*\). Se pierde la política monetaria.` },
+        { where: R`El teléfono rojo`,
+          see: R`Llama Alemania: «subí la tasa». La controladora francesa la tiene que subir aunque no quiera.`,
+          means: R`SME a principios de los 90 (reunificación alemana): hay que seguir la tasa del país ancla.` },
+        { where: R`El botón rojo del Gobierno`,
+          see: R`El gasto sigue funcionando y los aviones despegan igual que antes. Lo que no se puede es frenarlos con la tasa.`,
+          means: R`Con tipo fijo, la política fiscal funciona igual, pero el banco central no puede responder.` },
+        { where: R`La ventana de la torre`,
+          see: R`Afuera, cuatro carteles en fila: «flotación», «banda», «fijación reptante» y «euro».`,
+          means: R`Hay muchos sistemas cambiarios, desde la flotación hasta la moneda común.` }
+      ],
+      story: R`Con el candado en la palanca del tipo de cambio, el resorte deja la tasa clavada en la de afuera. Alemania llama y hay que subirla. El botón del gasto sigue andando, pero la torre ya no puede frenar. Por la ventana ves todos los sistemas posibles.`,
+      hook: R`Candado en el cambio, tasa clavada en la de afuera; solo queda el botón del gasto.`
+    }
+  },
+  {
+    id: "t19", src: "blanchard", num: "20.1 y 20.2", sec: "Cap. 20, secciones 20.1 y 20.2 · ecuaciones (20.1) a (20.3)",
+    emoji: "💥", hue: 6, room: null, short: "Medio plazo y crisis",
+    topics: [R`IS con tipo fijo (20.1)`, R`Ajuste por precios en el medio plazo`, R`Devaluación`, R`Crisis cambiarias y paridad de intereses (20.3)`, R`Crisis del SME de 1992`],
+    title: "El medio plazo y las crisis cambiarias con tipo fijo",
+    lead: R`En el corto plazo, fijar el tipo de cambio te saca herramientas. En el medio plazo la diferencia desaparece, pero el camino es lento y puede terminar en crisis.`,
+    keys: [
+      { label: "IS con tipo fijo (20.1)", tex: R`Y = Y\!\left(\frac{\bar E P}{P^*},\; G,\; T,\; i^* - \pi^e,\; Y^*\right)`, cap: R`Con \(\bar E\) fijo, el tipo de cambio real solo se mueve si cambia \(P\) frente a \(P^*\).` },
+      { label: "Paridad de intereses (20.3)", tex: R`i_t = i_t^* - \frac{E_{t+1}^e - E_t}{E_t}`, cap: R`Si se espera una devaluación (\(E_{t+1}^e \lt E_t\)), para sostener el tipo de cambio hay que subir \(i_t\), a veces muchísimo.` }
+    ],
+    blocks: [
+      { h: "El medio plazo", items: [
+        R`Con la producción por debajo de la potencial, los precios bajan respecto de los de afuera: hay depreciación real y la economía vuelve a la producción potencial.`,
+        R`En el medio plazo se llega al mismo tipo de cambio real y a la misma producción con tipo fijo o flexible. El problema es que el ajuste por precios es <strong>lento</strong>.`,
+        R`Una <strong>devaluación</strong> puede acortar el camino (depreciación real inmediata), si se hace en el momento y en la medida justos.`
+      ] },
+      { h: "Crisis cambiarias", items: [
+        R`Si los mercados creen que se viene una devaluación, por (20.3) hay que subir la tasa local para sostener el tipo de cambio.`,
+        R`El banco central puede defenderse (subir \(i\), vender reservas) o devaluar. Subir mucho la tasa frena la economía, así que la defensa pierde credibilidad: las expectativas de devaluación pueden autocumplirse.`,
+        R`Ejemplo del libro: la crisis del Sistema Monetario Europeo de 1992.`
+      ] }
+    ],
+    palaceName: "Terminal C · Puesto 7: la pista de emergencias",
+    palace: {
+      llegada: R`Bajás de la torre a la pista de emergencias. Hay un avión con tipo de cambio fijo que está demasiado pesado para despegar: lo nacional está caro (tipo de cambio real alto).`,
+      stations: [
+        { where: R`El avión pesado`,
+          see: R`Para alivianarlo, los mecánicos le sacan peso de a poquito: bajan los precios un poco por año. Tarda una banda.`,
+          means: R`<strong>Medio plazo con tipo fijo:</strong> el tipo de cambio real baja porque cae \(P\) frente a \(P^*\). Se llega igual, pero lento.` },
+        { where: R`La grúa al costado de la pista`,
+          see: R`Una grúa le saca el peso de un saque: baja el tipo de cambio fijo \(\bar E\).`,
+          means: R`<strong>Devaluación:</strong> depreciación real inmediata; acorta el ajuste.` },
+        { where: R`La manga de viento`,
+          see: R`Se da vuelta: los pilotos huelen que viene una devaluación. Para que no se vayan, la torre les promete tasas altísimas.`,
+          means: R`<strong>(20.3):</strong> si se espera una devaluación, hay que subir \(i\) para sostener el tipo de cambio.` },
+        { where: R`El hangar del fondo`,
+          see: R`Las tasas altísimas dejan a todos los otros aviones en tierra. Los pilotos ven que la torre no aguanta y se van igual. En la pared, un póster: «1992, crisis del SME».`,
+          means: R`Las crisis se pueden autocumplir: defenderse cuesta tanto que la devaluación se vuelve creíble.` }
+      ],
+      story: R`El avión del tipo fijo está pesado: sacarle peso bajando precios tarda años, la grúa de la devaluación lo hace de un saque. Cuando la manga de viento avisa que viene una devaluación, la torre tiene que prometer tasas altísimas, y esas tasas paran todo hasta que los pilotos se van igual, como en 1992.`,
+      hook: R`Bajar precios tarda, la grúa devalúa de un saque y, si huelen devaluación, la tasa se va a las nubes.`
+    }
+  },
+  {
+    id: "t20", src: "blanchard", num: "20.3 y 20.4", sec: "Cap. 20, secciones 20.3 y 20.4 · ecuaciones (20.4) y (20.5)",
+    emoji: "🧭", hue: 1, room: null, short: "Volatilidad y elección del régimen",
+    topics: [R`Tipo de cambio y expectativas`, R`Volatilidad con tipo flexible`, R`Área monetaria óptima y euro`, R`Fijación rígida: dolarización y caja de conversión`, R`Argentina 1991-2001`],
+    title: "Las fluctuaciones del tipo de cambio y la elección del régimen",
+    lead: R`Con tipo flexible, el tipo de cambio se mueve muchísimo porque depende de expectativas. Entonces, ¿cuándo conviene fijarlo?`,
+    keys: [
+      { label: "Ecuación (20.4)", tex: R`E_t = \frac{1 + i_t}{1 + i_t^*}\,E_{t+1}^e`, cap: R`El tipo de cambio de hoy depende de las tasas de hoy y del tipo de cambio que se espera para mañana.` },
+      { label: "Hacia adelante (20.5)", tex: R`E_t = \frac{\prod_{k=0}^{n} (1 + i_{t+k}^e)}{\prod_{k=0}^{n} (1 + i_{t+k}^{*e})}\; E_{t+n+1}^e`, cap: R`Es (20.4) aplicada año tras año (con \(i_t^e = i_t\) para el año actual). Cualquier noticia sobre las tasas futuras o sobre el tipo de cambio de largo plazo mueve el tipo de cambio hoy.` }
+    ],
+    blocks: [
+      { h: "Por qué el tipo flexible es tan volátil", items: [
+        R`Depende de lo que se espera de las tasas futuras y del tipo de cambio de largo plazo (el que equilibra la cuenta corriente). Esas expectativas cambian con cada noticia.`,
+        R`Una misma suba de \(i\) puede apreciar mucho, poco o nada, según lo que los mercados esperen que pase después.`
+      ] },
+      { h: "Cuándo conviene fijar", items: [
+        R`<strong>Área monetaria óptima:</strong> países con shocks parecidos o con mucha movilidad de factores pueden compartir moneda. Es el debate del euro (tratado de Maastricht, Banco Central Europeo).`,
+        R`Cuando no se puede confiar en que el banco central sea responsable: la <strong>fijación rígida</strong> (dolarización o caja de conversión) le ata las manos.`,
+        R`En una <strong>caja de conversión</strong>, el banco central cambia divisas por moneda nacional al tipo oficial y <strong>no puede</strong> hacer operaciones de mercado abierto.`
+      ] },
+      { h: "El caso Argentina (recuadro del libro)", items: [
+        R`Caja de conversión en 1991 (un peso = un dólar): bajó la inflación. En la segunda mitad de los 90 el dólar se apreció y el peso con él: peso sobrevaluado, menos demanda, recesión y déficit comercial.`,
+        R`En 2001 la crisis se volvió financiera y cambiaria: tasas altísimas por miedo al default y a la devaluación. Default parcial en diciembre de 2001; a principios de 2002 se abandonó la caja y el peso llegó a 3,75 por dólar en junio de 2002.`,
+        R`El PIB cayó 11 % en 2002 y el desempleo llegó a casi 20 %. Debate: unos dicen que había que dolarizar; la mayoría, que había que salir antes hacia la flotación.`
+      ] }
+    ],
+    palaceName: "Terminal C · Puesto 8: la brújula de la salida",
+    palace: {
+      llegada: R`Antes de salir de la Terminal C hay una brújula 🧭 gigante dibujada en el piso, con dos flechas: «fijo» y «flexible».`,
+      stations: [
+        { where: R`El tablero de pronósticos, arriba de la brújula`,
+          see: R`Muestra las tasas que se esperan para los próximos años. Cada vez que cambia un número, la aguja del tipo de cambio de hoy pega un salto.`,
+          means: R`<strong>(20.4) y (20.5):</strong> el tipo de cambio de hoy depende de lo que se espera; por eso es tan volátil.` },
+        { where: R`La flecha «fijo», primer cartel`,
+          see: R`Dos países que siempre tienen los mismos problemas y cuyos laburantes se mudan de uno al otro sin drama.`,
+          means: R`<strong>Área monetaria óptima:</strong> conviene compartir moneda si los shocks son parecidos o los factores se mueven.` },
+        { where: R`La flecha «fijo», segundo cartel`,
+          see: R`Un banco central atado de pies y manos con una soga que dice «1 peso = 1 dólar».`,
+          means: R`<strong>Caja de conversión</strong> o dolarización: para cuando no se confía en el banco central.` },
+        { where: R`La punta de esa flecha`,
+          see: R`La soga se corta en 2002: el peso cae a 3,75, el PIB cae 11 % y los que se habían endeudado en dólares se funden.`,
+          means: R`Argentina 1991-2001: la caja frenó la inflación, pero con el peso sobrevaluado y sin herramientas terminó en crisis.` }
+      ],
+      story: R`En la brújula, el tablero de pronósticos sacude la aguja del tipo de cambio con cada noticia. Si tomás la flecha «fijo», el primer cartel te dice cuándo conviene compartir moneda, el segundo te muestra al banco central atado con la soga del uno a uno, y en la punta la soga se corta en 2002.`,
+      hook: R`Las expectativas sacuden el cambio; fijás si sos área óptima o si no confían en vos, pero ojo con la soga.`
+    }
+  },
+  /* ================= SACHS Y LARRAÍN, CAPÍTULO 9 =================
+     Ojo: E = unidades de moneda nacional por unidad de moneda extranjera (si sube, depreciación).
+     Palacio: la Terminal D de Ezeiza, un hangar con el modelo dibujado en el piso. */
+  {
+    id: "t21", src: "sachs", num: "9.1", sec: "Cap. 9, sección 9.1 · ecuación (9.1)",
+    emoji: "🌎", hue: 3, room: null, short: "Demanda agregada abierta",
+    topics: [R`Bienes diferenciados`, R`Tipo de cambio real \(R = EP^*/P\)`, R`\(Q^D = C + I + G + NX\)`, R`Determinantes de la demanda (9.1)`, R`La curva IS en una economía abierta`],
+    title: "La demanda agregada en una economía abierta",
+    lead: R`El capítulo arma el modelo Mundell-Fleming: IS-LM más la movilidad del capital. El primer paso es sumarle el comercio a la demanda agregada.`,
+    keys: [
+      { label: "Tipo de cambio real", tex: R`R = \frac{E\,P^*}{P}`, cap: R`\(E\) = unidades de moneda nacional por unidad de moneda extranjera. Si \(R\) sube, lo nacional se abarata y suben las exportaciones netas. (Es la inversa del \(\varepsilon\) de Blanchard.)` },
+      { label: "Ecuación (9.1)", tex: R`Q^D = a_1 G - a_2 T + a_3 (Q - T)^f - a_4 i + a_5 Q^* + a_6 R`, cap: R`Sube con \(G\), con el ingreso disponible futuro, con el producto externo \(Q^*\) y con \(R\); baja con \(T\) y con la tasa de interés.` }
+    ],
+    blocks: [
+      { h: "El modelo", items: [
+        R`Cada país produce un bien distinto (<strong>bienes diferenciados</strong>, sustitutos imperfectos): el ejemplo del libro son los Cadillac y los Jaguar.`,
+        R`La demanda agregada es el gasto interno más las exportaciones netas: \(Q^D = C + I + G + NX\). \(NX\) sube con \(R\): si el bien extranjero se encarece, se compran más bienes nacionales.`
+      ] },
+      { h: "La curva IS abierta", items: [
+        R`Relación negativa entre la tasa de interés y la demanda agregada, como en una economía cerrada.`,
+        R`Se desplaza a la derecha si sube \(G\), \(Q^*\) o \(R\) (una depreciación real), o si bajan los impuestos.`
+      ] }
+    ],
+    palaceName: "Terminal D · Puesto 1: el hangar del modelo",
+    palace: {
+      llegada: R`La Terminal D es un hangar gigante. En el piso está dibujado el modelo Mundell-Fleming con cintas de colores: la IS, la LM y una línea horizontal que dice MC.`,
+      stations: [
+        { where: R`En la puerta del hangar`,
+          see: R`Un cartel: «Acá \(E\) son pesos por dólar, como en Barro. Si \(E\) sube, nos depreciamos».`,
+          means: R`Convención de Sachs y Larraín: \(E\) = moneda nacional por unidad de extranjera, y \(R = EP^*/P\).` },
+        { where: R`Dos autos estacionados en el hangar`,
+          see: R`Un Cadillac y un Jaguar: parecidos, pero no iguales. La gente elige según cuál esté más barato.`,
+          means: R`<strong>Bienes diferenciados:</strong> el bien nacional y el extranjero son sustitutos imperfectos.` },
+        { where: R`El mostrador de la entrada`,
+          see: R`La cuenta de la demanda: lo que gastan los de acá, más lo que exportamos, menos lo que importamos.`,
+          means: R`\(Q^D = C + I + G + NX\), con \(NX\) creciente en \(R\).` },
+        { where: R`La cinta IS, en bajada`,
+          see: R`Un turista la empuja a la derecha cada vez que el bien nacional se abarata (sube \(R\)), cuando el Gobierno gasta (\(G\)) o cuando el resto del mundo crece (\(Q^*\)).`,
+          means: R`La IS abierta se corre a la derecha con \(G\), \(Q^*\), \(R\) o una baja de \(T\).` }
+      ],
+      story: R`Entrás al hangar D y el cartel te avisa que acá \(E\) son pesos por dólar. Ves el Cadillac y el Jaguar (bienes distintos), el mostrador suma gasto interno y exportaciones netas, y la cinta IS se corre a la derecha cada vez que lo nuestro se abarata, el Gobierno gasta o el mundo crece.`,
+      hook: R`En el hangar D, \(E\) son pesos por dólar: si \(R\) sube, lo nuestro se abarata y la IS se corre.`
+    }
+  },
+  {
+    id: "t22", src: "sachs", num: "9.2 y 9.3", sec: "Cap. 9, secciones 9.2 y 9.3 · ecuación (9.2)",
+    emoji: "⚓", hue: 4, room: null, short: "Tipo fijo y movilidad perfecta",
+    topics: [R`Curva de movilidad del capital: \(i = i^*\)`, R`La LM se vuelve endógena`, R`Política monetaria inútil`, R`Política fiscal muy eficaz`, R`Devaluación`, R`Controles de capitales`],
+    title: "Tipo de cambio fijo con perfecta movilidad del capital",
+    lead: R`Con libre movilidad del capital y tipo de cambio fijo, el banco central no puede elegir a la vez la oferta monetaria y el tipo de cambio.`,
+    keys: [
+      { label: "Movilidad del capital, MC (9.2)", tex: R`i = i^*`, cap: R`Si no se espera una devaluación, la tasa interna no puede despegarse de la mundial: el equilibrio está donde se cruzan IS, LM y MC.` }
+    ],
+    blocks: [
+      { h: "Expansión monetaria", items: [
+        R`El banco central compra bonos: la LM se corre a la derecha y la tasa tiende a bajar. La gente compra activos externos, presiona para depreciar y el banco central vende reservas y retira moneda.`,
+        R`La LM vuelve a su lugar: no cambian ni el producto, ni los precios, ni el tipo de cambio; solo <strong>se pierden reservas</strong>. Con tipo fijo, <strong>la LM es endógena</strong>.`
+      ] },
+      { h: "Expansión fiscal", items: [
+        R`Sube \(G\): la IS se corre a la derecha y la tasa tiende a subir. Entra capital, el banco central compra divisas y emite: la LM acompaña.`,
+        R`La demanda sube mucho porque no hay suba de tasa que desplace inversión. Sube el producto (y los precios, salvo con oferta keynesiana extrema) y suben las reservas.`,
+        R`Si el país es grande (EE.UU.), su expansión fiscal sube la tasa mundial y el efecto es menor.`
+      ] },
+      { h: "Devaluación y controles de capitales", items: [
+        R`<strong>Devaluación</strong> (sube \(E\)): sube \(R\), suben las exportaciones netas, la IS se corre a la derecha y la LM acompaña con más reservas. Es muy eficaz para subir la demanda.`,
+        R`<strong>Controles de capitales:</strong> desaparece la MC, la tasa interna puede diferir de la mundial y la política monetaria vuelve a funcionar como en una economía cerrada.`
+      ] }
+    ],
+    palaceName: "Terminal D · Puesto 2: la cinta MC atornillada al piso",
+    palace: {
+      llegada: R`En el hangar, la cinta MC (horizontal) está atornillada al piso a la altura de la tasa mundial. Al lado está la caja fuerte de reservas del banco central, y sobre la caja, un ancla ⚓: el tipo de cambio es fijo.`,
+      stations: [
+        { where: R`La cinta LM`,
+          see: R`El banco central la empuja a la derecha (emite). La gente agarra esos pesos, los cambia por dólares en la caja fuerte y la LM vuelve sola a su lugar.`,
+          means: R`Monetaria con tipo fijo: <strong>no hace nada</strong>, salvo perder reservas. La LM es endógena.` },
+        { where: R`La cinta IS`,
+          see: R`El Gobierno la empuja a la derecha (gasta más). Entran dólares, el banco central emite para que no se aprecie y la LM se corre detrás.`,
+          means: R`Fiscal con tipo fijo: <strong>muy eficaz</strong>. Suben el producto y las reservas.` },
+        { where: R`El cartel del tipo de cambio`,
+          see: R`El banco central lo sube de un saque (devalúa): lo nacional se abarata, la IS se corre a la derecha y la LM la sigue.`,
+          means: R`<strong>Devaluación:</strong> sube \(R\), suben las exportaciones netas y sube la demanda.` },
+        { where: R`La puerta del hangar`,
+          see: R`Ponen una barrera que dice «control de capitales» y la cinta MC se despega del piso.`,
+          means: R`Con controles, la tasa interna puede diferir de la mundial y la política monetaria vuelve a funcionar.` }
+      ],
+      story: R`Con la MC atornillada y el ancla puesta, la LM que empuja el banco central vuelve sola a su lugar y la caja pierde dólares; la IS que empuja el Gobierno arrastra a la LM y la caja gana dólares; devaluar empuja la IS; y si cierran la puerta con un control de capitales, la MC se suelta.`,
+      hook: R`Con la MC atornillada: la LM rebota, la IS manda y devaluar empuja.`
+    }
+  },
+  {
+    id: "t23", src: "sachs", num: "9.4 y 9.5", sec: "Cap. 9, secciones 9.4 y 9.5 · tabla 9.1",
+    emoji: "🎈", hue: 1, room: null, short: "Tipo flexible y tabla 9.1",
+    topics: [R`La IS se vuelve endógena`, R`Expansión fiscal: desplazamiento total por exportaciones netas`, R`Expansión monetaria muy eficaz`, R`Tabla 9.1: fijo contra flexible`, R`EE.UU. a comienzos de los 80`],
+    title: "Tipo de cambio flexible y comparación de políticas",
+    lead: R`Con tipo flexible, el tipo de cambio deja de ser un instrumento y se mueve solo. Así como con tipo fijo la LM era endógena, ahora la endógena es la IS.`,
+    keys: [
+      { label: "Con tipo flexible", tex: R`i = i^*, \qquad Q^D = C + I + G + NX(R)`, cap: R`El banco central controla la oferta monetaria (la LM es exógena); el tipo de cambio se mueve y arrastra a la IS.` }
+    ],
+    blocks: [
+      { h: "Expansión fiscal", items: [
+        R`Sube \(G\): la tasa tiende a subir, entra capital y la moneda se <strong>aprecia</strong> (baja \(E\)). Caen las exportaciones netas y la IS vuelve a su lugar.`,
+        R`La demanda no cambia: la suba de \(G\) se compensa con una caída igual de \(NX\). Hay <strong>desplazamiento total</strong>, pero de exportaciones netas, no de inversión.`,
+        R`Ejemplo: EE.UU. a comienzos de los 80 (primer gobierno de Reagan): más gasto militar y menos impuestos, tasas más altas, dólar apreciado y caída de las exportaciones netas.`
+      ] },
+      { h: "Expansión monetaria", items: [
+        R`La LM se corre a la derecha, la tasa tiende a bajar, sale capital y la moneda se deprecia (sube \(E\)). Suben las exportaciones netas y la IS se corre hasta cruzar la nueva LM en \(i = i^*\).`,
+        R`En una economía chica y abierta, la política monetaria actúa por el tipo de cambio, no por la tasa de interés.`
+      ] },
+      { h: "Tabla 9.1: economía pequeña con perfecta movilidad del capital", table: {
+        head: ["Política", "Q", "P", "R*", "E"],
+        rows: [
+          ["Expansión monetaria con E fijo", "0", "0", "−", "0"],
+          ["Expansión monetaria con E flexible", "+", "+", "0", "+"],
+          ["Expansión fiscal con E fijo", "+", "+", "+", "0"],
+          ["Expansión fiscal con E flexible", "0", "0", "0", "−"],
+          ["Devaluación con E fijo", "+", "+", "+", "+"]
+        ] } },
+      { h: "Cómo leer la tabla", items: [
+        R`\(Q\): producto; \(P\): nivel de precios; \(R^*\): reservas internacionales; \(E\): tipo de cambio (+ es depreciación). La tabla del libro tiene las mismas celdas, con las políticas en columnas.`,
+        R`La política fiscal es máxima con tipo fijo y nula con flexible; la monetaria, exactamente al revés.`,
+        R`Si el país es grande (EE.UU., Japón, la Unión Europea), mueve la tasa mundial y los resultados se suavizan.`
+      ] }
+    ],
+    palaceName: "Terminal D · Puesto 3: el globo suelto en el hangar",
+    palace: {
+      llegada: R`En la otra punta del hangar la cinta MC sigue atornillada, pero el tipo de cambio ahora es un globo 🎈 suelto que sube y baja solo.`,
+      stations: [
+        { where: R`La cinta IS`,
+          see: R`El Gobierno la empuja a la derecha. Entran dólares, el globo baja (apreciación) y los exportadores se quedan sin clientes: la IS vuelve a donde estaba.`,
+          means: R`Fiscal con tipo flexible: <strong>no sirve</strong>; el gasto desplaza exportaciones netas.` },
+        { where: R`Un póster de 1981 en la pared`,
+          see: R`Reagan con un tanque y un dólar musculoso que espanta a los exportadores.`,
+          means: R`EE.UU. a comienzos de los 80: déficit fiscal, dólar apreciado y exportaciones netas en caída.` },
+        { where: R`La cinta LM`,
+          see: R`El banco central la empuja a la derecha. Se van capitales, el globo sube (depreciación), los exportadores venden más y la IS va a buscar a la LM.`,
+          means: R`Monetaria con tipo flexible: <strong>muy eficaz</strong>; actúa por el tipo de cambio.` },
+        { where: R`La pizarra de la salida`,
+          see: R`La tabla 9.1 escrita con tiza y, abajo, en grande: «fijo = fiscal; flexible = monetaria».`,
+          means: R`Resumen de Mundell-Fleming para un país chico con movilidad perfecta del capital.` }
+      ],
+      story: R`Con el globo suelto, cuando el Gobierno empuja la IS, el globo baja, los exportadores pierden clientes y la IS vuelve (como Reagan en el póster). Cuando el banco central empuja la LM, el globo sube, los exportadores venden más y la IS sigue a la LM. En la pizarra, la tabla 9.1 lo resume.`,
+      hook: R`Globo suelto: el gasto se lo comen las exportaciones y la emisión lo levanta. Fijo, fiscal; flexible, monetaria.`
+    }
+  },
+  {
+    id: "t24", src: "sachs", num: "9.6 y 9.7", sec: "Cap. 9, secciones 9.6 y 9.7 · Perspectiva global 9.1",
+    emoji: "💶", hue: 5, room: null, short: "Evidencia y elección del régimen",
+    topics: [R`Modelo MULTIMOD del FMI`, R`Efectos de repercusión`, R`Ventajas del tipo fijo y del flexible`, R`Área monetaria óptima (Mundell, 1961)`, R`La Unión Monetaria Europea y el euro`],
+    title: "Evidencia empírica y elección del régimen cambiario",
+    lead: R`Los modelos grandes confirman en lo cualitativo al Mundell-Fleming simple. Después, el capítulo discute cuándo conviene cada régimen.`,
+    keys: [
+      { label: "Criterios de Maastricht (entre otros)", tex: R`\frac{\text{déficit}}{\text{PIB}} \le 3\,\%, \qquad \frac{\text{deuda}}{\text{PIB}} \le 60\,\%`, cap: R`Déficit fiscal y deuda pública: condiciones para entrar en la Unión Monetaria Europea.` }
+    ],
+    blocks: [
+      { h: "Evidencia (MULTIMOD, del FMI)", items: [
+        R`Una baja de impuestos de cinco años en EE.UU. que sube la deuda/PIB 10 puntos: el producto sube 0,7 % el primer año y 0,3 % el segundo, y empieza a caer después del tercero.`,
+        R`La tasa real sube 0,6 puntos en EE.UU. y 0,2 en el resto del mundo; el capital cae 1,2 % en EE.UU. y afuera. El dólar real se aprecia 2,2 % el primer año y empeora la cuenta corriente.`,
+        R`El PIB del resto del mundo industrializado sube 0,3 %: hay <strong>efectos de repercusión</strong>, porque las economías son interdependientes.`
+      ] },
+      { h: "¿Fijo o flexible?", items: [
+        R`A favor del fijo (o de una moneda común): tipos de cambio predecibles, menos costos de transacción y disciplina para la política monetaria.`,
+        R`A favor del flexible: más libertad para la política monetaria y una «válvula de escape» ante shocks propios (si cae el precio de lo que exportás, una depreciación ayuda).`,
+        R`<strong>Área monetaria óptima</strong> (Mundell, 1961): conviene compartir moneda entre economías integradas, con shocks parecidos y mercados de bienes y de trabajo bien conectados. Si los shocks son distintos y la integración es baja, conviene que cada una tenga la suya.`
+      ] },
+      { h: "El euro (Perspectiva global 9.1)", items: [
+        R`El tratado de Maastricht (1991) puso condiciones de entrada. El euro empezó el 1 de enero de 1999 con 11 países; los billetes y las monedas circulan desde 2002.`,
+        R`La política monetaria quedó a cargo del Banco Central Europeo, independiente.`,
+        R`Ventajas: menos costos de transacción, sin riesgo cambiario, más integración financiera y señoreaje. Críticas (Feldstein): cada país necesita su propia política monetaria; por ejemplo, España con casi 20 % de desempleo y Holanda en pleno auge.`
+      ] }
+    ],
+    palaceName: "Terminal D · Puesto 4: el laboratorio y la ventanilla del euro",
+    palace: {
+      llegada: R`Al fondo del hangar hay un laboratorio con una computadora enorme que dice MULTIMOD y, al lado, una ventanilla con un billete de euro 💶 gigante pegado en el vidrio.`,
+      stations: [
+        { where: R`La computadora MULTIMOD`,
+          see: R`Simula que EE.UU. baja impuestos: el producto sube 0,7 % y después se desinfla, la tasa sube 0,6 puntos y el dólar se pone musculoso (2,2 %).`,
+          means: R`Evidencia: la política fiscal de un país grande sube las tasas en todo el mundo y aprecia su moneda.` },
+        { where: R`La pantalla de al lado`,
+          see: R`Europa y Japón crecen un poquito (0,3 %) por el empujón yanqui.`,
+          means: R`<strong>Efectos de repercusión:</strong> las economías son interdependientes.` },
+        { where: R`La ventanilla del euro`,
+          see: R`Un patovica con una lista en la puerta: «déficit hasta 3 %, deuda hasta 60 %». En 1999 pasan once países.`,
+          means: R`Criterios de Maastricht y nacimiento del euro, con un Banco Central Europeo independiente.` },
+        { where: R`En la fila de la ventanilla`,
+          see: R`Un español sin laburo pide tasas bajas y un holandés en pleno auge pide tasas altas, pero hay una sola perilla para los dos.`,
+          means: R`El problema del área monetaria: una sola política monetaria para shocks distintos (la crítica de Feldstein).` }
+      ],
+      story: R`En el laboratorio, MULTIMOD te muestra que la baja de impuestos yanqui sube el producto un rato, sube las tasas en todo el mundo, infla el dólar y empuja un poco a los demás. En la ventanilla del euro, el patovica deja pasar solo a los que cumplen Maastricht, y en la fila el español y el holandés se pelean por la única perilla.`,
+      hook: R`La computadora dice «todo se contagia»; la ventanilla del euro, «una perilla para todos».`
+    }
+  },
+  /* ================= MUNDELL (1963) =================
+     Palacio: la sala VIP de los papers clásicos, en la barra de Mundell. */
+  {
+    id: "t25", src: "mundell", num: "1", sec: "Secciones I a III del paper",
+    emoji: "🎈", hue: 3, room: null, short: "Movilidad perfecta y tipo flexible",
+    topics: [R`Supuesto: movilidad perfecta del capital`, R`Supuestos del modelo`, R`Política monetaria con tipo flexible`, R`Compra de divisas`, R`Política fiscal con tipo flexible`],
+    title: "Movilidad perfecta del capital y tipo de cambio flexible",
+    lead: R`Mundell (1963) lleva al extremo la integración financiera de los años 60: supone que un país no puede mantener una tasa de interés distinta de la del resto del mundo.`,
+    keys: [
+      { label: "Supuesto clave", tex: R`i = i^{\text{mundial}}`, cap: R`Todos los títulos son sustitutos perfectos y se espera que el tipo de cambio actual se mantenga.` }
+    ],
+    blocks: [
+      { h: "El modelo", items: [
+        R`Desempleo, salarios nominales fijos y precio constante del producto local.`,
+        R`El ahorro y los impuestos suben con el ingreso; la balanza comercial depende del ingreso y del tipo de cambio; la inversión, de la tasa; la demanda de dinero, del ingreso y de la tasa.`,
+        R`País chico: no mueve el ingreso ni la tasa del resto del mundo.`,
+        R`<strong>Política monetaria</strong> = compra de títulos en el mercado abierto. <strong>Política fiscal</strong> = más gasto financiado con deuda, sin cambiar la cantidad de dinero.`
+      ] },
+      { h: "Con tipo de cambio flexible", items: [
+        R`<strong>Monetaria:</strong> la compra de títulos presiona la tasa a la baja; sale capital, el tipo de cambio se deprecia, mejora la balanza comercial y sube el ingreso, en proporción a la cantidad de dinero. Es <strong>muy eficaz</strong>, pero no por la tasa: por el tipo de cambio.`,
+        R`Comprar divisas con moneda local funciona igual: también es política monetaria.`,
+        R`<strong>Fiscal:</strong> el gasto presiona la tasa al alza; entra capital, el tipo de cambio se aprecia y la caída de la balanza comercial compensa exactamente al gasto. El ingreso <strong>no cambia</strong>: el déficit fiscal termina igual al déficit comercial.`
+      ] }
+    ],
+    palaceName: "Sala VIP · La barra de Mundell",
+    palace: {
+      llegada: R`Subís a la sala VIP de Ezeiza, donde están los autores de los papers clásicos. En la barra está Mundell (1963). Arriba de la barra hay un termómetro que marca la tasa de interés del mundo.`,
+      stations: [
+        { where: R`El termómetro arriba de la barra`,
+          see: R`Está soldado al termómetro de afuera: adentro de la sala siempre marca lo mismo que en la calle.`,
+          means: R`<strong>Supuesto de Mundell:</strong> movilidad perfecta del capital, la tasa local es la tasa mundial.` },
+        { where: R`La canilla de billetes de la barra`,
+          see: R`El banco central abre la canilla. Los billetes que sobran se van del país, el globo 🎈 del tipo de cambio sube (depreciación) y los exportadores salen a vender.`,
+          means: R`<strong>Monetaria con tipo flexible:</strong> muy eficaz, por la depreciación y las exportaciones.` },
+        { where: R`La caja registradora`,
+          see: R`El mozo compra dólares con billetes nuevos: pasa exactamente lo mismo que con la canilla.`,
+          means: R`Comprar divisas también es política monetaria.` },
+        { where: R`La mesa del Gobierno`,
+          see: R`El Gobierno paga una ronda para todos (más gasto). Entran capitales, el globo baja (apreciación) y nadie de afuera compra lo nuestro: la ronda termina pagada con déficit comercial.`,
+          means: R`<strong>Fiscal con tipo flexible:</strong> el ingreso no cambia; el déficit fiscal termina igual al déficit comercial.` }
+      ],
+      story: R`En la barra, el termómetro está soldado al de afuera. Cuando el banco central abre la canilla de billetes (o compra dólares en la caja), el globo sube y los exportadores venden: el ingreso crece. Cuando el Gobierno paga la ronda, el globo baja, se importa más y el ingreso queda igual.`,
+      hook: R`Con tipo flexible: la canilla de billetes sí, la ronda del Gobierno no.`
+    }
+  },
+  {
+    id: "t26", src: "mundell", num: "2", sec: "Secciones III a V del paper",
+    emoji: "🚰", hue: 4, room: null, short: "Tipo fijo y esterilización",
+    topics: [R`Política monetaria con tipo fijo`, R`Política fiscal con tipo fijo`, R`Déficit financiado por el banco central`, R`Esterilización`, R`Conclusiones (y Canadá)`],
+    title: "Tipo de cambio fijo, esterilización y conclusiones",
+    lead: R`Con tipo fijo los resultados se dan vuelta: la política monetaria no mueve el ingreso y la fiscal se vuelve poderosa.`,
+    keys: [
+      { label: "El resultado de Mundell", tex: R`\begin{array}{l|cc} &amp; \text{Fijo} &amp; \text{Flexible} \\ \hline \text{Monetaria} &amp; 0 &amp; \text{fuerte} \\ \text{Fiscal} &amp; \text{fuerte} &amp; 0 \end{array}`, cap: R`Efecto de cada política sobre el ingreso y el empleo, con movilidad perfecta del capital (0 = sin efecto).` }
+    ],
+    blocks: [
+      { h: "Con tipo de cambio fijo", items: [
+        R`<strong>Monetaria:</strong> la compra de títulos presiona la tasa a la baja, sale capital y el banco central vende divisas para sostener el tipo de cambio, con lo que recompra la moneda que emitió. <strong>Único efecto: pierde reservas</strong> por el mismo monto de la compra.`,
+        R`<strong>Fiscal:</strong> el gasto sube el ingreso por el multiplicador; sube la demanda de dinero, entra capital, el banco central compra divisas y la cantidad de dinero sube «por la puerta trasera». Es <strong>muy eficaz</strong> (valen las conclusiones keynesianas) y las reservas suben.`,
+        R`Si el banco central financia el déficit fiscal, las reservas caen al mismo ritmo que el déficit.`
+      ] },
+      { h: "Esterilización", items: [
+        R`Esterilizar es compensar con títulos el efecto que la compra o venta de divisas tiene sobre la cantidad de dinero.`,
+        R`Con tipo fijo y movilidad perfecta no tiene sentido: el sistema se vuelve inconsistente y termina sin reservas o rompiendo el tipo de cambio fijo.`,
+        R`La imagen de Mundell: emitir con tipo fijo es echar agua en una pileta llena hasta el borde, que se derrama tan rápido como sale de la canilla. Esterilizar es querer que no se derrame mientras la canilla sigue abierta.`
+      ] },
+      { h: "Conclusiones", items: [
+        R`Con tipo fijo, la política monetaria solo cambia las reservas; con flexible, la fiscal solo cambia la balanza comercial.`,
+        R`Para Canadá: con el tipo flexible de antes, el multiplicador fiscal parecía bajo; con el tipo fijo nuevo, bajar el déficit fiscal puede pegarle fuerte al empleo.`,
+        R`Las conclusiones son «blanco y negro»: con movilidad imperfecta, la realidad es gris oscuro y gris claro.`
+      ] }
+    ],
+    palaceName: "Sala VIP · La pileta de la barra de Mundell",
+    palace: {
+      llegada: R`En la misma barra hay una pileta 🚰 llena de agua hasta el borde, con un cartelito: «tipo de cambio fijo».`,
+      stations: [
+        { where: R`La canilla de la pileta`,
+          see: R`El banco central abre la canilla (compra títulos). El agua se derrama por los bordes al mismo ritmo que entra: el nivel no sube.`,
+          means: R`Monetaria con tipo fijo: la cantidad de dinero vuelve a su nivel y se pierden reservas (lo que se derrama).` },
+        { where: R`El mozo con un trapo`,
+          see: R`Intenta frenar el derrame con las manos mientras la canilla sigue abierta. Termina empapado y con la caja de reservas vacía.`,
+          means: R`<strong>Esterilización:</strong> no tiene sentido; termina sin reservas o rompiendo el tipo fijo.` },
+        { where: R`La mesa del Gobierno`,
+          see: R`El Gobierno paga la ronda (más gasto). La pileta se agranda sola para que entre más agua: entran capitales y el dinero sube por la puerta trasera.`,
+          means: R`Fiscal con tipo fijo: <strong>muy eficaz</strong>; suben el ingreso y las reservas.` },
+        { where: R`El cuadro de la pared`,
+          see: R`Un cuadro en blanco y negro con la tablita: fijo = fiscal; flexible = monetaria. Abajo, en letra chica: «en la realidad es gris».`,
+          means: R`La conclusión de Mundell, con la advertencia de que la movilidad perfecta es un extremo.` }
+      ],
+      story: R`La pileta está llena: la canilla del banco central solo hace que el agua se derrame (reservas que se van), el mozo que quiere frenarla con un trapo termina empapado (esterilizar no sirve) y la ronda del Gobierno agranda la pileta. El cuadro en blanco y negro resume todo y avisa que la realidad es gris.`,
+      hook: R`Pileta llena: la canilla derrama, el trapo no sirve y la ronda del Gobierno agranda la pileta.`
+    }
+  },
+  /* ================= FLEMING (1962) =================
+     Palacio: la sala VIP, en el escritorio de Fleming. */
+  {
+    id: "t27", src: "fleming", num: "1", sec: "Modelo y política presupuestaria",
+    emoji: "🏛️", hue: 2, room: null, short: "Política fiscal: fijo vs. flotante",
+    topics: [R`El modelo keynesiano de Fleming`, R`Expansión fiscal con tipo fijo`, R`Expansión fiscal con tipo flotante`, R`El papel de la movilidad del capital`],
+    title: "La política fiscal con tipo fijo y con tipo flotante",
+    lead: R`Fleming (FMI, 1962) compara la eficacia de la política monetaria y la fiscal según el régimen cambiario. A diferencia de Mundell, la movilidad del capital no es perfecta: es un parámetro que puede tomar cualquier valor.`,
+    keys: [
+      { label: "Política monetaria «constante»", tex: R`M = \bar M`, cap: R`Para aislar el efecto de la política fiscal, Fleming deja fija la cantidad de dinero.` }
+    ],
+    blocks: [
+      { h: "El modelo", items: [
+        R`Keynesiano simple: impuestos e ingreso privado suben con el ingreso; el gasto privado sube con el ingreso y baja con la tasa; la tasa sube con la velocidad del dinero (ingreso sobre dinero).`,
+        R`La balanza comercial baja con el gasto interno y sube con el precio de la divisa; la cuenta capital mejora cuando sube la tasa.`,
+        R`Todo en unidades de salario, con salarios fijos y, al principio, sin especulación cambiaria.`
+      ] },
+      { h: "Expansión fiscal con tipo fijo", items: [
+        R`Sube el ingreso y empeora la cuenta corriente (más importaciones). Con el dinero constante, la tasa sube y mejora la cuenta capital.`,
+        R`El balance de pagos total puede mejorar o empeorar: es más probable que empeore cuanto más alta la propensión a importar y menos sensible sea el capital a la tasa. Si empeora, la falta de reservas puede obligar a abandonar la política.`
+      ] },
+      { h: "Expansión fiscal con tipo flotante", items: [
+        R`Si con tipo fijo el balance de pagos empeoraba, con flotante el tipo de cambio se deprecia y el estímulo es <strong>mayor</strong> que con tipo fijo.`,
+        R`Si con tipo fijo mejoraba (capital muy sensible a la tasa, como en Canadá), con flotante el tipo de cambio se aprecia y el estímulo es <strong>menor</strong>.`,
+        R`Caso extremo: con capital infinitamente sensible a la tasa, la apreciación anula todo el efecto y el ingreso no sube (el resultado de Mundell). Con la política fiscal, el resultado es <strong>ambiguo</strong>.`
+      ] }
+    ],
+    palaceName: "Sala VIP · El escritorio de Fleming",
+    palace: {
+      llegada: R`En un escritorio de la sala VIP está Fleming, economista del FMI (1962), con una balanza de dos platos: en uno, la cuenta corriente; en el otro, la cuenta capital.`,
+      stations: [
+        { where: R`La perilla del dinero, sobre el escritorio`,
+          see: R`Tiene una cinta que dice «no tocar»: la cantidad de dinero queda fija.`,
+          means: R`Para medir la política fiscal sola, Fleming deja la cantidad de dinero constante.` },
+        { where: R`El plato de la cuenta corriente`,
+          see: R`El Gobierno gasta más: suben el ingreso y las importaciones, y el plato baja.`,
+          means: R`Expansión fiscal: empeora la cuenta corriente.` },
+        { where: R`El plato de la cuenta capital`,
+          see: R`Como la plata no alcanza, la tasa sube y entran capitales: el plato sube. Según cuánto entre, la balanza se inclina para un lado o para el otro.`,
+          means: R`El balance de pagos total es ambiguo: depende de la propensión a importar y de la sensibilidad del capital a la tasa.` },
+        { where: R`La ventana con el cartel del tipo de cambio`,
+          see: R`Si la balanza se inclina al déficit, el cartel flota hacia arriba (depreciación) y el ingreso sube más. Si se inclina al superávit, se aprecia y el ingreso sube menos. Con capital infinitamente sensible, no sube nada.`,
+          means: R`Fiscal con tipo flotante: puede ser más o menos eficaz que con tipo fijo.` }
+      ],
+      story: R`Con la perilla del dinero bloqueada, el Gobierno gasta: el plato de la cuenta corriente baja y el de la cuenta capital sube. Para dónde se incline la balanza decide si, con tipo flotante, el cartel se deprecia y ayuda o se aprecia y frena.`,
+      hook: R`Dinero quieto: el gasto baja un plato y sube el otro; según para dónde se incline, flotar ayuda o frena.`
+    }
+  },
+  {
+    id: "t28", src: "fleming", num: "2", sec: "Política monetaria, efectos relativos y especulación",
+    emoji: "💵", hue: 5, room: null, short: "Política monetaria y eficacia relativa",
+    topics: [R`Expansión monetaria con tipo fijo`, R`Expansión monetaria con tipo flotante`, R`Eficacia relativa de las dos políticas`, R`Sostenibilidad`, R`Especulación cambiaria`],
+    title: "La política monetaria, la eficacia relativa y la especulación",
+    lead: R`La conclusión central de Fleming: con tipo flotante, la política monetaria gana eficacia frente a la fiscal.`,
+    keys: [
+      { label: "Resultado central", tex: R`\left.\frac{\Delta Y_M}{\Delta Y_G}\right|_{\text{flotante}} \;\ge\; \left.\frac{\Delta Y_M}{\Delta Y_G}\right|_{\text{fijo}}`, cap: R`\(\Delta Y_M\): efecto de la expansión monetaria; \(\Delta Y_G\): de la fiscal. Salvo casos extremos, la desigualdad es estricta: la monetaria rinde relativamente más con tipo flotante.` }
+    ],
+    blocks: [
+      { h: "Expansión monetaria", items: [
+        R`Más dinero baja la tasa y sube el gasto privado: sube el ingreso. Empeoran la cuenta corriente (más importaciones) y la cuenta capital (tasa más baja): el balance de pagos empeora <strong>siempre</strong>.`,
+        R`Con tipo fijo, solo se sostiene mientras haya reservas.`,
+        R`Con tipo flotante, el tipo de cambio se deprecia, mejora la balanza comercial y el ingreso sube <strong>más</strong>. Siempre es más expansiva con flotante, y más cuanto más sensible sea el capital a la tasa. Con capital infinitamente sensible, el ingreso sube en la misma proporción que el dinero.`
+      ] },
+      { h: "Eficacia relativa", items: [
+        R`Si con tipo fijo las dos políticas tienen el mismo efecto, con flotante la monetaria nunca rinde menos y en general rinde más: como baja la tasa, necesita más depreciación, y la depreciación expande.`,
+        R`Si el capital no responde a la tasa, da lo mismo usar una u otra.`,
+        R`<strong>Sostenibilidad:</strong> con tipo fijo, la expansión monetaria dura lo que duran las reservas; la fiscal se puede sostener si el capital es sensible a la tasa. Con flotante, las dos se pueden sostener.`
+      ] },
+      { h: "Especulación", items: [
+        R`Si la especulación cambiaria es <strong>estabilizadora</strong> (como en el Canadá de los 50), amortigua los movimientos del tipo de cambio y achica la ventaja de la política monetaria con tipo flotante.`
+      ] }
+    ],
+    palaceName: "Sala VIP · El escritorio de Fleming, segunda parte",
+    palace: {
+      llegada: R`Fleming deja la balanza quieta y ahora le saca la cinta de «no tocar» a la perilla del dinero.`,
+      stations: [
+        { where: R`La perilla del dinero`,
+          see: R`La gira: baja la tasa, la gente gasta más, pero los dos platos de la balanza bajan a la vez.`,
+          means: R`Expansión monetaria: el balance de pagos empeora siempre.` },
+        { where: R`El cajón de reservas, abajo del escritorio`,
+          see: R`Con el cartel de tipo fijo, la fiesta dura mientras haya dólares en el cajón. Cuando se vacía, se termina.`,
+          means: R`Con tipo fijo, la expansión monetaria dura lo que duran las reservas.` },
+        { where: R`El cartel del tipo de cambio, ahora flotante`,
+          see: R`El cartel sube (depreciación), los extranjeros compran más y el ingreso sube todavía más.`,
+          means: R`Con tipo flotante, la monetaria es siempre más expansiva que con tipo fijo.` },
+        { where: R`La pizarra de Fleming`,
+          see: R`Escribió: «monetaria / fiscal: más con flotante que con fijo». Abajo, un canadiense de los 50 con un paraguas que amortigua las olas del tipo de cambio.`,
+          means: R`Eficacia relativa de la monetaria con tipo flotante, y especulación estabilizadora que achica esa ventaja.` }
+      ],
+      story: R`Fleming gira la perilla del dinero y los dos platos bajan juntos. Con tipo fijo, la fiesta se termina cuando se vacía el cajón de reservas; con flotante, el cartel se deprecia y el ingreso sube más. En la pizarra anota la conclusión y dibuja al canadiense del paraguas.`,
+      hook: R`Girar la perilla del dinero siempre baja los dos platos; con flotante, el tipo de cambio te lo devuelve con creces.`
+    }
+  },
+  /* ================= OBSTFELD Y ROGOFF (1995) =================
+     Palacio: el ventanal de la sala VIP, mirando el espejismo de la pista. */
+  {
+    id: "t29", src: "obstfeld", num: "1", sec: "Secciones 1 y 2 del paper",
+    emoji: "🏜️", hue: 2, room: null, short: "Cómo funcionan, costos y beneficios",
+    topics: [R`Qué es un tipo fijo: bandas y fijación reptante`, R`La impotencia de la política monetaria`, R`La intervención esterilizada`, R`Las ventajas del tipo fijo`],
+    title: "Tipos de cambio fijos: cómo funcionan, sus costos y sus beneficios",
+    lead: R`La tesis del paper: con mercados de capitales globales, sostener un tipo fijo es muy difícil, y casi no hay punto medio cómodo entre flotar y adoptar una moneda común.`,
+    keys: [
+      { label: "La lección clave", tex: R`\text{tipo fijo} + \text{capital móvil} \;\Rightarrow\; i = i^*`, cap: R`Y entonces no hay política monetaria propia: «un gobierno que fija el tipo de cambio pierde el control de la oferta monetaria».` }
+    ],
+    blocks: [
+      { h: "Qué es un tipo fijo", items: [
+        R`La autoridad monetaria anuncia precios de compra y venta de su moneda y promete operar en cantidades ilimitadas a esos precios. Suele haber bandas: ±1 % en Bretton Woods y ±2,25 % en el SME antes de agosto de 1993.`,
+        R`<strong>Fijación reptante</strong> (común en países con inflación alta): pequeñas devaluaciones anunciadas. Comparte los problemas del tipo fijo común.`
+      ] },
+      { h: "Los costos", items: [
+        R`Ante un shock (por ejemplo, cae la demanda de exportaciones) y con precios rígidos, no se puede bajar la tasa: con tipo fijo y capital móvil, la tasa interna es la de afuera. Si el banco central emite, la gente cambia el dinero que le sobra por divisas y se pierden reservas.`,
+        R`La política fiscal es lenta, y los aranceles traen ineficiencias y represalias.`,
+        R`<strong>Intervención esterilizada</strong> (vender reservas y recomprar bonos para no tocar la base monetaria): «humo y espejos». Como los bonos de distintas monedas son casi sustitutos, casi no mueve ni la tasa ni el tipo de cambio.`
+      ] },
+      { h: "Las ventajas", items: [
+        R`Menos volatilidad: la incertidumbre cambiaria desalienta el comercio y la inversión (uno de los motivos del euro).`,
+        R`<strong>Disciplina:</strong> atarse a una moneda de inflación baja ayuda a resistir la tentación de expandir de más.`,
+        R`<strong>Ancla</strong> para desinflar después de una inflación alta: fija los precios de los bienes comerciables y orienta las expectativas.`
+      ] }
+    ],
+    palaceName: "Ventanal de la sala VIP · El espejismo de la pista (1)",
+    palace: {
+      llegada: R`Desde el ventanal de la sala VIP mirás la pista. Con el calor, a lo lejos aparece un espejismo 🏜️: un cartel que dice «tipo de cambio fijo para siempre». Cuanto más te acercás, más se aleja.`,
+      stations: [
+        { where: R`El cartel del espejismo`,
+          see: R`Dice «compro y vendo dólares a este precio, en cantidades ilimitadas», con una banda finita dibujada alrededor.`,
+          means: R`Qué es un tipo fijo, con sus bandas; la fijación reptante es la versión con miniajustes anunciados.` },
+        { where: R`La torre de la tasa, al lado del cartel`,
+          see: R`Marca la misma tasa que afuera y no hay forma de bajarla, aunque los exportadores lloren porque nadie les compra.`,
+          means: R`Con tipo fijo y capital móvil se pierde la política monetaria.` },
+        { where: R`Un mago en la pista`,
+          see: R`Tira humo y pone espejos: vende reservas y recompra bonos. Cuando el humo se va, todo quedó igual.`,
+          means: R`<strong>Intervención esterilizada:</strong> «humo y espejos», casi sin efecto.` },
+        { where: R`Tres pasajeros que igual quieren el cartel`,
+          see: R`Uno odia los sustos del tipo de cambio, otro quiere que lo aten para no gastar de más y el tercero viene de una hiperinflación y busca un ancla.`,
+          means: R`Las ventajas: menos volatilidad, disciplina y un ancla para desinflar.` }
+      ],
+      story: R`El cartel del tipo fijo es un espejismo: cuanto más te acercás, más se aleja. Al lado, la torre deja la tasa clavada en la de afuera, el mago de la esterilización solo tira humo, y tres pasajeros igual lo quieren: por miedo a los sustos, por disciplina o para tener un ancla.`,
+      hook: R`El espejismo del fijo: te clava la tasa, el humo no sirve y lo quieren por miedo, por disciplina o como ancla.`
+    }
+  },
+  {
+    id: "t30", src: "obstfeld", num: "2", sec: "Secciones 3 y 4 del paper",
+    emoji: "🛡️", hue: 6, room: null, short: "Credibilidad y ataques",
+    topics: [R`Las reservas alcanzan: es factible técnicamente`, R`El problema real: objetivos en conflicto`, R`Suecia y el Reino Unido en 1992`, R`México en 1994`, R`Modelos de ataques especulativos`],
+    title: "Por qué es tan difícil fijar: credibilidad y ataques especulativos",
+    lead: R`La plata para defender el tipo de cambio existe. Lo que falta es la voluntad de pagar los costos de usarla.`,
+    keys: [
+      { label: "Defensa con tasas", tex: R`i = i^* + \text{devaluación esperada}`, cap: R`Si el mercado espera una devaluación, defender el tipo fijo exige tasas de corto plazo altísimas.` }
+    ],
+    blocks: [
+      { h: "Técnicamente se puede", items: [
+        R`Mucha gente cree que los mercados son demasiado grandes (más de un billón de dólares por día), pero para defenderse un banco central solo necesita reservas para recomprar la base monetaria.`,
+        R`En septiembre de 1994 casi todos los países de la tabla 1 tenían reservas para recomprar al menos el 80-90 % de su base, y varios (Bélgica, Irlanda, Países Bajos, Noruega, Portugal, Reino Unido y México) más del 100 %. Además, pueden pedir prestado.`
+      ] },
+      { h: "El problema real: objetivos en conflicto", items: [
+        R`Defenderse exige subir mucho las tasas cortas, y eso golpea a los bancos, a los deudores, a la inversión, al empleo y al presupuesto. Prometer que se va a ignorar todo eso no es creíble.`,
+        R`<strong>Suecia (septiembre de 1992):</strong> el Riksbank subió la tasa marginal a un día a 500 % durante cuatro días y ganó la primera batalla, pero la economía quedó más débil; en noviembre dejó flotar la corona.`,
+        R`<strong>Reino Unido (16 de septiembre de 1992):</strong> no quiso subir las tasas (las hipotecas siguen a la tasa de mercado), intervino con más de 70.000 millones de dólares y a las pocas horas dejó flotar la libra.`,
+        R`Creer que una devaluación «por única vez» devuelve la credibilidad es un error: las causas siguen y queda la sospecha de la próxima.`
+      ] },
+      { h: "México, 1994", items: [
+        R`Fijó el peso en diciembre de 1987, pasó a una pauta reptante en 1989 y a una banda en 1991. El peso se apreció en términos reales y el déficit de cuenta corriente llegó a casi 7 % del PBI en 1993 y casi 8 % en 1994.`,
+        R`Gastó 25.000 millones de dólares de reservas y se endeudó en otros 25.000 millones para defender el peso. Devaluó 15 % el 20 de diciembre de 1994, después pasó a flotar y el peso se derrumbó.`,
+        R`Lección: no convenció de su compromiso de largo plazo, y quedó atrapado entre tolerar la sobrevaluación y las tasas altas o devaluar.`
+      ] },
+      { h: "Ataques súbitos", items: [
+        R`Los diferenciales de tasas suelen saltar recién semanas o días antes del ataque.`,
+        R`Los primeros modelos (Krugman, 1979; Flood y Garber, 1984) explican los ataques por los fundamentos. Los más nuevos muestran que las crisis pueden autocumplirse, como una corrida bancaria.`
+      ] }
+    ],
+    palaceName: "Ventanal de la sala VIP · El espejismo de la pista (2)",
+    palace: {
+      llegada: R`Seguís mirando la pista: ahora el cartel del tipo fijo está rodeado de guardias con escudos 🛡️ que lo defienden de un ataque.`,
+      stations: [
+        { where: R`La bóveda al pie del cartel`,
+          see: R`Está llena de reservas: alcanza para recomprar toda la base monetaria.`,
+          means: R`Técnicamente se puede defender: las reservas alcanzan.` },
+        { where: R`El guardia sueco`,
+          see: R`Para espantar a los especuladores sube la tasa a 500 % durante cuatro días. Los echa, pero los bancos y los endeudados quedan hechos pelota, y en noviembre suelta el cartel.`,
+          means: R`Suecia 1992: defenderse con tasas cuesta tanto que deja de ser creíble.` },
+        { where: R`El guardia inglés`,
+          see: R`No quiere subir la tasa porque las hipotecas se le van a las nubes; tira dólares (más de 70.000 millones) y a las pocas horas suelta el cartel.`,
+          means: R`Reino Unido 1992: intervenir sin subir las tasas no alcanzó.` },
+        { where: R`El guardia mexicano`,
+          see: R`Hace años que tiene el peso caro y debe una fortuna afuera (déficit de 7 a 8 % del PBI). Gasta 25.000 millones, pide otros 25.000, devalúa 15 % y el cartel se cae entero.`,
+          means: R`México 1994: sin credibilidad, la sobrevaluación y las tasas terminan en crisis.` },
+        { where: R`Los especuladores`,
+          see: R`Aparecen de golpe, a último momento, como en una corrida bancaria.`,
+          means: R`Ataques súbitos y crisis que se pueden autocumplir.` }
+      ],
+      story: R`La bóveda está llena, así que plata no falta. El sueco sube la tasa a 500 % y gana un rato, pero suelta el cartel; el inglés no se anima a subir la tasa, tira dólares y lo suelta en horas; el mexicano, con el peso caro y una deuda enorme, devalúa y el cartel se cae. Los especuladores aparecen de golpe, como en una corrida.`,
+      hook: R`Plata para defenderse sobra; lo que falta es estómago para las tasas: Suecia 500 %, Londres tira dólares y México se cae.`
+    }
+  },
+  {
+    id: "t31", src: "obstfeld", num: "3", sec: "Secciones 5 a 8 del paper",
+    emoji: "🎯", hue: 1, room: null, short: "Los que fijan y qué hacer en cambio",
+    topics: [R`Los tipos fijos duraderos: una especie en peligro`, R`Hong Kong y la caja de conversión`, R`Zonas objetivo (bandas anchas)`, R`El tipo de cambio en la política monetaria`, R`Conclusiones`],
+    title: "Los pocos que fijan, las zonas objetivo y qué hacer en cambio",
+    lead: R`Si fijar es tan difícil, ¿quién lo logra y qué alternativa queda?`,
+    keys: [
+      { label: "La conclusión", tex: R`\text{flotar} \quad \text{o} \quad \text{moneda común}`, cap: R`Casi no hay un punto medio cómodo entre las dos.` }
+    ],
+    blocks: [
+      { h: "Quiénes fijan", items: [
+        R`A junio de 1995, muy pocos países habían mantenido un tipo fijo (banda de ±2 %) por cinco años o más. Entre las economías con mercados de capitales abiertos: Austria, Hong Kong, Luxemburgo, Países Bajos, Arabia Saudita y Tailandia. El resto son economías muy chicas, petroleras o muy dependientes.`,
+        R`Suelen ser países chicos que se subordinan a la política monetaria del socio grande (Austria y Países Bajos siguen al Bundesbank) y con consenso político sobre el tipo fijo.`,
+        R`Hong Kong tiene caja de conversión con el dólar desde 1983 y reservas de sobra, pero ni eso garantiza nada: depende de la voluntad de usarlas.`
+      ] },
+      { h: "Zonas objetivo («tipo fijo light»)", items: [
+        R`Bandas anchas, como las de ±15 % del SME desde 1993: dan margen y evitan apuestas de un solo lado.`,
+        R`Pero solo postergan el problema: al llegar al borde, la banda tiene los mismos problemas que un tipo fijo. En 1992 se atacaron bandas de 12 % de ancho y en marzo de 1995 España y Portugal devaluaron con bandas de 30 %.`
+      ] },
+      { h: "Qué hacer en cambio", items: [
+        R`Reformar las instituciones monetarias: bancos centrales independientes y metas de inflación (Italia, Francia, Canadá, Chile y Nueva Zelanda).`,
+        R`Usar el precio de un activo (tipo de cambio, tasa, acciones) como ancla nominal es muy problemático: esos precios dependen de expectativas y pueden volverse locos.`,
+        R`El tipo de cambio es un indicador valioso, pero no una meta. Tampoco sirve fijar el tipo de cambio real (puede desanclar la inflación), y la PPA tiene desvíos legítimos, como el efecto Balassa-Samuelson (el caso de Japón).`
+      ] },
+      { h: "Conclusiones", items: [
+        R`La elección entre tipo fijo y flexible se está volviendo casi irrelevante: fuera de economías muy chicas, casi no sobreviven tipos fijos.`,
+        R`Los controles de capitales no son la solución: son costosos y fáciles de evadir.`,
+        R`Es un error suponer que la coordinación óptima entre países implica estabilizar los tipos de cambio.`
+      ] }
+    ],
+    palaceName: "Ventanal de la sala VIP · El espejismo de la pista (3)",
+    palace: {
+      llegada: R`Al final de la pista hay un tiro al blanco 🎯 enorme y, al costado, unos pocos aviones viejos que siguen volando con el cartel del tipo fijo.`,
+      stations: [
+        { where: R`Los aviones viejos`,
+          see: R`Son chiquitos: Austria y Países Bajos vuelan pegados al avión grande alemán, y Hong Kong tiene la bodega llena de dólares.`,
+          means: R`Los pocos que sostienen tipos fijos: chicos, subordinados al socio grande o con caja de conversión.` },
+        { where: R`Un cartel con un elástico`,
+          see: R`El cartel del tipo fijo está colgado de un elástico de ±15 %: se estira, pero cuando llega al tope se rompe igual.`,
+          means: R`<strong>Zonas objetivo:</strong> postergan el ataque, no lo evitan.` },
+        { where: R`El tiro al blanco`,
+          see: R`Un banco central independiente apunta a la inflación, no al cartel del tipo de cambio.`,
+          means: R`La alternativa: instituciones monetarias fuertes y metas de inflación.` },
+        { where: R`La salida de la pista`,
+          see: R`Hay dos puertas: «flotar» y «moneda común». La del medio está tapiada.`,
+          means: R`Conclusión: casi no hay un punto medio cómodo.` }
+      ],
+      story: R`Al final de la pista, los pocos aviones que siguen con el cartel fijo son chiquitos y van pegados a uno grande (o llenos de dólares, como Hong Kong). El cartel con elástico se estira y se rompe igual. El tiro al blanco te muestra hacia dónde apuntar, la inflación, y en la salida solo quedan dos puertas abiertas.`,
+      hook: R`Pocos vuelan fijos, el elástico se rompe; apuntá a la inflación: flotar o moneda común.`
     }
   },
   // --- INJECT NEW THEORY HERE ---
@@ -1778,7 +3102,7 @@ const EXAMS = {
   ]
 };
 
-window.MACRO_DATA = { theory: THEORY, practice: PRACTICE, exams: EXAMS };
+window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exams: EXAMS };
 </script>
 
 <script>
@@ -1787,6 +3111,8 @@ window.MACRO_DATA = { theory: THEORY, practice: PRACTICE, exams: EXAMS };
   'use strict';
   var DATA = window.MACRO_DATA;
   var THEORY = DATA.theory, ROOMS = DATA.practice.rooms, BOSSES = DATA.exams.bosses;
+  /* Si un resumen inyectado no dice de qué PDF sale, va al primer grupo. */
+  var SOURCES = (DATA.sources && DATA.sources.length) ? DATA.sources : [{ id: 'barro17', author: 'Barro', emoji: '📄', label: 'Resúmenes', work: '', file: '', scope: '' }];
   var app = document.getElementById('app');
   var live = document.getElementById('live');
   var KEY = 'palacio-macro:v1';
@@ -1933,7 +3259,11 @@ window.MACRO_DATA = { theory: THEORY, practice: PRACTICE, exams: EXAMS };
     '🌦️': 'sun-rain', '👯': 'bunny-ears', '🧳': 'luggage', '✈️': 'airplane', '🛬': 'airplane-arrival',
     '🛫': 'airplane-departure', '🌧️': 'cloud-rain', '🌾': 'sheaf-of-rice', '🪖': 'military-helmet', '🛹': 'skateboard',
     '👮': 'police-officer', '🦹': 'supervillain', '🐉': 'dragon', '☕': 'hot-beverage', '📡': 'satellite-antenna',
-    '🧭': 'compass', '▶️': 'play-button', '🔁': 'repeat', '💥': 'collision', '📜': 'scroll', '🛢️': 'oil-drum', '👉': 'point-right'
+    '🧭': 'compass', '▶️': 'play-button', '🔁': 'repeat', '💥': 'collision', '📜': 'scroll', '🛢️': 'oil-drum', '👉': 'point-right',
+    '📄': 'page-facing-up', '🗽': 'statue-of-liberty', '💱': 'currency-exchange', '🍔': 'hamburger', '🏦': 'bank', '⚓': 'anchor',
+    '🎈': 'balloon', '🚗': 'automobile', '📈': 'chart-up', '🛒': 'shopping-cart', '📉': 'chart-down', '🕹️': 'joystick',
+    '💶': 'euro-banknote', '🚰': 'potable-water', '🏛️': 'classical-building', '🏜️': 'desert', '🛡️': 'shield', '🎯': 'direct-hit',
+    '✉️': 'envelope'
   };
   var EMO = {};
   Object.keys(EMO_SRC).forEach(function (k) { EMO[k.split(VS16).join('')] = EMO_SRC[k]; });
@@ -2040,44 +3370,87 @@ window.MACRO_DATA = { theory: THEORY, practice: PRACTICE, exams: EXAMS };
   }
 
   /* ================= TAB 1: TEORÍA ================= */
+  function srcOf(t) { return byId(SOURCES, t.src) || SOURCES[0]; }
+  function cardsOf(s) { return THEORY.filter(function (t) { return srcOf(t) === s; }); }
+  function blockHtml(b) {
+    var body = b.table
+      ? '<div class="t-table-wrap" role="region" tabindex="0" aria-label="' + b.h.replace(/"/g, '&quot;') + '"><table class="t-table"><thead><tr>' + b.table.head.map(function (c) { return '<th scope="col">' + c + '</th>'; }).join('') + '</tr></thead><tbody>'
+        + b.table.rows.map(function (r) { return '<tr>' + r.map(function (c, i) { return i === 0 ? '<th scope="row">' + c + '</th>' : '<td>' + c + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>'
+      : '<ul class="dots">' + b.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
+    return '<section class="t-block"><h5>' + b.h + '</h5>' + body + '</section>';
+  }
   function theoryCard(t) {
-    var pal = palaceOf(t);
+    var pal = palaceOf(t), s = srcOf(t);
+    /* "Barro: Resumen 17.1 · Cap. 17, sección I" + "Temas: ..." (el formato que pidió Matías) */
+    var label = t.num ? s.author + ': Resumen ' + t.num : (t.kicker || s.author);
     return '<article class="t-card" id="t-' + t.id + '" style="--hue:' + hue(t.hue) + '" aria-labelledby="th-' + t.id + '">'
-      + '<header class="t-head"><span class="tile" aria-hidden="true">' + t.emoji + '</span><div><p class="kicker">' + t.kicker + '</p><h2 id="th-' + t.id + '">' + t.title + '</h2></div></header>'
+      + '<header class="t-head"><span class="tile" aria-hidden="true">' + t.emoji + '</span><div>'
+      + '<p class="t-src">📄 <strong>' + label + '</strong>' + (t.sec ? '<span class="t-sec">' + t.sec + '</span>' : '') + '</p>'
+      + '<h3 class="t-title" id="th-' + t.id + '">' + t.title + '</h3></div></header>'
+      + (t.topics && t.topics.length ? '<p class="t-topics"><strong>Temas:</strong> ' + t.topics.join(' · ') + '</p>' : '')
       + '<div class="t-cols">'
-      + '<div class="t-col t-sum"><h3 class="col-h">📚 Resumen</h3>'
+      + '<div class="t-col t-sum"><h4 class="col-h">📚 Resumen</h4>'
       + (t.lead ? '<p class="t-lead">' + t.lead + '</p>' : '')
-      + t.keys.map(eqBox).join('')
-      + t.blocks.map(function (b) { return '<section class="t-block"><h4>' + b.h + '</h4><ul class="dots">' + b.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></section>'; }).join('')
+      + (t.keys || []).map(eqBox).join('')
+      + (t.blocks || []).map(blockHtml).join('')
       + '</div>'
-      + (pal ? '<div class="t-col pal-box"><h3 class="col-h">🧠 Versión palacio</h3><p class="pal-name">' + pal.name + '</p>'
+      + (pal ? '<div class="t-col pal-box"><h4 class="col-h">🧠 Versión palacio</h4><p class="pal-name">' + pal.name + '</p>'
           + stationsHtml(pal.p)
           + (pal.room ? '<a class="btn t-cta" href="#/practica/' + pal.room.id + '">▶️ Practicar en la Habitación ' + (pal.idx + 1) + '</a>'
-                      : '<p class="pal-note">Este rincón no tiene preguntas propias: lo practicás con el tercer jefe, en Exámenes Viejos.</p>')
+                      : (t.palaceNote ? '<p class="pal-note">' + t.palaceNote + '</p>' : ''))
           + '</div>' : '')
       + '</div></article>';
   }
-  function renderTheory(cardId) {
+  /* Un PDF por vez: #/teoria (primer PDF), #/teoria/<pdf> o #/teoria/<resumen>. */
+  function renderTheory(param) {
     setTitle('Teoría');
+    var card = param ? byId(THEORY, param) : null;
+    var src = card ? srcOf(card) : ((param && byId(SOURCES, param)) || SOURCES[0]);
+    var list = cardsOf(src);
     var h = '<section class="hero">'
-      + '<p class="kicker">Teoría · Capítulo 17 de Barro</p>'
-      + '<h1 id="h">Mercados mundiales de bienes y crédito</h1>'
-      + '<p class="lead">Resúmenes del capítulo con las ecuaciones clave resaltadas. Leelos, recorré el palacio y después enfrentá a los jefes.</p>'
+      + '<p class="kicker">Teoría · Macroeconomía (262) · Cátedra Rodriguez Repeti</p>'
+      + '<h1 id="h">Resúmenes de la bibliografía</h1>'
+      + '<p class="lead">Un resumen por tema de cada PDF de la materia, con las ecuaciones clave y su versión palacio al lado. Elegí el PDF y leé en orden.</p>'
       + '<ol class="path" aria-label="Cómo estudiar con esta página">'
       + '<li class="path-on"><div><span class="path-n">1</span><span class="path-t">📚 Leé los resúmenes</span><span class="path-s">Estás acá</span></div></li>'
       + '<li><a href="#/practica"><span class="path-n">2</span><span class="path-t">🧠 Recorré el palacio</span><span class="path-s">' + ROOMS.length + ' habitaciones</span></a></li>'
       + '<li><a href="#/examenes"><span class="path-n">3</span><span class="path-t">⚔️ Enfrentá a los jefes</span><span class="path-s">' + BOSSES.length + ' jefes</span></a></li>'
       + '</ol>'
-      + '<nav class="chips" aria-label="Resúmenes del capítulo">' + THEORY.map(function (t) { return '<a class="chip" href="#/teoria/' + t.id + '">' + t.emoji + ' ' + t.short + '</a>'; }).join('') + '</nav>'
+      + '<nav aria-label="PDF de la bibliografía"><ul class="pdfs">' + SOURCES.map(function (s) {
+          var n = cardsOf(s).length;
+          return '<li><a class="pdf" href="#/teoria/' + s.id + '"' + (s === src ? ' aria-current="page"' : '') + '><span aria-hidden="true">' + s.emoji + '</span>'
+            + '<span><span class="pdf-a">' + s.label + '</span><span class="pdf-w">' + s.scope + '</span></span>'
+            + '<span class="pdf-n">' + n + '<span class="sr-only">' + (n === 1 ? ' resumen' : ' resúmenes') + '</span></span></a></li>';
+        }).join('') + '</ul></nav>'
       + '</section>'
-      + THEORY.map(theoryCard).join('');
-    var target = cardId ? 't-' + cardId : null;
+      + '<section class="t-group" id="g-' + src.id + '" aria-labelledby="gh">'
+      + '<header class="g-head"><p class="kicker">📄 PDF</p><h2 id="gh">' + src.label + '</h2>'
+      + (src.work ? '<p class="g-file">' + src.work + '</p>' : '')
+      + (src.file ? '<p class="g-file"><strong>Archivo:</strong> ' + src.file + '</p>' : '')
+      + '<nav class="chips" aria-label="Resúmenes de este PDF">' + list.map(function (t) { return '<a class="chip" href="#/teoria/' + t.id + '">' + t.emoji + ' ' + (t.num ? t.num + ' · ' : '') + t.short + '</a>'; }).join('') + '</nav>'
+      + '</header>'
+      + list.map(theoryCard).join('')
+      + '</section>';
+    var target = card ? 't-' + card.id : (param ? 'g-' + src.id : null);
     var p = paint(h, target ? null : '#h');
-    if (target) {
-      var go2 = function () { var c = document.getElementById(target); if (c) c.scrollIntoView({ behavior: 'instant', block: 'start' }); };
-      go2(); focusEl($('#th-' + cardId));
-      p.then(go2);
-    }
+    if (target) pinTo(target, card ? '#th-' + card.id : '#gh', p);
+  }
+  /* Deja el destino arriba de la pantalla mientras la página se acomoda (MathJax, fuentes, fórmulas que
+     pasan a franja), hasta 2,5 s o hasta que la persona scrollee o toque algo. Al abrir un link directo
+     a un resumen, lo de arriba cambiaba de alto después del primer scroll y el resumen quedaba corrido. */
+  var unpin = null;
+  function pinTo(id, focusSel, typeset) {
+    if (unpin) unpin();
+    var live = true, ro = null, evs = ['wheel', 'touchstart', 'keydown', 'mousedown'];
+    function go2() { if (!live) return; var c = document.getElementById(id); if (c) c.scrollIntoView({ behavior: 'instant', block: 'start' }); }
+    function stop() { if (!live) return; live = false; evs.forEach(function (ev) { window.removeEventListener(ev, stop, true); }); if (ro) ro.disconnect(); unpin = null; }
+    unpin = stop;
+    evs.forEach(function (ev) { window.addEventListener(ev, stop, { capture: true, passive: true }); });
+    go2(); focusEl($(focusSel));
+    if (typeset) typeset.then(go2);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(go2);
+    if (window.ResizeObserver) { ro = new ResizeObserver(go2); ro.observe(app); }
+    setTimeout(stop, 2500);
   }
 
   /* ================= TAB 2: PRÁCTICA (PALACIO) ================= */
@@ -2103,7 +3476,7 @@ window.MACRO_DATA = { theory: THEORY, practice: PRACTICE, exams: EXAMS };
       + '</section>'
       + '<ol class="route" aria-label="Recorrido del palacio">' + ROOMS.map(roomItem).join('') + '</ol>'
       + '<section class="faq" aria-labelledby="faqH"><h2 id="faqH">Cómo funciona</h2>'
-      + faqItem('¿Qué es un palacio de la memoria?', 'Una técnica para acordarte de las cosas: ubicás cada idea en un lugar de un recorrido que conocés, con una imagen exagerada. Para acordarte, volvés a caminar el recorrido en tu cabeza. Acá el recorrido es Ezeiza: hall, check-in, Migraciones, sala de embarque y pista, siempre en ese orden. Entre Migraciones y la sala de embarque hay un rincón extra, el Free Shop (está en el resumen 6).')
+      + faqItem('¿Qué es un palacio de la memoria?', 'Una técnica para acordarte de las cosas: ubicás cada idea en un lugar de un recorrido que conocés, con una imagen exagerada. Para acordarte, volvés a caminar el recorrido en tu cabeza. Acá el recorrido es Ezeiza: hall, check-in, Migraciones, sala de embarque y pista, siempre en ese orden. Entre Migraciones y la sala de embarque hay un rincón extra, el Free Shop (está en el resumen 17.7 de Barro). Los demás PDF tienen sus propias terminales del aeropuerto en la pestaña Teoría.')
       + faqItem('¿Cómo se juega?', 'Cada habitación tiene su escena y entre 4 y 5 preguntas. Si acertás, avanzás. Si errás, ves la explicación paso a paso con la historia del palacio y la pregunta vuelve al final. Superás la habitación cuando respondés bien todas, y se abre la siguiente.')
       + faqItem('¿Cómo lo uso para estudiar?', 'Antes de entrar, cerrá los ojos y recorré las habitaciones en orden: ¿qué había en cada una y qué significaba? Recordar sin mirar fija más que releer. Después confirmá con las preguntas y decí la frase de cada habitación en voz alta.')
       + faqItem('Atajos de teclado', 'Las teclas 1 a 4 eligen una opción y Enter comprueba la respuesta o pasa a la siguiente.')
@@ -2314,7 +3687,6 @@ window.MACRO_DATA = { theory: THEORY, practice: PRACTICE, exams: EXAMS };
       + '<h1 id="h">Jefes del capítulo 17</h1>'
       + '<p class="lead">Preguntas de opción múltiple estilo parcial. Cada acierto le saca vida al jefe; cada error te cuesta un corazón y la pregunta vuelve. Con 3 errores perdés la pelea.</p>'
       + (msg ? '<p class="notice" role="status">⚠️ <span>' + msg + '</span></p>' : '')
-      + '<p class="notice">⚠️ <span>Todavía no hay parciales viejos de la cátedra cargados: estas preguntas están armadas sobre el capítulo 17 de Barro (algunas son sus problemas de repaso). Cuando consigas exámenes reales, se suman como jefes nuevos.</span></p>'
       + '</section>'
       + '<div class="boss-grid">' + BOSSES.map(function (b) {
           var rec = save.bosses[b.id];
@@ -2422,22 +3794,33 @@ window.MACRO_DATA = { theory: THEORY, practice: PRACTICE, exams: EXAMS };
   function go(hash) { if (location.hash === hash) route(); else location.hash = hash; }
   window.addEventListener('hashchange', route);
 
-  /* ---------- Panel del creador (popover nativo con respaldo por clase) ---------- */
-  (function () {
-    var btn = $('#creatorBtn'), menu = $('#creatorMenu');
+  /* ---------- Paneles del creador y de mail (popover nativo con respaldo por clase) ----------
+     Se abren debajo del botón; si abajo no entran (el de mail está al pie), se abren arriba. */
+  function popMenu(btn, menu, align) {
     if (!btn || !menu) return;
     function place() {
-      var b = btn.getBoundingClientRect(), w = Math.min(window.innerWidth - 32, 380);
-      menu.style.setProperty('--pop-top', Math.round(b.bottom + 12) + 'px');
-      menu.style.setProperty('--pop-left', Math.round(Math.max(16, Math.min(b.left - 8, window.innerWidth - w - 16))) + 'px');
+      var b = btn.getBoundingClientRect(), vw = window.innerWidth, vh = window.innerHeight, w = Math.min(vw - 32, 380);
+      var left = align === 'center' ? b.left + b.width / 2 - w / 2 : b.left - 8;
+      menu.style.setProperty('--pop-left', Math.round(Math.max(16, Math.min(left, vw - w - 16))) + 'px');
+      var below = vh - b.bottom, above = b.top;
+      if (below < 340 && above > below) {
+        menu.style.setProperty('--pop-top', 'auto');
+        menu.style.setProperty('--pop-bottom', Math.round(vh - b.top + 12) + 'px');
+      } else {
+        menu.style.setProperty('--pop-top', Math.round(b.bottom + 12) + 'px');
+        menu.style.setProperty('--pop-bottom', 'auto');
+      }
     }
+    function isOpenMenu() { try { return menu.matches(':popover-open'); } catch (e) { return menu.style.display === 'block'; } }
+    function follow() { if (isOpenMenu()) place(); }
+    window.addEventListener('resize', follow);
+    window.addEventListener('scroll', follow, { passive: true });
     if (typeof menu.showPopover === 'function') {
       /* beforetoggle es sincrónico: aria-expanded queda bien en el mismo instante en que se abre o se cierra. */
       menu.addEventListener('beforetoggle', function (e) {
         if (e.newState === 'open') place();
         btn.setAttribute('aria-expanded', e.newState === 'open' ? 'true' : 'false');
       });
-      window.addEventListener('resize', function () { try { if (menu.matches(':popover-open')) place(); } catch (e) {} });
     } else {
       /* Navegadores sin popover: se abre con una clase, y Esc o un clic afuera lo cierran. */
       btn.removeAttribute('popovertarget');
@@ -2448,9 +3831,29 @@ window.MACRO_DATA = { theory: THEORY, practice: PRACTICE, exams: EXAMS };
         var open = menu.style.display === 'none';
         if (open) { place(); menu.style.display = 'block'; btn.setAttribute('aria-expanded', 'true'); var a = menu.querySelector('a'); if (a) a.focus(); } else close();
       });
-      document.addEventListener('click', function (e) { if (!menu.contains(e.target)) close(); });
+      document.addEventListener('click', function (e) { if (!menu.contains(e.target) && !btn.contains(e.target)) close(); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.style.display !== 'none') { close(); btn.focus(); } });
     }
+  }
+  popMenu($('#creatorBtn'), $('#creatorMenu'), 'start');
+  popMenu($('#mailBtn'), $('#mailMenu'), 'center');
+
+  /* ---------- Copiar la dirección de mail (por si la persona usa otra app) ---------- */
+  (function () {
+    var b = $('#mailCopy'), addr = $('#mailAddr');
+    if (!b || !addr) return;
+    var mail = addr.textContent.replace(/\s+/g, ''), timer = null;
+    function done(ok) {
+      b.textContent = ok ? '¡Copiada!' : 'Seleccionada';
+      say(ok ? 'Dirección de mail copiada.' : 'Dirección seleccionada: copiala con Control más C.');
+      clearTimeout(timer); timer = setTimeout(function () { b.textContent = 'Copiar'; }, 2000);
+    }
+    function selectAddr() { try { var r = document.createRange(); r.selectNodeContents(addr); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {} }
+    b.addEventListener('click', function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(mail).then(function () { done(true); }, function () { selectAddr(); done(false); });
+      } else { selectAddr(); done(false); }
+    });
   })();
 
   /* ---------- CTA de LinkedIn: el brillo y el halo corren solo mientras el botón está en pantalla ---------- */

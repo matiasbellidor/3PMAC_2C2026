@@ -1,4 +1,4 @@
-<!doctype html>
+type html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -829,7 +829,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
       <a href="#/teoria" data-tab="teoria"><img class="emo" src="emojis/books.webp" alt="" width="160" height="160" data-emoji="books"><span>Teoría <span class="seg-sub">(Resúmenes)</span></span></a>
       <a href="#/practica" data-tab="practica"><img class="emo" src="emojis/brain.webp" alt="" width="160" height="160" data-emoji="brain"><span>Práctica <span class="seg-sub">(Palacio Mental)</span></span></a>
       <a href="#/jefes" data-tab="jefes"><img class="emo" src="emojis/crossed-swords.webp" alt="" width="160" height="160" data-emoji="crossed-swords"><span>Jefes <span class="seg-sub">(Estilo parcial)</span></span></a>
-      <a href="#/simulacros" data-tab="simulacros"><img class="emo" src="emojis/memo.webp" alt="" width="160" height="160" data-emoji="memo"><span>Simulacros <span class="seg-sub">(Temas A–D)</span></span></a>
+      <a href="#/simulacros" data-tab="simulacros"><img class="emo" src="emojis/memo.webp" alt="" width="160" height="160" data-emoji="memo"><span>Simulacros <span class="seg-sub">(Temas A, B, C y D)</span></span></a>
     </div>
   </nav>
 </header>
@@ -887,7 +887,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
   <a href="#/teoria" data-tab="teoria"><span class="tb-ico"><img class="emo" src="emojis/books.webp" alt="" width="160" height="160" data-emoji="books"></span><span>Teoría<span class="sr-only"> (Resúmenes)</span></span></a>
   <a href="#/practica" data-tab="practica"><span class="tb-ico"><img class="emo" src="emojis/brain.webp" alt="" width="160" height="160" data-emoji="brain"></span><span>Práctica<span class="sr-only"> (Palacio Mental)</span></span></a>
   <a href="#/jefes" data-tab="jefes"><span class="tb-ico"><img class="emo" src="emojis/crossed-swords.webp" alt="" width="160" height="160" data-emoji="crossed-swords"></span><span>Jefes<span class="sr-only"> (Estilo parcial)</span></span></a>
-  <a href="#/simulacros" data-tab="simulacros"><span class="tb-ico"><img class="emo" src="emojis/memo.webp" alt="" width="160" height="160" data-emoji="memo"></span><span>Simulacros<span class="sr-only"> (Temas A–D)</span></span></a>
+  <a href="#/simulacros" data-tab="simulacros"><span class="tb-ico"><img class="emo" src="emojis/memo.webp" alt="" width="160" height="160" data-emoji="memo"></span><span>Simulacros<span class="sr-only"> (Temas A, B, C y D)</span></span></a>
 </nav>
 
 <div class="creator-menu" id="creatorMenu" popover role="dialog" aria-labelledby="creatorTitle">
@@ -4421,9 +4421,9 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
   function renderSims(msg) {
     setTitle('Simulacros');
     var h = '<section class="hero">'
-      + '<p class="kicker">Simulacros · Temas A a D</p>'
+      + '<p class="kicker">Simulacros · Temas A, B, C y D</p>'
       + '<h1 id="h">Simulacros del tercer parcial</h1>'
-      + '<p class="lead">Cuatro temas como el parcial: 21 preguntas de opción múltiple sobre todo el temario, con una sola respuesta correcta. El resultado se ve al entregar.</p>'
+      + '<p class="lead">Son 4 exámenes distintos (Tema A, Tema B, Tema C y Tema D), cada uno como el parcial: 21 preguntas de opción múltiple sobre todo el temario, con una sola respuesta correcta. El resultado se ve al entregar.</p>'
       + '<ul class="sim-rules" aria-label="Cómo se califica">'
       + '<li><strong>+4,76</strong> por cada correcta</li>'
       + '<li><strong>' + MINUS + '1,59</strong> por cada incorrecta</li>'
@@ -4644,6 +4644,13 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
   }
   function go(hash) { if (location.hash === hash) route(); else location.hash = hash; }
   window.addEventListener('hashchange', route);
+  /* Tocar una pestaña (barra de abajo o de arriba) lleva siempre al principio de la página, aunque ya estés en ella. */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-tab]');
+    if (!a || !a.getAttribute('href')) return;
+    if (location.hash === a.getAttribute('href')) { e.preventDefault(); route(); }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   /* ---------- Paneles del creador y de mail (popover nativo con respaldo por clase) ----------
      Se abren debajo del botón; si abajo no entran (el de mail está al pie), se abren arriba. */

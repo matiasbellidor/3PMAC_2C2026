@@ -34,11 +34,20 @@ Son cinco habitaciones con 22 preguntas sobre el capítulo 17 de Barro, de opci�
 ### ⚔️ Jefes (Estilo parcial)
 Tres jefes con 19 preguntas de opción múltiple estilo parcial. Cada acierto le saca vida al jefe y cada error te cuesta un corazón; con tres errores perdés la pelea. Al terminar, ves las preguntas que fallaste con su respuesta y los resúmenes para repasar.
 
+### 📝 Simulacros (Temas A–D)
+Cuatro simulacros del parcial, cada uno con 21 preguntas de opción múltiple (a, b, c, d) sobre todo el temario, con el mismo criterio de corrección del parcial:
+- Cada correcta suma 100/21 (≈ 4,76).
+- Cada incorrecta resta 100/63 (≈ 1,59).
+- Las que quedan en blanco no suman ni restan.
+- Se aprueba con 50.
+
+El resultado se ve al entregar, con la explicación de cada pregunta y el resumen para repasar. Se guarda tu mejor nota en cada tema, hay un mensaje según el porcentaje y, si superás el 70 % en los cuatro temas, festejo.
+
 ![Explicación paso a paso con la historia del palacio, en el celular](capturas/palacio-celular.webp)
 
 ### Además
 - Puntos de experiencia y racha de respuestas correctas.
-- El progreso se guarda solo en tu navegador. No hay cuentas, cookies ni analítica, y lo podés borrar desde el pie de la página.
+- El progreso (incluidas tus mejores notas de los simulacros) se guarda solo en tu navegador. No hay cuentas, cookies ni analítica, y lo podés borrar desde el pie de la página.
 - Tema claro y oscuro.
 - Se puede usar con el teclado: las teclas 1 a 4 eligen una opción y Enter confirma.
 
@@ -55,7 +64,7 @@ Es un sitio estático, así que también funciona en otros servicios de hosting 
 ## Fuentes y aviso
 
 - Bibliografía: Barro, *Macroeconomics: A Modern Approach* (caps. 17 y 18); Blanchard, *Macroeconomía* (7.ª ed., caps. 17 a 20); Sachs y Larraín, *Macroeconomía en la economía global* (cap. 9); Mundell, «Capital Mobility and Stabilization Policy under Fixed and Flexible Exchange Rates» (1963); Fleming, «Domestic Financial Policies under Fixed and under Floating Exchange Rates» (1962), y Obstfeld y Rogoff, «The Mirage of Fixed Exchange Rates» (1995). Los PDF no están en el repositorio porque tienen derechos de autor.
-- Los resúmenes, las historias del palacio y las preguntas son material propio de estudio. Si algo no coincide con lo que da la cátedra, gana la cátedra.
+- Los resúmenes, las historias del palacio y las preguntas son material propio de estudio.
 - Este no es un sitio oficial de la Universidad de Buenos Aires ni de la cátedra. El sello de la UBA (dominio público) y el escudo de la Facultad de Ciencias Económicas solo identifican la institución donde se cursa la materia.
 - Emojis designed by Apple. Used for educational purposes. LinkedIn, Gmail, Outlook y GitHub son marcas de sus respectivos dueños.
 

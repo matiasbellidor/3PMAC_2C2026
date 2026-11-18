@@ -151,15 +151,16 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
 @media (max-width: 359px) { .brand-sub { display: none; } }
 
 .seg-nav { padding: 0 var(--s4) var(--s3); }
-.seg { max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s1); padding: var(--s1); background: var(--fill); border-radius: var(--rp); }
+.seg { max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s1); padding: var(--s1); background: var(--fill); border-radius: var(--rp); }
 .seg a { display: flex; align-items: center; justify-content: center; gap: var(--s2); min-height: 40px; padding: 0 var(--s3); border-radius: var(--rp); color: var(--ink-2); text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap; letter-spacing: -.005em; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
 .seg a img.emo { width: 20px; height: 20px; vertical-align: middle; flex: none; }
 .seg a[aria-current="page"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 1px rgba(0, 0, 0, .04); }
 .seg-sub { font-weight: 400; }
+@media (max-width: 879px) { .seg-sub { display: none; } }   /* con 4 pestañas, el subtítulo no entra en pantallas medianas */
 @media (hover: hover) and (pointer: fine) { .seg a:not([aria-current="page"]):hover { color: var(--ink); background: color-mix(in srgb, var(--surface) 55%, transparent); } }
 
 /* ============ AVISO DE RECOMENDACIÓN (flotante) ============
-   Aparece cuando ya se scrolleó la mitad de la página y desde ahí te sigue: fijo abajo a la derecha (en el celular, arriba de
+   Aparece cuando ya se scrolleó el 30 % de la página y desde ahí te sigue: fijo abajo a la derecha (en el celular, arriba de
    la barra de pestañas). Se corre mientras la tarjeta de créditos del pie, que pide lo mismo, está en pantalla. Sale con un
    desliz corto y el 🥺🙏 hace una mínima animación de "por favor". La ✕ lo cierra hasta la próxima carga. */
 .reco { position: fixed; z-index: 35; right: var(--s5); bottom: var(--s5); width: min(400px, calc(100vw - 2 * var(--s5)));
@@ -199,7 +200,7 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
   html { scroll-padding-top: 76px; }
   .seg-nav { display: none; }
   .tabbar {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
     /* Más opaca que el header: debajo pasan botones azules y la etiqueta activa (azul) tiene que seguir dando 4,5:1. */
     background: color-mix(in srgb, var(--bg) 94%, transparent); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
     border-top: 1px solid var(--line); padding: var(--s1) var(--s2) calc(var(--s1) + env(safe-area-inset-bottom));
@@ -269,7 +270,8 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
 .site-link svg { flex: none; width: 12px; height: 12px; color: var(--muted); transition: transform var(--dur) var(--ease), color var(--dur) var(--ease); }
 @media (hover: hover) and (pointer: fine) { .site-link:hover { background: var(--fill); color: var(--ink); } .site-link:hover svg { color: var(--ink); transform: translate(1px, -1px); } }
 .site-link:active { background: var(--fill); }
-.path { list-style: none; margin: var(--s5) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
+.path { list-style: none; margin: var(--s5) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s3); }
+@media (max-width: 999px) { .path { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .path li > a, .path li > div { height: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--s3); row-gap: 0; align-items: center; padding: var(--s3) var(--s4); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); color: var(--ink); text-decoration: none; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
 .path-n { grid-row: span 2; display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--rp); background: var(--fill); font-weight: 700; font-size: 14px; }
 .path-on .path-n { background: var(--accent-btn); color: var(--on-accent); }
@@ -519,6 +521,95 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outl
 .result h1 { margin-top: var(--s3); }
 .result .lead { margin-left: auto; margin-right: auto; }
 .result .cta-row { justify-content: center; }
+
+/* ============ SIMULACROS ============ */
+.sim-rules { list-style: none; margin: var(--s4) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s2); }
+.sim-rules li { padding: var(--s1) var(--s3); border-radius: var(--rp); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 14px; color: var(--ink-2); }
+.sim-rules strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+@media (min-width: 640px) { .boss-grid.sim-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.sim-best { font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.sim-best.is-pass, .sim-best.is-great { color: var(--ok); }
+.sim-best img.emo { width: 16px; height: 16px; vertical-align: -3px; }
+.sim-live { font-size: 14px; font-weight: 600; color: var(--accent); }
+.sim-head .small { margin-top: var(--s2); color: var(--ink-2); }
+.sim-list { list-style: none; margin: var(--s5) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s4); }
+.sim-q { background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); padding: var(--s5); min-width: 0; }
+.sim-opts { margin-top: 0; }
+.sim-legend { float: left; width: 100%; padding: 0; margin-bottom: var(--s1); font: 600 17px/1.45 var(--font); letter-spacing: -.01em; color: var(--ink); }
+.sim-n { color: var(--accent); font-weight: 700; }
+.sim-clear { position: relative; margin-top: var(--s3); min-height: 36px; padding: 0 var(--s3); border: 0; border-radius: var(--rp); background: var(--fill); color: var(--ink-2); font: 600 13px/1 var(--font); cursor: pointer; }
+.sim-clear::before { content: ""; position: absolute; inset: -4px; }   /* zona táctil de 44 px */
+@media (hover: hover) and (pointer: fine) { .sim-clear:hover { background: var(--surface-3); color: var(--ink); } }
+@media (max-width: 479px) { .sim-q { padding: var(--s4); } .sim-legend { font-size: 16px; } }
+/* Barra de entrega: se queda pegada abajo mientras se recorren las preguntas (en el celular, arriba de la barra de pestañas). */
+.sim-bar { position: sticky; bottom: var(--s4); z-index: 20; margin-top: var(--s5); }
+.sim-bar-in { display: grid; grid-template-columns: auto minmax(60px, 1fr) auto; align-items: center; gap: var(--s3) var(--s4); padding: var(--s2) var(--s2) var(--s2) var(--s5); background: var(--surface); border-radius: var(--rp); box-shadow: var(--sh-2), inset 0 0 0 1px var(--line); }
+.sim-count { font-size: 14px; color: var(--ink-2); white-space: nowrap; }
+.sim-count strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+.sim-bar-track { margin-top: 0; }
+@media (max-width: 719px) { .sim-bar { bottom: calc(76px + env(safe-area-inset-bottom)); } }
+@media (max-width: 479px) { .sim-bar-in { grid-template-columns: minmax(0, 1fr) auto; border-radius: var(--r2); padding: var(--s3); } .sim-count { white-space: normal; font-size: 13px; } .sim-bar-track { grid-column: 1 / -1; grid-row: 2; } }
+body.in-exam .reco { display: none; }
+/* Resultado */
+.sim-result h1 { font-size: 44px; font-variant-numeric: tabular-nums; }
+.sim-of { font-size: 20px; font-weight: 600; color: var(--muted); }
+.sim-verdict { margin-top: var(--s2); font-weight: 700; }
+.sim-verdict.is-pass { color: var(--ok); }
+.sim-verdict.is-fail { color: var(--bad); }
+.sim-verdict img.emo { width: 18px; height: 18px; vertical-align: -3px; }
+.sim-mood-title { margin-top: var(--s4); font: 700 22px/1.25 var(--font-d); letter-spacing: -.015em; }
+.sim-break { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s2); max-width: 560px; margin: var(--s5) auto 0; }
+.sim-break > div { padding: var(--s3); border-radius: var(--r1); background: var(--surface-2); }
+.sim-break dt { font-size: 13px; color: var(--ink-2); }
+.sim-break dd { margin: var(--s1) 0 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+.sim-break img.emo { width: 14px; height: 14px; vertical-align: -2px; }
+@media (max-width: 479px) { .sim-break { grid-template-columns: minmax(0, 1fr); } .sim-result h1 { font-size: 36px; } }
+.sim-prev { margin-top: var(--s3); color: var(--ink-2); }
+/* Revisión */
+.sim-review { margin-top: var(--s6); outline: none; }
+.sim-review > .small { margin-top: var(--s1); color: var(--ink-2); }
+.sim-rv-list { list-style: none; margin: var(--s4) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
+.sim-rv { background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); padding: var(--s4) var(--s5); min-width: 0; }
+.sim-rv.is-bad { box-shadow: var(--sh-1), inset 4px 0 0 var(--bad); }
+.sim-rv.is-blank { box-shadow: var(--sh-1), inset 4px 0 0 var(--line-2); }
+.sim-rv summary { cursor: pointer; list-style: none; }
+.sim-rv summary::-webkit-details-marker { display: none; }
+.sim-rv-q, .sim-rv summary { font-weight: 600; line-height: 1.45; }
+.sim-tag { display: inline-flex; align-items: center; gap: var(--s1); padding: 0 var(--s2); border-radius: var(--rp); font-size: 12px; font-weight: 700; color: var(--ink); vertical-align: 1px; }
+.sim-tag.is-ok { background: var(--ok-tint); }
+.sim-tag.is-bad { background: var(--bad-tint); }
+.sim-tag.is-blank { background: var(--fill); }
+.sim-tag img.emo { width: 12px; height: 12px; }
+.sim-review-opts { margin-top: var(--s3); }
+.sim-why { margin-top: var(--s3); font-size: 15px; color: var(--ink-2); }
+.sim-ref { margin-top: var(--s3); }
+/* Festejo: los cuatro temas con 70 % o más */
+.sim-crack { text-align: center; padding: var(--s6) var(--s5); background: linear-gradient(180deg, var(--accent-tint), var(--surface) 70%); }
+.sim-crack-emo img.emo { width: 64px; height: 64px; vertical-align: middle; margin: 0 var(--s1); }
+.sim-crack h2 { margin-top: var(--s3); font: 700 28px/1.2 var(--font-d); letter-spacing: -.02em; }
+.sim-crack .lead { margin: var(--s2) auto 0; }
+.sim-wink { display: inline-flex; align-items: center; gap: var(--s2); margin-top: var(--s4); font-size: 13px; color: var(--ink-2); text-align: left; }
+.sim-wink a { color: var(--accent); font-weight: 600; }
+.sim-wink-emo { flex: none; }
+.sim-wink-emo img.emo { width: 22px; height: 22px; vertical-align: middle; }
+/* Emojis del mensaje según el resultado (una vez al aparecer) y el guiño (gracioso, en chiquito). */
+@media (prefers-reduced-motion: no-preference) {
+  .sim-result .sim-mood img.emo { animation: mood-pop .7s cubic-bezier(.3, 1.5, .5, 1) both; }
+  .mood-low .sim-mood img.emo { animation: mood-pop .7s cubic-bezier(.3, 1.5, .5, 1) both, mood-flex .9s ease-in-out .7s 2; }
+  .mood-close .sim-mood img.emo { animation: mood-pop .7s cubic-bezier(.3, 1.5, .5, 1) both, mood-bounce .8s ease-in-out .7s 2; }
+  .mood-pass .sim-mood img.emo { animation: mood-pop .7s cubic-bezier(.3, 1.5, .5, 1) both, mood-clap .45s ease-in-out .7s 3; }
+  .mood-great .sim-mood img.emo, .mood-top .sim-mood img.emo { animation: mood-pop .7s cubic-bezier(.3, 1.5, .5, 1) both, mood-party 1s ease-in-out .7s 2; }
+  .sim-crack.is-fresh .sim-crack-emo img.emo { animation: mood-pop .8s cubic-bezier(.3, 1.5, .5, 1) both, mood-party 1s ease-in-out .8s 3; }
+  .sim-crack .sim-wink { animation: wink-in .6s ease-out 1.2s both; }
+  .sim-crack .sim-wink-emo img.emo { animation: wink 1.2s ease-in-out 1.8s 3; }
+  @keyframes mood-pop { from { opacity: 0; transform: scale(.3) rotate(-20deg); } 60% { opacity: 1; transform: scale(1.15) rotate(6deg); } to { opacity: 1; transform: none; } }
+  @keyframes mood-flex { 0%, 100% { transform: none; } 30% { transform: rotate(-12deg) scale(1.08); } 60% { transform: rotate(10deg) scale(1.14); } }
+  @keyframes mood-bounce { 0%, 100% { transform: none; } 40% { transform: translateY(-14px); } 70% { transform: translateY(2px); } }
+  @keyframes mood-clap { 0%, 100% { transform: none; } 50% { transform: scale(1.2) rotate(-6deg); } }
+  @keyframes mood-party { 0%, 100% { transform: none; } 25% { transform: rotate(-14deg) scale(1.1); } 75% { transform: rotate(14deg) scale(1.1); } }
+  @keyframes wink-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes wink { 0%, 100% { transform: none; } 20% { transform: rotate(-18deg) scale(1.25); } 40% { transform: rotate(12deg) scale(1.1); } 60% { transform: rotate(-6deg) scaleY(.8); } 75% { transform: none; } }
+}
 .result .hook { text-align: left; max-width: 560px; margin-left: auto; margin-right: auto; }
 .miss { text-align: left; margin-top: var(--s5); }
 .miss ol { margin: 0; padding-left: var(--s5); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
@@ -738,6 +829,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
       <a href="#/teoria" data-tab="teoria"><img class="emo" src="emojis/books.webp" alt="" width="160" height="160" data-emoji="books"><span>Teoría <span class="seg-sub">(Resúmenes)</span></span></a>
       <a href="#/practica" data-tab="practica"><img class="emo" src="emojis/brain.webp" alt="" width="160" height="160" data-emoji="brain"><span>Práctica <span class="seg-sub">(Palacio Mental)</span></span></a>
       <a href="#/jefes" data-tab="jefes"><img class="emo" src="emojis/crossed-swords.webp" alt="" width="160" height="160" data-emoji="crossed-swords"><span>Jefes <span class="seg-sub">(Estilo parcial)</span></span></a>
+      <a href="#/simulacros" data-tab="simulacros"><img class="emo" src="emojis/memo.webp" alt="" width="160" height="160" data-emoji="memo"><span>Simulacros <span class="seg-sub">(Temas A–D)</span></span></a>
     </div>
   </nav>
 </header>
@@ -746,7 +838,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
   <div class="reco-card">
     <span class="reco-face" aria-hidden="true"><img class="reco-plead" src="emojis/pleading-face.webp" alt="" width="160" height="160" decoding="async" data-emoji="pleading-face"><img class="reco-pray" src="emojis/folded-hands.webp" alt="" width="160" height="160" decoding="async" data-emoji="folded-hands"></span>
     <div class="reco-body">
-      <p class="reco-txt"><strong>¿Te sirvió?</strong><span class="cm-hl">Dejame una recomendación en LinkedIn</span><span class="reco-long"> contando qué hiciste con este material y por qué te ayudó</span>.</p>
+      <p class="reco-txt"><strong>¿Te está sirviendo?</strong><span class="cm-hl">Dejame una recomendación en LinkedIn</span><span class="reco-long"> contando qué hiciste con este material y por qué te ayudó</span>.</p>
       <a class="reco-go" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><img src="logos/linkedin.png?v=2" alt="" width="128" height="128">Ir a LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></a>
     </div>
     <button class="reco-x" id="recoX" type="button" aria-label="Cerrar este aviso"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button>
@@ -778,9 +870,9 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
   </section>
   <div class="foot-info">
     <p class="mj-note">Las fórmulas se ven como texto LaTeX porque MathJax no cargó: hace falta conexión a internet.</p>
-    <p><strong>Bibliografía:</strong> Barro, <em>Macroeconomics: A Modern Approach</em> (caps. 17 y 18); Blanchard, <em>Macroeconomía</em> (caps. 17 a 20); Sachs y Larraín, <em>Macroeconomía en la economía global</em> (cap. 9); Mundell (1963); Fleming (1962); Obstfeld y Rogoff (1995), y apuntes de la cursada (clase 14 de 19). Los resúmenes, las historias del palacio y las preguntas son material propio de estudio. Si algo no coincide con lo que da la cátedra, gana la cátedra.</p>
+    <p><strong>Bibliografía:</strong> Barro, <em>Macroeconomics: A Modern Approach</em> (caps. 17 y 18); Blanchard, <em>Macroeconomía</em> (caps. 17 a 20); Sachs y Larraín, <em>Macroeconomía en la economía global</em> (cap. 9); Mundell (1963); Fleming (1962); Obstfeld y Rogoff (1995), y apuntes de la cursada (clase 14 de 19). Los resúmenes, las historias del palacio y las preguntas son material propio de estudio.</p>
     <div class="foot-priv">
-      <p><strong>Privacidad:</strong> tu progreso (XP, habitaciones y jefes superados) se guarda solo en este navegador. Sin cuentas, sin cookies y sin analítica.</p>
+      <p><strong>Privacidad:</strong> tu progreso (XP, habitaciones y jefes superados, y tus mejores notas de los simulacros) se guarda solo en este navegador. Sin cuentas, sin cookies y sin analítica.</p>
       <button class="btn-del" type="button" id="resetBtn"><img class="emo" src="emojis/wastebasket.webp" alt="" width="160" height="160" data-emoji="wastebasket">Borrar mi progreso</button>
     </div>
     <div class="legal">
@@ -795,6 +887,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
   <a href="#/teoria" data-tab="teoria"><span class="tb-ico"><img class="emo" src="emojis/books.webp" alt="" width="160" height="160" data-emoji="books"></span><span>Teoría<span class="sr-only"> (Resúmenes)</span></span></a>
   <a href="#/practica" data-tab="practica"><span class="tb-ico"><img class="emo" src="emojis/brain.webp" alt="" width="160" height="160" data-emoji="brain"></span><span>Práctica<span class="sr-only"> (Palacio Mental)</span></span></a>
   <a href="#/jefes" data-tab="jefes"><span class="tb-ico"><img class="emo" src="emojis/crossed-swords.webp" alt="" width="160" height="160" data-emoji="crossed-swords"></span><span>Jefes<span class="sr-only"> (Estilo parcial)</span></span></a>
+  <a href="#/simulacros" data-tab="simulacros"><span class="tb-ico"><img class="emo" src="emojis/memo.webp" alt="" width="160" height="160" data-emoji="memo"></span><span>Simulacros<span class="sr-only"> (Temas A–D)</span></span></a>
 </nav>
 
 <div class="creator-menu" id="creatorMenu" popover role="dialog" aria-labelledby="creatorTitle">
@@ -3380,7 +3473,277 @@ const EXAMS = {
   ]
 };
 
-window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exams: EXAMS };
+// <<SIMULACROS (generado con build_sims.js desde sims_src.js; no editar a mano: editar el banco y volver a generar)
+/* ---------------- TAB 4: SIMULACROS (TEMAS A–D) ----------------
+   Como el parcial real (2.º parcial, Tema 2): 21 preguntas de opción múltiple con una sola correcta;
+   +100/21 (≈ 4,76) por correcta, −100/63 (≈ 1,59) por incorrecta y 0 en blanco. Se aprueba con 50.
+   "correct" es el índice de la opción correcta (0 = a); "ref" es el resumen para repasar. */
+const SIMS = {
+  temas: [
+    { id: "a", name: "Tema A", questions: [
+      { id: "sa-1", ref: "t1", q: R`Según Barro (cap. 17), en un mundo con bienes físicamente idénticos, sin costos de transporte ni barreras al comercio y con una moneda común, ¿qué asegura que un mismo bien cueste lo mismo en todos los países?`,
+        opts: [R`El arbitraje: si un precio difiere, se compra donde es barato y se vende donde es caro hasta que se iguala.`, R`La paridad de tasas de interés, que iguala el rendimiento de los bonos de cada país.`, R`La coordinación de las políticas fiscales de los gobiernos para evitar diferencias de precios.`, R`La intervención de los bancos centrales, que fijan el precio en dólares de cada bien.`],
+        correct: 0, why: R`La ley de un solo precio sale del arbitraje de bienes: con bienes idénticos y sin costos de transporte, cualquier diferencia de precio se aprovecha hasta desaparecer.` },
+      { id: "sa-2", ref: "t3", q: R`Un país tiene un PBI real \(Y = 900\), un gasto interno \(C + I + G = 950\), activos externos netos del período anterior \(B_{t-1}^f/P = 500\) y una tasa \(r = 0{,}04\). Según la ecuación (17.7) de Barro, su cuenta corriente es:`,
+        opts: [R`\(-30\): un déficit comercial de 50, compensado en parte por 20 de intereses cobrados afuera.`, R`\(+20\): la cuenta corriente es igual al ingreso neto de factores.`, R`\(-50\): la cuenta corriente es igual a la balanza comercial.`, R`\(-70\): al déficit comercial de 50 se le suman 20 de intereses pagados.`],
+        correct: 0, why: R`\(CC = [Y - (C + I + G)] + r\cdot B_{t-1}^f/P = (900 - 950) + 0{,}04 \cdot 500 = -50 + 20 = -30\). Como el país es acreedor, cobra intereses y eso achica el déficit.` },
+      { id: "sa-3", ref: "t6", q: R`Según Barro, una mejora de los términos del intercambio \(P/\bar P\) que se espera transitoria (por ejemplo, un pico del precio del petróleo para un país que lo exporta) tiende a:`,
+        opts: [R`Bajar el ingreso nacional, porque cada unidad exportada compra menos importaciones.`, R`Dejar la cuenta corriente sin cambios, porque solo se mueven los precios relativos.`, R`Llevar la cuenta corriente a déficit, porque la inversión responde mucho más que el ahorro.`, R`Llevar la cuenta corriente a superávit, porque la inversión casi no responde y el ahorro sube.`],
+        correct: 3, why: R`Si la mejora es transitoria (o los costos de ajuste son grandes), la inversión casi no se mueve, mientras el ingreso y el ahorro suben: la cuenta corriente va a superávit. Con una mejora duradera, en cambio, la inversión puede responder más y llevarla a déficit.` },
+      { id: "sa-4", ref: "t8", q: R`Con la convención de Barro, \(\varepsilon_i\) son las unidades de la moneda \(i\) que se necesitan para comprar un dólar. Si \(\varepsilon_i\) pasa de 1,09 a 1,40, la moneda \(i\):`,
+        opts: [R`No cambió de valor: el tipo de cambio solo refleja la inflación de EE.UU.`, R`Se apreció, porque en la convención de Barro una suba del tipo de cambio es una apreciación.`, R`Se depreció: \(\varepsilon_i\) subió alrededor de 28 % y cada unidad de \(i\) vale menos dólares.`, R`Se apreció alrededor de 28 %, porque ahora un dólar compra más unidades de \(i\).`],
+        correct: 2, why: R`En la convención de Barro (como los «pesos por dólar»), si \(\varepsilon_i\) sube la moneda \(i\) vale menos: \(1{,}40/1{,}09 - 1 \approx 28\,\%\) de depreciación. Es el caso del dólar canadiense entre 1950 y 2003.` },
+      { id: "sa-5", ref: "t9", q: R`Según la PPA relativa de Barro, si la inflación del país \(i\) es 30 % anual y la de EE.UU. es 3 %, el tipo de cambio \(\varepsilon_i\) (unidades de \(i\) por dólar) debería:`,
+        opts: [R`Bajar alrededor de 27 % por año: la moneda \(i\) se aprecia.`, R`Subir alrededor de 33 % por año, la suma de las dos inflaciones.`, R`Subir alrededor de 27 % por año: la moneda \(i\) se deprecia en la diferencia de inflaciones.`, R`Quedarse quieto, porque la PPA relativa solo vale entre países con la misma inflación.`],
+        correct: 2, why: R`Por la PPA relativa, \(\Delta\varepsilon_i/\varepsilon_i = \pi_i - \pi = 30 - 3 = 27\,\%\): el tipo de cambio sube lo que la inflación local supera a la de EE.UU.` },
+      { id: "sa-6", ref: "t10", q: R`La tasa nominal en euros es 6 % y la tasa en yenes es 2 %. Según la paridad de tasas de interés (18.4) de Barro, los mercados esperan que:`,
+        opts: [R`El euro se aprecie alrededor de 4 % frente al yen.`, R`El yen se deprecie alrededor de 8 % frente al euro.`, R`El tipo de cambio entre el euro y el yen no cambie, porque las tasas reales son iguales.`, R`El euro se deprecie alrededor de 4 % frente al yen.`],
+        correct: 3, why: R`El diferencial de tasas nominales compensa la depreciación esperada: \(i_{\text{euro}} - i_{\text{yen}} = 6 - 2 = 4\,\%\). La moneda con la tasa más alta es la que se espera que se deprecie.` },
+      { id: "sa-7", ref: "t11", q: R`Con tipo de cambio fijo y PPA (\(P_i = \varepsilon_i\cdot P\)), el banco central compra bonos para aumentar la cantidad de dinero. Según Barro, el resultado es que:`,
+        opts: [R`La cantidad de dinero vuelve a su nivel: el banco central termina con más bonos y menos reservas internacionales.`, R`Sube el nivel de precios local y la moneda se deprecia.`, R`Suben las reservas internacionales, porque entran capitales atraídos por la emisión.`, R`Baja la tasa de interés local de forma permanente y sube la inversión.`],
+        correct: 0, why: R`Con tipo fijo, los pesos que sobran se cambian por dólares: \(M_i\) vuelve a su nivel y el banco central pierde reservas. Con tipo fijo no controla ni \(M_i\) ni \(P_i\) (tabla 18.2).` },
+      { id: "sa-8", ref: "t13", q: R`En la notación de Blanchard, el tipo de cambio real es \(\varepsilon = EP/P^*\), donde \(E\) es el precio de la moneda nacional en moneda extranjera. Una suba de \(\varepsilon\) significa que:`,
+        opts: [R`La moneda nacional se depreció en términos nominales, aunque los precios no cambiaron.`, R`Los bienes nacionales se abaratan frente a los extranjeros: hay una depreciación real.`, R`Los bienes nacionales se encarecen frente a los extranjeros: hay una apreciación real.`, R`Sube la inflación extranjera respecto de la nacional.`],
+        correct: 2, why: R`\(\varepsilon\) es el precio de los bienes nacionales medido en bienes extranjeros: si sube, lo nacional se encarece, es decir, hay una apreciación real. Ojo: en Barro y en Sachs y Larraín la convención es la inversa.` },
+      { id: "sa-9", ref: "t16", q: R`Según Blanchard, después de una depreciación real la balanza comercial primero empeora y después mejora (la curva J) porque:`,
+        opts: [R`La depreciación sube la tasa de interés y eso frena las exportaciones al principio.`, R`Al principio las cantidades exportadas e importadas casi no reaccionan, pero cada importación ya es más cara.`, R`Los exportadores cobran tarde, mientras que los importadores pagan por adelantado.`, R`La condición de Marshall-Lerner no se cumple ni en el corto ni en el largo plazo.`],
+        correct: 1, why: R`Hay contratos y cambiar de proveedor lleva tiempo: al principio domina el encarecimiento de las importaciones. Con el tiempo las cantidades responden y la balanza mejora por encima de donde estaba.` },
+      { id: "sa-10", ref: "t17", q: R`En el modelo de Blanchard (IS abierta más paridad de intereses), sube el gasto público \(G\) y el banco central mantiene la tasa de interés constante. Entonces:`,
+        opts: [R`La producción no cambia, porque la suba de \(G\) se compensa con menos inversión.`, R`Baja la producción, porque la moneda se aprecia y caen las exportaciones netas.`, R`Sube la producción y la moneda se aprecia, porque entra capital.`, R`Sube la producción, el tipo de cambio no cambia y las exportaciones netas empeoran por las mayores importaciones.`],
+        correct: 3, why: R`Si \(i\) no cambia, por la paridad de intereses \(E\) tampoco. La mayor demanda sube \(Y\) y, con el ingreso, las importaciones: empeoran las exportaciones netas.` },
+      { id: "sa-11", ref: "t19", q: R`Con tipo de cambio fijo, los mercados empiezan a esperar una devaluación (en la notación de Blanchard, \(E_{t+1}^e \lt E_t\)). Para sostener la paridad, el banco central:`,
+        opts: [R`No necesita hacer nada: con tipo fijo la paridad de intereses deja de aplicarse.`, R`Tiene que subir la tasa de interés local, a veces muchísimo, aunque eso frene la actividad.`, R`Tiene que emitir dinero para comprar las divisas que salen del país.`, R`Puede bajar la tasa de interés, porque la devaluación esperada atrae capitales.`],
+        correct: 1, why: R`Por la paridad \(i_t = i_t^* - (E_{t+1}^e - E_t)/E_t\), si se espera una devaluación hay que pagar más tasa para que se sigan teniendo bonos nacionales. Como eso frena la economía, la defensa pierde credibilidad.` },
+      { id: "sa-12", ref: "t20", q: R`Según Blanchard, en un régimen de caja de conversión el banco central:`,
+        opts: [R`Fija la tasa de interés libremente y deja flotar el tipo de cambio.`, R`Cambia divisas por moneda nacional al tipo oficial y no puede hacer operaciones de mercado abierto.`, R`Financia al Tesoro con adelantos para mantener el tipo de cambio.`, R`Mantiene una banda ancha de ±15 % alrededor de una paridad central.`],
+        correct: 1, why: R`La caja de conversión es una fijación rígida que le ata las manos al banco central: solo cambia divisas por moneda al tipo oficial. Argentina la usó desde 1991 (un peso = un dólar).` },
+      { id: "sa-13", ref: "t21", q: R`En Sachs y Larraín, el tipo de cambio real es \(R = EP^*/P\), con \(E\) en unidades de moneda nacional por unidad de moneda extranjera. Si \(R\) sube:`,
+        opts: [R`Los bienes nacionales se encarecen y bajan las exportaciones netas.`, R`Los bienes nacionales se abaratan, suben las exportaciones netas y la IS se corre a la derecha.`, R`Baja la demanda agregada, porque las importaciones se encarecen.`, R`No cambia la demanda agregada: solo cambia el nivel de precios.`],
+        correct: 1, why: R`Una suba de \(R\) es una depreciación real: el bien extranjero se encarece frente al nacional, se compran más bienes nacionales y suben las exportaciones netas.` },
+      { id: "sa-14", ref: "t22", q: R`En una economía pequeña con perfecta movilidad del capital y tipo de cambio fijo (Sachs y Larraín), el banco central hace una expansión monetaria comprando bonos. El resultado final es que:`,
+        opts: [R`No cambian el producto, los precios ni el tipo de cambio: solo bajan las reservas.`, R`La tasa interna queda por debajo de la mundial de forma permanente.`, R`Sube el producto y suben las reservas.`, R`Sube el producto y la moneda se deprecia.`],
+        correct: 0, why: R`La tasa tiende a bajar, sale capital y el banco central vende reservas para sostener \(E\): la LM vuelve a su lugar. Con tipo fijo la LM es endógena (tabla 9.1: 0, 0, −, 0).` },
+      { id: "sa-15", ref: "t24", q: R`Según el criterio de área monetaria óptima (Mundell, 1961) que discuten Sachs y Larraín, conviene que dos economías compartan moneda si:`,
+        opts: [R`Están muy integradas y tienen shocks parecidos, con mercados de bienes y de trabajo bien conectados.`, R`Una de las dos tiene inflación alta y quiere seguir financiando su déficit con emisión.`, R`Tienen shocks distintos y poca integración comercial.`, R`Las dos quieren conservar su propia política monetaria.`],
+        correct: 0, why: R`Si los shocks son parecidos y la integración es alta, perder la política monetaria propia cuesta poco. Si los shocks son distintos y la integración es baja, conviene que cada una tenga su moneda.` },
+      { id: "sa-16", ref: "t25", q: R`Según Mundell (1963), con movilidad perfecta del capital y tipo de cambio flexible, una expansión monetaria (compra de títulos) sube el ingreso porque:`,
+        opts: [R`Aumenta el gasto público financiado con la emisión.`, R`Presiona la tasa a la baja, sale capital, el tipo de cambio se deprecia y mejora la balanza comercial.`, R`El banco central acumula reservas y eso amplía el crédito interno.`, R`Baja la tasa de interés local de forma permanente y sube la inversión.`],
+        correct: 1, why: R`La política monetaria es muy eficaz con tipo flexible, pero no por la tasa (que queda atada a la mundial), sino por el tipo de cambio: la depreciación mejora la balanza comercial y sube el ingreso.` },
+      { id: "sa-17", ref: "t26", q: R`Según Mundell (1963), intentar esterilizar con tipo de cambio fijo y movilidad perfecta del capital:`,
+        opts: [R`Vuelve al sistema inconsistente: termina sin reservas o rompiendo el tipo de cambio fijo.`, R`Es la forma más eficaz de tener una política monetaria independiente.`, R`Hace que la política fiscal deje de tener efecto sobre el ingreso.`, R`Hace que las reservas suban sin límite.`],
+        correct: 0, why: R`Es su imagen de la pileta llena hasta el borde: emitir con tipo fijo es echar agua que se derrama tan rápido como sale de la canilla. Esterilizar es querer que no se derrame con la canilla abierta.` },
+      { id: "sa-18", ref: "t27", q: R`Fleming (1962), a diferencia de Mundell, supone que la movilidad del capital:`,
+        opts: [R`Depende solo del régimen cambiario elegido.`, R`Es nula: no hay cuenta capital.`, R`Es un parámetro que puede tomar cualquier valor, así que importa cuán sensible es el capital a la tasa.`, R`Es perfecta: la tasa interna es siempre igual a la mundial.`],
+        correct: 2, why: R`Por eso en Fleming los resultados dependen de la sensibilidad del capital a la tasa; el resultado de Mundell aparece como el caso extremo de capital infinitamente sensible.` },
+      { id: "sa-19", ref: "t29", q: R`Según Obstfeld y Rogoff (1995), la «intervención esterilizada» para defender un tipo de cambio fijo es «humo y espejos» porque:`,
+        opts: [R`Está prohibida por el FMI desde Bretton Woods.`, R`Aumenta la base monetaria y genera inflación de inmediato.`, R`Como los bonos de distintas monedas son casi sustitutos, casi no mueve ni la tasa ni el tipo de cambio.`, R`Los bancos centrales no tienen reservas para hacerla.`],
+        correct: 2, why: R`Vender reservas y recomprar bonos deja igual la base monetaria y solo cambia la composición de bonos en manos del público, que casi no le importa porque son casi sustitutos.` },
+      { id: "sa-20", ref: "t32", q: R`Según los apuntes de la clase 14, ¿qué le suma M2 a M1?`,
+        opts: [R`Los plazos fijos.`, R`Los billetes y monedas en poder del público.`, R`Las cuentas corrientes.`, R`Las cajas de ahorro.`],
+        correct: 3, why: R`M0 = billetes y monedas; M1 = M0 + cuentas corrientes; M2 = M1 + cajas de ahorro; M3 = M2 + plazos fijos. Cada agregado suma algo un poco menos líquido.` },
+      { id: "sa-21", ref: "t33", q: R`Según los apuntes de la clase 14, los dividendos que una empresa extranjera gira a su casa matriz se anotan en la balanza de pagos como:`,
+        opts: [R`Un egreso (−) en la cuenta de capital.`, R`Un egreso (−) en la balanza comercial de bienes.`, R`Un ingreso (+) en la cuenta financiera, como inversión extranjera directa.`, R`Un egreso (−) en servicios financieros, dentro de la cuenta corriente.`],
+        correct: 3, why: R`Intereses, utilidades y dividendos son servicios financieros de la cuenta corriente. Si salen divisas del país, se anotan con signo −.` }
+    ] },
+    { id: "b", name: "Tema B", questions: [
+      { id: "sb-1", ref: "t2", q: R`¿Por qué en la restricción presupuestaria de la economía abierta de Barro (17.5) no aparecen los impuestos, las transferencias ni los intereses de la deuda pública?`,
+        opts: [R`Porque son pagos entre residentes (hogares y gobierno) y se cancelan al sumar las dos restricciones.`, R`Porque la deuda pública está siempre en manos de extranjeros.`, R`Porque Barro supone que en una economía abierta el gobierno no cobra impuestos.`, R`Porque están incluidos en el ingreso neto de factores del exterior.`],
+        correct: 0, why: R`(17.5) sale de sumar la restricción de los hogares (17.2) y la del gobierno (17.3): lo que uno paga el otro lo cobra, así que en el total del país se cancela.` },
+      { id: "sb-2", ref: "t4", q: R`Un país tiene un ingreso nacional real (PNB menos depreciación) de 1.000, un consumo de hogares y gobierno \(C + G = 780\), una inversión bruta \(I = 300\) y una depreciación \(\delta K = 100\). Según (17.9), su cuenta corriente es:`,
+        opts: [R`\(-80\): el ahorro (220) es menor que la inversión bruta (300).`, R`\(+20\): el ahorro nacional (220) supera a la inversión interna neta (200).`, R`\(+220\): la cuenta corriente es igual al ahorro nacional.`, R`\(-20\): la inversión interna neta supera al ahorro.`],
+        correct: 1, why: R`\(S = 1000 - 780 = 220\) e \(I - \delta K = 300 - 100 = 200\), así que \(CC = S - (I - \delta K) = 20\): el país le presta al resto del mundo.` },
+      { id: "sb-3", ref: "t7", q: R`En la historia de la cuenta corriente de EE.UU. que analiza Barro, ¿en qué período tuvo superávit casi todos los años?`,
+        opts: [R`De 1897 a 1976, con un pico de 4,5 % del PNB en la Primera Guerra por los préstamos a los aliados.`, R`Solo durante la Segunda Guerra, entre 1942 y 1945.`, R`De 1820 a 1896, cuando el comercio superaba el 9 % del PBI.`, R`De 1977 a 2004, gracias a la suba de las exportaciones.`],
+        correct: 0, why: R`Antes de 1897 hubo déficit (−0,5 % en promedio) y de 1897 a 1976 superávit casi siempre. En 1942-45 hubo déficit (−0,6 %) y en 2000-04 un déficit récord de −4,4 %.` },
+      { id: "sb-4", ref: "t8", q: R`Según el ejemplo de Barro (noviembre de 2004), un dólar compraba 0,775 euros y 106 yenes. ¿Cuántos yenes compraba un euro, aproximadamente?`,
+        opts: [R`Alrededor de 0,007 yenes \((0{,}775/106)\).`, R`Alrededor de 107 yenes \((106 + 0{,}775)\).`, R`Alrededor de 82 yenes \((106 \times 0{,}775)\).`, R`Alrededor de 137 yenes \((106/0{,}775)\).`],
+        correct: 3, why: R`El tipo de cambio cruzado es \(\varepsilon_{\text{yen}}/\varepsilon_{\text{euro}} = 106/0{,}775 \approx 137\) yenes por euro.` },
+      { id: "sb-5", ref: "t9", q: R`Según el índice Big Mac que cita Barro (mayo de 2004), el Big Mac costaba 2,90 dólares en EE.UU. y 4,35 pesos en Argentina, con un tipo de cambio de mercado de 2,94 pesos por dólar. Esto indicaba que el peso estaba:`,
+        opts: [R`Subvaluado alrededor de 49 %: el tipo de cambio implícito era 1,5 contra 2,94 de mercado.`, R`Sobrevaluado alrededor de 49 %, porque el Big Mac era más caro en pesos.`, R`En línea con la PPA, porque \(4{,}35/2{,}94 \approx 1{,}5\).`, R`Subvaluado alrededor de 96 %, porque 2,94 es casi el doble de 1,5.`],
+        correct: 0, why: R`El tipo de cambio que haría valer la PPA es \(4{,}35/2{,}90 = 1{,}5\) pesos por dólar. Como el de mercado era 2,94, el peso valía en el mercado \(1{,}5/2{,}94 \approx 51\,\%\) de lo que diría la PPA: subvaluado 49 %.` },
+      { id: "sb-6", ref: "t10", q: R`Si se cumplen a la vez la paridad de tasas de interés y la PPA relativa, Barro concluye que:`,
+        opts: [R`Los tipos de cambio nominales no pueden cambiar.`, R`Las tasas nominales son iguales en todos los países, aunque las inflaciones difieran.`, R`Las tasas de interés reales (esperadas) son iguales en todos los países: \(i_i - \pi_i = i_j - \pi_j\).`, R`La inflación tiene que ser igual en todos los países.`],
+        correct: 2, why: R`La paridad iguala el diferencial de tasas nominales con la depreciación, y la PPA relativa iguala la depreciación con el diferencial de inflación. Juntas dan (18.5): tasas reales iguales.` },
+      { id: "sb-7", ref: "t12", q: R`Según la tabla 18.3 de Barro (de mediados de los 50 a 1996), Argentina tuvo una inflación 68 % anual mayor que la de EE.UU. y su tipo de cambio contra el dólar subió 64 % por año. Esto muestra que:`,
+        opts: [R`La PPA relativa no se cumple nunca, ni siquiera en el largo plazo.`, R`El tipo de cambio sube más que el diferencial de inflación en todos los países.`, R`La política monetaria argentina no afectaba al tipo de cambio.`, R`En los países de inflación alta, la PPA relativa casi se cumple.`],
+        correct: 3, why: R`Con inflación alta, el diferencial de inflación domina los movimientos del tipo de cambio (Brasil: 81 y 80; Israel: 24 y 24). Con inflación baja, la PPA explica poco en el corto plazo.` },
+      { id: "sb-8", ref: "t14", q: R`Según Blanchard, si un país tiene un superávit de cuenta corriente:`,
+        opts: [R`Su PNB es necesariamente menor que su PIB.`, R`Tiene un déficit de la cuenta financiera: le presta al resto del mundo (salvo la discrepancia estadística).`, R`Tiene también un superávit de la cuenta financiera, porque entran capitales.`, R`Tiene que perder reservas internacionales.`],
+        correct: 1, why: R`\(CC + CF = 0\): las dos cuentas son imágenes gemelas. Un superávit corriente se compensa con salidas netas de capital, es decir, el país compra activos afuera.` },
+      { id: "sb-9", ref: "t14", q: R`Según la aproximación (17.4) de Blanchard, \(i_t \approx i_t^* - (E_{t+1}^e - E_t)/E_t\). Si la tasa extranjera es 5 % y se espera que la moneda nacional se aprecie 2 %, la tasa nacional debería ser de alrededor de:`,
+        opts: [R`2 %, igual a la apreciación esperada.`, R`7 %, para compensar la apreciación esperada.`, R`3 %: la apreciación esperada compensa la tasa más baja.`, R`5 %, porque la paridad iguala las tasas.`],
+        correct: 2, why: R`\(i \approx 5\,\% - 2\,\% = 3\,\%\). Quien tiene bonos nacionales gana además la apreciación esperada de la moneda, así que acepta una tasa menor.` },
+      { id: "sb-10", ref: "t15", q: R`Según Blanchard, ante una suba de la demanda interna (por ejemplo, de \(G\)) en una economía abierta:`,
+        opts: [R`La balanza comercial mejora, porque sube el ingreso.`, R`La producción sube menos que en una economía cerrada y la balanza comercial empeora.`, R`La producción sube más que en una economía cerrada, porque aumentan las exportaciones.`, R`La producción no cambia: toda la demanda extra se va en importaciones.`],
+        correct: 1, why: R`Parte de la demanda extra se va en importaciones, así que el multiplicador es más chico, y la balanza empeora porque suben las importaciones con exportaciones sin cambios.` },
+      { id: "sb-11", ref: "t16", q: R`Según Blanchard, para reducir el déficit comercial sin cambiar el nivel de producción, la combinación adecuada es:`,
+        opts: [R`Una depreciación real sola, que siempre deja la producción constante.`, R`Una apreciación real acompañada de una expansión fiscal.`, R`Una depreciación real acompañada de una contracción fiscal.`, R`Una expansión monetaria junto con una expansión fiscal.`],
+        correct: 2, why: R`Si se cumple Marshall-Lerner, la depreciación mejora la balanza pero también sube la producción; la contracción fiscal compensa esa suba y deja \(Y\) igual.` },
+      { id: "sb-12", ref: "t32", q: R`Según la regla de la clase 14, si el BCRA quiere hacer política monetaria contractiva, tiene que:`,
+        opts: [R`Aumentar los adelantos transitorios al Tesoro.`, R`Achicar su pasivo, la base monetaria, o cambiarlo por pasivos remunerados (Leliqs, pases).`, R`Comprar reservas internacionales emitiendo pesos.`, R`Comprar títulos públicos en el mercado.`],
+        correct: 1, why: R`La base monetaria es pasivo del BCRA: contraer es achicarla o cambiarla por Leliqs o pases. Las otras opciones agrandan la base, es decir, son expansivas.` },
+      { id: "sb-13", ref: "t20", q: R`Según Blanchard, una misma suba de la tasa de interés interna puede apreciar mucho, poco o nada la moneda porque:`,
+        opts: [R`El banco central fija el tipo de cambio después de cada cambio de tasa.`, R`El tipo de cambio de hoy depende de lo que se espera de las tasas futuras y del tipo de cambio de largo plazo.`, R`El tipo de cambio solo depende de la inflación pasada.`, R`Con tipo flexible deja de valer la paridad de intereses.`],
+        correct: 1, why: R`Por (20.4) y (20.5), \(E_t\) depende de las tasas esperadas hacia adelante y de \(E^e\) de largo plazo. Si la suba de hoy cambia lo que se espera, el efecto puede ser grande o nulo.` },
+      { id: "sb-14", ref: "t23", q: R`Según Sachs y Larraín, en una economía pequeña con perfecta movilidad del capital y tipo de cambio flexible, una expansión fiscal:`,
+        opts: [R`Sube el producto y deprecia la moneda.`, R`Baja la tasa de interés interna por debajo de la mundial.`, R`No cambia la demanda agregada: la moneda se aprecia y las exportaciones netas caen en la misma medida.`, R`Sube mucho el producto, porque no hay suba de tasas que desplace la inversión.`],
+        correct: 2, why: R`La tasa tiende a subir, entra capital y la moneda se aprecia: la caída de \(NX\) compensa la suba de \(G\). Hay desplazamiento total, pero de exportaciones netas (como EE.UU. con Reagan).` },
+      { id: "sb-15", ref: "t22", q: R`Con tipo de cambio fijo y perfecta movilidad del capital, según Sachs y Larraín, una devaluación (sube \(E\)):`,
+        opts: [R`No tiene efecto sobre el producto, porque la LM es endógena.`, R`Sube el producto, pero bajan las reservas.`, R`Baja el producto, porque se encarecen las importaciones.`, R`Sube \(R\) y las exportaciones netas, la IS se corre a la derecha, sube el producto y suben las reservas.`],
+        correct: 3, why: R`La devaluación es una depreciación real que sube la demanda; la LM acompaña con más reservas. En la tabla 9.1: \(Q\) +, \(P\) +, \(R^*\) +, \(E\) +. Es muy eficaz para subir la demanda.` },
+      { id: "sb-16", ref: "t24", q: R`Entre los criterios de Maastricht para entrar en la Unión Monetaria Europea que mencionan Sachs y Larraín, están:`,
+        opts: [R`Un déficit fiscal de hasta 3 % del PIB y una deuda pública de hasta 60 % del PIB.`, R`Tipo de cambio flotante durante los dos años previos.`, R`Un déficit fiscal de hasta 6 % del PIB y una deuda de hasta 100 % del PIB.`, R`Inflación cero y superávit de cuenta corriente.`],
+        correct: 0, why: R`El tratado de Maastricht (1991) puso condiciones de entrada, entre ellas déficit/PIB ≤ 3 % y deuda/PIB ≤ 60 %. El euro empezó el 1 de enero de 1999.` },
+      { id: "sb-17", ref: "t25", q: R`Según Mundell (1963), con tipo de cambio flexible y movilidad perfecta del capital, una expansión fiscal financiada con deuda:`,
+        opts: [R`Sube el ingreso por el multiplicador keynesiano completo.`, R`No cambia el ingreso: el tipo de cambio se aprecia y el deterioro de la balanza comercial compensa exactamente el gasto.`, R`Sube el ingreso y las reservas internacionales.`, R`Deprecia la moneda y mejora la balanza comercial.`],
+        correct: 1, why: R`El gasto presiona la tasa al alza, entra capital y la moneda se aprecia. El déficit fiscal termina igual al déficit comercial y el ingreso queda igual.` },
+      { id: "sb-18", ref: "t26", q: R`Según Mundell (1963), con tipo de cambio fijo y movilidad perfecta del capital, la política fiscal expansiva:`,
+        opts: [R`Es muy eficaz: sube el ingreso y la cantidad de dinero aumenta «por la puerta trasera» cuando el banco central compra divisas.`, R`No tiene efecto, porque el banco central vende reservas.`, R`Hace bajar las reservas en el mismo monto del gasto.`, R`Solo cambia la balanza comercial.`],
+        correct: 0, why: R`El gasto sube el ingreso y la demanda de dinero; entra capital, el banco central compra divisas y emite. Valen las conclusiones keynesianas y las reservas suben.` },
+      { id: "sb-19", ref: "t28", q: R`Según Fleming (1962), una expansión monetaria con tipo de cambio fijo:`,
+        opts: [R`No cambia el ingreso, cualquiera sea la movilidad del capital.`, R`Es más eficaz que con tipo de cambio flotante.`, R`Mejora el balance de pagos, porque baja la tasa de interés.`, R`Empeora siempre el balance de pagos y solo se sostiene mientras haya reservas.`],
+        correct: 3, why: R`Más dinero baja la tasa y sube el gasto: empeoran la cuenta corriente (más importaciones) y la cuenta capital (tasa más baja). Con tipo fijo dura lo que duran las reservas.` },
+      { id: "sb-20", ref: "t30", q: R`Obstfeld y Rogoff (1995) cuentan que en septiembre de 1992 el Riksbank sueco subió la tasa marginal a un día a 500 %. ¿Qué pasó después?`,
+        opts: [R`Adoptó el euro de inmediato.`, R`Sostuvo el tipo de cambio fijo durante toda la década.`, R`Ganó la primera batalla, pero la economía quedó más débil y en noviembre dejó flotar la corona.`, R`Devaluó 15 % y volvió a fijar la corona con éxito.`],
+        correct: 2, why: R`Es el ejemplo de que el problema no es la plata para defenderse sino la voluntad de pagar sus costos: tasas altísimas golpean a bancos, deudores y empleo.` },
+      { id: "sb-21", ref: "t32", q: R`Según la tabla de activos y pasivos del BCRA de la clase 14, ¿cuál de estos es un PASIVO del BCRA?`,
+        opts: [R`Los adelantos transitorios al Tesoro.`, R`Los títulos públicos (bonos del Tesoro).`, R`Las reservas internacionales.`, R`La base monetaria.`],
+        correct: 3, why: R`Activos del BCRA: reservas, títulos públicos y adelantos transitorios. Pasivos: base monetaria, pasivos remunerados (Leliqs, pases) y depósitos del Gobierno.` }
+    ] },
+    { id: "c", name: "Tema C", questions: [
+      { id: "sc-1", ref: "t6", q: R`Según Barro, para los trabajadores el salario real relevante es \(w/\bar P = (w/P)\cdot(P/\bar P)\). Ante una mejora de los términos del intercambio, si domina el efecto sustitución:`,
+        opts: [R`Baja la oferta de trabajo y sube \(w/P\).`, R`Sube \(w/P\) y baja el empleo.`, R`El mercado de trabajo no cambia, porque \(w/P\) es constante.`, R`Sube la oferta de trabajo, sube el empleo y baja \(w/P\).`],
+        correct: 3, why: R`Con \(P/\bar P\) más alto, cada unidad de salario compra más bienes importados: sube la oferta de trabajo, sube \(L\) y baja \(w/P\).` },
+      { id: "sc-2", ref: "t7", q: R`Según Barro, las transferencias netas de EE.UU. al exterior fueron negativas en 1991. ¿Por qué?`,
+        opts: [R`Porque los extranjeros dejaron de cobrar los intereses de los bonos del Tesoro.`, R`Porque EE.UU. dejó de dar ayuda externa ese año.`, R`Porque Arabia Saudita y otros aliados le pagaron por la Guerra del Golfo.`, R`Porque EE.UU. tuvo un superávit comercial récord.`],
+        correct: 2, why: R`Las transferencias netas al exterior promediaron 0,5 % del PBI desde 1929, con un pico de más de 2 % a fines de los 40; en 1991 fueron negativas por los pagos de los aliados por la Guerra del Golfo.` },
+      { id: "sc-3", ref: "t4", q: R`En la ecuación (17.8) de Barro, el ahorro nacional \(S\) es:`,
+        opts: [R`El ingreso nacional real (PNB menos depreciación) menos el consumo de hogares y gobierno, \(C + G\).`, R`La diferencia entre exportaciones e importaciones.`, R`Solo el ahorro privado, porque el gobierno no ahorra.`, R`El PBI real menos la inversión bruta.`],
+        correct: 0, why: R`\(S = Y + r\cdot B_{t-1}^f/P - \delta K - (C + G)\). Barro trata todo \(G\) como consumo, y con eso \(CC = S - (I - \delta K)\).` },
+      { id: "sc-4", ref: "t8", q: R`Barro mide el tipo de cambio como unidades de moneda local por dólar, y Blanchard como el precio de la moneda nacional en moneda extranjera. Si con la convención de Barro el tipo de cambio sube, con la de Blanchard:`,
+        opts: [R`No cambia, porque Blanchard usa el tipo de cambio real.`, R`Baja: en los dos casos, la moneda nacional se depreció.`, R`Baja, y eso indica que la moneda nacional se apreció.`, R`También sube, porque las dos convenciones son equivalentes.`],
+        correct: 1, why: R`Las convenciones son inversas: en Barro, una suba de \(\varepsilon\) es depreciación; en Blanchard, una suba de \(E\) es apreciación. La misma depreciación sube uno y baja el otro.` },
+      { id: "sc-5", ref: "t9", q: R`Según Barro, ¿por qué la PPA no se cumple exactamente cuando se usan índices de precios como el IPC?`,
+        opts: [R`Porque los bienes comerciables no tienen costos de transporte.`, R`Porque los bancos centrales manipulan los índices de precios.`, R`Porque las canastas incluyen bienes no comerciables (trabajo local, inmuebles) que no se pueden llevar de un país a otro.`, R`Porque la paridad de tasas de interés se cumple siempre.`],
+        correct: 2, why: R`La PPA se apoya en el arbitraje, que no funciona con bienes no comerciables. Un cambio en los términos del intercambio también la rompe si los países producen bienes distintos.` },
+      { id: "sc-6", ref: "t11", q: R`Según Barro, en el sistema de Bretton Woods:`,
+        opts: [R`Las monedas flotaban libremente y el oro no tenía ningún papel.`, R`Cada banco central fijaba su moneda directamente al oro, con la onza a 20 dólares.`, R`Todos los países europeos usaban una moneda común.`, R`Cada país fijaba su moneda al dólar con bandas angostas, y EE.UU. cambiaba dólares por oro a 35 dólares la onza.`],
+        correct: 3, why: R`Era un patrón cambio oro, desde la Segunda Guerra hasta principios de los 70. La onza a 20 dólares en Nueva York corresponde al patrón oro clásico (1890-1914).` },
+      { id: "sc-7", ref: "t11", q: R`Según Barro, con tipo de cambio fijo, una devaluación (sube \(\varepsilon_i\)):`,
+        opts: [R`Baja la tasa de interés local si se esperan más devaluaciones.`, R`Baja el nivel de precios local, porque abarata los bienes importados.`, R`No afecta a los precios, solo a las reservas.`, R`Sube el nivel de precios local en la misma proporción: es inflacionaria.`],
+        correct: 3, why: R`Por \(P_i = \varepsilon_i \cdot P\), si sube \(\varepsilon_i\), sube \(P_i\) en la misma proporción. Y si se esperan más devaluaciones, la tasa local sube (18.12).` },
+      { id: "sc-8", ref: "t13", q: R`Según Blanchard, ¿por qué el cociente exportaciones/PIB no mide bien la apertura de un país?`,
+        opts: [R`Porque los países grandes no exportan.`, R`Porque el PIB no incluye las exportaciones.`, R`Porque las exportaciones pueden superar al PIB (como en Singapur): se exportan bienes hechos con insumos importados.`, R`Porque las exportaciones se miden en moneda extranjera y el PIB en moneda nacional.`],
+        correct: 2, why: R`El PIB es valor agregado, pero las exportaciones se miden por su valor total, que incluye insumos importados. Por eso el cociente puede pasar de 100 %.` },
+      { id: "sc-9", ref: "t32", q: R`Según las tablas de la clase 14, los adelantos transitorios son:`,
+        opts: [R`Parte de la base monetaria.`, R`Un activo del BCRA y un pasivo del Tesoro.`, R`Un pasivo del BCRA y un activo del Tesoro.`, R`Un activo del sector privado.`],
+        correct: 1, why: R`Lo que es activo de un sector suele ser pasivo de otro: los adelantos transitorios y los títulos públicos son activos del BCRA y deuda del Tesoro.` },
+      { id: "sc-10", ref: "t15", q: R`Según Blanchard, una suba de la producción extranjera \(Y^*\):`,
+        opts: [R`Sube las exportaciones y la producción nacional, y mejora la balanza comercial.`, R`No afecta a la economía nacional si el tipo de cambio es flexible.`, R`Baja la producción nacional, porque los extranjeros compran menos.`, R`Empeora la balanza comercial, porque suben las importaciones.`],
+        correct: 0, why: R`Más \(Y^*\) es más demanda de exportaciones: sube \(Y\) y mejora la balanza (las importaciones suben con \(Y\), pero menos que las exportaciones).` },
+      { id: "sc-11", ref: "t16", q: R`Según la ecuación (18.5) de Blanchard, \(NX = S + (T - G) - I\). Si el déficit fiscal aumenta, entonces necesariamente:`,
+        opts: [R`La inversión sube para compensar.`, R`Tiene que subir el ahorro privado, bajar la inversión o empeorar la cuenta corriente (o una combinación de las tres).`, R`El ahorro privado baja en el mismo monto.`, R`La cuenta corriente empeora exactamente en el mismo monto.`],
+        correct: 1, why: R`Es una identidad: si baja \(T - G\), algo de \(S\), \(I\) o \(NX\) tiene que ajustarse. La identidad sola no dice cuál, ni en qué proporción.` },
+      { id: "sc-12", ref: "t17", q: R`En el modelo de Blanchard para una economía abierta con tipo flexible, si el banco central sube la tasa de interés:`,
+        opts: [R`Baja la inversión, pero la moneda se deprecia y compensa.`, R`La producción no cambia, porque la paridad de intereses lo impide.`, R`Baja la inversión y la moneda se aprecia, lo que reduce las exportaciones netas: la producción cae por las dos vías.`, R`Sube la inversión y la moneda se deprecia.`],
+        correct: 2, why: R`Por la paridad \(E = \frac{1+i}{1+i^*}\bar E^e\), si sube \(i\) sube \(E\) (apreciación). La tasa afecta a \(Y\) por la inversión y por el tipo de cambio.` },
+      { id: "sc-13", ref: "t19", q: R`Según Blanchard, con tipo de cambio fijo y una producción por debajo de la potencial, en el medio plazo:`,
+        opts: [R`La economía queda siempre por debajo de la potencial, porque el tipo de cambio no se mueve.`, R`La producción solo vuelve a la potencial si se abandona el tipo fijo.`, R`Los precios bajan respecto de los de afuera, hay depreciación real y la economía vuelve a la producción potencial, aunque lentamente.`, R`El tipo de cambio real se aprecia y la producción cae más.`],
+        correct: 2, why: R`El tipo real \(\bar E P/P^*\) se mueve por los precios. En el medio plazo se llega al mismo resultado que con tipo flexible; el problema es la lentitud, y por eso una devaluación puede acortar el camino.` },
+      { id: "sc-14", ref: "t21", q: R`Según Sachs y Larraín, la curva IS de una economía abierta se corre a la derecha si:`,
+        opts: [R`Sube el producto externo \(Q^*\) o hay una depreciación real (sube \(R\)).`, R`La moneda se aprecia en términos reales.`, R`Sube la tasa de interés interna.`, R`Suben los impuestos.`],
+        correct: 0, why: R`La demanda (9.1) sube con \(G\), con \(Q^*\) y con \(R\), y baja con \(T\). Un cambio en la tasa es un movimiento a lo largo de la IS, no un desplazamiento.` },
+      { id: "sc-15", ref: "t23", q: R`En una economía chica y abierta con tipo flexible y perfecta movilidad del capital, según Sachs y Larraín, la política monetaria actúa principalmente a través:`,
+        opts: [R`De la tasa de interés interna, que queda por debajo de la mundial de forma permanente.`, R`De las reservas internacionales, que suben.`, R`Del gasto público, que se financia con emisión.`, R`Del tipo de cambio: la moneda se deprecia, suben las exportaciones netas y la IS se corre.`],
+        correct: 3, why: R`La tasa tiende a bajar, sale capital y la moneda se deprecia: suben \(NX\) y la IS hasta cruzar la nueva LM en \(i = i^*\).` },
+      { id: "sc-16", ref: "t24", q: R`Según la evidencia del modelo MULTIMOD (FMI) que citan Sachs y Larraín, una baja de impuestos de cinco años en EE.UU.:`,
+        opts: [R`Baja la tasa de interés real en EE.UU.`, R`Deprecia el dólar y mejora la cuenta corriente.`, R`No tiene ningún efecto sobre el resto del mundo.`, R`Sube el producto al principio, aprecia el dólar real y empeora la cuenta corriente; además sube el PIB del resto del mundo industrializado.`],
+        correct: 3, why: R`El producto sube 0,7 % el primer año, la tasa real sube, el dólar real se aprecia 2,2 % y el PIB del resto del mundo industrializado sube 0,3 %: las economías son interdependientes.` },
+      { id: "sc-17", ref: "t25", q: R`Según Mundell (1963), con tipo flexible, que el banco central compre divisas con moneda local:`,
+        opts: [R`Aprecia la moneda y baja el ingreso.`, R`Funciona igual que una compra de títulos: también es política monetaria expansiva.`, R`Es política fiscal.`, R`No tiene efectos, porque el tipo de cambio es flexible.`],
+        correct: 1, why: R`En los dos casos el banco central emite al comprar un activo: sube la cantidad de dinero, se deprecia la moneda y sube el ingreso.` },
+      { id: "sc-18", ref: "t26", q: R`Según las conclusiones de Mundell (1963), con movilidad perfecta del capital:`,
+        opts: [R`Con tipo fijo, la política monetaria solo cambia las reservas; con tipo flexible, la fiscal solo cambia la balanza comercial.`, R`Con tipo fijo, la política fiscal solo cambia las reservas; con tipo flexible, la monetaria solo cambia la balanza comercial.`, R`La política monetaria es eficaz con tipo fijo, y la fiscal con tipo flexible.`, R`Las dos políticas son igual de eficaces en cualquier régimen.`],
+        correct: 0, why: R`Es la tabla de Mundell: monetaria (fijo: 0; flexible: fuerte) y fiscal (fijo: fuerte; flexible: 0). Él mismo aclara que es «blanco y negro»: con movilidad imperfecta, la realidad es gris.` },
+      { id: "sc-19", ref: "t27", q: R`Según Fleming (1962), si el capital es muy sensible a la tasa de interés (como en Canadá), una expansión fiscal con tipo flotante:`,
+        opts: [R`Deprecia el tipo de cambio y estimula más que con tipo fijo.`, R`Aprecia el tipo de cambio y estimula menos que con tipo fijo.`, R`Empeora siempre el balance de pagos.`, R`No cambia el tipo de cambio.`],
+        correct: 1, why: R`Si con tipo fijo el balance mejoraba (entra mucho capital por la tasa más alta), con flotante la moneda se aprecia y resta estímulo. Con capital infinitamente sensible, el efecto se anula (Mundell).` },
+      { id: "sc-20", ref: "t31", q: R`Según Obstfeld y Rogoff (1995), las zonas objetivo con bandas anchas (como las de ±15 % del SME desde 1993):`,
+        opts: [R`Son lo mismo que la flotación libre.`, R`Eliminan definitivamente los ataques especulativos.`, R`Dan margen y evitan las apuestas de un solo lado, pero solo postergan el problema: al llegar al borde tienen los mismos problemas que un tipo fijo.`, R`Garantizan que la tasa interna sea igual a la externa.`],
+        correct: 2, why: R`Son un «tipo fijo light»: en 1992 se atacaron bandas de 12 % de ancho y en 1995 España y Portugal devaluaron con bandas de 30 %.` },
+      { id: "sc-21", ref: "t33", q: R`Según la clase 14, una multinacional que compra una fábrica en el país se anota en la balanza de pagos como:`,
+        opts: [R`Inversión extranjera directa: un ingreso (+) de largo plazo en la cuenta financiera.`, R`Un egreso (−) en servicios financieros.`, R`Inversión de cartera: un ingreso (+) de corto plazo.`, R`Una exportación de bienes en la balanza comercial.`],
+        correct: 0, why: R`La IED es la compra de bienes de capital o el control directo de una empresa (largo plazo). La inversión de cartera es la compra de acciones o bonos de corto plazo.` }
+    ] },
+    { id: "d", name: "Tema D", questions: [
+      { id: "sd-1", ref: "t1", q: R`En el modelo del capítulo 17 de Barro, la moneda internacional \(H_t\) que guarda cada banco central:`,
+        opts: [R`Es la base monetaria de cada país.`, R`Crece al ritmo de la inflación mundial.`, R`Son dólares, euros u oro que no pagan interés, y el stock mundial \(\bar H\) es constante.`, R`Son bonos que pagan la tasa mundial \(r^f\).`],
+        correct: 2, why: R`\(H\) es el activo de reserva del banco central: no paga interés, a diferencia de los bonos \(B^f\), y el total mundial \(\bar H\) está dado.` },
+      { id: "sd-2", ref: "t7", q: R`Un país tiene exportaciones netas de 30, un ingreso neto de factores del exterior de −50 (paga más intereses de los que cobra) y hace transferencias netas al exterior por 5. Su cuenta corriente es:`,
+        opts: [R`\(+25\)`, R`\(-25\)`, R`\(-15\)`, R`\(-20\)`],
+        correct: 1, why: R`\(CC = (X - IM) + r\cdot B_{t-1}^f/P - TR = 30 - 50 - 5 = -25\). Las transferencias netas al exterior se restan.` },
+      { id: "sd-3", ref: "t5", q: R`Según Barro, en el modelo de ciclos reales para una economía chica y abierta, ¿qué hace que la balanza comercial sea contracíclica?`,
+        opts: [R`En el auge las exportaciones suben más que las importaciones.`, R`En el auge los hogares dejan de suavizar el consumo y ahorran todo el ingreso extra.`, R`En el auge la inversión sube más que el ahorro, y las importaciones aportan los bienes para invertir más de lo que se ahorra.`, R`En el auge sube la tasa de interés local y eso reduce las exportaciones.`],
+        correct: 2, why: R`Con \(r = r^f\) fija y la MPK más alta, la inversión crece más que el ahorro: déficit de cuenta corriente en el auge. En los datos, las importaciones son más procíclicas (0,71) que las exportaciones (0,38).` },
+      { id: "sd-4", ref: "t10", q: R`Según Barro, ¿por qué un país como China puede tener una tasa de interés real más baja que la de EE.UU.?`,
+        opts: [R`Porque la paridad de tasas de interés no se aplica a China.`, R`Porque su banco central fija la tasa real por decreto.`, R`Porque tiene más inflación que EE.UU. y la PPA relativa se cumple exactamente.`, R`Porque su canasta es barata en dólares y se espera que sus precios en dólares suban (más inflación o una apreciación): un desvío de la PPA relativa.`],
+        correct: 3, why: R`Con \(P_i/P_j \lt \varepsilon_i/\varepsilon_j\) (18.6), los precios en dólares de China tienden a subir. Junto con la paridad de tasas, eso da (18.8): \(i_i - \pi_i \lt i_j - \pi_j\).` },
+      { id: "sd-5", ref: "t11", q: R`Según Barro, cuando con tipo de cambio fijo un banco central pierde reservas por emitir de más, además de devaluar puede recurrir a:`,
+        opts: [R`Aumentar la demanda de dinero por decreto.`, R`Bajar la tasa de interés para atraer capitales.`, R`Emitir más dinero para comprar reservas.`, R`Trabas al comercio, como aranceles o subsidios a las exportaciones, uno de los argumentos de Friedman contra el tipo fijo.`],
+        correct: 3, why: R`Si esteriliza una y otra vez, se queda sin reservas y tiene que devaluar. La otra salida son las trabas al comercio, con sus ineficiencias.` },
+      { id: "sd-6", ref: "t11", q: R`Según Barro, ¿qué papel tiene la especulación en las devaluaciones con tipo de cambio fijo?`,
+        opts: [R`Solo afecta a las revaluaciones.`, R`Las impide, porque los especuladores compran la moneda local.`, R`No tiene ningún efecto con tipo fijo.`, R`Las acelera: si se espera una devaluación, la gente sale de la moneda antes (México 1994-95, Argentina 2002).`],
+        correct: 3, why: R`Quedarse sin reservas obliga a devaluar, y la expectativa de una devaluación hace que se pierdan reservas más rápido: Tailandia 1997 (114 %), Rusia 1998 (266 %), Argentina 2002 (280 %).` },
+      { id: "sd-7", ref: "t12", q: R`Según Barro, ¿cuál es la principal ventaja del tipo de cambio flexible?`,
+        opts: [R`Que el país puede tener una política monetaria independiente, por ejemplo con una meta de inflación.`, R`Que la tasa nominal local es siempre igual a la de EE.UU.`, R`Que elimina los vaivenes del tipo de cambio en el corto plazo.`, R`Que el nivel de precios queda atado al de EE.UU.`],
+        correct: 0, why: R`Con tipo flexible, \(\varepsilon_i\) se ajusta y el país elige su cantidad de dinero, su nivel de precios y su inflación.` },
+      { id: "sd-8", ref: "t13", q: R`Un Cadillac cuesta 40.000 dólares, un Jaguar cuesta 30.000 libras y \(E = 0{,}5\) libras por dólar. El tipo de cambio real \(\varepsilon = EP/P^*\) de Blanchard (para EE.UU.) es de alrededor de:`,
+        opts: [R`0,67: un Cadillac vale dos tercios de un Jaguar.`, R`1,5: un Jaguar vale un Cadillac y medio.`, R`0,38: un Cadillac vale menos de la mitad de un Jaguar.`, R`1,33: un Cadillac vale un Jaguar y un tercio.`],
+        correct: 0, why: R`\(\varepsilon = (0{,}5 \times 40.000)/30.000 = 20.000/30.000 \approx 0{,}67\): el Cadillac, pasado a libras, vale 20.000, dos tercios de un Jaguar.` },
+      { id: "sd-9", ref: "t14", q: R`Según Blanchard, la condición de paridad descubierta de intereses explica que:`,
+        opts: [R`Las tasas de interés de todos los países sean siempre idénticas.`, R`El tipo de cambio esperado no influya en las decisiones de inversión.`, R`Las tasas de interés de los países se muevan juntas, salvo que estén dispuestos a tolerar grandes movimientos del tipo de cambio.`, R`Los costos de transacción y el riesgo determinen el tipo de cambio.`],
+        correct: 2, why: R`Si una tasa se despega de las demás, el tipo de cambio tiene que moverse para compensar. La condición ignora costos de transacción y riesgo.` },
+      { id: "sd-10", ref: "t33", q: R`Según la clase 14, un préstamo del FMI al Estado se anota en la balanza de pagos como:`,
+        opts: [R`Un ingreso en la cuenta de capital, como una patente.`, R`Un ingreso (+) en la cuenta financiera (movimiento público de capitales) cuando entra, y un egreso (−) cuando se paga.`, R`Una exportación de servicios financieros.`, R`Una transferencia en la cuenta corriente.`],
+        correct: 1, why: R`Los préstamos que toma o paga el Estado son el movimiento público de capitales de la cuenta financiera. Si entran divisas es +, y si salen, −.` },
+      { id: "sd-11", ref: "t16", q: R`Alguien afirma: «una depreciación no puede bajar el déficit comercial, porque no cambia ni el ahorro ni la inversión». Según Blanchard:`,
+        opts: [R`Es correcto, porque la identidad ahorro-inversión determina la cuenta corriente.`, R`Es falso, porque la depreciación siempre baja la inversión.`, R`Es correcto solo si se cumple Marshall-Lerner.`, R`Es falso: (18.5) es una identidad, y la depreciación sube \(Y\) y con eso el ahorro.`],
+        correct: 3, why: R`\(NX = S + (T - G) - I\) no dice qué causa qué. La depreciación cambia la producción, y con ella el ahorro, así que la identidad se sigue cumpliendo con un \(NX\) distinto.` },
+      { id: "sd-12", ref: "t18", q: R`Según Blanchard, una expansión fiscal con tipo de cambio fijo tiene los mismos efectos que con tipo flexible si el banco central mantiene la tasa. La diferencia es que, con tipo fijo:`,
+        opts: [R`La expansión fiscal no tiene ningún efecto sobre la producción.`, R`La moneda se aprecia más que con tipo flexible.`, R`El banco central tiene que bajar la tasa para sostener el tipo de cambio.`, R`El banco central no puede responder subiendo la tasa: tiene que dejarla igual a \(i^*\).`],
+        correct: 3, why: R`Con \(E = \bar E\) y paridad de intereses, \(i = i^*\). Se pierde la tasa como herramienta: queda la política fiscal, que sola puede no alcanzar.` },
+      { id: "sd-13", ref: "t20", q: R`Según el recuadro de Blanchard sobre Argentina, ¿qué problema tuvo la caja de conversión en la segunda mitad de los 90?`,
+        opts: [R`Las tasas de interés eran negativas y desalentaban el ahorro.`, R`El dólar se apreció y el peso con él: peso sobrevaluado, menos demanda, recesión y déficit comercial.`, R`La inflación se disparó por la emisión monetaria.`, R`El peso se depreció demasiado y encareció las importaciones.`],
+        correct: 1, why: R`La caja bajó la inflación, pero el peso quedó atado a un dólar que se apreciaba. En 2001 llegó la crisis, en 2002 se abandonó la caja y el PIB cayó 11 %.` },
+      { id: "sd-14", ref: "t21", q: R`En el modelo Mundell-Fleming de Sachs y Larraín, a diferencia del capítulo 17 de Barro, se supone que:`,
+        opts: [R`No hay comercio internacional de bienes.`, R`Los bienes de todos los países son idénticos y se cumple la ley de un solo precio.`, R`Los precios son totalmente flexibles en el corto plazo.`, R`Cada país produce un bien distinto (sustitutos imperfectos), así que el tipo de cambio real afecta a la demanda.`],
+        correct: 3, why: R`Con bienes diferenciados (los Cadillac y los Jaguar), \(R\) cambia la composición de la demanda y entra en la IS. En el capítulo 17 de Barro, en cambio, los bienes son idénticos.` },
+      { id: "sd-15", ref: "t22", q: R`Según Sachs y Larraín, con tipo de cambio fijo, si un país impone controles de capitales:`,
+        opts: [R`La política monetaria pierde todo efecto.`, R`Las reservas internacionales suben sin límite.`, R`Desaparece la condición \(i = i^*\) y la política monetaria vuelve a funcionar como en una economía cerrada.`, R`El tipo de cambio pasa a flotar automáticamente.`],
+        correct: 2, why: R`Sin movilidad del capital no hay curva MC: la tasa interna puede diferir de la mundial y la LM deja de ser endógena.` },
+      { id: "sd-16", ref: "t24", q: R`Según Sachs y Larraín, ¿cuál es la crítica de Feldstein al euro?`,
+        opts: [R`Que cada país necesita su propia política monetaria: por ejemplo, España con casi 20 % de desempleo y Holanda en pleno auge.`, R`Que el Banco Central Europeo no es independiente.`, R`Que el euro aumenta los costos de transacción entre países.`, R`Que el euro obliga a todos los países a tener tipo de cambio flexible.`],
+        correct: 0, why: R`Con una sola política monetaria para todos, los países con shocks distintos no pueden ajustarla a su situación. Las ventajas del euro son menos costos de transacción y sin riesgo cambiario.` },
+      { id: "sd-17", ref: "t26", q: R`Según Mundell (1963), con tipo de cambio fijo y movilidad perfecta del capital, si el banco central compra títulos por 100 millones, el único efecto es que:`,
+        opts: [R`Pierde reservas por 100 millones, el mismo monto de la compra.`, R`Sube el ingreso por el multiplicador monetario.`, R`Gana reservas por 100 millones.`, R`Se deprecia la moneda en la misma proporción.`],
+        correct: 0, why: R`La tasa tiende a bajar, sale capital y el banco central vende divisas para sostener el tipo de cambio, con lo que recompra la moneda que emitió.` },
+      { id: "sd-18", ref: "t25", q: R`¿Cuál de los siguientes es un supuesto del modelo de Mundell (1963)?`,
+        opts: [R`Pleno empleo y precios totalmente flexibles.`, R`Desempleo, salarios nominales fijos y precio constante del producto local, en un país chico.`, R`Un país grande que mueve la tasa de interés mundial.`, R`Movilidad nula del capital entre países.`],
+        correct: 1, why: R`Mundell supone desempleo y precios fijos (keynesiano), país chico y movilidad perfecta del capital: la tasa no se puede despegar de la mundial.` },
+      { id: "sd-19", ref: "t28", q: R`La conclusión central de Fleming (1962) sobre la eficacia relativa de las políticas es que:`,
+        opts: [R`Con tipo de cambio flotante, la política monetaria gana eficacia frente a la fiscal.`, R`La política fiscal es inútil con tipo de cambio fijo.`, R`Con tipo de cambio fijo, la política monetaria es más eficaz que la fiscal.`, R`Las dos políticas tienen siempre el mismo efecto, cualquiera sea el régimen.`],
+        correct: 0, why: R`La monetaria baja la tasa, necesita más depreciación y la depreciación expande: \(\Delta Y_M/\Delta Y_G\) es mayor con flotante que con fijo (salvo casos extremos).` },
+      { id: "sd-20", ref: "t31", q: R`La tesis central de Obstfeld y Rogoff (1995) en «The Mirage of Fixed Exchange Rates» es que:`,
+        opts: [R`El tipo de cambio fijo es la mejor opción para cualquier país con mercados de capitales abiertos.`, R`Los controles de capitales son la solución para sostener un tipo fijo.`, R`Con mercados de capitales globales, sostener un tipo fijo es muy difícil y casi no hay punto medio cómodo entre flotar y adoptar una moneda común.`, R`Las zonas objetivo resuelven definitivamente los problemas de los tipos fijos.`],
+        correct: 2, why: R`Pocos países sostuvieron un tipo fijo cinco años o más. Proponen bancos centrales independientes y metas de inflación, y consideran que los controles de capitales son costosos y fáciles de evadir.` },
+      { id: "sd-21", ref: "t33", q: R`Según la clase 14, si un país tiene un déficit de cuenta corriente de 10.000 millones de dólares y la cuenta capital y financiera (incluidas las reservas) cierra el registro, entonces:`,
+        opts: [R`Las reservas del BCRA suben 10.000 millones.`, R`La cuenta capital y financiera tiene un superávit de 10.000 millones: préstamos, inversiones del exterior o venta de reservas.`, R`La balanza de pagos tiene un déficit total de 20.000 millones.`, R`La cuenta capital y financiera también tiene un déficit de 10.000 millones.`],
+        correct: 1, why: R`Cuenta Corriente + Cuenta Financiera/Capital = 0: cada divisa que sale por una cuenta tiene su contrapartida en la otra. Si se financia vendiendo reservas, las reservas bajan.` }
+    ] }
+  ]
+};
+// SIMULACROS>>
+window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exams: EXAMS, sims: SIMS };
 </script>
 
 <script>
@@ -3402,13 +3765,14 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
 
   /* ---------- Progreso: localStorage con respaldo en memoria ---------- */
   var memSave = null;
-  function blank() { return { xp: 0, rooms: {}, bosses: {} }; }
+  function blank() { return { xp: 0, rooms: {}, bosses: {}, sims: {} }; }
   function normalize(s) {
     var b = blank();
     if (s && typeof s === 'object') {
       b.xp = Math.max(0, Number(s.xp) || 0);
       if (s.rooms && typeof s.rooms === 'object') b.rooms = s.rooms;
       if (s.bosses && typeof s.bosses === 'object') b.bosses = s.bosses;
+      if (s.sims && typeof s.sims === 'object') b.sims = s.sims;   /* mejores notas de los simulacros: { a: { best, last, tries } } */
     }
     return b;
   }
@@ -3541,7 +3905,7 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
     '📄': 'page-facing-up', '🗽': 'statue-of-liberty', '💱': 'currency-exchange', '🍔': 'hamburger', '🏦': 'bank', '⚓': 'anchor',
     '🎈': 'balloon', '🚗': 'automobile', '📈': 'chart-up', '🛒': 'shopping-cart', '📉': 'chart-down', '🕹️': 'joystick',
     '💶': 'euro-banknote', '🚰': 'potable-water', '🏛️': 'classical-building', '🏜️': 'desert', '🛡️': 'shield', '🎯': 'direct-hit',
-    '✉️': 'envelope'
+    '✉️': 'envelope', '📝': 'memo', '💪': 'flexed-biceps', '👏': 'clapping-hands', '😉': 'winking-face', '🥳': 'partying-face'
   };
   var EMO = {};
   Object.keys(EMO_SRC).forEach(function (k) { EMO[k.split(VS16).join('')] = EMO_SRC[k]; });
@@ -3592,11 +3956,14 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
 
   /* ---------- Diálogo de confirmación ---------- */
   var dlg = $('#dlg');
-  function ask(title, text, yesLabel) {
+  /* primary: el botón de confirmar va en azul (entregar un examen); si no, en rojo (borrar). */
+  function ask(title, text, yesLabel, noLabel, primary) {
     return new Promise(function (resolve) {
       $('#dlgTitle').textContent = title;
       $('#dlgText').textContent = text;
       $('#dlgYes').innerHTML = emojify(yesLabel);
+      $('#dlgYes').className = primary ? 'btn' : 'btn btn-danger';
+      $('#dlgNo').textContent = noLabel || 'Cancelar';
       var back = document.activeElement;
       function close(v) { dlg.close(); $('#dlgYes').onclick = null; $('#dlgNo').onclick = null; dlg.oncancel = null; if (back && back.focus) back.focus(); resolve(v); }
       $('#dlgYes').onclick = function () { close(true); };
@@ -3607,10 +3974,10 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
     });
   }
   $('#resetBtn').addEventListener('click', function () {
-    ask('¿Borrar tu progreso?', 'Se borran tu XP y las habitaciones y jefes superados en este navegador. No se puede deshacer.', '🗑️ Borrar').then(function (yes) {
+    ask('¿Borrar tu progreso?', 'Se borran tu XP, las habitaciones y jefes superados y tus mejores notas de los simulacros en este navegador. No se puede deshacer.', '🗑️ Borrar').then(function (yes) {
       if (!yes) return;
       try { localStorage.removeItem(KEY); } catch (e) {}
-      memSave = null; save = blank(); streak = 0; run = null;
+      memSave = null; save = blank(); streak = 0; run = null; exam = null;
       paintStats(); route(); say('Progreso borrado.');
     });
   });
@@ -3697,6 +4064,7 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
       + '<li class="path-on"><div><span class="path-n">1</span><span class="path-t">📚 Leé los resúmenes</span><span class="path-s">Estás acá</span></div></li>'
       + '<li><a href="#/practica"><span class="path-n">2</span><span class="path-t">🧠 Recorré el palacio</span><span class="path-s">' + ROOMS.length + ' habitaciones</span></a></li>'
       + '<li><a href="#/jefes"><span class="path-n">3</span><span class="path-t">⚔️ Enfrentá a los jefes</span><span class="path-s">' + BOSSES.length + ' jefes</span></a></li>'
+      + '<li><a href="#/simulacros"><span class="path-n">4</span><span class="path-t">📝 Rendí un simulacro</span><span class="path-s">' + SIM.length + ' temas</span></a></li>'
       + '</ol>'
       + '<nav aria-label="PDF de la bibliografía"><ul class="pdfs">' + SOURCES.map(function (s) {
           var n = cardsOf(s).length;
@@ -4017,20 +4385,211 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
     if (won) confetti();
   }
 
+  /* ================= TAB 4: SIMULACROS (TEMAS A–D) =================
+     Como el parcial real: una opción por pregunta, +100/n por correcta, −100/(3n) por incorrecta y 0 en blanco
+     (con n = 21: +4,76 y −1,59). Se aprueba con 50. El examen en curso vive en memoria: si la persona va a otra
+     pestaña y vuelve, sigue donde estaba. Se guarda la mejor nota de cada tema. */
+  var SIM = (DATA.sims && DATA.sims.temas) || [];
+  var LETTERS = ['a', 'b', 'c', 'd'];
+  var exam = null;
+  function pts(x) { return Number(x).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('-', MINUS); }
+  function simRules(t) { var n = t.questions.length; return { n: n, plus: 100 / n, minus: 100 / (3 * n) }; }
+  function simScore(t, answers) {
+    var r = simRules(t), c = 0, w = 0, b = 0;
+    t.questions.forEach(function (q) { var a = answers[q.id]; if (a == null) b++; else if (a === q.correct) c++; else w++; });
+    return { c: c, w: w, b: b, n: r.n, plus: r.plus, minus: r.minus, pts: Math.round((c * r.plus - w * r.minus) * 100) / 100 };
+  }
+  function simBest(id) { var s = save.sims[id]; return s && typeof s.best === 'number' ? s.best : null; }
+  function simCrack() { return SIM.length > 0 && SIM.every(function (t) { var b = simBest(t.id); return b !== null && b >= 70; }); }
+  /* Mensaje según el porcentaje (el máximo es 100, así que puntos = porcentaje). NBSP: el «%» no queda solo en otra línea. */
+  var PCT = String.fromCharCode(160) + '%';
+  function simMood(p, crack) {
+    if (p >= 85) return { emo: '🏆', cls: 'mood-top', title: '¡Impresionante!', text: 'Este tema lo tenés dominado.' + (crack ? '' : ' Si llegás al 70' + PCT + ' en los cuatro, hay sorpresa.') };
+    if (p >= 70) return { emo: '🎉', cls: 'mood-great', title: '¡Muy bien!', text: 'Superaste el 70' + PCT + ': este tema ya está. Mirá las que fallaste para cerrarlo del todo.' };
+    if (p >= 50) return { emo: '👏', cls: 'mood-pass', title: '¡Aprobado!', text: 'Pasaste los 50 puntos. Con un repaso de las que fallaste llegás al 70' + PCT + '.' };
+    if (p >= 30) return { emo: '📚', cls: 'mood-close', title: '¡Vas en camino!', text: 'Te faltan ' + pts(50 - p) + ' puntos para aprobar. Repasá los resúmenes de las que fallaste y probá de nuevo.' };
+    return { emo: '💪', cls: 'mood-low', title: '¡No aflojes!', text: 'Cada error te marca qué repasar. Leé las explicaciones de abajo y volvé a intentarlo: rindiendo también se aprende.' };
+  }
+  function crackHtml(fresh) {
+    return '<section class="card sim-crack' + (fresh ? ' is-fresh' : '') + '" aria-labelledby="crackH">'
+      + '<p class="sim-crack-emo" aria-hidden="true">🏆🥳</p>'
+      + '<h2 id="crackH">¡Sos un crack!</h2>'
+      + '<p class="lead">Superaste el 70' + PCT + ' en los cuatro temas. Con esta preparación, vas a aprobar seguro.</p>'
+      + '<p class="sim-wink"><span class="sim-wink-emo" aria-hidden="true">😉</span><span>Espero que no te hayas olvidado de <a href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer">recomendarme en LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></a>, btw.</span></p>'
+      + '</section>';
+  }
+  function renderSims(msg) {
+    setTitle('Simulacros');
+    var h = '<section class="hero">'
+      + '<p class="kicker">Simulacros · Temas A a D</p>'
+      + '<h1 id="h">Simulacros del tercer parcial</h1>'
+      + '<p class="lead">Cuatro temas como el parcial: 21 preguntas de opción múltiple sobre todo el temario, con una sola respuesta correcta. El resultado se ve al entregar.</p>'
+      + '<ul class="sim-rules" aria-label="Cómo se califica">'
+      + '<li><strong>+4,76</strong> por cada correcta</li>'
+      + '<li><strong>' + MINUS + '1,59</strong> por cada incorrecta</li>'
+      + '<li><strong>0</strong> si la dejás en blanco</li>'
+      + '<li>Se aprueba con <strong>50</strong></li></ul>'
+      + (msg ? '<p class="notice" role="status">⚠️ <span>' + msg + '</span></p>' : '')
+      + '</section>'
+      + (simCrack() ? crackHtml(false) : '')
+      + '<div class="boss-grid sim-grid">' + SIM.map(function (t) {
+          var best = simBest(t.id), live = exam && exam.tema === t && !exam.done, answered = live ? Object.keys(exam.answers).length : 0;
+          return '<article class="boss-card sim-card" aria-labelledby="sh-' + t.id + '">'
+            + '<span class="boss-emo" aria-hidden="true">📝</span>'
+            + '<h2 id="sh-' + t.id + '">' + t.name + '</h2>'
+            + '<p class="boss-meta">' + t.questions.length + ' preguntas · todo el temario</p>'
+            + (best !== null
+                ? '<p class="sim-best' + (best >= 70 ? ' is-great' : best >= 50 ? ' is-pass' : '') + '">' + (best >= 50 ? '✅' : '📚') + ' Tu mejor nota: <strong>' + pts(best) + '</strong> / 100</p>'
+                : '<p class="boss-meta">Todavía no lo rendiste.</p>')
+            + (live ? '<p class="sim-live">En curso: ' + answered + ' de ' + t.questions.length + ' respondidas</p>' : '')
+            + '<div class="cta"><a class="btn" href="#/simulacros/' + t.id + '">' + (live ? '▶️ Seguir' : best !== null ? '🔁 Rendir de nuevo' : '📝 Empezar') + '</a></div></article>';
+        }).join('') + '</div>';
+    paint(h, '#h');
+  }
+  function startSim(id) {
+    var t = byId(SIM, id);
+    if (!t) return renderSims('No encontré ese tema.');
+    if (!exam || exam.tema !== t || exam.done) exam = { tema: t, answers: {}, done: false };
+    renderExam();
+  }
+  function examCount() { return Object.keys(exam.answers).length; }
+  function examCountText() {
+    var n = exam.tema.questions.length, c = examCount();
+    return '<strong>' + c + '</strong> de ' + n + ' respondidas' + (c < n ? ' · ' + (n - c) + ' en blanco' : '');
+  }
+  function updateExamBar() {
+    var el = $('#simCount', app); if (el) el.innerHTML = examCountText();
+    var f = $('#simBarFill', app); if (f) f.style.transform = 'scaleX(' + (examCount() / exam.tema.questions.length) + ')';
+  }
+  function renderExam() {
+    var t = exam.tema, n = t.questions.length, r = simRules(t);
+    setTitle(t.name + ' · Simulacro');
+    var h = '<div class="q-top"><a class="back" href="#/simulacros">← Volver a los simulacros</a></div>'
+      + '<section class="card sim-head" aria-labelledby="h">'
+      + '<p class="kicker">Simulacro · ' + n + ' preguntas · +' + pts(r.plus) + ' / ' + MINUS + pts(r.minus) + ' · en blanco 0</p>'
+      + '<h1 id="h">' + t.name + '</h1>'
+      + '<p class="small">Marcá una opción por pregunta. Podés cambiarla o dejarla en blanco hasta entregar. Si vas a otra pestaña, tus respuestas te esperan acá.</p>'
+      + '</section>'
+      + '<ol class="sim-list">' + t.questions.map(function (q, i) {
+          var a = exam.answers[q.id];
+          return '<li class="sim-q" id="q-' + q.id + '"><fieldset class="opts sim-opts"><legend class="sim-legend"><span class="sim-n">' + (i + 1) + '.</span> ' + q.q + '</legend>'
+            + q.opts.map(function (o, k) {
+                return '<label class="opt" data-i="' + k + '"><input type="radio" name="sq-' + q.id + '" value="' + k + '"' + (a === k ? ' checked' : '') + '><span class="opt-k">' + LETTERS[k] + '</span><span class="opt-t">' + o + '</span><span class="opt-mark" aria-hidden="true"></span></label>';
+              }).join('')
+            + '</fieldset><button class="sim-clear" type="button" data-q="' + q.id + '"' + (a == null ? ' hidden' : '') + '>Dejar en blanco<span class="sr-only"> la pregunta ' + (i + 1) + '</span></button></li>';
+        }).join('') + '</ol>'
+      + '<div class="sim-bar"><div class="sim-bar-in">'
+      + '<p class="sim-count" id="simCount">' + examCountText() + '</p>'
+      + '<div class="bar sim-bar-track" aria-hidden="true"><span id="simBarFill" style="transform:scaleX(' + (examCount() / n) + ')"></span></div>'
+      + '<button class="btn" type="button" id="simSubmit">📝 Entregar</button></div></div>';
+    paint(h, '#h');
+    $$('.sim-list input[type="radio"]', app).forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        var qid = inp.name.slice(3);
+        exam.answers[qid] = Number(inp.value);
+        var b = $('.sim-clear[data-q="' + qid + '"]', app); if (b) b.hidden = false;
+        updateExamBar();
+      });
+    });
+    $$('.sim-clear', app).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var qid = b.getAttribute('data-q');
+        delete exam.answers[qid];
+        $$('input[name="sq-' + qid + '"]', app).forEach(function (i) { i.checked = false; });
+        b.hidden = true;
+        var first = $('input[name="sq-' + qid + '"]', app); if (first) first.focus();
+        updateExamBar();
+        say('Pregunta en blanco.');
+      });
+    });
+    $('#simSubmit').addEventListener('click', submitExam);
+  }
+  function submitExam() {
+    var n = exam.tema.questions.length, blank = n - examCount();
+    var text = blank > 0
+      ? 'Te ' + (blank === 1 ? 'queda 1 pregunta' : 'quedan ' + blank + ' preguntas') + ' en blanco: no suman ni restan. Después de entregar no se pueden cambiar las respuestas.'
+      : 'Respondiste las ' + n + '. Después de entregar no se pueden cambiar las respuestas.';
+    ask('¿Entregar el examen?', text, '📝 Entregar', 'Seguir revisando', true).then(function (yes) { if (yes) finishSim(); });
+  }
+  function reviewHtml(t, answers) {
+    var items = t.questions.map(function (q, i) {
+      var a = answers[q.id], ok = a === q.correct, blank = a == null;
+      var status = ok ? 'is-ok' : blank ? 'is-blank' : 'is-bad';
+      var tag = ok ? '✅ Correcta' : blank ? 'En blanco' : '❌ Incorrecta';
+      var th = byId(THEORY, q.ref);
+      var opts = q.opts.map(function (o, k) {
+        var cls = k === q.correct ? ' is-ok' : (k === a ? ' is-bad' : '');
+        var sr = k === q.correct ? ' (respuesta correcta)' : (k === a ? ' (tu respuesta, incorrecta)' : '');
+        return '<div class="opt is-locked' + cls + '"><span class="opt-k">' + LETTERS[k] + '</span><span class="opt-t">' + o + '</span><span class="opt-mark" aria-hidden="true"></span>' + (sr ? '<span class="sr-only">' + sr + '</span>' : '') + '</div>';
+      }).join('');
+      var body = '<div class="opts sim-review-opts">' + opts + '</div>'
+        + '<p class="sim-why"><strong>Por qué:</strong> ' + q.why + '</p>'
+        + (th ? '<p class="sim-ref"><a class="chip" href="#/teoria/' + th.id + '">📚 Repasá ' + srcOf(th).author + ': Resumen ' + th.num + ' · ' + th.short + '</a></p>' : '');
+      var head = '<span class="sim-n">' + (i + 1) + '.</span> <span class="sim-tag ' + status + '">' + tag + '</span> <span class="sim-qt">' + q.q + '</span>';
+      return ok
+        ? '<li class="sim-rv ' + status + '"><details><summary>' + head + '</summary>' + body + '</details></li>'
+        : '<li class="sim-rv ' + status + '"><p class="sim-rv-q">' + head + '</p>' + body + '</li>';
+    }).join('');
+    return '<section class="sim-review" id="simReview" aria-labelledby="rvH" tabindex="-1"><h2 class="h3" id="rvH">📚 Tus respuestas</h2>'
+      + '<p class="small">Las que fallaste o dejaste en blanco están abiertas, con la explicación y el resumen para repasar. Las correctas, plegadas.</p>'
+      + '<ol class="sim-rv-list">' + items + '</ol></section>';
+  }
+  function finishSim() {
+    var t = exam.tema, answers = exam.answers, s = simScore(t, answers);
+    exam.done = true;
+    var prev = simBest(t.id), crackBefore = simCrack(), rec = save.sims[t.id] || {};
+    rec.best = prev === null ? s.pts : Math.max(prev, s.pts);
+    rec.last = s.pts;
+    rec.tries = (rec.tries || 0) + 1;
+    save.sims[t.id] = rec;
+    persist();
+    var crackNow = !crackBefore && simCrack(), mood = simMood(s.pts, crackBefore || crackNow), record = prev !== null && s.pts > prev;
+    var h = '<section class="card result sim-result ' + mood.cls + '" aria-labelledby="h">'
+      + '<p class="big sim-mood" aria-hidden="true">' + mood.emo + '</p>'
+      + '<p class="kicker">' + t.name + ' · Resultado</p>'
+      + '<h1 id="h">' + pts(s.pts) + ' <span class="sim-of">/ 100</span></h1>'
+      + '<p class="sim-verdict ' + (s.pts >= 50 ? 'is-pass' : 'is-fail') + '">' + (s.pts >= 50 ? '✅ Aprobado' : '❌ Todavía no: se aprueba con 50') + (record ? ' · ⭐ ¡Nuevo récord!' : '') + '</p>'
+      + '<p class="sim-mood-title">' + mood.title + '</p>'
+      + '<p class="lead">' + mood.text + '</p>'
+      + '<dl class="sim-break">'
+      + '<div><dt>✅ Correctas</dt><dd>' + s.c + ' × ' + pts(s.plus) + ' = +' + pts(s.c * s.plus) + '</dd></div>'
+      + '<div><dt>❌ Incorrectas</dt><dd>' + s.w + ' × ' + pts(s.minus) + ' = ' + MINUS + pts(s.w * s.minus) + '</dd></div>'
+      + '<div><dt>En blanco</dt><dd>' + s.b + ' × 0 = 0</dd></div>'
+      + '</dl>'
+      + (prev !== null && !record ? '<p class="small sim-prev">Tu mejor nota en este tema sigue siendo ' + pts(prev) + '.</p>' : '')
+      + '<div class="cta-row"><button class="btn" type="button" id="toReview">📚 Ver las respuestas</button>'
+      + '<button class="btn btn-2" type="button" data-go="#/simulacros/' + t.id + '">🔁 Rendir de nuevo</button>'
+      + '<a class="btn btn-2" href="#/simulacros">Volver a los simulacros</a></div>'
+      + '</section>'
+      + (crackNow ? crackHtml(true) : '')
+      + reviewHtml(t, answers);
+    paint(h, '#h');
+    $('#toReview').addEventListener('click', function () {
+      var rv = $('#simReview', app);
+      rv.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' });
+      rv.focus({ preventScroll: true });
+    });
+    say(t.name + ': ' + pts(s.pts) + ' puntos. ' + (s.pts >= 50 ? 'Aprobado.' : 'Todavía no aprobado.') + (crackNow ? ' ¡Superaste el 70 % en los cuatro temas!' : ''));
+    if (crackNow) confetti({ n: 64, pool: ['🎉', '🥳', '🏆', '✨', '⭐'], spread: 1400, dur: 3600 });
+    else if (s.pts >= 70) confetti();
+  }
+
   /* ---------- Confeti (solo si no se pidió reducir el movimiento) ---------- */
-  function confetti() {
+  /* opts (opcional): n piezas, pool de emojis, spread = demora máxima de cada pieza (ms), dur = cuándo se saca la capa. */
+  function confetti(opts) {
     if (reduceMotion) return;
+    opts = opts || {};
     var box = document.createElement('div');
     box.className = 'confetti';
     box.setAttribute('aria-hidden', 'true');
-    var pool = ['🎉', '✨', '⭐', '💵'], html = '';
-    for (var i = 0; i < 22; i++) {
-      var left = Math.round(Math.random() * 96), dx = Math.round(Math.random() * 120 - 60) + 'px', rot = Math.round(Math.random() * 540 - 270) + 'deg', delay = Math.round(Math.random() * 400);
+    var pool = opts.pool || ['🎉', '✨', '⭐', '💵'], n = opts.n || 22, spread = opts.spread || 400, html = '';
+    for (var i = 0; i < n; i++) {
+      var left = Math.round(Math.random() * 96), dx = Math.round(Math.random() * 120 - 60) + 'px', rot = Math.round(Math.random() * 540 - 270) + 'deg', delay = Math.round(Math.random() * spread);
       html += emojify(pool[i % pool.length]).replace('<img ', '<img style="left:' + left + '%;--dx:' + dx + ';--rot:' + rot + ';animation-delay:' + delay + 'ms" ');
     }
     box.innerHTML = html;
     document.body.appendChild(box);
-    setTimeout(function () { box.remove(); }, 2300);
+    setTimeout(function () { box.remove(); }, opts.dur || 2300);
   }
 
   /* ---------- Teclado: 1 a 4 eligen, Enter comprueba o avanza ---------- */
@@ -4064,9 +4623,11 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
       try { history.replaceState(null, '', '#/' + parts.join('/')); } catch (e) {}
     }
     var tab = parts[0];
-    if (tab !== 'practica' && tab !== 'jefes') tab = 'teoria';
+    if (tab !== 'practica' && tab !== 'jefes' && tab !== 'simulacros') tab = 'teoria';
     setTab(tab);
     app.classList.toggle('wide', tab === 'teoria');
+    /* Durante un simulacro (examen y resultado) el aviso flotante no aparece: taparía la barra de entrega. */
+    document.body.classList.toggle('in-exam', tab === 'simulacros' && !!parts[1]);
     if (tab === 'practica') {
       if (!parts[1]) renderPalace();
       else if (parts[2] === 'jugar') startRoom(parts[1]);
@@ -4074,6 +4635,9 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
     } else if (tab === 'jefes') {
       if (!parts[1]) renderBosses();
       else startBoss(parts[1]);
+    } else if (tab === 'simulacros') {
+      if (!parts[1]) renderSims();
+      else startSim(parts[1]);
     } else {
       renderTheory(parts[0] === 'teoria' ? parts[1] : null);
     }
@@ -4126,7 +4690,7 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
   popMenu($('#mailBtn'), $('#mailMenu'), 'center');
 
   /* ---------- Aviso de recomendación (flotante) ----------
-     En cada carga (entrar o recargar) aparece cuando la persona ya scrolleó la MITAD de la página, y desde ahí la sigue
+     En cada carga (entrar o recargar) aparece cuando la persona ya scrolleó el 30 % de la página, y desde ahí la sigue
      (es fijo). Se corre mientras la tarjeta de créditos del pie, que pide lo mismo, está en pantalla, y vuelve al subir.
      La ✕ lo cierra hasta la próxima carga. */
   (function () {
@@ -4138,7 +4702,7 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
       ticking = false;
       if (closed || shown) return;
       var max = document.documentElement.scrollHeight - window.innerHeight;
-      if (max > 0 && (window.scrollY || window.pageYOffset || 0) >= max / 2) {
+      if (max > 0 && (window.scrollY || window.pageYOffset || 0) >= max * 0.3) {
         shown = true;
         window.removeEventListener('scroll', onScroll);
         reco.classList.add('is-on');

@@ -17,7 +17,6 @@
   (function () {
     var t = null;
     try { t = localStorage.getItem('palacio-macro:tema'); } catch (e) {}
-    try { if (localStorage.getItem('palacio-macro:reco') === 'off') document.documentElement.setAttribute('data-reco', 'off'); } catch (e) {}
     if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
     var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#000000' : '#F5F5F7');
@@ -160,8 +159,22 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
 @media (hover: hover) and (pointer: fine) { .seg a:not([aria-current="page"]):hover { color: var(--ink); background: color-mix(in srgb, var(--surface) 55%, transparent); } }
 
 /* Aviso de recomendación bajo el encabezado: una línea, un solo botón y una ✕ que lo cierra para siempre en este navegador. */
-.reco { background: var(--surface); border-bottom: 1px solid var(--line); }
-.reco-row { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: var(--s3); padding: var(--s2) var(--s4); min-height: 52px; }
+/* Aparece en cada carga, unos 3 s después de abrir: se despliega de 0 a su alto (grid 0fr → 1fr) y el contenido entra
+   con un fundido y un desliz corto. Cerrado (o antes de aparecer) mide 0 y no se puede enfocar (visibility: hidden). */
+.reco { display: grid; grid-template-rows: 0fr; visibility: hidden; background: var(--surface); box-shadow: inset 0 -1px 0 transparent;
+  transition: grid-template-rows .6s cubic-bezier(.22, 1, .36, 1), box-shadow .6s ease, visibility 0s linear .6s; }
+.reco-clip { min-height: 0; overflow: hidden; }
+.reco-row { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: var(--s3); padding: var(--s2) var(--s4); min-height: 52px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .35s ease, transform .6s cubic-bezier(.22, 1, .36, 1); }
+.reco.is-on { grid-template-rows: 1fr; visibility: visible; box-shadow: inset 0 -1px 0 var(--line);
+  transition: grid-template-rows .6s cubic-bezier(.22, 1, .36, 1), box-shadow .6s ease, visibility 0s; }
+.reco.is-on .reco-row { opacity: 1; transform: none; transition: opacity .5s ease .15s, transform .6s cubic-bezier(.22, 1, .36, 1) .1s; }
+/* Con "reducir movimiento" está desde el principio, sin demora ni animación (que aparezca de golpe después correría el texto). */
+@media (prefers-reduced-motion: reduce) {
+  .reco, .reco-row { transition: none; }   /* la regla global acorta la duración pero no la DEMORA: sin esto, cerrado quedaba "visible" 0,6 s */
+  .reco:not(.is-off) { grid-template-rows: 1fr; visibility: visible; box-shadow: inset 0 -1px 0 var(--line); }
+  .reco:not(.is-off) .reco-row { opacity: 1; transform: none; }
+}
 .reco-logo { flex: none; width: 28px; height: 28px; }
 .reco-txt { flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 1.35; color: var(--ink-2); }
 .reco-txt strong { color: var(--ink); font-weight: 600; }
@@ -172,7 +185,6 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
 .reco-x { position: relative; flex: none; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
 .reco-x svg { width: 16px; height: 16px; }
 @media (hover: hover) and (pointer: fine) { .reco-go:hover { filter: brightness(1.08); } .reco-x:hover { background: var(--fill); color: var(--ink); } }
-:root[data-reco="off"] .reco { display: none; }
 @media (max-width: 559px) { .reco-long { display: none; } .reco-short { display: inline; } .reco-row { gap: var(--s2); } .reco-go { padding: 0 var(--s3); } }
 @media (max-width: 359px) { .reco-logo { display: none; } }   /* a 320 px el texto quedaba en 3 líneas; el botón ya dice LinkedIn */
 
@@ -725,11 +737,13 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
 </header>
 
 <aside class="reco" id="reco" aria-label="Pedido de recomendación en LinkedIn">
+  <div class="reco-clip">
   <div class="reco-row">
     <img class="reco-logo" src="logos/linkedin.png?v=2" alt="" width="128" height="128">
     <p class="reco-txt"><strong>¿Te sirvió?</strong> <span class="reco-long">Dejame una recomendación en LinkedIn contando qué hiciste con este material y por qué te ayudó.</span><span class="reco-short">Dejame una recomendación.</span></p>
     <a class="reco-go" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer">Ir a LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></a>
     <button class="reco-x" id="recoX" type="button" aria-label="Cerrar este aviso"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button>
+  </div>
   </div>
 </aside>
 
@@ -4104,13 +4118,28 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
   popMenu($('#creatorBtn'), $('#creatorMenu'), 'start');
   popMenu($('#mailBtn'), $('#mailMenu'), 'center');
 
-  /* ---------- Aviso de recomendación de arriba: la ✕ lo cierra y no vuelve en este navegador ---------- */
+  /* ---------- Aviso de recomendación de arriba ----------
+     Aparece en CADA carga (entrar o recargar), 3 s después de abrir, con la animación suave del CSS.
+     Si a los 3 s la persona ya bajó, espera a que vuelva arriba: así no le corre el texto que está leyendo.
+     Con "reducir movimiento" ya está desde el principio (lo resuelve el CSS). La ✕ lo cierra hasta la próxima carga. */
   (function () {
-    var x = $('#recoX');
-    if (!x) return;
+    var reco = $('#reco'), x = $('#recoX');
+    if (!reco || !x) return;
+    try { localStorage.removeItem('palacio-macro:reco'); } catch (e) {}   // la versión anterior lo recordaba cerrado
+    var closed = false, waiting = false;
+    function atTop() { return (window.scrollY || window.pageYOffset || 0) < 8; }
+    function onScroll() { if (atTop()) { window.removeEventListener('scroll', onScroll); waiting = false; show(); } }
+    function show() {
+      if (closed || reco.classList.contains('is-on')) return;
+      if (!atTop()) { if (!waiting) { waiting = true; window.addEventListener('scroll', onScroll, { passive: true }); } return; }
+      reco.classList.add('is-on');
+    }
+    if (!reduceMotion) setTimeout(show, 3000);
     x.addEventListener('click', function () {
-      document.documentElement.setAttribute('data-reco', 'off');
-      try { localStorage.setItem('palacio-macro:reco', 'off'); } catch (e) {}
+      closed = true;
+      window.removeEventListener('scroll', onScroll);
+      reco.classList.remove('is-on');
+      reco.classList.add('is-off');
       say('Aviso cerrado.');
       var app = $('#app');
       if (app) app.focus({ preventScroll: true });

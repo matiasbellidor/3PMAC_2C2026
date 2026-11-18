@@ -31,7 +31,7 @@ Un **palacio de la memoria** armado sobre el aeropuerto de Ezeiza: hall, check-i
 
 Son cinco habitaciones con 22 preguntas sobre el capítulo 17 de Barro, de opción múltiple y con cuentas. Si acertás, avanzás. Si errás, ves la explicación paso a paso contada con la historia del palacio, y la pregunta vuelve al final. Cada habitación superada abre la siguiente.
 
-### ⚔️ Exámenes Viejos (Boss Fights)
+### ⚔️ Jefes (Estilo parcial)
 Tres jefes con 19 preguntas de opción múltiple estilo parcial. Cada acierto le saca vida al jefe y cada error te cuesta un corazón; con tres errores perdés la pelea. Al terminar, ves las preguntas que fallaste con su respuesta y los resúmenes para repasar.
 
 ![Explicación paso a paso con la historia del palacio, en el celular](capturas/palacio-celular.webp)
@@ -57,7 +57,7 @@ Es un sitio estático, así que también funciona en otros servicios de hosting 
 - Bibliografía: Barro, *Macroeconomics: A Modern Approach* (caps. 17 y 18); Blanchard, *Macroeconomía* (7.ª ed., caps. 17 a 20); Sachs y Larraín, *Macroeconomía en la economía global* (cap. 9); Mundell, «Capital Mobility and Stabilization Policy under Fixed and Flexible Exchange Rates» (1963); Fleming, «Domestic Financial Policies under Fixed and under Floating Exchange Rates» (1962), y Obstfeld y Rogoff, «The Mirage of Fixed Exchange Rates» (1995). Los PDF no están en el repositorio porque tienen derechos de autor.
 - Los resúmenes, las historias del palacio y las preguntas son material propio de estudio. Si algo no coincide con lo que da la cátedra, gana la cátedra.
 - Este no es un sitio oficial de la Universidad de Buenos Aires ni de la cátedra. El sello de la UBA (dominio público) y el escudo de la Facultad de Ciencias Económicas solo identifican la institución donde se cursa la materia.
-- Emojis designed by Apple. Used for educational purposes. LinkedIn, Gmail y Outlook son marcas de sus respectivos dueños.
+- Emojis designed by Apple. Used for educational purposes. LinkedIn, Gmail, Outlook y GitHub son marcas de sus respectivos dueños.
 
 ## Autor
 

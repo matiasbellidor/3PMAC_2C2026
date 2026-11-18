@@ -128,6 +128,16 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
 /* En oscuro el ícono (negro) se perdía contra el header: un borde claro y fino lo recorta */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .creator-btn:not([aria-expanded="true"]) { box-shadow: 0 0 0 1px rgba(255, 255, 255, .28); } }
 :root[data-theme="dark"] .creator-btn:not([aria-expanded="true"]) { box-shadow: 0 0 0 1px rgba(255, 255, 255, .28); }
+/* El ícono avisa que es un botón: el mismo brillo inclinado y halo cada 4 s que el CTA de LinkedIn del pie.
+   Arranca después de la intro, se pausa con el menú abierto y nunca corre con "reducir movimiento". Solo transform y opacity. */
+.creator-shine { position: absolute; inset: 0; z-index: 1; border-radius: inherit; overflow: hidden; pointer-events: none; }
+.creator-shine::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), transparent); transform: translateX(-150%) skewX(-12deg); }
+.creator-btn::after { content: ""; position: absolute; inset: -1px; border-radius: 9px; border: 2px solid var(--accent-btn); opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .creator-btn:not([aria-expanded="true"]) .creator-shine::before { animation: cta-brillo 4s ease-in-out 1.4s infinite; }
+  .creator-btn:not([aria-expanded="true"])::after { animation: creator-halo 4s ease-out 1.4s infinite; }
+  @keyframes creator-halo { from { opacity: .7; transform: scale(1); } 40%, to { opacity: 0; transform: scale(1.6); } }
+}
 .brand img.emo { width: 32px; height: 32px; vertical-align: middle; flex: none; }
 .brand-txt { display: flex; flex-direction: column; min-width: 0; line-height: 1.2; }
 .brand-name { font: 700 16px/1.2 var(--font-d); letter-spacing: -.015em; white-space: nowrap; }
@@ -164,6 +174,7 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
 @media (hover: hover) and (pointer: fine) { .reco-go:hover { filter: brightness(1.08); } .reco-x:hover { background: var(--fill); color: var(--ink); } }
 :root[data-reco="off"] .reco { display: none; }
 @media (max-width: 559px) { .reco-long { display: none; } .reco-short { display: inline; } .reco-row { gap: var(--s2); } .reco-go { padding: 0 var(--s3); } }
+@media (max-width: 359px) { .reco-logo { display: none; } }   /* a 320 px el texto quedaba en 3 líneas; el botón ya dice LinkedIn */
 
 .tabbar { display: none; }
 @media (max-width: 719px) {
@@ -233,6 +244,13 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
 
 /* ============ TEORÍA ============ */
 .hero { margin-bottom: var(--s6); }
+/* Título de Teoría con un botón discreto al lado (el sitio de la materia): en celular baja debajo del título. */
+.hero-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s4); }
+.site-link { position: relative; display: inline-flex; align-items: center; gap: var(--s2); min-height: 36px; padding: 0 var(--s3) 0 var(--s4); border-radius: var(--rp); background: transparent; color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 14px; font-weight: 600; letter-spacing: -.005em; text-decoration: none; white-space: nowrap; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+.site-link::before { content: ""; position: absolute; inset: -4px; }   /* zona táctil de 44 px */
+.site-link svg { flex: none; width: 12px; height: 12px; color: var(--muted); transition: transform var(--dur) var(--ease), color var(--dur) var(--ease); }
+@media (hover: hover) and (pointer: fine) { .site-link:hover { background: var(--fill); color: var(--ink); } .site-link:hover svg { color: var(--ink); transform: translate(1px, -1px); } }
+.site-link:active { background: var(--fill); }
 .path { list-style: none; margin: var(--s5) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
 .path li > a, .path li > div { height: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--s3); row-gap: 0; align-items: center; padding: var(--s3) var(--s4); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); color: var(--ink); text-decoration: none; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
 .path-n { grid-row: span 2; display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--rp); background: var(--fill); font-weight: 700; font-size: 14px; }
@@ -516,16 +534,16 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outl
 .cr-sub { margin-top: var(--s1); color: var(--muted); max-width: 52ch; }
 .cr-thanks { margin-top: var(--s3); color: var(--muted); max-width: 52ch; font-size: 14px; line-height: 1.5; text-align: center; text-wrap: balance; }
 .cr-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s3); width: 100%; margin-top: var(--s4); }
-.cr-actions > .pill-app { flex: 0 1 300px; min-width: 0; }
+.cr-actions > .pill-app { flex: 0 1 330px; min-width: 0; }   /* 330: con el logo a 12 px de la curva, «Conectá conmigo en LinkedIn» (16 px) necesita ~323 px para quedar centrado */
 @media (max-width: 559px) { .cr-actions > .pill-app { flex: 1 1 100%; } }
-.pill-app { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; padding: 0 5px; border-radius: var(--rp); background: var(--fill); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: -.005em; }
+.pill-app { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; padding: 0 12px; border-radius: var(--rp); background: var(--fill); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: -.005em; }
 .pill-txt { flex: 1 1 auto; text-align: center; white-space: nowrap; padding: 0 var(--s3); }
 .pill-gap { width: 34px; flex: 0 1 34px; min-width: 0; }
 /* Logo PNG de LinkedIn entero y tal cual (regla de Matías: nada blanco, ni círculo ni borde): sobre el azul del botón
    se separa solo con una sombra oscura suave. El PNG ya trae sus esquinas redondeadas. */
 .pill-logo { flex: none; width: 34px; height: 34px; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .45)); }
 /* Botón de mail: secundario y tranquilo, sin animación, del mismo tamaño que el de LinkedIn */
-.pill-mail { min-height: 48px; padding: 0 7px; border: 0; font: inherit; font-weight: 600; font-size: 16px; letter-spacing: -.01em; cursor: pointer; background: var(--fill); color: var(--ink); transition: background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.pill-mail { min-height: 48px; padding: 0 12px; border: 0; font: inherit; font-weight: 600; font-size: 16px; letter-spacing: -.01em; cursor: pointer; background: var(--fill); color: var(--ink); transition: background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
 .pill-ico { flex: none; display: grid; place-items: center; width: 34px; height: 34px; }
 .pill-ico img.emo { width: 26px; height: 26px; vertical-align: middle; }
 .pill-mail[aria-expanded="true"] { box-shadow: inset 0 0 0 2px var(--accent-btn); }
@@ -535,7 +553,7 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outl
 /* CTA de LinkedIn con el lenguaje "Propuesta" de Bellido: relleno de acción, brillo inclinado y halo cada 4 s,
    solo mientras está en pantalla (.is-live) y nunca con "reducir movimiento". Solo transform y opacity. */
 .pill-app.cta-in {
-  --cta: #0A66C2; position: relative; isolation: isolate; min-height: 48px; padding: 0 7px; background: var(--cta); color: #FFFFFF;
+  --cta: #0A66C2; position: relative; isolation: isolate; min-height: 48px; padding: 0 12px; background: var(--cta); color: #FFFFFF;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .26), 0 8px 24px -8px color-mix(in srgb, var(--cta) 85%, transparent);
   font-size: 16px; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), filter var(--dur) var(--ease);
 }
@@ -553,6 +571,14 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outl
   @keyframes cta-brillo-una { from { transform: translateX(-150%) skewX(-12deg); } to { transform: translateX(250%) skewX(-12deg); } }
   @keyframes cta-halo { from { opacity: .6; transform: scale(1); } 40%, to { opacity: 0; transform: scale(1.3); } }
 }
+/* Celulares angostos: con el logo corrido 12 px de la curva, el texto del botón necesita lugar. Se gana ancho achicando el margen
+   de la tarjeta y un punto de letra, para que el texto siga centrado y entero dentro del botón (medido de 320 a 1440 px). */
+@media (max-width: 419px) {
+  .credits { padding: var(--s4); }
+  .pill-app.cta-in, .pill-mail { font-size: 15px; }
+  .pill-txt { padding: 0 var(--s2); }
+}
+@media (max-width: 359px) { .pill-app.cta-in, .pill-mail { font-size: 14px; } }
 
 /* Panel del creador (popover nativo: Esc y tocar afuera lo cierran). Una acción rellena, la otra clara. */
 .creator-menu { position: fixed; inset: auto; top: var(--pop-top, 64px); bottom: var(--pop-bottom, auto); left: var(--pop-left, 16px); margin: 0; width: min(calc(100vw - 32px), 380px); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; padding: var(--s2); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: var(--r2); box-shadow: var(--sh-2); text-align: left; }
@@ -561,6 +587,9 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outl
 .cm-sub { margin: 0 var(--s2) var(--s3); font-size: 14px; color: var(--ink-2); }
 .cm-note { margin: var(--s2) 0 0; padding: var(--s3); border-radius: var(--r1); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); font-size: 13px; line-height: 1.5; color: var(--ink-2); }
 .nb { white-space: nowrap; }
+/* Toda la tarjeta lleva a LinkedIn, pero se ve igual que un texto: sin subrayado, flecha ni cambio al pasar el mouse. */
+a.cm-note { display: block; color: var(--ink-2); text-decoration: none; }
+.cm-hl { color: var(--accent); font-weight: 600; }   /* frases clave del pedido, en el azul de acción de la página (AA: 5,1:1 claro, 5,8:1 oscuro) */
 .cm-note strong { display: block; margin-bottom: var(--s1); font-size: 14px; color: var(--ink); }
 .cm-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s2); }
 .accion { position: relative; isolation: isolate; display: grid; grid-template-columns: 40px minmax(0, 1fr) 16px; align-items: center; gap: var(--s3); min-height: 64px; padding: var(--s3); border-radius: var(--r1); background: var(--surface); color: var(--ink); text-decoration: none; box-shadow: inset 0 0 0 1px var(--line); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur); }
@@ -602,6 +631,14 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outl
 .legal { margin-top: var(--s5) !important; padding-top: var(--s4); border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.5; letter-spacing: 0; }
 .foot-info .legal p { margin: var(--s2) auto 0; max-width: 72ch; text-wrap: pretty; }
 .foot-info .legal p:first-child { margin-top: 0; }
+/* Acceso al repo de GitHub: chiquito, en la línea del ©, con el logo PNG actual (en oscuro se invierte: el gato es negro). */
+.foot-info .legal .legal-c { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s1) var(--s3); }
+.gh-link { position: relative; display: inline-flex; align-items: center; gap: var(--s1); color: var(--muted); text-decoration: none; white-space: nowrap; }
+.gh-link::before { content: ""; position: absolute; inset: -13px -6px; }   /* zona táctil de 44 px sin agrandar el link */
+.gh-link img { width: 14px; height: 14px; }
+@media (hover: hover) and (pointer: fine) { .gh-link:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .gh-link img { filter: invert(1); } }
+:root[data-theme="dark"] .gh-link img { filter: invert(1); }
 
 /* Pie en escritorio (desde 760 px): más ancho, alineado a la izquierda y en bloques, para que no quede
    un racimo chico y centrado como en el celular. Todo sigue un mismo eje: el borde izquierdo. */
@@ -626,7 +663,7 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outl
   .foot-info > .mj-note, .foot-info > .legal { grid-column: 1 / -1; }
   .legal { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--s3) var(--s7); align-items: start; }
   .foot-info .legal p { margin: 0; max-width: none; }
-  .foot-info .legal .legal-c { grid-column: 1 / -1; padding-top: var(--s3); border-top: 1px solid var(--line); }
+  .foot-info .legal .legal-c { grid-column: 1 / -1; padding-top: var(--s3); border-top: 1px solid var(--line); justify-content: space-between; }
   .foot-priv .btn-del { margin-top: var(--s4); }
 }
 
@@ -669,7 +706,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
 <header class="top">
   <div class="top-row">
     <div class="brand-wrap">
-      <button class="creator-btn" id="creatorBtn" type="button" popovertarget="creatorMenu" aria-haspopup="dialog" aria-expanded="false" aria-label="Sobre el creador: portfolio y LinkedIn" title="Sobre el creador: portfolio, LinkedIn y recomendación"><img src="logos/bellido.png" alt="" width="96" height="96"></button>
+      <button class="creator-btn" id="creatorBtn" type="button" popovertarget="creatorMenu" aria-haspopup="dialog" aria-expanded="false" aria-label="Sobre el creador: portfolio y LinkedIn" title="Sobre el creador: portfolio, LinkedIn y recomendación"><img src="logos/bellido.png" alt="" width="96" height="96"><span class="creator-shine" aria-hidden="true"></span></button>
       <a class="brand" href="#/teoria"><img class="emo" src="emojis/globe-americas.webp" alt="" width="160" height="160" data-emoji="globe-americas"><span class="brand-txt"><span class="brand-name">Palacio Macro</span><span class="brand-sub">Macroeconomía (262)</span></span></a>
     </div>
     <div class="stats">
@@ -682,7 +719,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
     <div class="seg">
       <a href="#/teoria" data-tab="teoria"><img class="emo" src="emojis/books.webp" alt="" width="160" height="160" data-emoji="books"><span>Teoría <span class="seg-sub">(Resúmenes)</span></span></a>
       <a href="#/practica" data-tab="practica"><img class="emo" src="emojis/brain.webp" alt="" width="160" height="160" data-emoji="brain"><span>Práctica <span class="seg-sub">(Palacio Mental)</span></span></a>
-      <a href="#/examenes" data-tab="examenes"><img class="emo" src="emojis/crossed-swords.webp" alt="" width="160" height="160" data-emoji="crossed-swords"><span>Exámenes Viejos</span></a>
+      <a href="#/jefes" data-tab="jefes"><img class="emo" src="emojis/crossed-swords.webp" alt="" width="160" height="160" data-emoji="crossed-swords"><span>Jefes <span class="seg-sub">(Estilo parcial)</span></span></a>
     </div>
   </nav>
 </header>
@@ -728,8 +765,8 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
     </div>
     <div class="legal">
       <p>El sello de la Universidad de Buenos Aires (dominio público) y el escudo de la Facultad de Ciencias Económicas identifican la institución donde se cursa la materia. Este no es un sitio oficial de la UBA ni de la cátedra.</p>
-      <p>Emojis designed by Apple. Used for educational purposes.<br>LinkedIn, Gmail y Outlook son marcas de sus respectivos dueños.</p>
-      <p class="legal-c">© 2026 Matias Rodrigo Bellido. Todos los derechos reservados.</p>
+      <p>Emojis designed by Apple. Used for educational purposes.<br>LinkedIn, Gmail, Outlook y GitHub son marcas de sus respectivos dueños.</p>
+      <p class="legal-c"><span>© 2026 Matias Rodrigo Bellido. Todos los derechos reservados.</span><a class="gh-link" href="https://github.com/matiasbellidor/3PMAC_2C2026" target="_blank" rel="noopener noreferrer"><img src="logos/github.png" alt="" width="128" height="128" loading="lazy" decoding="async">Código en GitHub<span class="sr-only"> (se abre en otra pestaña)</span></a></p>
     </div>
   </div>
 </footer>
@@ -737,7 +774,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
 <nav class="tabbar" aria-label="Secciones">
   <a href="#/teoria" data-tab="teoria"><span class="tb-ico"><img class="emo" src="emojis/books.webp" alt="" width="160" height="160" data-emoji="books"></span><span>Teoría<span class="sr-only"> (Resúmenes)</span></span></a>
   <a href="#/practica" data-tab="practica"><span class="tb-ico"><img class="emo" src="emojis/brain.webp" alt="" width="160" height="160" data-emoji="brain"></span><span>Práctica<span class="sr-only"> (Palacio Mental)</span></span></a>
-  <a href="#/examenes" data-tab="examenes"><span class="tb-ico"><img class="emo" src="emojis/crossed-swords.webp" alt="" width="160" height="160" data-emoji="crossed-swords"></span><span>Exámenes<span class="sr-only"> Viejos</span></span></a>
+  <a href="#/jefes" data-tab="jefes"><span class="tb-ico"><img class="emo" src="emojis/crossed-swords.webp" alt="" width="160" height="160" data-emoji="crossed-swords"></span><span>Jefes<span class="sr-only"> (Estilo parcial)</span></span></a>
 </nav>
 
 <div class="creator-menu" id="creatorMenu" popover role="dialog" aria-labelledby="creatorTitle">
@@ -747,7 +784,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
     <li style="--i:0"><a class="accion accion--principal" href="https://matiasbellido.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="accion__brillo" aria-hidden="true"></span><span class="accion__icono"><img src="logos/bellido.png" alt="" width="96" height="96"></span><span class="accion__texto"><strong>Ver el portfolio del creador</strong><span>Proyectos, experiencia y contacto. Se abre en otra pestaña.</span></span><span class="accion__flecha" aria-hidden="true">→</span></a></li>
     <li style="--i:1"><a class="accion" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><span class="accion__icono accion__icono--logo"><img src="logos/linkedin.png?v=2" alt="" width="128" height="128"></span><span class="accion__texto"><strong>Ir al LinkedIn del creador</strong><span>Perfil profesional y recomendaciones. Se abre en otra pestaña.</span></span><span class="accion__flecha" aria-hidden="true">→</span></a></li>
   </ul>
-  <p class="cm-note"><strong>¿Te sirvió? Dejame una recomendación</strong>Una forma de agradecérmelo es recomendarme en LinkedIn: conectate conmigo y, en mi perfil, tocá «Más» → «Recomendar». Contá que estudiaste en la misma institución (<span class="nb">FCE-UBA</span>), qué hiciste con este material y por qué te ayudó.</p>
+  <a class="cm-note" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><strong>¿Te sirvió? Dejame una recomendación</strong>Una forma de agradecérmelo es <span class="cm-hl">darme una recomendación en LinkedIn</span>: conectate conmigo y, en mi perfil, tocá <span class="cm-hl">«Más» → «Recomendar»</span>. Contá que estudiaste en la misma institución (<span class="nb">FCE-UBA</span>), qué hiciste con este material y por qué te ayudó.<span class="sr-only"> (se abre en otra pestaña)</span></a>
 </div>
 
 <!-- Consultas por mail: la persona elige Gmail u Outlook y se abre un mail nuevo con la dirección y el asunto puestos (sin servidor). -->
@@ -1073,7 +1110,7 @@ const THEORY = [
     ],
     /* Este resumen no tiene habitación de práctica: su versión palacio es un rincón extra del aeropuerto. */
     palaceName: "Rincón extra: el Free Shop",
-    palaceNote: R`Este rincón no tiene preguntas propias: lo practicás con el tercer jefe, en Exámenes Viejos.`,
+    palaceNote: R`Este rincón no tiene preguntas propias: lo practicás con el tercer jefe, en la pestaña Jefes.`,
     palace: {
       llegada: R`Saliendo de Migraciones, antes de llegar a la sala de embarque, pasás sí o sí por el Free Shop. Entrás y te parás en el medio del pasillo de perfumes, mirando hacia las cajas.`,
       stations: [
@@ -2961,7 +2998,7 @@ const PRACTICE = {
   ]
 };
 
-/* ---------------- TAB 3: EXÁMENES VIEJOS (BOSS FIGHTS) ----------------
+/* ---------------- TAB 3: JEFES (ESTILO PARCIAL) ----------------
    Cada jefe: opción múltiple, 4 opciones y 1 correcta ("correct" = índice).
    "theory" lista los resúmenes que se recomiendan si perdés. */
 const EXAMS = {
@@ -3632,12 +3669,13 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
     var list = cardsOf(src);
     var h = '<section class="hero">'
       + '<p class="kicker">Teoría · Macroeconomía (262) · Cátedra Rodriguez Repeti</p>'
-      + '<h1 id="h">Resúmenes de la bibliografía</h1>'
+      + '<div class="hero-row"><h1 id="h">Resúmenes de la bibliografía</h1>'
+      + '<a class="site-link" href="https://sites.google.com/view/macroeconomics262" target="_blank" rel="noopener noreferrer">Sitio de la materia<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2.5h5.5V8M9.2 2.8L2.5 9.5"/></svg><span class="sr-only"> (se abre en otra pestaña)</span></a></div>'
       + '<p class="lead">Un resumen por tema de cada PDF de la materia, con las ecuaciones clave y su versión palacio al lado. Elegí el PDF y leé en orden.</p>'
       + '<ol class="path" aria-label="Cómo estudiar con esta página">'
       + '<li class="path-on"><div><span class="path-n">1</span><span class="path-t">📚 Leé los resúmenes</span><span class="path-s">Estás acá</span></div></li>'
       + '<li><a href="#/practica"><span class="path-n">2</span><span class="path-t">🧠 Recorré el palacio</span><span class="path-s">' + ROOMS.length + ' habitaciones</span></a></li>'
-      + '<li><a href="#/examenes"><span class="path-n">3</span><span class="path-t">⚔️ Enfrentá a los jefes</span><span class="path-s">' + BOSSES.length + ' jefes</span></a></li>'
+      + '<li><a href="#/jefes"><span class="path-n">3</span><span class="path-t">⚔️ Enfrentá a los jefes</span><span class="path-s">' + BOSSES.length + ' jefes</span></a></li>'
       + '</ol>'
       + '<nav aria-label="PDF de la bibliografía"><ul class="pdfs">' + SOURCES.map(function (s) {
           var n = cardsOf(s).length;
@@ -3749,7 +3787,7 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
       + '<p class="hearts"><span aria-hidden="true">' + hearts + '</span><span class="sr-only">Vida del jefe: ' + run.hp + ' de ' + run.total + '. Te quedan ' + run.hearts + ' de ' + run.maxHearts + ' corazones.</span></p></div>';
   }
   function bossTop() {
-    return '<div class="q-top"><a class="back" href="#/examenes">← Salir de la pelea</a></div>'
+    return '<div class="q-top"><a class="back" href="#/jefes">← Salir de la pelea</a></div>'
       + '<section class="card boss-bar" id="bossBar" aria-label="Estado de la pelea">' + bossBarInner() + '</section>';
   }
   function renderQuestion() {
@@ -3895,18 +3933,18 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
       + '<h1 id="h">¡Habitación ' + (i + 1) + ' superada!</h1>'
       + '<p class="lead">Acertaste ' + run.firstTry + ' de ' + run.total + ' a la primera.' + (firstTime ? ' Sumaste 30 XP extra por superarla.' : '') + '</p>'
       + hookHtml('Repetí la frase:', r.palace.hook)
-      + '<div class="cta-row">' + (next ? '<a class="btn" href="#/practica/' + next.id + '">▶️ Siguiente: Habitación ' + (i + 2) + '</a>' : '<a class="btn" href="#/examenes">⚔️ Enfrentá a los jefes</a>')
+      + '<div class="cta-row">' + (next ? '<a class="btn" href="#/practica/' + next.id + '">▶️ Siguiente: Habitación ' + (i + 2) + '</a>' : '<a class="btn" href="#/jefes">⚔️ Enfrentá a los jefes</a>')
       + '<a class="btn btn-2" href="#/practica">🧠 Volver al palacio</a></div></section>';
     paint(h, '#h');
     say('Habitación superada.');
     confetti();
   }
 
-  /* ================= TAB 3: EXÁMENES VIEJOS (JEFES) ================= */
+  /* ================= TAB 3: JEFES (ESTILO PARCIAL) ================= */
   function renderBosses(msg) {
-    setTitle('Exámenes Viejos');
+    setTitle('Jefes');
     var h = '<section class="hero">'
-      + '<p class="kicker">Exámenes Viejos · Boss Fights</p>'
+      + '<p class="kicker">Jefes · Estilo parcial</p>'
       + '<h1 id="h">Jefes del capítulo 17</h1>'
       + '<p class="lead">Preguntas de opción múltiple estilo parcial. Cada acierto le saca vida al jefe; cada error te cuesta un corazón y la pregunta vuelve. Con 3 errores perdés la pelea.</p>'
       + (msg ? '<p class="notice" role="status">⚠️ <span>' + msg + '</span></p>' : '')
@@ -3919,7 +3957,7 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
             + '<p class="small">' + b.intro + '</p>'
             + '<p class="boss-meta">' + b.questions.length + ' preguntas · ' + (b.hearts || 3) + ' ❤️</p>'
             + (rec && rec.won ? '<p class="boss-rec">🏆 Derrotado (mejor: ' + rec.best + ' de ' + (b.hearts || 3) + ' corazones)</p>' : '')
-            + '<div class="cta"><a class="btn" href="#/examenes/' + b.id + '">' + (rec && rec.won ? '🔁 Revancha' : '⚔️ Pelear') + '</a></div></article>';
+            + '<div class="cta"><a class="btn" href="#/jefes/' + b.id + '">' + (rec && rec.won ? '🔁 Revancha' : '⚔️ Pelear') + '</a></div></article>';
         }).join('') + '</div>';
     paint(h, '#h');
   }
@@ -3943,14 +3981,14 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
       h += '<p class="big" aria-hidden="true">🏆</p><h1 id="h">¡Derrotaste a ' + b.name + '!</h1>'
         + '<p class="lead">Te quedaron ' + run.hearts + ' de ' + run.maxHearts + ' corazones.' + (first ? ' Sumaste 50 XP extra.' : '') + '</p>'
         + miss
-        + '<div class="cta-row">' + (next ? '<a class="btn" href="#/examenes/' + next.id + '">⚔️ Siguiente jefe: ' + next.name + '</a>' : '<a class="btn" href="#/practica">🧠 Repasar el palacio</a>')
-        + '<a class="btn btn-2" href="#/examenes">Volver a los jefes</a></div>';
+        + '<div class="cta-row">' + (next ? '<a class="btn" href="#/jefes/' + next.id + '">⚔️ Siguiente jefe: ' + next.name + '</a>' : '<a class="btn" href="#/practica">🧠 Repasar el palacio</a>')
+        + '<a class="btn btn-2" href="#/jefes">Volver a los jefes</a></div>';
     } else {
       h += '<p class="big" aria-hidden="true">💔</p><h1 id="h">' + b.name + ' ganó esta vez</h1>'
         + '<p class="lead">Le sacaste ' + (run.total - run.hp) + ' de ' + run.total + ' de vida. Repasá y volvé: las preguntas cambian de orden.</p>'
         + miss
         + '<div class="review">' + (b.theory || []).map(function (tid) { var t = byId(THEORY, tid); return t ? '<a class="chip" href="#/teoria/' + t.id + '">📚 ' + t.short + '</a>' : ''; }).join('') + '</div>'
-        + '<div class="cta-row"><button class="btn" type="button" data-go="#/examenes/' + b.id + '">🔁 Revancha</button><a class="btn btn-2" href="#/examenes">Volver a los jefes</a></div>';
+        + '<div class="cta-row"><button class="btn" type="button" data-go="#/jefes/' + b.id + '">🔁 Revancha</button><a class="btn btn-2" href="#/jefes">Volver a los jefes</a></div>';
     }
     h += '</section>';
     paint(h, '#h');
@@ -3999,15 +4037,20 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
   /* ---------- Rutas por hash (funcionan igual en GitHub Pages) ---------- */
   function route() {
     var parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
+    /* Links guardados con la ruta anterior (#/examenes…): siguen andando y la barra de direcciones pasa a #/jefes. */
+    if (parts[0] === 'examenes') {
+      parts[0] = 'jefes';
+      try { history.replaceState(null, '', '#/' + parts.join('/')); } catch (e) {}
+    }
     var tab = parts[0];
-    if (tab !== 'practica' && tab !== 'examenes') tab = 'teoria';
+    if (tab !== 'practica' && tab !== 'jefes') tab = 'teoria';
     setTab(tab);
     app.classList.toggle('wide', tab === 'teoria');
     if (tab === 'practica') {
       if (!parts[1]) renderPalace();
       else if (parts[2] === 'jugar') startRoom(parts[1]);
       else renderRoom(parts[1]);
-    } else if (tab === 'examenes') {
+    } else if (tab === 'jefes') {
       if (!parts[1]) renderBosses();
       else startBoss(parts[1]);
     } else {

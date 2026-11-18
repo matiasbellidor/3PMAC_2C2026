@@ -17,7 +17,6 @@ Junta en un solo lugar las tres cosas que hacen falta antes de un parcial: enten
 
 | Fuente | Resúmenes | Temas |
 |---|---|---|
-| Apuntes de la cursada, clase 14 de 19 | 2 | Agregados monetarios, activos y pasivos del BCRA, del Tesoro y del sector privado (con sus tablas), y balanza de pagos: cuenta corriente, cuenta capital y financiera, y CC + CKF = 0 |
 | Barro, *Macroeconomics: A Modern Approach*, cap. 17 | 7 | Ley de un solo precio, restricción presupuestaria, balanza de pagos, ahorro e inversión, historia de la cuenta corriente de EE.UU., ciclos reales, déficits gemelos y términos del intercambio |
 | Barro, cap. 18 | 5 | Tipo de cambio, paridad del poder adquisitivo, paridad de tasas, tipo de cambio fijo y flexible |
 | Blanchard, *Macroeconomía*, caps. 17 a 20 | 8 | Tipo de cambio real, balanza de pagos, paridad de intereses, la IS abierta, curva J, Mundell-Fleming, crisis cambiarias y elección del régimen |
@@ -25,6 +24,7 @@ Junta en un solo lugar las tres cosas que hacen falta antes de un parcial: enten
 | Mundell (1963) | 2 | Movilidad perfecta del capital y estabilización con tipo fijo y flexible |
 | Fleming (1962) | 2 | Política fiscal y monetaria según el régimen cambiario |
 | Obstfeld y Rogoff (1995) | 3 | «The Mirage of Fixed Exchange Rates»: costos, ataques especulativos y alternativas |
+| Apuntes de la cursada, clase 14 de 19 | 2 | Agregados monetarios, activos y pasivos del BCRA, del Tesoro y del sector privado (con sus tablas), y balanza de pagos: cuenta corriente, cuenta capital y financiera, y CC + CKF = 0 |
 
 ### 🧠 Práctica (Palacio Mental)
 Un **palacio de la memoria** armado sobre el aeropuerto de Ezeiza: hall, check-in, Migraciones, sala de embarque y pista, siempre en el mismo orden. Cada lugar guarda un tema con una escena exagerada, escrita en castellano rioplatense, donde cada objeto dice qué concepto representa. Los demás PDF tienen sus propias terminales y salas del aeropuerto dentro de los resúmenes.

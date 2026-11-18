@@ -158,35 +158,41 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
 .seg-sub { font-weight: 400; }
 @media (hover: hover) and (pointer: fine) { .seg a:not([aria-current="page"]):hover { color: var(--ink); background: color-mix(in srgb, var(--surface) 55%, transparent); } }
 
-/* Aviso de recomendación bajo el encabezado: una línea, un solo botón y una ✕ que lo cierra para siempre en este navegador. */
-/* Aparece en cada carga, unos 3 s después de abrir: se despliega de 0 a su alto (grid 0fr → 1fr) y el contenido entra
-   con un fundido y un desliz corto. Cerrado (o antes de aparecer) mide 0 y no se puede enfocar (visibility: hidden). */
-.reco { display: grid; grid-template-rows: 0fr; visibility: hidden; background: var(--surface); box-shadow: inset 0 -1px 0 transparent;
-  transition: grid-template-rows .6s cubic-bezier(.22, 1, .36, 1), box-shadow .6s ease, visibility 0s linear .6s; }
-.reco-clip { min-height: 0; overflow: hidden; }
-.reco-row { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: var(--s3); padding: var(--s2) var(--s4); min-height: 52px;
-  opacity: 0; transform: translateY(-8px); transition: opacity .35s ease, transform .6s cubic-bezier(.22, 1, .36, 1); }
-.reco.is-on { grid-template-rows: 1fr; visibility: visible; box-shadow: inset 0 -1px 0 var(--line);
-  transition: grid-template-rows .6s cubic-bezier(.22, 1, .36, 1), box-shadow .6s ease, visibility 0s; }
-.reco.is-on .reco-row { opacity: 1; transform: none; transition: opacity .5s ease .15s, transform .6s cubic-bezier(.22, 1, .36, 1) .1s; }
-/* Con "reducir movimiento" está desde el principio, sin demora ni animación (que aparezca de golpe después correría el texto). */
-@media (prefers-reduced-motion: reduce) {
-  .reco, .reco-row { transition: none; }   /* la regla global acorta la duración pero no la DEMORA: sin esto, cerrado quedaba "visible" 0,6 s */
-  .reco:not(.is-off) { grid-template-rows: 1fr; visibility: visible; box-shadow: inset 0 -1px 0 var(--line); }
-  .reco:not(.is-off) .reco-row { opacity: 1; transform: none; }
-}
-.reco-logo { flex: none; width: 28px; height: 28px; }
-.reco-txt { flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 1.35; color: var(--ink-2); }
-.reco-txt strong { color: var(--ink); font-weight: 600; }
-.reco-short { display: none; }
-.reco-go { position: relative; flex: none; display: inline-flex; align-items: center; min-height: 36px; padding: 0 var(--s4); border-radius: var(--rp); background: #0A66C2; color: #FFFFFF; font-weight: 600; font-size: 14px; letter-spacing: -.005em; text-decoration: none; white-space: nowrap; transition: transform var(--dur) var(--ease), filter var(--dur) var(--ease); }
-.reco-go::before, .reco-x::before { content: ""; position: absolute; inset: -4px; }
+/* ============ AVISO DE RECOMENDACIÓN (flotante) ============
+   Aparece cuando ya se scrolleó la mitad de la página y desde ahí te sigue: fijo abajo a la derecha (en el celular, arriba de
+   la barra de pestañas). Se corre mientras la tarjeta de créditos del pie, que pide lo mismo, está en pantalla. Sale con un
+   desliz corto y el 🥺🙏 hace una mínima animación de "por favor". La ✕ lo cierra hasta la próxima carga. */
+.reco { position: fixed; z-index: 35; right: var(--s5); bottom: var(--s5); width: min(400px, calc(100vw - 2 * var(--s5)));
+  visibility: hidden; opacity: 0; transform: translateY(16px); pointer-events: none;
+  transition: opacity .3s ease, transform .45s cubic-bezier(.22, 1, .36, 1), visibility 0s linear .45s; }
+.reco.is-on:not(.is-away) { visibility: visible; opacity: 1; transform: none; pointer-events: auto;
+  transition: opacity .35s ease, transform .5s cubic-bezier(.22, 1, .36, 1), visibility 0s; }
+.reco-card { position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: var(--s3); align-items: start;
+  padding: var(--s4) var(--s7) var(--s4) var(--s4); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-2), inset 0 0 0 1px var(--line); }
+.reco-face { position: relative; width: 52px; height: 52px; }
+.reco-face img { display: block; }
+.reco-plead { width: 44px; height: 44px; }
+.reco-pray { position: absolute; right: -2px; bottom: -2px; width: 26px; height: 26px; transform-origin: 50% 90%; }
+.reco-txt { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+.reco-txt strong { display: block; margin-bottom: 2px; color: var(--ink); font-size: 15px; font-weight: 600; }
+.reco-go { position: relative; margin-top: var(--s3); display: inline-flex; align-items: center; gap: var(--s2); min-height: 36px; padding: 0 var(--s4) 0 var(--s2); border-radius: var(--rp); background: #0A66C2; color: #FFFFFF; font-weight: 600; font-size: 14px; letter-spacing: -.005em; text-decoration: none; white-space: nowrap; transition: transform var(--dur) var(--ease), filter var(--dur) var(--ease); }
+.reco-go img { width: 22px; height: 22px; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .45)); }   /* el PNG de LinkedIn entero, sin nada blanco */
+.reco-go::before, .reco-x::before { content: ""; position: absolute; inset: -4px; }   /* zona táctil de 44 px */
 .reco-go:active { transform: scale(.97); }
-.reco-x { position: relative; flex: none; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+.reco-x { position: absolute; top: var(--s2); right: var(--s2); display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
 .reco-x svg { width: 16px; height: 16px; }
 @media (hover: hover) and (pointer: fine) { .reco-go:hover { filter: brightness(1.08); } .reco-x:hover { background: var(--fill); color: var(--ink); } }
-@media (max-width: 559px) { .reco-long { display: none; } .reco-short { display: inline; } .reco-row { gap: var(--s2); } .reco-go { padding: 0 var(--s3); } }
-@media (max-width: 359px) { .reco-logo { display: none; } }   /* a 320 px el texto quedaba en 3 líneas; el botón ya dice LinkedIn */
+@media (max-width: 719px) { .reco { left: var(--s3); right: var(--s3); width: auto; bottom: calc(76px + env(safe-area-inset-bottom)); } }
+@media (max-width: 559px) { .reco-long { display: none; } }
+/* 🥺 aparece con un rebote y las 🙏 se frotan como pidiendo "porfa" (una sola vez cada vez que sale). */
+@media (prefers-reduced-motion: no-preference) {
+  .reco.is-on:not(.is-away) .reco-plead { animation: reco-plead 1s cubic-bezier(.3, 1.4, .5, 1) .15s both; }
+  .reco.is-on:not(.is-away) .reco-pray { animation: reco-pray 1.4s ease-in-out .35s both; }
+  @keyframes reco-plead { from { opacity: 0; transform: scale(.4) rotate(-14deg); } 55% { opacity: 1; transform: scale(1.12) rotate(5deg); } 78% { transform: scale(.96) rotate(-2deg); } to { opacity: 1; transform: none; } }
+  @keyframes reco-pray { from { opacity: 0; transform: translateY(10px) scale(.5); } 25% { opacity: 1; transform: none; } 40% { transform: rotate(-16deg); } 55% { transform: rotate(14deg); } 70% { transform: rotate(-10deg); } 85% { transform: rotate(6deg); } to { opacity: 1; transform: none; } }
+}
+/* La regla global de "reducir movimiento" acorta la duración pero no la DEMORA: sin esto, cerrado quedaba visible 0,45 s. */
+@media (prefers-reduced-motion: reduce) { .reco { transition: none; } }
 
 .tabbar { display: none; }
 @media (max-width: 719px) {
@@ -601,7 +607,7 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outl
 .nb { white-space: nowrap; }
 /* Toda la tarjeta lleva a LinkedIn, pero se ve igual que un texto: sin subrayado, flecha ni cambio al pasar el mouse. */
 a.cm-note { display: block; color: var(--ink-2); text-decoration: none; }
-.cm-hl { color: var(--accent); font-weight: 600; }   /* frases clave del pedido, en el azul de acción de la página (AA: 5,1:1 claro, 5,8:1 oscuro) */
+.cm-hl { color: var(--accent); font-weight: 600; }   /* frases clave del pedido (menú, pie y aviso), en el azul de acción de la página (AA: 5,1:1 o más en claro y en oscuro) */
 .cm-note strong { display: block; margin-bottom: var(--s1); font-size: 14px; color: var(--ink); }
 .cm-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s2); }
 .accion { position: relative; isolation: isolate; display: grid; grid-template-columns: 40px minmax(0, 1fr) 16px; align-items: center; gap: var(--s3); min-height: 64px; padding: var(--s3); border-radius: var(--r1); background: var(--surface); color: var(--ink); text-decoration: none; box-shadow: inset 0 0 0 1px var(--line); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur); }
@@ -737,13 +743,13 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
 </header>
 
 <aside class="reco" id="reco" aria-label="Pedido de recomendación en LinkedIn">
-  <div class="reco-clip">
-  <div class="reco-row">
-    <img class="reco-logo" src="logos/linkedin.png?v=2" alt="" width="128" height="128">
-    <p class="reco-txt"><strong>¿Te sirvió?</strong> <span class="reco-long">Dejame una recomendación en LinkedIn contando qué hiciste con este material y por qué te ayudó.</span><span class="reco-short">Dejame una recomendación.</span></p>
-    <a class="reco-go" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer">Ir a LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></a>
+  <div class="reco-card">
+    <span class="reco-face" aria-hidden="true"><img class="reco-plead" src="emojis/pleading-face.webp" alt="" width="160" height="160" decoding="async" data-emoji="pleading-face"><img class="reco-pray" src="emojis/folded-hands.webp" alt="" width="160" height="160" decoding="async" data-emoji="folded-hands"></span>
+    <div class="reco-body">
+      <p class="reco-txt"><strong>¿Te sirvió?</strong><span class="cm-hl">Dejame una recomendación en LinkedIn</span><span class="reco-long"> contando qué hiciste con este material y por qué te ayudó</span>.</p>
+      <a class="reco-go" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><img src="logos/linkedin.png?v=2" alt="" width="128" height="128">Ir a LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></a>
+    </div>
     <button class="reco-x" id="recoX" type="button" aria-label="Cerrar este aviso"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button>
-  </div>
   </div>
 </aside>
 
@@ -768,11 +774,11 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
       <a class="pill-app cta-in" id="ctaLinkedin" href="https://www.linkedin.com/in/matiasbellido/" target="_blank" rel="noopener noreferrer"><span class="cta-shine" aria-hidden="true"></span><img class="pill-logo" src="logos/linkedin.png?v=2" alt="" width="128" height="128"><span class="pill-txt">Conectá conmigo en LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></span><span class="pill-gap" aria-hidden="true"></span></a>
       <button class="pill-app pill-mail" id="mailBtn" type="button" popovertarget="mailMenu" aria-haspopup="dialog" aria-expanded="false"><span class="pill-ico"><img class="emo" src="emojis/envelope.webp" alt="" width="160" height="160" data-emoji="envelope"></span><span class="pill-txt">Consultas por mail</span><span class="pill-gap" aria-hidden="true"></span></button>
     </div>
-    <p class="cr-thanks">Si te sirvió, una forma de agradecérmelo es dejarme una recomendación en mi perfil de LinkedIn: conectate conmigo y, en mi perfil, tocá «Más» → «Recomendar». Contá que estudiaste en la misma institución (<span class="nb">FCE-UBA</span>), qué hiciste con este material y por qué te ayudó.</p>
+    <p class="cr-thanks">Si te sirvió, una forma de agradecérmelo es <span class="cm-hl">dejarme una recomendación en mi perfil de LinkedIn</span>: conectate conmigo y, en mi perfil, tocá <span class="cm-hl">«Más» → «Recomendar»</span>. Contá que estudiaste en la misma institución (<span class="nb">FCE-UBA</span>), qué hiciste con este material y por qué te ayudó.</p>
   </section>
   <div class="foot-info">
     <p class="mj-note">Las fórmulas se ven como texto LaTeX porque MathJax no cargó: hace falta conexión a internet.</p>
-    <p><strong>Bibliografía:</strong> apuntes de la cursada (clase 14 de 19); Barro, <em>Macroeconomics: A Modern Approach</em> (caps. 17 y 18); Blanchard, <em>Macroeconomía</em> (caps. 17 a 20); Sachs y Larraín, <em>Macroeconomía en la economía global</em> (cap. 9); Mundell (1963); Fleming (1962), y Obstfeld y Rogoff (1995). Los resúmenes, las historias del palacio y las preguntas son material propio de estudio. Si algo no coincide con lo que da la cátedra, gana la cátedra.</p>
+    <p><strong>Bibliografía:</strong> Barro, <em>Macroeconomics: A Modern Approach</em> (caps. 17 y 18); Blanchard, <em>Macroeconomía</em> (caps. 17 a 20); Sachs y Larraín, <em>Macroeconomía en la economía global</em> (cap. 9); Mundell (1963); Fleming (1962); Obstfeld y Rogoff (1995), y apuntes de la cursada (clase 14 de 19). Los resúmenes, las historias del palacio y las preguntas son material propio de estudio. Si algo no coincide con lo que da la cátedra, gana la cátedra.</p>
     <div class="foot-priv">
       <p><strong>Privacidad:</strong> tu progreso (XP, habitaciones y jefes superados) se guarda solo en este navegador. Sin cuentas, sin cookies y sin analítica.</p>
       <button class="btn-del" type="button" id="resetBtn"><img class="emo" src="emojis/wastebasket.webp" alt="" width="160" height="160" data-emoji="wastebasket">Borrar mi progreso</button>
@@ -882,9 +888,6 @@ const R = String.raw;
    }
    ------------------------------------------------------------------ */
 const SOURCES = [
-  { id: "clase14", author: "Clase 14", emoji: "📄", label: "Clase 14 / 19",
-    work: R`Apuntes de la cursada, clase 14 de 19: tipo de cambio nominal y real, balanza de pagos, mercado de divisas, tipo de cambio fijo y flexible, y paridad de tasas`,
-    file: "JOURNAL.md (apuntes de la cursada)", scope: "Balanza de pagos y balances de los sectores" },
   { id: "barro17", author: "Barro", emoji: "📄", label: "Barro · Cap. 17",
     work: R`Barro, <em>Macroeconomics: A Modern Approach</em>, cap. 17 «World Markets in Goods and Credit»`,
     file: "Barro - Macroeconomics (1)-772-863.pdf", scope: "Mercados mundiales de bienes y crédito" },
@@ -905,7 +908,11 @@ const SOURCES = [
     file: "Fleming.pdf", scope: "Política fiscal y monetaria según el régimen" },
   { id: "obstfeld", author: "Obstfeld y Rogoff", emoji: "📄", label: "Obstfeld y Rogoff (1995)",
     work: R`Obstfeld y Rogoff, «The Mirage of Fixed Exchange Rates», NBER Working Paper 5191, 1995`,
-    file: "Obstfeld &amp; Rogoff.pdf", scope: "El espejismo de los tipos fijos" }
+    file: "Obstfeld &amp; Rogoff.pdf", scope: "El espejismo de los tipos fijos" },
+  /* Los apuntes de la clase 14 van últimos en el selector (pedido de Matías, 2026-11-18). */
+  { id: "clase14", author: "Clase 14", emoji: "📄", label: "Clase 14 / 19",
+    work: R`Apuntes de la cursada, clase 14 de 19: tipo de cambio nominal y real, balanza de pagos, mercado de divisas, tipo de cambio fijo y flexible, y paridad de tasas`,
+    file: "JOURNAL.md (apuntes de la cursada)", scope: "Balanza de pagos y balances de los sectores" }
 ];
 
 const THEORY = [
@@ -4118,23 +4125,32 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
   popMenu($('#creatorBtn'), $('#creatorMenu'), 'start');
   popMenu($('#mailBtn'), $('#mailMenu'), 'center');
 
-  /* ---------- Aviso de recomendación de arriba ----------
-     Aparece en CADA carga (entrar o recargar), 3 s después de abrir, con la animación suave del CSS.
-     Si a los 3 s la persona ya bajó, espera a que vuelva arriba: así no le corre el texto que está leyendo.
-     Con "reducir movimiento" ya está desde el principio (lo resuelve el CSS). La ✕ lo cierra hasta la próxima carga. */
+  /* ---------- Aviso de recomendación (flotante) ----------
+     En cada carga (entrar o recargar) aparece cuando la persona ya scrolleó la MITAD de la página, y desde ahí la sigue
+     (es fijo). Se corre mientras la tarjeta de créditos del pie, que pide lo mismo, está en pantalla, y vuelve al subir.
+     La ✕ lo cierra hasta la próxima carga. */
   (function () {
-    var reco = $('#reco'), x = $('#recoX');
+    var reco = $('#reco'), x = $('#recoX'), credits = $('.credits');
     if (!reco || !x) return;
-    try { localStorage.removeItem('palacio-macro:reco'); } catch (e) {}   // la versión anterior lo recordaba cerrado
-    var closed = false, waiting = false;
-    function atTop() { return (window.scrollY || window.pageYOffset || 0) < 8; }
-    function onScroll() { if (atTop()) { window.removeEventListener('scroll', onScroll); waiting = false; show(); } }
-    function show() {
-      if (closed || reco.classList.contains('is-on')) return;
-      if (!atTop()) { if (!waiting) { waiting = true; window.addEventListener('scroll', onScroll, { passive: true }); } return; }
-      reco.classList.add('is-on');
+    try { localStorage.removeItem('palacio-macro:reco'); } catch (e) {}   // una versión anterior lo recordaba cerrado
+    var closed = false, shown = false, ticking = false;
+    function check() {
+      ticking = false;
+      if (closed || shown) return;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && (window.scrollY || window.pageYOffset || 0) >= max / 2) {
+        shown = true;
+        window.removeEventListener('scroll', onScroll);
+        reco.classList.add('is-on');
+      }
     }
-    if (!reduceMotion) setTimeout(show, 3000);
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(check); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    if (credits && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { reco.classList.toggle('is-away', en.isIntersecting); });
+      }, { threshold: 0.2 }).observe(credits);
+    }
     x.addEventListener('click', function () {
       closed = true;
       window.removeEventListener('scroll', onScroll);

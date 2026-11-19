@@ -303,6 +303,45 @@ mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; p
   .pdf > span:first-child, .pdf-w { display: none; }
   .pdf-a { font-size: 14px; }
 }
+/* Anexo bloqueado: el botón se ve desenfocado, con un candado y el aviso debajo. Al tocarlo, el candado
+   se sacude, se abre (🔒 → 🔓) y se va hacia arriba mientras se limpia el desenfoque (pedido de Matías, 2026-11-18). */
+.pdf.is-locked { position: relative; overflow: hidden; }
+.pdf.is-locked > span:not(.pdf-lock) { filter: blur(4px); opacity: .65; }
+.pdf-lock { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; padding: var(--s1) var(--s3); background-color: color-mix(in srgb, var(--surface) 35%, transparent); text-align: center; }
+.lock-ico { display: grid; width: 22px; height: 22px; }
+.lock-ico img.emo { grid-area: 1 / 1; width: 22px; height: 22px; vertical-align: top; }
+.lock-ico img.emo + img.emo { opacity: 0; }
+.lock-txt { font-size: 12px; font-weight: 600; line-height: 1.2; letter-spacing: 0; color: var(--ink-2); text-wrap: balance; }
+.pdf.is-opening .pdf-lock { pointer-events: none; }
+@media (max-width: 559px) {
+  .lock-ico, .lock-ico img.emo { width: 18px; height: 18px; }
+  .pdf-lock { gap: 2px; padding: 2px var(--s2); }
+  .lock-txt { line-height: 1.15; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pdf.is-locked > span:not(.pdf-lock) { transition: filter .5s cubic-bezier(.22, 1, .36, 1) .3s, opacity .5s cubic-bezier(.22, 1, .36, 1) .3s; }
+  .pdf.is-opening > span:not(.pdf-lock) { filter: blur(0); opacity: 1; }
+  .pdf-lock { transition: background-color .4s var(--ease) .35s; }
+  .pdf.is-opening .pdf-lock { background-color: transparent; }
+  .pdf.is-opening .lock-ico { animation: lock-off .85s both; }
+  .pdf.is-opening .lock-ico img.emo:first-child { animation: lock-hide 0s linear .32s forwards; }
+  .pdf.is-opening .lock-ico img.emo + img.emo { animation: lock-show 0s linear .32s forwards; }
+  .pdf.is-opening .lock-txt { animation: lock-txt-off .2s var(--ease) .08s forwards; }   /* se va antes de que se aclare el texto de abajo, así no se pisan */
+  @media (hover: hover) and (pointer: fine) { .pdf.is-locked:not(.is-opening):hover .lock-ico { animation: lock-nudge .5s var(--ease); } }
+}
+@keyframes lock-off {
+  0% { transform: rotate(0); }
+  10% { transform: rotate(-14deg); }
+  20% { transform: rotate(12deg); }
+  30% { transform: rotate(-7deg); }
+  38% { transform: rotate(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.18); opacity: 1; animation-timing-function: cubic-bezier(.3, 0, .6, 1); }
+  100% { transform: translateY(-24px) scale(.6); opacity: 0; }
+}
+@keyframes lock-hide { to { opacity: 0; } }
+@keyframes lock-show { to { opacity: 1; } }
+@keyframes lock-txt-off { to { opacity: 0; transform: translateY(4px); } }
+@keyframes lock-nudge { 25% { transform: rotate(-10deg); } 60% { transform: rotate(8deg); } 100% { transform: rotate(0); } }
 .t-group { margin-top: var(--s7); }
 /* Foco programático (al cambiar de vista) en títulos: sin el recuadro, que confunde; el foco de teclado sigue visible. */
 h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, h3[tabindex="-1"]:focus { outline: none; }
@@ -1002,8 +1041,11 @@ const SOURCES = [
   { id: "obstfeld", author: "Obstfeld y Rogoff", emoji: "📄", label: "Obstfeld y Rogoff (1995)",
     work: R`Obstfeld y Rogoff, «The Mirage of Fixed Exchange Rates», NBER Working Paper 5191, 1995`,
     file: "Obstfeld &amp; Rogoff.pdf", scope: "El espejismo de los tipos fijos" },
-  /* Los apuntes de la clase 14 van últimos en el selector (pedido de Matías, 2026-11-18). */
-  { id: "clase14", author: "Clase 14", emoji: "📄", label: "Clase 14 / 19",
+  /* Los apuntes de la clase 14 van últimos en el selector (pedido de Matías, 2026-11-18).
+     En el selector se llaman «Anexo» (pick) y arrancan bloqueados: desenfocados, con candado y debajo el aviso (lock).
+     El título del grupo sigue siendo label. */
+  { id: "clase14", author: "Clase 14", emoji: "📄", label: "Clase 14 / 19", pick: "Anexo",
+    lock: R`Material extra, por fuera de la cátedra`,
     work: R`Apuntes de la cursada, clase 14 de 19: tipo de cambio nominal y real, balanza de pagos, mercado de divisas, tipo de cambio fijo y flexible, y paridad de tasas`,
     file: "JOURNAL.md (apuntes de la cursada)", scope: "Balanza de pagos y balances de los sectores" }
 ];
@@ -3894,7 +3936,7 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
   var VS16 = String.fromCharCode(0xFE0F);
   var EMO_SRC = {
     '🌎': 'globe-americas', '📚': 'books', '🧠': 'brain', '⚔️': 'crossed-swords', '⭐': 'star', '🔥': 'fire',
-    '❤️': 'red-heart', '💔': 'broken-heart', '🌙': 'crescent-moon', '☀️': 'sun', '🔒': 'locked', '✅': 'check-mark-button',
+    '❤️': 'red-heart', '💔': 'broken-heart', '🌙': 'crescent-moon', '☀️': 'sun', '🔒': 'locked', '🔓': 'unlocked', '✅': 'check-mark-button',
     '❌': 'cross-mark', '🎉': 'party-popper', '✨': 'sparkles', '🗑️': 'wastebasket', '💡': 'light-bulb', '🔑': 'key',
     '📍': 'round-pushpin', '🎬': 'clapper', '🏆': 'trophy', '⚠️': 'warning',
     '💵': 'dollar-banknote', '⚖️': 'balance-scale', '🛂': 'passport-control', '🏗️': 'construction', '🐷': 'pig-face',
@@ -4049,6 +4091,24 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
           + '</div>' : '')
       + '</div></article>';
   }
+  /* Anexo bloqueado (SOURCES con lock): el primer toque abre el candado, que se va, y limpia el desenfoque;
+     el siguiente toque entra. Queda abierto hasta recargar la página. Con «reducir movimiento», sin animación. */
+  var unlocked = {};
+  app.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('.pdf.is-locked');
+    if (!a) return;
+    e.preventDefault();
+    if (a.classList.contains('is-opening')) return;   // un doble toque durante la animación no entra
+    unlocked[a.getAttribute('data-lock')] = true;
+    function done() {
+      a.classList.remove('is-locked', 'is-opening');
+      a.removeAttribute('data-lock');
+      var o = a.querySelector('.pdf-lock'); if (o) o.remove();
+    }
+    if (reduceMotion) { done(); return; }
+    a.classList.add('is-opening');
+    setTimeout(done, 900);
+  });
   /* Un PDF por vez: #/teoria (primer PDF), #/teoria/<pdf> o #/teoria/<resumen>. */
   function renderTheory(param) {
     setTitle('Teoría');
@@ -4068,9 +4128,13 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
       + '</ol>'
       + '<nav aria-label="PDF de la bibliografía"><ul class="pdfs">' + SOURCES.map(function (s) {
           var n = cardsOf(s).length;
-          return '<li><a class="pdf" href="#/teoria/' + s.id + '"' + (s === src ? ' aria-current="page"' : '') + '><span aria-hidden="true">' + s.emoji + '</span>'
-            + '<span><span class="pdf-a">' + s.label + '</span><span class="pdf-w">' + s.scope + '</span></span>'
-            + '<span class="pdf-n">' + n + '<span class="sr-only">' + (n === 1 ? ' resumen' : ' resúmenes') + '</span></span></a></li>';
+          if (s === src && s.lock) unlocked[s.id] = true;   // si ya se está leyendo el anexo, su botón no se muestra bloqueado
+          var locked = s.lock && !unlocked[s.id];
+          return '<li><a class="pdf' + (locked ? ' is-locked' : '') + '" href="#/teoria/' + s.id + '"' + (s === src ? ' aria-current="page"' : '') + (locked ? ' data-lock="' + s.id + '"' : '') + '><span aria-hidden="true">' + s.emoji + '</span>'
+            + '<span><span class="pdf-a">' + (s.pick || s.label) + '</span><span class="pdf-w">' + s.scope + '</span></span>'
+            + '<span class="pdf-n">' + n + '<span class="sr-only">' + (n === 1 ? ' resumen' : ' resúmenes') + '</span></span>'
+            + (locked ? '<span class="pdf-lock"><span class="lock-ico" aria-hidden="true">🔒🔓</span><span class="lock-txt">' + s.lock + '</span></span>' : '')
+            + '</a></li>';
         }).join('') + '</ul></nav>'
       + '</section>'
       + '<section class="t-group" id="g-' + src.id + '" aria-labelledby="gh">'

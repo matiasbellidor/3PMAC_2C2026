@@ -70,6 +70,6 @@ Es un sitio estático, así que también funciona en otros servicios de hosting 
 
 ## Autor
 
-Creado por **Matias Rodrigo Bellido**, estudiante de Ciencias Actuariales en la FCE-UBA. [Conectá conmigo en LinkedIn](https://www.linkedin.com/in/matiasbellido/) o escribime tus consultas a rbellidomatias@gmail.com.
+Creado por **Matías Rodrigo Bellido**, estudiante de Ciencias Actuariales en la FCE-UBA. [Conectá conmigo en LinkedIn](https://www.linkedin.com/in/matiasbellido/) o escribime tus consultas a rbellidomatias@gmail.com.
 
-© 2026 Matias Rodrigo Bellido. Todos los derechos reservados.
+© 2026 Matías Rodrigo Bellido. Todos los derechos reservados.

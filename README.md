@@ -15,6 +15,8 @@ Junta en un solo lugar las tres cosas que hacen falta antes de un parcial: enten
 ### 📚 Teoría (Resúmenes)
 33 resúmenes ordenados por fuente. Cada uno dice de qué texto sale y qué temas cubre (por ejemplo, «Barro: Resumen 17.1 · Temas: …»), resalta las ecuaciones clave y tiene dos versiones, una al lado de la otra: el **resumen normal** y su **versión palacio**, para estudiar el mismo tema de las dos maneras.
 
+**¿Poco tiempo?** Al final de cada fuente hay dos botones: **Leer la historia completa** (los 33 resúmenes con su palacio en una sola página, con un índice de capítulos) y **Escuchar la historia**, que la lee en voz alta como un audiolibro, con velocidad de ×0,5 a ×1,5 (más rápido no se entiende), que recuerda dónde quedaste y que se corta sola apenas salís de la historia (por ejemplo, al volver al inicio). La voz es la del dispositivo y no se elige: usa sola la argentina si la tiene (Edge, iPhone y iPad) y, si no, la de español más natural que encuentre.
+
 | Fuente | Resúmenes | Temas |
 |---|---|---|
 | Barro, *Macroeconomics: A Modern Approach*, cap. 17 | 7 | Ley de un solo precio, restricción presupuestaria, balanza de pagos, ahorro e inversión, historia de la cuenta corriente de EE.UU., ciclos reales, déficits gemelos y términos del intercambio |
@@ -45,9 +47,16 @@ El resultado se ve al entregar, con la explicación de cada pregunta y el resume
 
 ![Explicación paso a paso con la historia del palacio, en el celular](capturas/palacio-celular.webp)
 
+### ✅ Temas para tildar
+En el costado derecho de la página hay una pestaña **Temas** (con el avance, por ejemplo «12/144»). Al tocarla se abre un panel con los 31 temas y los 144 subtemas que entran, agrupados por PDF, para ir tildando lo que ya dominás:
+- Tildar un subtema suma al avance; tildar un tema tilda todos sus subtemas de una, y un tema con subtemas a medias queda marcado con una rayita.
+- Cada tema tiene su link **Ver el resumen**. En la compu el panel queda al lado de la página, así que podés leer y tildar a la vez; en el celular se abre como un diálogo.
+- El Anexo (clase 14) no está en la lista porque es material extra, por fuera de la cátedra.
+- Lo que tildaste se guarda solo en tu navegador y se borra con «Borrar mi progreso». La pestaña no aparece durante un simulacro.
+
 ### Además
 - Puntos de experiencia y racha de respuestas correctas.
-- El progreso (incluidas tus mejores notas de los simulacros) se guarda solo en tu navegador. No hay cuentas, cookies ni analítica, y lo podés borrar desde el pie de la página.
+- El progreso (incluidas tus mejores notas de los simulacros y los temas que tildaste) se guarda solo en tu navegador. No hay cuentas, cookies ni analítica, y lo podés borrar desde el pie de la página.
 - Tema claro y oscuro.
 - Se puede usar con el teclado: las teclas 1 a 4 eligen una opción y Enter confirma.
 

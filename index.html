@@ -105,10 +105,16 @@ img.emo { display: inline-block; width: 1.25em; height: 1.25em; vertical-align: 
 /* ============ INTRO DE MARCA ============ */
 .splash { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: var(--bg); pointer-events: none; animation: splash-out .3s var(--ease) .75s forwards; }
 .splash-in { display: grid; justify-items: center; }
-.splash-globe { width: 72px; height: 72px; animation: globe-in .55s cubic-bezier(.2, 1.3, .4, 1) both; }
+/* El planeta gira sobre su eje como el logo del intro del portfolio (intro-spin): una vuelta con un pulso de escala y un aro
+   que gira alrededor. La vuelta dura 1 s, así termina justo cuando la intro se va. Solo transform y opacity (corre en la GPU). */
+.splash-orb { position: relative; display: grid; place-items: center; width: 108px; height: 108px; animation: orb-in .4s cubic-bezier(.2, 1.3, .4, 1) both; }
+.splash-orb::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--accent) 18%, transparent); border-top-color: var(--accent); will-change: transform; animation: orb-ring 1s linear infinite; }
+.splash-globe { width: 72px; height: 72px; will-change: transform; animation: globe-spin 1s cubic-bezier(.65, 0, .35, 1) both; }
 .splash-title { margin-top: var(--s3); font: 700 24px/1.2 var(--font-d); letter-spacing: -.02em; animation: up .4s var(--ease) .15s both; }
 .splash-sub { margin-top: var(--s1); font-size: 14px; color: var(--muted); animation: up .4s var(--ease) .25s both; }
-@keyframes globe-in { from { transform: scale(.5) rotate(-25deg); opacity: 0; } }
+@keyframes orb-in { from { transform: scale(.6); opacity: 0; } }
+@keyframes orb-ring { to { transform: rotate(360deg); } }
+@keyframes globe-spin { 0% { transform: rotate(0deg) scale(.92); } 50% { transform: rotate(180deg) scale(1.06); } 100% { transform: rotate(360deg) scale(.92); } }
 @keyframes up { from { transform: translateY(8px); opacity: 0; } }
 @keyframes splash-out { to { opacity: 0; visibility: hidden; } }
 
@@ -238,7 +244,7 @@ mjx-container { max-width: 100%; }
 mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; margin: var(--s2) 0 !important; padding: 2px 0 6px; }
 mjx-container.mjx-wide { display: block; overflow-x: auto; overflow-y: hidden; padding: 2px 0 6px; }
 /* Mientras carga MathJax, el LaTeX crudo se ve como un esqueleto. */
-.tx:not(.tx-ok) { color: transparent; background: var(--fill); border-radius: 6px; }
+.tx:not(.tx-ok) { color: transparent; background: var(--fill); border-radius: 6px; overflow-wrap: anywhere; }   /* anywhere: en la historia completa las tarjetas lejanas esperan su turno y su LaTeX crudo no puede ensanchar la página */
 .tx-d { display: block; }
 .tx-d:not(.tx-ok) { min-height: 48px; margin: var(--s2) 0; overflow: hidden; }
 .no-mathjax .tx { color: inherit; background: none; }
@@ -815,6 +821,127 @@ a.cm-note { display: block; color: var(--ink-2); text-decoration: none; }
   .foot-priv .btn-del { margin-top: var(--s4); }
 }
 
+/* ============ HISTORIA COMPLETA Y AUDIO ============ */
+.btn svg { flex: none; width: 20px; height: 20px; }
+.story-cta { margin-top: var(--s7); padding: var(--s5); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); }
+.story-cta h2 { font: 700 24px/1.2 var(--font-d); letter-spacing: -.02em; }
+.story-cta p { margin-top: var(--s2); max-width: 62ch; color: var(--ink-2); }
+.story-cta .cta-row { margin-top: var(--s4); }
+.story-meta { margin-top: var(--s3); font-size: 14px; color: var(--muted); }
+.pl-set { margin-top: var(--s4); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s4); }
+.pl-sel { min-height: 40px; max-width: 100%; padding: 0 var(--s3); border: 0; border-radius: var(--rp); background-color: var(--surface-3); box-shadow: inset 0 0 0 1px var(--line-2); color: var(--ink); font: 600 14px/1 var(--font); cursor: pointer; }
+/* La lista que se abre la dibuja el sistema y toma estos colores: con el fondo translúcido de antes (--fill) caía sobre un panel claro y la letra clara no se leía. Fondos opacos. */
+.pl-sel option { background-color: var(--surface); color: var(--ink); font-weight: 600; }
+.pl-sel:disabled { opacity: .6; cursor: default; }
+.pl-link { min-height: 44px; padding: 0; border: 0; background: none; color: var(--accent); font: 600 14px/1 var(--font); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.pl-note { flex-basis: 100%; max-width: 70ch; font-size: 14px; line-height: 1.45; color: var(--muted); }
+/* Reproductor: queda fijo debajo del encabezado mientras se lee (sin blur: el fondo se mueve y el blur sale caro) */
+.player { position: sticky; top: calc(var(--head-h, 112px) + var(--s2)); z-index: 25; max-width: 820px; margin-bottom: var(--s5); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-2); overflow: hidden; }
+.pl-main { display: flex; align-items: center; gap: var(--s2); padding: var(--s3) var(--s4); }
+.pl-btn, .pl-play { flex: none; display: grid; place-items: center; border: 0; border-radius: 50%; cursor: pointer; transition: background-color var(--dur) var(--ease), transform var(--dur) var(--ease); }
+.pl-btn { order: 1; width: 44px; height: 44px; background: transparent; color: var(--ink); }
+.pl-btn svg { width: 24px; height: 24px; }
+.pl-play { order: 2; width: 52px; height: 52px; background: var(--accent-btn); color: var(--on-accent); }
+.pl-play svg { width: 28px; height: 28px; }
+#plNext { order: 3; }
+.pl-info { order: 4; flex: 1; min-width: 0; display: grid; margin-left: var(--s2); }
+.pl-rate { order: 5; flex: none; }
+.pl-kick { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.pl-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
+.pl-btn:disabled, .pl-play:disabled { opacity: .45; cursor: not-allowed; }
+.pl-btn:active:not(:disabled), .pl-play:active:not(:disabled) { transform: scale(.94); }
+@media (hover: hover) and (pointer: fine) { .pl-btn:not(:disabled):hover { background: var(--fill); } .pl-play:not(:disabled):hover { background: var(--accent-press); } }
+.pl-bar { height: 4px; background: var(--fill); }
+.pl-bar span { display: block; height: 100%; background: var(--accent-btn); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); transition: transform .3s var(--ease); }
+@media (max-width: 559px) {
+  .pl-main { flex-wrap: wrap; row-gap: 0; padding: var(--s2) var(--s3); }
+  .pl-info { order: 0; flex-basis: 100%; margin: 0; }
+  .pl-kick { font-size: 12px; letter-spacing: 0; text-transform: none; }
+  .pl-title { font-size: 14px; }
+  .pl-rate { margin-left: auto; }
+  .pl-btn { width: 40px; height: 40px; }
+  .pl-play { width: 48px; height: 48px; }
+}
+.toc { margin-top: var(--s5); background: var(--surface); border-radius: var(--r2); box-shadow: var(--sh-1); }
+.toc summary { display: flex; align-items: center; min-height: 52px; padding: 0 var(--s5); font-weight: 600; list-style: none; cursor: pointer; }
+.toc summary::-webkit-details-marker { display: none; }
+.toc summary::after { content: ""; margin-left: auto; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform var(--dur) var(--ease); }
+.toc[open] summary::after { transform: rotate(-135deg); }
+.toc-body { padding: 0 var(--s5) var(--s5); }
+.toc-h { margin: var(--s4) 0 var(--s1); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.toc-l { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 0 var(--s4); }
+.toc-b { display: flex; align-items: baseline; gap: var(--s3); width: 100%; min-height: 44px; padding: var(--s2); border: 0; border-radius: var(--r1); background: none; color: var(--ink); text-align: left; font: 500 15px/1.3 var(--font); cursor: pointer; }
+.toc-n { flex: none; min-width: 40px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--muted); }
+@media (hover: hover) and (pointer: fine) { .toc-b:hover { background: var(--fill); } }
+.story .t-card { scroll-margin-top: calc(var(--pl-h, 100px) + var(--s4)); }
+.t-card.is-playing { box-shadow: 0 0 0 2px var(--accent-btn), var(--sh-1); }
+.t-actions { margin-top: var(--s4); }
+.t-listen { position: relative; display: inline-flex; align-items: center; gap: var(--s2); min-height: 36px; padding: 0 var(--s4) 0 var(--s3); border: 0; border-radius: var(--rp); background: transparent; color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line-2); font: 600 14px/1 var(--font); cursor: pointer; }
+.t-listen::before { content: ""; position: absolute; inset: -4px; }
+.t-listen svg { flex: none; width: 16px; height: 16px; color: var(--accent); }
+.t-card.is-playing .t-listen { color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent-btn); }
+@media (hover: hover) and (pointer: fine) { .t-listen:hover { background: var(--fill); color: var(--ink); } }
+
+/* ============ TEMAS PARA TILDAR: pestaña en el costado y panel ============ */
+.tp-tab { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 38; display: flex; align-items: center; justify-content: center; gap: var(--s2); width: 44px; padding: var(--s4) 0; border: 0; border-radius: var(--r1) 0 0 var(--r1); background: var(--accent-btn); color: var(--on-accent); box-shadow: var(--sh-2); font: 600 14px/1 var(--font); letter-spacing: .01em; white-space: nowrap; writing-mode: vertical-rl; cursor: pointer; transition: background-color var(--dur) var(--ease), width var(--dur) var(--ease); }
+.tp-tab[hidden] { display: none; }
+.tp-tab svg { flex: none; width: 18px; height: 18px; }
+.tp-tab-n { font-variant-numeric: tabular-nums; }
+.tp-tab:focus-visible { outline: 3px solid var(--on-accent); outline-offset: -5px; }
+@media (hover: hover) and (pointer: fine) { .tp-tab:hover { background: var(--accent-press); width: 48px; } }
+@media (max-width: 719px) { .tp-tab { width: 36px; padding: var(--s3) 0; font-size: 13px; } .tp-tab svg { width: 16px; height: 16px; } }
+@media (max-height: 560px) { .tp-tab { top: 58%; padding: var(--s3) 0; } .tp-tab-w { display: none; } }   /* celular acostado: más corta y más abajo, para no tapar el selector de velocidad del reproductor */
+body.in-exam .tp-tab { display: none; }
+dialog.tp-dlg { position: fixed; inset: 0 0 0 auto; margin: 0; width: min(440px, 100vw); max-width: none; height: 100vh; height: 100dvh; max-height: none; padding: 0; border-radius: var(--r2) 0 0 var(--r2); overflow: hidden; z-index: 45; }
+dialog.tp-dlg[open] { display: flex; flex-direction: column; animation: tp-in .25s var(--ease); }
+@keyframes tp-in { from { transform: translateX(28px); opacity: 0; } }
+@media (max-width: 559px) { dialog.tp-dlg { border-radius: 0; } }
+.tp-head { flex: none; padding: var(--s5) var(--s5) var(--s4); border-bottom: 1px solid var(--line); }
+.tp-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--s3); align-items: start; }
+.tp-head h2 { display: flex; gap: var(--s2); align-items: center; }
+.tp-head h2 img.emo { width: 24px; height: 24px; flex: none; }
+.tp-sub { margin-top: var(--s1); font-size: 14px; line-height: 1.4; }
+.tp-close { flex: none; width: 44px; height: 44px; margin: -8px -8px 0 0; border: 0; border-radius: 50%; background: var(--fill); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
+.tp-close svg { width: 18px; height: 18px; }
+.tp-prog { margin-top: var(--s4); }
+.tp-prog .pc-row { margin: 0; }
+.tp-bar { height: 8px; margin-top: var(--s2); border-radius: var(--rp); background: var(--fill); overflow: hidden; }
+.tp-bar span { display: block; height: 100%; background: var(--accent-btn); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); transition: transform .3s var(--ease); }
+.tp-prog small { display: block; margin-top: var(--s1); font-size: 13px; color: var(--muted); }
+.tp-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: var(--s2) var(--s5) var(--s4); }
+.tp-src { border-bottom: 1px solid var(--line); }
+.tp-src summary { display: flex; align-items: center; gap: var(--s3); min-height: 52px; padding: var(--s2) 0; list-style: none; cursor: pointer; }
+.tp-src summary::-webkit-details-marker { display: none; }
+.tp-src summary::after { content: ""; flex: none; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform var(--dur) var(--ease); }
+.tp-src[open] summary::after { transform: rotate(-135deg); }
+.tp-src-n { flex: 1; min-width: 0; font-weight: 600; letter-spacing: -.01em; }
+.tp-src-n small { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--muted); letter-spacing: 0; }
+.tp-src-c { flex: none; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.tp-src-c.is-full { color: var(--accent); }
+.tp-temas { list-style: none; margin: 0; padding: 0 0 var(--s3); display: grid; gap: var(--s2); }
+.tp-tema { padding: var(--s1) 0 var(--s2); }
+.tp-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s3); align-items: start; min-height: 44px; padding: var(--s2) 0; cursor: pointer; }
+.tp-tema > .tp-row { font-weight: 600; }
+.tp-row input { appearance: none; -webkit-appearance: none; flex: none; width: 24px; height: 24px; margin: 0; border-radius: 7px; border: 2px solid var(--muted); background: var(--surface); display: grid; place-items: center; cursor: pointer; }
+.tp-row input::after { content: ""; width: 6px; height: 11px; border: solid transparent; border-width: 0 2.5px 2.5px 0; transform: translateY(-1px) rotate(45deg); }
+.tp-row input:checked { background: var(--accent-btn); border-color: var(--accent-btn); }
+.tp-row input:checked::after { border-color: var(--on-accent); }
+.tp-row input:indeterminate { background: var(--accent-btn); border-color: var(--accent-btn); }
+.tp-row input:indeterminate::after { width: 11px; height: 0; border-width: 0 0 2.5px 0; border-color: var(--on-accent); transform: none; }
+.tp-row input:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 75%, transparent); outline-offset: 2px; }
+.tp-t { line-height: 1.4; padding-top: 2px; overflow-wrap: anywhere; transition: color var(--dur) var(--ease); }
+.tp-t .tp-n { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: var(--s1); }
+.tp-row input:checked + .tp-t { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent); }
+.tp-subs { list-style: none; margin: 0; padding: 0 0 0 36px; }
+.tp-subs .tp-row { min-height: 40px; padding: var(--s1) 0; }
+.tp-subs .tp-t { font-size: 15px; font-weight: 400; }
+.tp-go { display: inline-flex; align-items: center; min-height: 36px; margin-left: 36px; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
+.tp-go:hover { text-decoration: underline; }
+.tp-note { margin-top: var(--s4); padding: var(--s3) var(--s4); border-radius: var(--r1); background: var(--warn-tint); color: var(--ink); font-size: 14px; }
+.tp-foot { flex: none; display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s3); padding: var(--s4) var(--s5) calc(var(--s4) + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); }
+.tp-foot .btn { min-width: 0; }
+@media (max-width: 559px) { .tp-head { padding: var(--s4) var(--s4) var(--s3); } .tp-body { padding: var(--s1) var(--s4) var(--s3); } .tp-foot { padding-left: var(--s4); padding-right: var(--s4); } .tp-foot .btn { flex: 1 1 auto; } }
+
 /* Diálogo */
 dialog { border: 0; border-radius: var(--r2); padding: var(--s5); width: min(420px, calc(100vw - 32px)); background: var(--surface); color: var(--ink); box-shadow: var(--sh-2); }
 dialog::backdrop { background: rgba(0, 0, 0, .45); }
@@ -849,7 +976,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
 </head>
 <body>
 <a class="skip" href="#app">Saltar al contenido</a>
-<div class="splash" aria-hidden="true"><div class="splash-in"><img class="splash-globe" src="emojis/globe-americas.webp" alt="" width="160" height="160" data-emoji="globe-americas"><p class="splash-title">Palacio Macro</p><p class="splash-sub">Macroeconomía (262) · FCE-UBA</p></div></div>
+<div class="splash" aria-hidden="true"><div class="splash-in"><div class="splash-orb"><img class="splash-globe" src="emojis/globe-americas.webp" alt="" width="160" height="160" data-emoji="globe-americas"></div><p class="splash-title">Palacio Macro</p><p class="splash-sub">Macroeconomía (262) · FCE-UBA</p></div></div>
 
 <header class="top">
   <div class="top-row">
@@ -911,7 +1038,7 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
     <p class="mj-note">Las fórmulas se ven como texto LaTeX porque MathJax no cargó: hace falta conexión a internet.</p>
     <p><strong>Bibliografía:</strong> Barro, <em>Macroeconomics: A Modern Approach</em> (caps. 17 y 18); Blanchard, <em>Macroeconomía</em> (caps. 17 a 20); Sachs y Larraín, <em>Macroeconomía en la economía global</em> (cap. 9); Mundell (1963); Fleming (1962); Obstfeld y Rogoff (1995), y apuntes de la cursada (clase 14 de 19). Los resúmenes, las historias del palacio y las preguntas son material propio de estudio.</p>
     <div class="foot-priv">
-      <p><strong>Privacidad:</strong> tu progreso (XP, habitaciones y jefes superados, y tus mejores notas de los simulacros) se guarda solo en este navegador. Sin cuentas, sin cookies y sin analítica.</p>
+      <p><strong>Privacidad:</strong> tu progreso (XP, habitaciones y jefes superados, tus mejores notas de los simulacros, los temas que tildaste y dónde quedaste en el audio, con su velocidad) se guarda solo en este navegador. Sin cuentas, sin cookies y sin analítica.</p>
       <button class="btn-del" type="button" id="resetBtn"><img class="emo" src="emojis/wastebasket.webp" alt="" width="160" height="160" data-emoji="wastebasket">Borrar mi progreso</button>
     </div>
     <div class="legal">
@@ -955,6 +1082,8 @@ dialog p { margin-top: var(--s2); color: var(--ink-2); }
   <p id="dlgText"></p>
   <div class="dlg-row"><button class="btn btn-2" type="button" id="dlgNo">Cancelar</button><button class="btn btn-danger" type="button" id="dlgYes">Borrar</button></div>
 </dialog>
+<button class="tp-tab" id="tpTab" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="tpDlg" hidden></button>
+<dialog class="tp-dlg" id="tpDlg" aria-labelledby="tpTitle"></dialog>
 <div id="live" class="sr-only" aria-live="polite"></div>
 
 <script id="macro-data">
@@ -4016,9 +4145,11 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
     });
   }
   $('#resetBtn').addEventListener('click', function () {
-    ask('¿Borrar tu progreso?', 'Se borran tu XP, las habitaciones y jefes superados y tus mejores notas de los simulacros en este navegador. No se puede deshacer.', '🗑️ Borrar').then(function (yes) {
+    ask('¿Borrar tu progreso?', 'Se borran tu XP, las habitaciones y jefes superados, tus mejores notas de los simulacros, los temas que tildaste y dónde quedaste en el audio de la historia completa, en este navegador. No se puede deshacer.', '🗑️ Borrar').then(function (yes) {
       if (!yes) return;
       try { localStorage.removeItem(KEY); } catch (e) {}
+      Narr.forget();
+      Temario.forget();
       memSave = null; save = blank(); streak = 0; run = null; exam = null;
       paintStats(); route(); say('Progreso borrado.');
     });
@@ -4069,7 +4200,7 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
       : '<ul class="dots">' + b.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
     return '<section class="t-block"><h5>' + b.h + '</h5>' + body + (b.note ? '<p class="t-note">' + b.note + '</p>' : '') + '</section>';
   }
-  function theoryCard(t) {
+  function theoryCard(t, listen) {   // listen: en la historia completa, cada capítulo trae su botón «Escuchar desde acá»
     var pal = palaceOf(t), s = srcOf(t);
     /* "Barro: Resumen 17.1 · Cap. 17, sección I" + "Temas: ..." (el formato que pidió Matías) */
     var label = t.num ? s.author + ': Resumen ' + t.num : (t.kicker || s.author);
@@ -4078,6 +4209,7 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
       + '<p class="t-src">📄 <strong>' + label + '</strong>' + (t.sec ? '<span class="t-sec">' + t.sec + '</span>' : '') + '</p>'
       + '<h3 class="t-title" id="th-' + t.id + '">' + t.title + '</h3></div></header>'
       + (t.topics && t.topics.length ? '<p class="t-topics"><strong>Temas:</strong> ' + t.topics.join(' · ') + '</p>' : '')
+      + (listen ? '<div class="t-actions"><button class="t-listen" type="button" data-listen="' + t.id + '">' + ICON.play + 'Escuchar desde acá<span class="sr-only">: ' + plainTitle(t.title).replace(/</g, '&lt;') + '</span></button></div>' : '')
       + '<div class="t-cols">'
       + '<div class="t-col t-sum"><h4 class="col-h">📚 Resumen</h4>'
       + (t.lead ? '<p class="t-lead">' + t.lead + '</p>' : '')
@@ -4111,6 +4243,7 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
   });
   /* Un PDF por vez: #/teoria (primer PDF), #/teoria/<pdf> o #/teoria/<resumen>. */
   function renderTheory(param) {
+    if (param === 'todo') return renderStory();   // #/teoria/todo: toda la materia con su palacio, para leer o escuchar de corrido
     setTitle('Teoría');
     var card = param ? byId(THEORY, param) : null;
     var src = card ? srcOf(card) : ((param && byId(SOURCES, param)) || SOURCES[0]);
@@ -4143,8 +4276,9 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
       + (src.file ? '<p class="g-file"><strong>Archivo:</strong> ' + src.file + '</p>' : '')
       + '<nav class="chips" aria-label="Resúmenes de este PDF">' + list.map(function (t) { return '<a class="chip" href="#/teoria/' + t.id + '">' + t.emoji + ' ' + (t.num ? t.num + ' · ' : '') + t.short + '</a>'; }).join('') + '</nav>'
       + '</header>'
-      + list.map(theoryCard).join('')
-      + '</section>';
+      + list.map(function (t) { return theoryCard(t); }).join('')
+      + '</section>'
+      + storyCta();
     var target = card ? 't-' + card.id : (param ? 'g-' + src.id : null);
     var p = paint(h, target ? null : '#h');
     if (target) pinTo(target, card ? '#th-' + card.id : '#gh', p);
@@ -4166,6 +4300,800 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
     if (window.ResizeObserver) { ro = new ResizeObserver(go2); ro.observe(app); }
     setTimeout(stop, 2500);
   }
+
+  /* >>> NARRADOR */
+  /* ================= NARRADOR: el texto de cada capítulo en castellano hablado =================
+     Las fórmulas (LaTeX) se dicen en voz alta ("pe sobre pe barra"), el HTML se saca, los emojis y las siglas se
+     adaptan para la voz, y todo se corta en trozos cortos (los motores de voz se cortan o se traban con textos largos). */
+  var NBSP = String.fromCharCode(160), ZWJ = String.fromCharCode(0x200D);
+  var LETTER = { a: 'a', b: 'be', c: 'ce', d: 'de', e: 'e', f: 'efe', g: 'ge', h: 'hache', i: 'i', j: 'jota', k: 'ka', l: 'ele', m: 'eme', n: 'ene', o: 'o', p: 'pe', q: 'cu', r: 'erre', s: 'ese', t: 'te', u: 'u', v: 'uve', w: 'uve doble', x: 'equis', y: 'i griega', z: 'zeta' };
+  var ACCENTED = { 'Á': 'a', 'É': 'e', 'Í': 'i', 'Ó': 'o', 'Ú': 'u', 'Ñ': 'eñe', 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ñ': 'eñe' };
+  function letterName(ch) { return ACCENTED[ch] || LETTER[ch.toLowerCase()] || ch; }
+  var GREEK_SAY = { varepsilon: 'épsilon', epsilon: 'épsilon', delta: 'delta', Delta: 'variación de', pi: 'pi', Pi: 'pi', alpha: 'alfa', beta: 'beta', gamma: 'gamma', theta: 'theta', lambda: 'lambda', mu: 'mu', sigma: 'sigma', rho: 'ro', phi: 'fi', omega: 'omega', Omega: 'omega' };
+  var SYM_SAY = { cdot: ' por ', times: ' por ', approx: ' aproximadamente igual a ', lt: ' menor que ', gt: ' mayor que ', le: ' menor o igual que ', leq: ' menor o igual que ', ge: ' mayor o igual que ', geq: ' mayor o igual que ', ne: ' distinto de ', neq: ' distinto de ', Rightarrow: ' implica ', Leftrightarrow: ' si y solo si ', iff: ' si y solo si ', rightarrow: ' tiende a ', to: ' tiende a ', subset: ' contenido en ', ldots: ' puntos suspensivos ', dots: ' puntos suspensivos ', cdots: ' puntos suspensivos ', pm: ' más menos ', infty: ' infinito ', sum: ' sumatoria de ', hline: ' ', '%': ' por ciento ', '{': ' ', '}': ' ', '&': ' y ', '#': ' ', '$': ' ', '_': ' ', ';': ' ', ',': ' ', '!': ' ', ' ': ' ', quad: ' , ', qquad: ' , ' };
+  var TEX_UNKNOWN = [];   // comandos que el conversor no conoce (la prueba exige que quede vacío)
+
+  function matchBrace(s, i) {   // i apunta a "{": devuelve el índice de su "}"
+    var d = 0;
+    for (var k = i; k < s.length; k++) {
+      var c = s.charAt(k);
+      if (c === '\\') { k++; continue; }
+      if (c === '{') d++;
+      else if (c === '}') { d--; if (d === 0) return k; }
+    }
+    return s.length - 1;
+  }
+  function tidy(t) {
+    return t.replace(/\s+/g, ' ').replace(/ ([,.;:])/g, '$1').replace(/([,.;:])(?: ?[,.;:])+/g, '$1').replace(/^[ ,.;:]+/, '').replace(/[ ,;:]+$/, '').trim();
+  }
+  function wordsIn(t) { return (t.match(/\S+/g) || []).length; }
+  function grp(t) { return wordsIn(t) > 2 ? ', ' + t + ', ' : t; }
+
+  function texSpeech(src) {
+    var s = String(src).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    var i = 0;
+    function skipWs() { while (i < s.length && /\s/.test(s.charAt(i))) i++; }
+    function atomRaw() {   // el texto crudo del próximo átomo: un grupo {…}, un comando (con su {…} si es \text) o un carácter
+      skipWs();
+      var c = s.charAt(i), r;
+      if (c === '{') { var e = matchBrace(s, i); r = s.slice(i + 1, e); i = e + 1; return r; }
+      if (c === '\\') {
+        var m = /^\\(?:[a-zA-Z]+|.)/.exec(s.slice(i)); r = m[0]; i += r.length;
+        if (/^\\(?:text|mathrm|mathcal)$/.test(r)) { skipWs(); if (s.charAt(i) === '{') { var e2 = matchBrace(s, i); r += s.slice(i, e2 + 1); i = e2 + 1; } }
+        return r;
+      }
+      i++; return c;
+    }
+    function sup() {
+      var t = atomRaw().trim();
+      if (t === '*') return ' estrella ';
+      if (t === '2') return ' al cuadrado ';
+      if (t === '3') return ' al cubo ';
+      if (/^[0-9]+$/.test(t)) return ' elevado a ' + t + ' ';
+      var x = texSpeech(t);
+      return ' superíndice ' + x + (wordsIn(x) > 1 ? ' , ' : ' ');
+    }
+    function sub() { var x = texSpeech(atomRaw()); return ' sub ' + x + (wordsIn(x) > 1 ? ' , ' : ' '); }
+    function env(name) {
+      var tail = '\\end{' + name + '}', end = s.indexOf(tail, i);
+      if (end < 0) end = s.length;
+      var body = s.slice(i, end); i = Math.min(s.length, end + tail.length);
+      if (name === 'array') body = body.replace(/^\s*\{[^}]*\}/, '');
+      var rows = body.split('\\\\').map(function (r) { return r.replace(/\\hline/g, ''); });
+      if (name === 'aligned') return ' ' + texSpeech(rows.join(' ').replace(/&/g, ' ')) + ' ';
+      return ' ' + rows.map(function (r) {
+        return r.split('&').map(function (c) { return texSpeech(c); }).filter(Boolean).join(', ');
+      }).filter(Boolean).join('. ') + ' . ';
+    }
+    function command() {
+      var m = /^\\(?:[a-zA-Z]+|.)/.exec(s.slice(i)), full = m[0], name = full.slice(1);
+      i += full.length;
+      switch (name) {
+        case 'text': case 'mathrm': case 'textbf': case 'mbox': return ' ' + atomRaw().replace(/\s+/g, ' ') + ' ';
+        case 'mathcal': return ' ' + texSpeech(atomRaw()) + ' ';
+        case 'frac': { var a = atomRaw(), b = atomRaw(); return ' ' + grp(texSpeech(a)) + ' sobre ' + grp(texSpeech(b)) + ' '; }
+        case 'bar': return ' ' + texSpeech(atomRaw()) + ' barra ';
+        case 'underbrace': {
+          var u = atomRaw(), note = '';
+          skipWs();
+          if (s.charAt(i) === '_') { i++; note = texSpeech(atomRaw()); }
+          return ' ' + texSpeech(u) + (note ? ' , o sea ' + note + ' , ' : ' ');
+        }
+        case 'left': { skipWs(); var d = s.charAt(i); i++; return d === '(' ? ' abre paréntesis ' : d === '[' ? ' abre corchete ' : ' '; }
+        case 'right': {
+          skipWs(); var d2 = s.charAt(i); i++;
+          if (d2 === ')') return ' cierra paréntesis ';
+          if (d2 === ']') return ' cierra corchete ';
+          if (d2 === '|') { skipWs(); if (s.charAt(i) === '_') { i++; return ' , evaluado en ' + texSpeech(atomRaw()) + ' , '; } }
+          return ' ';
+        }
+        case 'prod': case 'sum': {
+          var lo = '', hi = '';
+          skipWs(); if (s.charAt(i) === '_') { i++; lo = texSpeech(atomRaw()); }
+          skipWs(); if (s.charAt(i) === '^') { i++; hi = texSpeech(atomRaw()); }
+          return ' ' + (name === 'prod' ? 'productoria' : 'sumatoria') + (lo ? ' desde ' + lo : '') + (hi ? ' hasta ' + hi : '') + ' de ';
+        }
+        case 'begin': { var en = atomRaw(); return env(en); }
+        case '\\': return ' . ';
+        default:
+          if (GREEK_SAY[name]) return ' ' + GREEK_SAY[name] + ' ';
+          if (SYM_SAY[name] !== undefined) return SYM_SAY[name];
+          if (name === 'end') { atomRaw(); return ' '; }
+          TEX_UNKNOWN.push(full);
+          return ' ';
+      }
+    }
+    var out = '';
+    while (i < s.length) {
+      var c = s.charAt(i);
+      if (c === '\\') { out += command(); continue; }
+      if (c === '{') { i++; var e = matchBrace(s, i - 1); out += ' ' + texSpeech(s.slice(i, e)) + ' '; i = e + 1; continue; }
+      if (c === '^') { i++; out += sup(); continue; }
+      if (c === '_') { i++; out += sub(); continue; }
+      if (/[0-9]/.test(c)) {
+        var nm = /^\d+(?:\{,\}\d+|[.,]\d+)?/.exec(s.slice(i))[0];
+        i += nm.length; out += ' ' + nm.replace('{,}', ',') + ' '; continue;
+      }
+      if (/[A-Za-z]/.test(c)) { out += ' ' + letterName(c) + ' '; i++; continue; }
+      i++;
+      switch (c) {
+        case '+': out += ' más '; break;
+        case '-': out += ' menos '; break;
+        case '=': out += ' igual a '; break;
+        case '<': out += ' menor que '; break;
+        case '>': out += ' mayor que '; break;
+        case '/': out += ' sobre '; break;
+        case '(': out += ' abre paréntesis '; break;
+        case ')': out += ' cierra paréntesis '; break;
+        case '[': out += ' abre corchete '; break;
+        case ']': out += ' cierra corchete '; break;
+        case ',': out += ' , '; break;
+        case ';': out += ' ; '; break;
+        case ':': out += ' : '; break;
+        case '.': out += ' . '; break;
+        case '*': out += ' asterisco '; break;
+        case '|': out += ' barra vertical '; break;
+        case '&': out += ' , '; break;
+        default: if (c === MINUS) out += ' menos '; else out += ' ';
+      }
+    }
+    return tidy(out);
+  }
+
+  /* ----- Texto con HTML y fórmulas → texto para la voz ----- */
+  var SAID_WORDS = { UN: 1, UNA: 1, SIEMPRE: 1, NO: 1, MUCHO: 1, SIN: 1, VIP: 1, MULTIMOD: 1, DEL: 1, EL: 1, LA: 1, LOS: 1, LAS: 1 };
+  var ROMAN = { II: '2', III: '3', IV: '4', VI: '6', VII: '7' };
+  var DIGIT_WORD = ['cero', 'uno', 'dos', 'tres'];
+  function dropEmoji(t) {
+    var out = '';
+    for (var k = 0; k < t.length; k++) {
+      var cp = t.codePointAt(k);
+      if (cp > 0xFFFF) k++;
+      if (cp >= 0x1F000 || (cp >= 0x2600 && cp <= 0x27BF) || cp === 0xFE0F || cp === 0x200D || cp === 0x2B50 || cp === 0x2B06) continue;
+      out += String.fromCodePoint(cp);
+    }
+    return out;
+  }
+  function plainSpeech(html) {
+    var t = String(html == null ? '' : html);
+    t = t.replace(/\\\[([\s\S]*?)\\\]/g, function (_, x) { return ' , ' + texSpeech(x) + ' , '; });
+    t = t.replace(/\\\(([\s\S]*?)\\\)/g, function (_, x) { return ' ' + texSpeech(x) + ' '; });
+    t = t.replace(/<br\s*\/?>|<wbr\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '');
+    t = t.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+    t = dropEmoji(t).split(NBSP).join(' ');
+    t = t.replace(/EE\.UU\./g, 'Estados Unidos').replace(/\bCaps\./g, 'Capítulos').replace(/\bcaps\./g, 'capítulos').replace(/\bCap\./g, 'Capítulo').replace(/\bcap\./g, 'capítulo')
+      .replace(/\bvs\./g, 'versus').replace(/\betc\./g, 'etcétera').replace(/\bp\. ej\./g, 'por ejemplo').replace(/\bUSD\b/g, 'dólares').replace(/\bG-20\b/g, 'ge veinte')
+      .replace(/\bUS\$ ?(\d[\d.,]*)/g, '$1 dólares');
+    t = t.replace(/(\d) ?\/ ?(\d)/g, '$1 de $2').replace(/\by\/o\b/g, 'y').replace(/\//g, ' y ');
+    t = t.replace(/\bM([0-3])\b/g, function (_, d) { return 'eme ' + DIGIT_WORD[+d]; });
+    t = t.replace(/\b[A-ZÁÉÍÓÚÑ]{2,7}\b/g, function (w) {
+      if (SAID_WORDS[w]) return w;
+      if (ROMAN[w]) return ROMAN[w];
+      return w.split('').map(letterName).join(' ');
+    });
+    t = t.replace(/([A-Za-z])\*/g, function (_, c) { return letterName(c) + ' estrella'; });
+    t = t.replace(/ε/g, ' épsilon ').replace(/⇒/g, ' implica ').replace(/≈/g, ' aproximadamente ').replace(/±/g, ' más menos ').replace(/·/g, ', ').replace(/\|/g, ', ');
+    t = t.replace(/%/g, ' por ciento');
+    t = t.split(MINUS).join('-').replace(/(^|[\s(¿])-(?=\d)/g, '$1menos ').replace(/(\d)-(\d)/g, '$1 a $2').replace(/ - /g, ', ');
+    t = t.replace(/[«»“”"*_^{}]/g, '').replace(/\$/g, ' dólares ');
+    t = t.replace(/(^|\s)\+(?=\s|$)/g, '$1más').replace(/(^|\s)=(?=[\s.,;:]|$)/g, '$1igual a');
+    return t.replace(/\s+/g, ' ').replace(/ ([,.;:])/g, '$1').trim();
+  }
+  function sentence(t) {   // asegura un cierre para que la voz haga la pausa
+    t = plainSpeech(t);
+    return t && !/[.!?…:]$/.test(t) ? t + '.' : t;
+  }
+
+  /* ----- Un capítulo = un resumen con su versión palacio ----- */
+  function tableSpeech(b) {
+    var tb = b.table, head = tb.head || [], out = [];
+    (tb.rows || []).forEach(function (r) {
+      var cells = r.map(function (c, k) {
+        var h = plainSpeech(head[k] || '');
+        /* En una tabla de texto (Activos | Pasivos) todas las columnas llevan su rótulo; en una matriz, la primera celda es el nombre de la fila. */
+        return (k === 0 && !tb.plain ? '' : (h ? h + ': ' : '')) + plainSpeech(c);
+      });
+      out.push(cells.filter(Boolean).join(r.length > 2 || head[1] ? '; ' : ': '));
+    });
+    return out;
+  }
+  function chapterParas(t, firstOfGroup) {
+    var s = srcOf(t), P = [], pal = palaceOf(t);
+    function add(x) { x = sentence(x); if (x) P.push(x); }
+    if (firstOfGroup) add('Ahora: ' + plainSpeech(s.label) + '. ' + (s.lock ? s.lock : s.scope));
+    add((t.num ? s.author + ', resumen ' + t.num : (t.kicker || s.author)) + '. ' + t.title);
+    if (t.sec) add(t.sec);
+    if (t.topics && t.topics.length) add('Temas: ' + t.topics.map(function (x) { return plainSpeech(x); }).join(', '));
+    add('Resumen');
+    if (t.lead) add(t.lead);
+    (t.keys || []).forEach(function (k) { add((k.label ? plainSpeech(k.label) + ': ' : '') + texSpeech(k.tex)); if (k.cap) add(k.cap); });
+    (t.blocks || []).forEach(function (b) {
+      add(b.h);
+      if (b.table) tableSpeech(b).forEach(add);
+      else (b.items || []).forEach(add);
+      if (b.note) add(b.note);
+    });
+    if (pal) {
+      add('Versión palacio. ' + pal.name);
+      var p = pal.p;
+      add('Dónde estás: ' + p.llegada);
+      (p.stations || []).forEach(function (st, k) { add('Estación ' + (k + 1) + '. ' + st.where); add(st.see); add('Significa: ' + st.means); });
+      add('La peli completa: ' + p.story);
+      add('Frase para decir en voz alta: ' + p.hook);
+      if (!pal.room && t.palaceNote) add(t.palaceNote);
+    }
+    return P;
+  }
+  var CHUNK_MAX = 170;   // caracteres por trozo: Chrome corta las voces de red a los ~15 s, y más corto responde mejor al pausar y saltar
+  function chunksOf(paras, max) {
+    var MAXC = max || CHUNK_MAX;
+    var out = [];
+    paras.forEach(function (p) {
+      var sents = [], cur = '';
+      for (var k = 0; k < p.length; k++) {
+        var c = p.charAt(k); cur += c;
+        if ((c === '.' || c === '!' || c === '?' || c === ';') && (k === p.length - 1 || p.charAt(k + 1) === ' ')) { sents.push(cur.trim()); cur = ''; }
+      }
+      if (cur.trim()) sents.push(cur.trim());
+      var line = '';
+      function flush() { if (line) out.push(line); line = ''; }
+      sents.forEach(function (sn) {
+        while (sn.length > MAXC) {   // una oración larga se corta en una coma (o, si no hay, en un espacio) antes del límite
+          var cut = sn.lastIndexOf(', ', MAXC); if (cut < 30) cut = sn.lastIndexOf(' ', MAXC); if (cut < 30) cut = MAXC;
+          flush(); out.push(sn.slice(0, cut + 1).trim()); sn = sn.slice(cut + 1).trim();
+        }
+        if (line && (line + ' ' + sn).length > MAXC) flush();
+        line = line ? line + ' ' + sn : sn;
+      });
+      flush();
+    });
+    return out;
+  }
+  var chaptersCache = null;
+  function buildChapters() {
+    if (chaptersCache) return chaptersCache;
+    var list = [], seen = {};
+    SOURCES.forEach(function (s) {
+      cardsOf(s).forEach(function (t, k) {
+        var chunks = chunksOf(chapterParas(t, k === 0)), words = 0;
+        chunks.forEach(function (c) { words += wordsIn(c); });
+        list.push({ id: t.id, src: s.id, label: (t.num ? s.author + ': Resumen ' + t.num : (t.kicker || s.author)), title: t.title, group: s.label, chunks: chunks, words: words });
+        seen[t.id] = 1;
+      });
+    });
+    chaptersCache = list;
+    return list;
+  }
+  /* ================= NARRADOR: motor de voz (Web Speech API del navegador) =================
+     Lee los capítulos en orden, trozo por trozo. Pausar = cortar y acordarse del trozo (pause/resume del navegador no es
+     confiable en celulares). La posición y la velocidad se guardan en este navegador (AUDIO_KEY). La voz no se elige: se usa la
+     argentina; si el dispositivo no tiene, la latinoamericana más natural y después la de España. */
+  var AUDIO_KEY = 'palacio-macro:audio';
+  var RATES = [0.5, 0.75, 1, 1.25, 1.5];   // más rápido que ×1,5 no se entiende
+  var WPM = 165;   // palabras por minuto de una voz a velocidad 1×, para estimar la duración
+  function fmtDur(min) { min = Math.max(1, Math.round(min)); return min >= 60 ? (Math.floor(min / 60) + ' h' + (min % 60 ? ' ' + (min % 60) + ' min' : '')) : min + ' min'; }
+  function rateLabel(r) { return String(r).replace('.', ',') + '×'; }
+
+  var Narr = (function () {
+    var synth = window.speechSynthesis, supported = !!(synth && window.SpeechSynthesisUtterance);
+    var st = { ch: 0, i: 0, playing: false, rate: 1, started: false };
+    var token = 0, utt = null, voices = [], voicesReady = false, wake = null, saved = null, memAudio = null, subs = [];
+    var coarse = false;
+    try { coarse = window.matchMedia('(pointer: coarse)').matches; } catch (e) {}
+
+    function chapters() { return buildChapters(); }
+    function emit(kind) { subs.forEach(function (f) { try { f(kind); } catch (e) { console.warn('narrador', e); } }); }   // kind 'voices' = cambió la lista o la elegida
+    function onChange(f) { subs.push(f); }
+
+    /* ----- guardado ----- */
+    function readSaved() {
+      var raw = null;
+      try { raw = localStorage.getItem(AUDIO_KEY); } catch (e) {}
+      if (!raw && memAudio) raw = memAudio;
+      try { return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
+    }
+    function write() {
+      var c = chapters()[st.ch];
+      var json = JSON.stringify({ v: 1, id: c ? c.id : '', i: st.i, rate: st.rate });
+      memAudio = json;
+      try { localStorage.setItem(AUDIO_KEY, json); } catch (e) {}
+    }
+    function restore() {
+      if (st.started) return;
+      st.started = true;
+      var s = readSaved(); if (!s) return;
+      if (RATES.indexOf(s.rate) >= 0) st.rate = s.rate;
+      else if (s.rate > 1.5) st.rate = 1.5;   // velocidades guardadas antes del tope (×1,75 y ×2)
+      var chs = chapters();
+      for (var k = 0; k < chs.length; k++) if (chs[k].id === s.id) { st.ch = k; st.i = Math.max(0, Math.min(chs[k].chunks.length - 1, s.i | 0)); }
+    }
+
+    /* ----- voces: la argentina primero ----- */
+    function voiceScore(v) {
+      var lang = String(v.lang || '').replace('_', '-').toLowerCase(), n = String(v.name || '').toLowerCase(), sc;
+      if (lang.indexOf('es') !== 0) return -1;
+      if (lang === 'es-ar') sc = 100;
+      else if (/^es-(419|us|mx|uy|cl|co|pe|ve|ec|bo|py|cr|gt|hn|ni|pa|pr|sv|do|cu)$/.test(lang)) sc = 40;
+      else if (lang === 'es-es') sc = 10;
+      else sc = 20;
+      if (/natural|neural|online/.test(n)) sc += 30;
+      if (/enhanced|premium|siri/.test(n)) sc += 20;
+      if (/argentin/.test(n)) sc += 10;
+      if (/compact/.test(n)) sc -= 10;
+      return sc;
+    }
+    function loadVoices() {
+      if (!supported) return;
+      var all = []; try { all = synth.getVoices() || []; } catch (e) {}
+      if (!all.length) return;
+      voicesReady = true;
+      voices = all.filter(function (v) { return voiceScore(v) >= 0; }).sort(function (a, b) { return voiceScore(b) - voiceScore(a); });
+      emit('voices');
+    }
+    function pickVoice() { return voices[0] || null; }   // la lista ya viene ordenada: la mejor primero
+    function isArgentine(v) { return !!v && String(v.lang || '').replace('_', '-').toLowerCase() === 'es-ar'; }
+    if (supported) {
+      loadVoices();
+      try { synth.addEventListener('voiceschanged', loadVoices); } catch (e) { synth.onvoiceschanged = loadVoices; }
+      setTimeout(function () { if (!voicesReady) { voicesReady = true; emit('voices'); } }, 2500);   // si el navegador nunca informa voces, se deja de esperar
+    }
+
+    /* ----- que la pantalla del celular no se apague mientras suena (si se bloquea, el navegador corta la voz) ----- */
+    function wakeOn() {
+      if (!coarse || !navigator.wakeLock || wake) return;
+      navigator.wakeLock.request('screen').then(function (l) {
+        if (!st.playing) { try { l.release(); } catch (e) {} return; }
+        wake = l; l.addEventListener('release', function () { if (wake === l) wake = null; });
+      }).catch(function () {});
+    }
+    function wakeOff() { if (wake) { try { wake.release(); } catch (e) {} wake = null; } }
+
+    /* ----- reproducción ----- */
+    function speakNow() {
+      var c = chapters()[st.ch]; if (!c || !st.playing) return;
+      var my = ++token, v = pickVoice(), text = c.chunks[st.i], parts = [text], k = 0;
+      /* Las voces de red de Chrome (Google) se cortan a los ~15 s: a velocidad baja un trozo dura más que eso,
+         así que se dice en pedazos más cortos (el trozo sigue siendo la unidad de posición). */
+      var est = wordsIn(text) / (WPM * st.rate / 60);
+      if (v && v.localService === false && est > 11) parts = chunksOf([text], Math.max(60, Math.floor(CHUNK_MAX * 10 / est)));
+      function sayPart() {
+        var u = new SpeechSynthesisUtterance(parts[k]);
+        if (v) { u.voice = v; u.lang = v.lang; } else u.lang = 'es-AR';
+        u.rate = st.rate; u.pitch = 1;
+        u.onend = function () { if (my !== token || !st.playing) return; if (++k < parts.length) sayPart(); else advance(); };
+        u.onerror = function (e) {
+          if (my !== token) return;
+          if (e && (e.error === 'interrupted' || e.error === 'canceled')) return;
+          st.playing = false; st.error = (e && e.error) || 'error'; wakeOff(); write(); emit('voices');
+        };
+        utt = u;   // Chrome pierde el onend si nadie guarda el objeto
+        try { if (synth.paused) synth.resume(); synth.speak(u); } catch (e) { st.playing = false; }
+      }
+      sayPart();
+      emit();
+    }
+    function restart() {   // corta lo que suena y vuelve a decir el trozo actual (cambio de velocidad, de voz, salto)
+      token++;
+      var busy = false;
+      try { busy = synth.speaking || synth.pending; synth.cancel(); } catch (e) {}
+      if (busy) setTimeout(function () { if (st.playing) speakNow(); }, 70); else speakNow();
+    }
+    function advance() {
+      var chs = chapters(), c = chs[st.ch];
+      if (st.i + 1 < c.chunks.length) { st.i++; }
+      else if (st.ch + 1 < chs.length) { st.ch++; st.i = 0; }
+      else { st.playing = false; st.ch = 0; st.i = 0; wakeOff(); write(); emit(); return; }   // terminó todo
+      if (st.i === 0 || st.i % 8 === 0) write();
+      speakNow();
+    }
+    function play(ch, i) {
+      if (!supported) return;
+      restore();
+      var chs = chapters();
+      if (typeof ch === 'number') { st.ch = Math.max(0, Math.min(chs.length - 1, ch)); st.i = Math.max(0, Math.min(chs[st.ch].chunks.length - 1, i | 0)); }
+      st.playing = true; st.error = ''; wakeOn(); write();
+      restart();
+    }
+    function pause() {
+      if (!st.playing) return;
+      st.playing = false; token++; wakeOff();
+      try { synth.cancel(); } catch (e) {}
+      write(); emit();
+    }
+    /* Corta la voz sí o sí (al salir de la historia): aunque el estado diga "pausa", el motor del sistema puede seguir hablando. */
+    function stop() {
+      pause(); token++;
+      if (!supported) return;
+      var kill = function () { try { if (!st.playing && (synth.speaking || synth.pending || synth.paused)) synth.cancel(); } catch (e) {} };
+      kill(); setTimeout(kill, 150);
+    }
+    function toggle() { if (st.playing) pause(); else play(); }
+    function toChapter(ch) {
+      restore();
+      var chs = chapters(); st.ch = Math.max(0, Math.min(chs.length - 1, ch)); st.i = 0; write();
+      if (st.playing) restart(); else emit();
+    }
+    function next() { restore(); toChapter(st.ch + 1); }
+    function prev() { restore(); toChapter(st.i > 2 ? st.ch : st.ch - 1); }   // si ya avanzó, vuelve al principio del capítulo; si no, al anterior
+    function setRate(r) {
+      restore();
+      r = Number(r); if (RATES.indexOf(r) < 0) return;
+      st.rate = r; write();
+      if (st.playing) restart(); else emit();
+    }
+    function reset() { restore(); var was = st.playing; st.ch = 0; st.i = 0; write(); if (was) restart(); else emit(); }
+    function forget() { pause(); st.ch = 0; st.i = 0; st.rate = 1; st.error = ''; memAudio = null; try { localStorage.removeItem(AUDIO_KEY); } catch (e) {} emit('voices'); }
+
+    /* ----- estimaciones ----- */
+    function totalWords() { var n = 0; chapters().forEach(function (c) { n += c.words; }); return n; }
+    function remainingWords() {
+      var chs = chapters(), c = chs[st.ch], n = c.words * (1 - st.i / Math.max(1, c.chunks.length));
+      for (var k = st.ch + 1; k < chs.length; k++) n += chs[k].words;
+      return n;
+    }
+    function progress() { var t = totalWords(); return t ? 1 - remainingWords() / t : 0; }
+
+    /* El sistema puede cortar la voz mientras la página no se ve (bloqueo de pantalla): al volver, sigue donde iba. */
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState !== 'visible' || !st.playing || !supported) return;
+      var busy = false; try { busy = synth.speaking || synth.pending; } catch (e) {}
+      if (!busy) restart();
+      wakeOn();
+    });
+    window.addEventListener('pagehide', function () { if (supported) { try { synth.cancel(); } catch (e) {} } });
+
+    return {
+      supported: supported, chapters: chapters, state: st, onChange: onChange, restore: restore,
+      voices: function () { return voices; }, voicesReady: function () { return voicesReady; }, pickVoice: pickVoice, isArgentine: isArgentine,
+      play: play, pause: pause, stop: stop, toggle: toggle, next: next, prev: prev, toChapter: toChapter, setRate: setRate, reset: reset, forget: forget,
+      totalWords: totalWords, remainingWords: remainingWords, progress: progress, coarse: coarse,
+      texSpeech: texSpeech, plainSpeech: plainSpeech, unknown: TEX_UNKNOWN
+    };
+  })();
+  window.__narr = Narr;   // gancho de prueba
+
+  /* ================= HISTORIA COMPLETA: todo el material con su palacio, para leer o escuchar de corrido ================= */
+  var ICON = {
+    play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>',
+    pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>',
+    prev: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM19 5.5v13L9.5 12z" fill="currentColor"/></svg>',
+    next: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM5 5.5v13L14.5 12z" fill="currentColor"/></svg>',
+    phones: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg>'
+  };
+  function plainTitle(s) { return String(s).replace(/\\\(([\s\S]*?)\\\)/g, function (_, x) { return x.replace(/\\[a-zA-Z]+\s?/g, '').replace(/[{}\\]/g, ''); }).replace(/<[^>]+>/g, ''); }
+  /* Al final de cada grupo de Teoría: leer todo junto o escucharlo. */
+  function storyCta() {
+    return '<section class="story-cta" aria-labelledby="scH">'
+      + '<h2 id="scH">¿Poco tiempo? Todo de corrido</h2>'
+      + '<p>Los ' + THEORY.length + ' resúmenes de todos los PDF con su versión palacio, en una sola página. Leelos o escuchalos como un audiolibro mientras hacés otra cosa.</p>'
+      + '<div class="cta-row"><a class="btn" href="#/teoria/todo">📚 Leer la historia completa</a>'
+      + '<button class="btn btn-2" type="button" data-story-listen>' + ICON.phones + 'Escuchar la historia</button></div>'
+      + '</section>';
+  }
+
+  function playerHtml() {
+    return '<div class="player" id="player" role="group" aria-label="Escuchar la historia completa">'
+      + '<div class="pl-main">'
+      + '<div class="pl-info"><span class="pl-kick" id="plKick"></span><span class="pl-title" id="plTitle"></span></div>'
+      + '<button type="button" class="pl-btn" id="plPrev" aria-label="Capítulo anterior">' + ICON.prev + '</button>'
+      + '<button type="button" class="pl-play" id="plPlay" aria-label="Escuchar">' + ICON.play + '</button>'
+      + '<button type="button" class="pl-btn" id="plNext" aria-label="Capítulo siguiente">' + ICON.next + '</button>'
+      + '<label class="pl-rate"><span class="sr-only">Velocidad de la voz</span><select id="plRate" class="pl-sel">'
+      + RATES.map(function (r) { return '<option value="' + r + '">' + rateLabel(r) + '</option>'; }).join('') + '</select></label>'
+      + '</div>'
+      + '<div class="pl-bar" id="plBar" role="progressbar" aria-label="Avance de la historia" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>'
+      + '</div>';
+  }
+  function tocHtml(chs) {
+    var h = '<details class="toc"><summary>Capítulos (' + chs.length + ')</summary><div class="toc-body">';
+    SOURCES.forEach(function (s) {
+      var list = cardsOf(s); if (!list.length) return;
+      h += '<p class="toc-h">' + (s.pick ? s.label + ' · extra' : s.label) + '</p><ul class="toc-l">'
+        + list.map(function (t) { return '<li><button type="button" class="toc-b" data-jump="' + t.id + '"><span class="toc-n">' + (t.num || '·') + '</span><span>' + plainTitle(t.short || t.title) + '</span></button></li>'; }).join('')
+        + '</ul>';
+    });
+    return h + '</div></details>';
+  }
+  function storyGroup(s) {
+    var list = cardsOf(s);
+    return '<section class="t-group" id="g-' + s.id + '" aria-labelledby="gh-' + s.id + '">'
+      + '<header class="g-head"><p class="kicker">📄 PDF</p><h2 id="gh-' + s.id + '">' + s.label + '</h2>'
+      + (s.work ? '<p class="g-file">' + s.work + '</p>' : '')
+      + (s.lock ? '<p class="notice" role="note">⚠️ <span><strong>' + s.lock + '.</strong></span></p>' : '')
+      + '</header>'
+      + list.map(function (t) { return theoryCard(t, true); }).join('')
+      + '</section>';
+  }
+  function renderStory() {
+    setTitle('Historia completa');
+    var chs = Narr.chapters(), words = Narr.totalWords();
+    var h = '<a class="back" href="#/teoria">← Volver a la teoría</a>'
+      + '<section class="hero story-hero">'
+      + '<p class="kicker">Teoría · Historia completa</p>'
+      + '<h1 id="h">Toda la materia, de corrido</h1>'
+      + '<p class="lead">Los ' + THEORY.length + ' resúmenes de los ' + SOURCES.length + ' PDF, cada uno con su versión palacio, uno atrás del otro. Leelos de corrido o dale play y escuchalos.</p>'
+      + '<p class="story-meta">Lectura aprox. ' + fmtDur(words / 230) + ' · Audio aprox. ' + fmtDur(words / WPM) + ' a velocidad normal</p>'
+      + '<div class="pl-set">'
+      + '<button type="button" class="pl-link" id="plReset" hidden>Empezar desde el principio</button>'
+      + '<p class="pl-note" id="plNote"></p></div>'
+      + '</section>'
+      + playerHtml()
+      + tocHtml(chs)
+      + storyGroup(SOURCES[0])
+      + '<div id="storyRest"></div>'
+      + '<div class="cta-row"><a class="btn btn-2" href="#/teoria">← Volver a la teoría</a><a class="btn" href="#/practica">🧠 Ir al palacio</a></div>';
+    clearTimeout(storyTimer);
+    storyRest = SOURCES.slice(1);
+    clearMath(app);
+    app.innerHTML = render(h);
+    if (!reduceMotion) { app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter'); }
+    window.scrollTo(0, 0);
+    lazyTypeset(app);
+    mountPlayer();
+    requestAnimationFrame(function () { measureHead(); focusEl($('#h', app)); });   // lo que fuerza el diseño, una sola vez y después de escribir todo
+    storyTimer = setTimeout(appendStoryGroups, 60);
+  }
+  /* Los 33 resúmenes juntos son mucha página para acomodar de una vez (en un celular lento, varios segundos): se dibuja el primer
+     PDF y los demás se agregan de a uno, en tandas cortas. Si la persona salta a un capítulo (o se reproduce uno lejano), se agregan todos ya. */
+  var storyRest = null, storyTimer = null;
+  function appendStoryGroups(all) {
+    var host = $('#storyRest');
+    if (!host) { storyRest = null; return; }
+    while (storyRest && storyRest.length) {
+      var el0 = document.createElement('div');
+      el0.innerHTML = render(storyGroup(storyRest.shift()));
+      var node = el0.firstElementChild;
+      host.appendChild(node);
+      observeCards(node);
+      if (all !== true) break;
+    }
+    if (storyRest && storyRest.length) { storyTimer = setTimeout(appendStoryGroups, 40); return; }
+    storyRest = null;
+    paintPlayer();   // la tarjeta que suena puede estar en un grupo recién agregado
+  }
+  function ensureStory() { if (storyRest) { clearTimeout(storyTimer); appendStoryGroups(true); } }
+
+  /* MathJax por tarjeta, y solo cuando se acerca a la pantalla: 33 resúmenes juntos pesaban demasiado en el celular. */
+  var storyIO = null, typesetChain = Promise.resolve();
+  function queueTypeset(card) {
+    typesetChain = typesetChain.then(function () { return card.isConnected ? typeset(card) : null; }).catch(function () {});
+  }
+  function observeCards(root) {   // las tarjetas que se agregan después también esperan su turno
+    $$('.t-card', root).forEach(function (c) { if (storyIO) storyIO.observe(c); else queueTypeset(c); });
+  }
+  function lazyTypeset(root) {
+    if (storyIO) { storyIO.disconnect(); storyIO = null; }
+    if ('IntersectionObserver' in window) {
+      storyIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { storyIO.unobserve(en.target); queueTypeset(en.target); } });
+      }, { rootMargin: '1400px 0px' });
+    }
+    observeCards(root);
+  }
+
+  /* ----- el reproductor (vive en la página de la historia; el motor es global) ----- */
+  var headRO = null;
+  /* Las medidas se escriben en el elemento que las usa, no en :root: las variables CSS se heredan, y cambiar una en la raíz
+     recalcula el estilo de toda la página (con 33 resúmenes, casi un segundo en un celular lento). */
+  function measureHead() {   // alto del encabezado, para que el reproductor quede justo debajo
+    var top = $('.top'), pl = $('#player');
+    if (top && pl) pl.style.setProperty('--head-h', top.offsetHeight + 'px');
+  }
+  function setPlayerH() {   // alto del reproductor, para que un capítulo al que se salta quede debajo y no tapado
+    var pl = $('#player');
+    if (pl) app.style.setProperty('--pl-h', pl.offsetHeight + 'px');
+  }
+  function paintVoices() {   // la voz no se elige: se usa la mejor del dispositivo (la argentina primero) y el aviso dice cuál es
+    var note = $('#plNote'); if (!note) return;
+    var vs = Narr.voices(), cur = Narr.pickVoice();
+    var msg;
+    if (!Narr.supported) msg = 'Este navegador no puede leer en voz alta. La historia se puede leer igual.';
+    else if (!Narr.voicesReady()) msg = 'Buscando voces del dispositivo…';
+    else if (!vs.length) msg = 'No encontré una voz en español en este dispositivo. Instalá una en la configuración de idioma y voz del sistema.';
+    else if (Narr.state.error) msg = 'La voz del dispositivo falló (' + Narr.state.error + '). Probá de nuevo; si sigue, cambiá la voz en la configuración del sistema.';
+    else if (Narr.isArgentine(cur)) msg = 'Voz argentina: ' + cur.name + '.';
+    else msg = 'Este dispositivo no tiene voz argentina: uso «' + cur.name + '» (' + cur.lang + '). Edge, iPhone y iPad traen voces argentinas.';
+    if (Narr.coarse && Narr.supported) msg += ' Dejá la pantalla prendida: si se bloquea, el celular corta la voz.';
+    note.textContent = msg;
+  }
+  function paintPlayer() {
+    var pl = $('#player'); if (!pl) return;
+    var chs = Narr.chapters(), st = Narr.state, c = chs[st.ch];
+    var left = Narr.remainingWords() / (WPM * st.rate);
+    $('#plKick').textContent = 'Capítulo ' + (st.ch + 1) + ' de ' + chs.length + ' · quedan aprox. ' + fmtDur(left);
+    $('#plTitle').textContent = c.label + ' · ' + plainTitle(c.title);
+    var btn = $('#plPlay');
+    btn.innerHTML = st.playing ? ICON.pause : ICON.play;
+    btn.setAttribute('aria-label', st.playing ? 'Pausar' : (st.ch || st.i ? 'Seguir escuchando' : 'Escuchar'));
+    btn.disabled = !Narr.supported;
+    $('#plPrev').disabled = $('#plNext').disabled = !Narr.supported;
+    $('#plRate').value = String(st.rate); $('#plRate').disabled = !Narr.supported;
+    var p = Narr.progress(), bar = $('#plBar');
+    bar.setAttribute('aria-valuenow', String(Math.round(p * 100)));
+    bar.firstElementChild.style.setProperty('--p', p.toFixed(4));
+    var rs = $('#plReset'); if (rs) rs.hidden = !(st.ch || st.i);
+    pl.classList.toggle('is-playing', st.playing);
+    var cur = document.getElementById('t-' + c.id);
+    $$('.t-card.is-playing').forEach(function (x) { if (x !== cur) { x.classList.remove('is-playing'); x.removeAttribute('aria-current'); } });
+    if (cur && !cur.classList.contains('is-playing')) { cur.classList.add('is-playing'); cur.setAttribute('aria-current', 'true'); }
+    return c;
+  }
+  var lastShown = '';
+  function mountPlayer() {
+    Narr.restore();
+    var chs = Narr.chapters();
+    paintVoices(); lastShown = '';
+    paintPlayer();
+    $('#plPlay').addEventListener('click', function () { Narr.toggle(); });
+    $('#plPrev').addEventListener('click', function () { Narr.prev(); });
+    $('#plNext').addEventListener('click', function () { Narr.next(); });
+    $('#plRate').addEventListener('change', function (e) { Narr.setRate(e.target.value); });
+    $('#plReset').addEventListener('click', function () { Narr.reset(); });
+    if (headRO) headRO.disconnect();
+    if (window.ResizeObserver) { headRO = new ResizeObserver(measureHead); headRO.observe($('.top')); }   // avisa al observar y cada vez que el encabezado cambia de alto
+    if (Narr.state.playing) showChapter(chs[Narr.state.ch].id, true);
+  }
+  /* Cuando cambia el capítulo que suena, la página lo sigue (si el reproductor está en pantalla). */
+  function showChapter(id, instant) {
+    var el = document.getElementById('t-' + id);
+    if (!el) { ensureStory(); el = document.getElementById('t-' + id); }   // el capítulo puede estar en un PDF que todavía no se agregó
+    if (!el) return;
+    setPlayerH();
+    el.scrollIntoView({ behavior: (instant || reduceMotion) ? 'instant' : 'smooth', block: 'start' });
+  }
+  Narr.onChange(function (kind) {
+    if (!$('#player')) return;
+    var c = paintPlayer();
+    if (Narr.state.playing && c && lastShown !== c.id) { lastShown = c.id; showChapter(c.id); }
+    if (!Narr.state.playing) lastShown = '';
+    if (kind === 'voices') paintVoices();   // el aviso de la voz solo se repinta cuando cambian las voces o hay un error
+  });
+  app.addEventListener('click', function (e) {
+    var j = e.target.closest && e.target.closest('[data-jump]');
+    if (j) { var id = j.getAttribute('data-jump'); ensureStory(); setPlayerH(); pinTo('t-' + id, '#th-' + id); return; }
+    var l = e.target.closest && e.target.closest('[data-listen]');
+    if (l) { var chs = Narr.chapters(), id2 = l.getAttribute('data-listen'); for (var k = 0; k < chs.length; k++) if (chs[k].id === id2) { lastShown = id2; Narr.play(k, 0); } return; }
+    if (e.target.closest && e.target.closest('[data-story-listen]')) { Narr.play(); go('#/teoria/todo'); }   // play va primero: dentro del gesto del toque, como pide iOS
+  });
+  /* ================= fin NARRADOR ================= */
+  /* <<< NARRADOR */
+
+  /* ================= TEMAS PARA TILDAR: pestaña en el costado y panel =================
+     Todos los temas (cada resumen) y subtemas (su lista «Temas:») que entran, agrupados por PDF. Se tilda a mano y se guarda
+     en este navegador (TEMAS_KEY). El Anexo no está: es material extra, por fuera de la cátedra. En pantalla ancha el panel
+     queda al lado de la página (se puede seguir leyendo); en celular se abre como un diálogo que tapa todo. */
+  var TEMAS_KEY = 'palacio-macro:temas';
+  var Temario = (function () {
+    var tab = $('#tpTab'), dlg = $('#tpDlg');
+    var groups = SOURCES.filter(function (s) { return !s.lock; }).map(function (s) {
+      return { s: s, temas: cardsOf(s).filter(function (t) { return t.topics && t.topics.length; }) };
+    }).filter(function (g) { return g.temas.length; });
+    var skipped = SOURCES.some(function (s) { return s.lock; });
+    var total = 0, totalTemas = 0;
+    groups.forEach(function (g) { g.temas.forEach(function (t) { totalTemas++; total += t.topics.length; }); });
+    var done = {}, mem = null, built = false, modal = false;
+    var wide = window.matchMedia('(min-width: 900px)');
+    var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+    function key(t, i) { return t.id + ':' + i; }
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+
+    function load() {
+      var raw = null, o = null;
+      try { raw = localStorage.getItem(TEMAS_KEY); } catch (e) {}
+      if (!raw) raw = mem;
+      try { o = raw ? JSON.parse(raw) : null; } catch (e) {}
+      done = {};
+      if (!o || !o.done || typeof o.done !== 'object') return;
+      groups.forEach(function (g) { g.temas.forEach(function (t) { t.topics.forEach(function (_, i) { if (o.done[key(t, i)]) done[key(t, i)] = 1; }); }); });
+    }
+    function save() {
+      var j = JSON.stringify({ v: 1, done: done });
+      mem = j;
+      try { localStorage.setItem(TEMAS_KEY, j); } catch (e) {}
+    }
+    function countOf(t) { var n = 0; t.topics.forEach(function (_, i) { if (done[key(t, i)]) n++; }); return n; }
+    function doneCount() { var n = 0; groups.forEach(function (g) { g.temas.forEach(function (t) { n += countOf(t); }); }); return n; }
+    function temasDone() { var n = 0; groups.forEach(function (g) { g.temas.forEach(function (t) { if (countOf(t) === t.topics.length) n++; }); }); return n; }
+
+    function paint() {
+      var d = doneCount(), td = temasDone(), pct = total ? Math.round(100 * d / total) : 0;
+      tab.innerHTML = CHECK + '<span class="tp-tab-w">Temas</span> <span class="tp-tab-n">' + d + '/' + total + '</span>';
+      tab.setAttribute('aria-label', 'Temas ' + d + '/' + total + ', abrir la lista de temas del parcial');
+      if (!built) return;
+      $('#tpProgTxt').textContent = d + ' de ' + total + ' subtemas tildados';
+      $('#tpPct').textContent = pct + ' %';
+      $('#tpProgSub').textContent = td + ' de ' + totalTemas + ' temas completos';
+      var bar = $('#tpBar'); bar.setAttribute('aria-valuenow', String(pct)); bar.firstElementChild.style.setProperty('--p', (pct / 100).toFixed(3));
+      groups.forEach(function (g, gi) {
+        var n = 0, all = 0; g.temas.forEach(function (t) { n += countOf(t); all += t.topics.length; });
+        var c = $('[data-gcount="' + gi + '"]', dlg); c.textContent = n + ' de ' + all; c.classList.toggle('is-full', n === all);
+      });
+      $$('input[data-sub]', dlg).forEach(function (cb) { cb.checked = !!done[cb.getAttribute('data-sub')]; });
+      $$('input[data-tema]', dlg).forEach(function (cb) {
+        var t = byId(THEORY, cb.getAttribute('data-tema')), n = countOf(t);
+        cb.checked = n === t.topics.length; cb.indeterminate = n > 0 && n < t.topics.length;
+      });
+    }
+
+    function build() {
+      var firstOpen = -1;
+      groups.forEach(function (g, gi) { if (firstOpen < 0 && g.temas.some(function (t) { return countOf(t) < t.topics.length; })) firstOpen = gi; });
+      if (firstOpen < 0) firstOpen = 0;
+      var h = '<div class="tp-head"><div class="tp-top"><div><h2 id="tpTitle">✅ Temas del parcial</h2><p class="tp-sub">Tildá cada tema y subtema cuando lo domines. Se guarda en este navegador.</p></div>'
+        + '<button class="tp-close" type="button" data-tp="close" aria-label="Cerrar la lista de temas"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button></div>'
+        + '<div class="tp-prog"><div class="pc-row"><span id="tpProgTxt"></span><span id="tpPct"></span></div>'
+        + '<div class="tp-bar" id="tpBar" role="progressbar" aria-label="Subtemas tildados" aria-valuemin="0" aria-valuemax="100"><span></span></div><small id="tpProgSub"></small></div></div>'
+        + '<div class="tp-body">'
+        + groups.map(function (g, gi) {
+            return '<details class="tp-src"' + (gi === firstOpen ? ' open' : '') + '><summary><span class="tp-src-n">' + g.s.label + '<small>' + g.s.scope + '</small></span><span class="tp-src-c" data-gcount="' + gi + '"></span></summary>'
+              + '<ul class="tp-temas">' + g.temas.map(function (t) {
+                  var name = plainTitle(t.short || t.title);
+                  return '<li class="tp-tema"><label class="tp-row"><input type="checkbox" data-tema="' + t.id + '"><span class="tp-t"><span class="tp-n">' + (t.num || '·') + '</span>' + name + '</span></label>'
+                    + '<ul class="tp-subs" aria-label="Subtemas de ' + esc(name) + '">' + t.topics.map(function (x, i) {
+                        /* Un subtema que es solo una fórmula no tiene texto para el lector de pantalla: su nombre es la fórmula dicha en castellano. */
+                        var said = x.indexOf('\\(') >= 0 ? ' aria-label="' + esc(Narr.plainSpeech(x)) + '"' : '';
+                        return '<li><label class="tp-row"><input type="checkbox" data-sub="' + key(t, i) + '"' + said + '><span class="tp-t">' + x + '</span></label></li>';
+                      }).join('') + '</ul>'
+                    + '<a class="tp-go" href="#/teoria/' + t.id + '" data-tp="go">Ver el resumen<span class="sr-only">: ' + esc(name) + '</span></a></li>';
+                }).join('') + '</ul></details>';
+          }).join('')
+        + (skipped ? '<p class="tp-note">No están en la lista: el Anexo (clase 14), porque es material extra, por fuera de la cátedra.</p>' : '')
+        + '</div>'
+        + '<div class="tp-foot"><button class="btn btn-2" type="button" data-tp="clear">Desmarcar todo</button><button class="btn" type="button" data-tp="close">Listo</button></div>';
+      dlg.innerHTML = render(h);
+      built = true;
+    }
+    function typesetOpen() {   // MathJax solo en los PDF abiertos (son ~150 renglones con fórmulas)
+      $$('details.tp-src[open]', dlg).forEach(function (d) { if (!d.getAttribute('data-ts')) { d.setAttribute('data-ts', '1'); typeset(d); } });
+    }
+    function open() {
+      if (!built) build();
+      paint();
+      if (!dlg.open) {
+        modal = !wide.matches && typeof dlg.showModal === 'function';
+        if (modal) dlg.showModal(); else if (typeof dlg.show === 'function') dlg.show(); else dlg.setAttribute('open', '');
+      }
+      tab.setAttribute('aria-expanded', 'true');
+      typesetOpen();
+      var c = $('.tp-close', dlg); if (c) c.focus({ preventScroll: true });
+    }
+    function close() { if (dlg.open) { if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open'); } }
+    function forget() { done = {}; mem = null; try { localStorage.removeItem(TEMAS_KEY); } catch (e) {} paint(); }
+
+    tab.addEventListener('click', function () { if (dlg.open) close(); else open(); });
+    dlg.addEventListener('close', function () {
+      tab.setAttribute('aria-expanded', 'false');
+      var a = document.activeElement;
+      if (!a || a === document.body || dlg.contains(a)) tab.focus({ preventScroll: true });
+    });
+    dlg.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.preventDefault(); close(); } });
+    dlg.addEventListener('toggle', function (e) { if (e.target.open && e.target.classList && e.target.classList.contains('tp-src')) typesetOpen(); }, true);
+    dlg.addEventListener('change', function (e) {
+      var cb = e.target, sub = cb.getAttribute && cb.getAttribute('data-sub'), tema = cb.getAttribute && cb.getAttribute('data-tema');
+      if (sub) { if (cb.checked) done[sub] = 1; else delete done[sub]; }
+      else if (tema) { var t = byId(THEORY, tema); t.topics.forEach(function (_, i) { if (cb.checked) done[key(t, i)] = 1; else delete done[key(t, i)]; }); }
+      else return;
+      save(); paint();
+      say(doneCount() + ' de ' + total + ' subtemas tildados.');
+    });
+    dlg.addEventListener('click', function (e) {
+      if (e.target === dlg) { if (modal) close(); return; }   // toque en el fondo oscuro
+      var b = e.target.closest('[data-tp]'); if (!b) return;
+      var act = b.getAttribute('data-tp');
+      if (act === 'close') close();
+      else if (act === 'go') { if (modal) close(); }   // en pantalla ancha el panel queda abierto al lado del resumen
+      else if (act === 'clear') {
+        ask('¿Desmarcar todos los temas?', 'Los ' + total + ' subtemas vuelven a quedar sin tildar. Tu XP, las salas, los jefes y el audio no se tocan.', 'Desmarcar', 'Cancelar', true).then(function (yes) {
+          if (!yes) return;
+          done = {}; save(); paint(); say('Temas desmarcados.');
+        });
+      }
+    });
+
+    load(); tab.hidden = !total; paint();
+    return { open: open, close: close, forget: forget, total: total, totalTemas: totalTemas, groups: groups, isOpen: function () { return dlg.open; }, doneCount: doneCount };
+  })();
+  window.__temario = Temario;   // gancho de prueba
 
   /* ================= TAB 2: PRÁCTICA (PALACIO) ================= */
   function roomItem(r, i) {
@@ -4690,8 +5618,13 @@ window.MACRO_DATA = { sources: SOURCES, theory: THEORY, practice: PRACTICE, exam
     if (tab !== 'practica' && tab !== 'jefes' && tab !== 'simulacros') tab = 'teoria';
     setTab(tab);
     app.classList.toggle('wide', tab === 'teoria');
+    /* La historia completa (#/teoria/todo) es la única página con audio: al salir de ella la voz se detiene (la posición queda guardada). */
+    var story = tab === 'teoria' && parts[0] === 'teoria' && parts[1] === 'todo';
+    app.classList.toggle('story', story);
+    if (!story) Narr.stop();
     /* Durante un simulacro (examen y resultado) el aviso flotante no aparece: taparía la barra de entrega. */
     document.body.classList.toggle('in-exam', tab === 'simulacros' && !!parts[1]);
+    if (document.body.classList.contains('in-exam')) Temario.close();   // en un examen no hay panel ni pestaña
     if (tab === 'practica') {
       if (!parts[1]) renderPalace();
       else if (parts[2] === 'jugar') startRoom(parts[1]);
